@@ -51,7 +51,7 @@ if ("workingBranch") {
 
 						review your code with someone else and make sure it works again
 
-						git push origin master
+						git push origin workingBranch
 
 						go to git and make the pull request
 
