@@ -1,0 +1,78 @@
+if ("workingBranch") {
+
+	git status {
+
+		for (unaddedFile in repo) {
+
+
+			git add unaddedFile
+			git commit {
+
+				add commit message using karma style {
+
+					<type>(<scope>): <subject>
+
+					<body>
+
+					<footer>
+				}
+
+			}
+
+
+		}
+
+
+		git status {
+
+			if (cleanStatus) {
+
+				git checkout master
+
+				git pull --rebase upstream master
+
+
+				if (merge conflict) {
+					give up and cry (call ben over)
+				}
+
+				else {
+					
+					git checkout "workingBranch"
+					
+					git --rebase master
+					
+					if (merge conflict) {
+						give up and cry (call ben over)
+					}
+
+					else {
+
+
+						review your code with someone else and make sure it works again
+
+						git push origin master
+
+						go to git and make the pull request
+
+						thank Ben for accepting the pull request and he will thank you
+
+					}
+
+				}
+
+			}
+
+		}
+
+
+
+	}
+}
+
+else {
+
+	call Ben
+
+}
+
