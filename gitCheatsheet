@@ -38,7 +38,7 @@ if ( on "workingBranch") {
 					
 					git checkout master
 					
-					git --rebase workingBranch
+					git rebase workingBranch
 					
 					if (merge conflict) {
 						give up and cry (call ben over)
