@@ -1,5 +1,5 @@
 # Project Name #
-
+Nailed It
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -18,27 +18,39 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Elevate
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  
+  A design multi-tool that pros, consumers, DIYers, and everyone in between can use.  
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  Nailed It keeps your design project in the palm of your hand. Track costs, styles, and favorite vendors, all from a clean, simple interface. 
+
 ## Problem ##
   > Describe the problem your product solves.
+
+  Making your home look great takes a lot of work. We make it easier. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
+ Whether you're adding design elements to a wishlist, or tracking and budgeting purchases for a project, an easy to use web app helps keep everything organized. 
+
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
 
+
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
