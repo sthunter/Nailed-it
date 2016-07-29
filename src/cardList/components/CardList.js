@@ -10,12 +10,10 @@ class CardList extends Component { // Todo: Convert this to a functional compone
         <p className="CardList--intro">
           {this.props.intro}
         </p>
-        <ul> {/* Todo: This should be replaced with an array of Card elements */}
           {this.props.list.map((room) =>
-            <li key={ room }>{room}</li>
+            <ListItem key={ room } title= {room} />
           )}
-        </ul>
-        <ListItem />
+        
       </div>
     );
   }
