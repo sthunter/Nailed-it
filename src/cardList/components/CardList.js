@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
+import AddItem from './AddItem';
 import './cardList.css';
 
 class CardList extends Component { // Todo: Convert this to a functional component?

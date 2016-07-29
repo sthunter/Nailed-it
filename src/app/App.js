@@ -13,6 +13,7 @@ import RoomsList from '../rooms/containers/roomsList.container';
 //  'Ball Pit',
 //];
 
+
 export default class App extends Component {
   render() {
     return (
@@ -28,4 +29,6 @@ export default class App extends Component {
       </div>
     );
   }
+
 }
+        // <img src={logo} className="App-logo" alt="logo" />
