@@ -16,10 +16,7 @@ if ( on "workingBranch") {
 
 					<footer>
 				}
-
 			}
-
-
 		}
 
 
@@ -35,36 +32,20 @@ if ( on "workingBranch") {
 				}
 
 				else {
-					
-					git checkout master
-					
-					git rebase workingBranch
-					
-					if (merge conflict) {
-						give up and cry (call ben over)
-					}
-
-					else {
-
 
 						review your code with someone else and make sure it works again
 
-						git push origin master
+						git push origin workingBranch
+
+						git checkout master
 
 						go to git and make the pull request
 
 						thank Ben for accepting the pull request and he will thank you
 
-					}
-
 				}
-
 			}
-
 		}
-
-
-
 	}
 }
 
