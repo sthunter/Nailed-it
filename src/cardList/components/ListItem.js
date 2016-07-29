@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import './cardList.css';
+
+
+
 
 class ListItem extends Component {
   render() {
@@ -7,7 +11,7 @@ class ListItem extends Component {
         <li className="list-item">
 
           <div className="item-description">
-            <h1>title</h1>
+            <h1> {this.props.title} </h1>
             <p>description</p>
           </div>
           
@@ -17,7 +21,6 @@ class ListItem extends Component {
 
         </li>
       </div>
-
       );
   }
 };
