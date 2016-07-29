@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ListItem from './ListItem';
 import './cardList.css';
 
 class RoomsList extends Component { // Todo: Convert this to a functional component?
@@ -14,6 +15,7 @@ class RoomsList extends Component { // Todo: Convert this to a functional compon
             <li>{room}</li>
           )}
         </ul>
+        <ListItem />
       </div>
     );
   }
