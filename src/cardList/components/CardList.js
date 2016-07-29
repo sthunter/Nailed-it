@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 import './cardList.css';
 
-class RoomsList extends Component { // Todo: Convert this to a functional component?
+class CardList extends Component { // Todo: Convert this to a functional component?
   render() {
     return (
       <div className="CardList">
@@ -12,7 +12,7 @@ class RoomsList extends Component { // Todo: Convert this to a functional compon
         </p>
         <ul> {/* Todo: This should be replaced with an array of Card elements */}
           {this.props.list.map((room) =>
-            <li>{room}</li>
+            <li key={ room }>{room}</li>
           )}
         </ul>
         <ListItem />
@@ -21,4 +21,4 @@ class RoomsList extends Component { // Todo: Convert this to a functional compon
   }
 }
 
-export default RoomsList;
+export default CardList;
