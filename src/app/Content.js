@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Content from './Content';
+import RoomsList from '../rooms/containers/roomsList.container';
 
-export default class App extends Component {
+export default class Content extends Component {
   render() {
     return (
       <div className="App">
@@ -12,7 +11,7 @@ export default class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Content store={this.props.store} />
+        <RoomsList store={this.props.store} />
       </div>
     );
   }
