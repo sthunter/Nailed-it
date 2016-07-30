@@ -1,4 +1,4 @@
-import { addRoom, ADD_ROOM } from '../actions/rooms.action';
+import { ADD_ROOM } from '../actions/rooms.action';
 
 // Todo: Check if the name already exists in the state
 const roomsReducer = (state = [], action) => {

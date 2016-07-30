@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import RoomsList from '../rooms/containers/roomsList.container';
+
 //import CardList from '../cardList/components/CardList';
-
-//const cardListIntro = 'This should be a list of rooms, or furniture, or something!';
-//const roomsDummyData = [
-//  'Living Room',
-//  'Dungeon',
-//  'Dining Room',
-//  'Aviary',
-//  'Ball Pit',
-//];
-
+//import logo from './logo.svg';
 
 export default class App extends Component {
   render() {
