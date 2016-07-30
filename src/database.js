@@ -1,6 +1,6 @@
 const database = {
   rooms: [{
-    name: "living room",
+    roomName: "living room",
     furniture: [{
       name: "couch",
       color: "blue"
@@ -13,7 +13,7 @@ const database = {
     }]
 
   }, {
-    name: "dining room",
+    roomName: "dining room",
     furniture: [{
       name: "chair",
       color: "blue"
@@ -23,7 +23,7 @@ const database = {
     }]
 
   }, {
-    name: "bathroom",
+    roomName: "bathroom",
     furniture: [{
       name: "toilet",
       color: "white"
@@ -36,7 +36,7 @@ const database = {
     }]
 
   }, {
-    name: "kitchen",
+    roomName: "kitchen",
     furniture: [{
       name: "bed",
       color: "blue"
@@ -49,7 +49,7 @@ const database = {
     }]
 
   }, {
-    name: "bedroom",
+    roomName: "bedroom",
     furniture: [{
       name: "bed",
       color: "blue"

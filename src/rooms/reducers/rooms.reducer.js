@@ -5,7 +5,7 @@ const roomsReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_ROOM:
 
-      const newRoomOrRooms = [action.room];
+      const newRoomOrRooms = [action.room.roomName];
       //const newRoomOrRooms = typeof action.room === 'Object' ?
       //  [{
       //    name: action.room,

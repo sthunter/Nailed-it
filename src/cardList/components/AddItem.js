@@ -5,6 +5,7 @@ import AddRoom from './Modal';
 
 class AddItem extends Component {
   render() {
+    const store = this.props.store
     return (
         <Row> 
           <Col s={12} m={6} l={6}>
@@ -21,7 +22,11 @@ class AddItem extends Component {
                   />
                 }
                 >
-                <AddRoom />
+                <div>
+                <AddRoom
+                  store={ store } 
+                />
+                </div>
             </Modal>
 
 
