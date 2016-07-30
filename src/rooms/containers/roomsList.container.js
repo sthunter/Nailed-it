@@ -9,7 +9,7 @@ const rooms = database.rooms;
 class RoomsList extends Component {
   componentWillMount() {
     const _this = this;
-    rooms.forEach(room => _this.props.addRoom(room.name));
+    rooms.forEach(room => _this.props.addRoom(room));
   }
 
   render() {
@@ -22,6 +22,7 @@ class RoomsList extends Component {
           clickHandler={this.props.selectRoom}
           intro={this.props.roomSelected}
           list={this.props.rooms}
+          store={this.props.store}
 
         />
       </div>

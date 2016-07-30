@@ -22,7 +22,9 @@ class CardList extends Component { // Todo: Convert this to a functional compone
             />
           );
         })}
-        <AddItem />
+        <AddItem 
+        store={this.props.store}
+        />
       </div>
     );
   }
