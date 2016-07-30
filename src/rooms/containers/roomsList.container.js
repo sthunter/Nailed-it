@@ -3,19 +3,20 @@ import { connect} from 'react-redux';
 import CardList from '../../cardList/components/CardList';
 import { addRoom, roomSelected } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-import { dummyRooms } from '../../database';
+import database from '../../database';
+const rooms = database.rooms;
 
 class RoomsList extends Component {
   componentWillMount() {
-    this.props.addRoom('The Labohr-atohry');
-    //this.rooms = require('../../database').default.rooms;
+    const _this = this;
+    rooms.forEach(room => _this.props.addRoom(room.name));
   }
 
   render() {
     const rooms = this.props.rooms;
     return (
       <CardList
-        intro={this.props.roomSelected} list={this.rooms || this.props.rooms} clickHandler={this.props.roomSelected} />
+        intro={this.props.roomSelected} list={this.props.rooms} clickHandler={this.props.roomSelected} />
     );
   }
 }
