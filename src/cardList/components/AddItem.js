@@ -22,7 +22,6 @@ class AddItem extends Component {
                 }
                 >
                 <AddRoom />
-                <
             </Modal>
 
 
