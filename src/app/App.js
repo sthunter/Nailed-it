@@ -1,19 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './App.css';
 import Content from './Content';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import Foot from './Footer';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {open:true}
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handleClose = this.handleClose.bind(this); 
+  }
+
+  handleToggle = () => this.setState({open: !this.state.open});
+  handleClose = () => this.setState({open: false});
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
+      <MuiThemeProvider>
+        <div className="App">
+          <div className="App-header">
+            <Header handleToggle={this.handleToggle} handleClose={this.handleClose}/>
+          </div>
+          <p className="App-intro">
+            <Sidebar handleClose={this.handleClose}/>
+          </p>
+          <Content store={this.props.store} />
+          <Foot/>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Content store={this.props.store} />
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
