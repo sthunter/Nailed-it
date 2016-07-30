@@ -3,28 +3,20 @@ import ListItem from './ListItem';
 import AddItem from './AddItem';
 import './cardList.css';
 
-class CardList extends Component { // Todo: Convert this to a functional component?
+class CardList extends Component {
   render() {
-    //this.props.clickHandler('The Ballpit');
     return (
       <div className="CardList">
-        <h2>Generic CardList Component</h2>
-        <p className="CardList--intro">
-          {this.props.intro}
-        </p>
-        {this.props.list.map((room) => {
-          const roomName = typeof room !== 'Object' ? room : room.name;
+        {this.props.list.map((item) => {
           return (
             <ListItem
-              key={ roomName }
-              title={roomName}
+              key={ item /* This assumes item is a string; we'll need to change this once item becomes an object */}
+              title={ item }
               clickHandler={this.props.clickHandler}
             />
           );
         })}
-        <AddItem 
-        store={this.props.store}
-        />
+        <AddItem store={this.props.store}/>
       </div>
     );
   }
