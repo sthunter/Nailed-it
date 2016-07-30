@@ -6,10 +6,10 @@ export function addRoom(room) {
   };
 }
 
-export const ROOM_SELECTED = 'ROOM_SELECTED';
-export function roomSelected(room) {
+export const SELECT_ROOM = 'SELECT_ROOM';
+export function selectRoom(room) {
   return {
-    type: ROOM_SELECTED,
+    type: SELECT_ROOM,
     room
   };
 }
