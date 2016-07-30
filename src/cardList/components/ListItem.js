@@ -11,18 +11,19 @@ class ListItem extends Component {
   }
 
   render() {
-    this.props.clickHandler('the other ballpit');
+    // this.props.clickHandler('the other ballpit');
     //  onClick={}
+    const title = this.props.title;
     return (
-      <Row>
+      <Row >
         <Col s={12} m={6} l={6}>
           <Card
-
+            onClick={() => {this.handleClick(title)}}
             className='blue-grey darken-1'
-            title={this.props.title}
+            title={ title }
             textClassName='white-text'
           >
-            <p onClick={() => {console.log('clicked!')}}>
+            <p >
               description
             </p>
           </Card>
