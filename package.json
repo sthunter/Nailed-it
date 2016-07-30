@@ -48,6 +48,6 @@
     "start": "node ./server.js",
     "dev": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
-    "deploy": "npm run build && npm run start"
+    "deploy": "npm run build && git push https://github.com/Nailed-it/Nailed-it-deployed.git master"
   }
 }
