@@ -13,7 +13,6 @@ class RoomsList extends Component {
   }
 
   render() {
-    const rooms = this.props.rooms;
     return (
       <CardList
         intro={this.props.roomSelected} list={this.props.rooms} clickHandler={this.props.roomSelected} />

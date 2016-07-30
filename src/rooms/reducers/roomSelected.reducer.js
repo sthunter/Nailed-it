@@ -1,4 +1,4 @@
-import { roomSelected, ROOM_SELECTED } from '../actions/rooms.action';
+import { ROOM_SELECTED } from '../actions/rooms.action';
 
 const roomSelectedReducer = (state = null, action) => {
   switch (action.type) {
@@ -8,7 +8,5 @@ const roomSelectedReducer = (state = null, action) => {
       return state;
   }
 };
-
-//const roomSelectedReducer = () => {};
 
 export default roomSelectedReducer;
