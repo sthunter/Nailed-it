@@ -15,7 +15,7 @@ class ListItem extends Component {
     //  onClick={}
     return (
       <Row>
-        <Col s={6}>
+        <Col s={12} m={6} l={6}>
           <Card
 
             className='blue-grey darken-1'
