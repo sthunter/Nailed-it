@@ -7,7 +7,7 @@ class AddItem extends Component {
   render() {
     return (
         <Row> 
-          <Col s={6}>
+          <Col s={12} m={6} l={6}>
                 <Card className="blue-grey lighten-1 center-align">
               
             <Modal
