@@ -13,8 +13,6 @@ class RoomsList extends Component {
   }
 
   render() {
-    //console.log('[roomsList] roomSelected: ', this.props.roomSelected);
-    //this.props.selectRoom('the Ballpit');
     return (
       <div>
         <h3>Room selected: {this.props.roomSelected || 'No room selected yet'}</h3>
@@ -23,7 +21,6 @@ class RoomsList extends Component {
           intro={this.props.roomSelected}
           list={this.props.rooms}
           store={this.props.store}
-
         />
       </div>
     );
