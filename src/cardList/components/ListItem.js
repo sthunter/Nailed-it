@@ -7,15 +7,15 @@ class ListItem extends Component {
   render() {
     return (
       <Row>
-      <Col s={6}>
-        <Card 
-        className='blue-grey darken-1'
-        title={this.props.title}
-        textClassName='white-text'
-        >
-          <p>description</p>
-        </Card>
-      </Col>
+        <Col s={6}>
+          <Card
+            className='blue-grey darken-1'
+            title={this.props.title}
+            textClassName='white-text'
+          >
+            <p>description</p>
+          </Card>
+        </Col>
       </Row>
       );
   }
