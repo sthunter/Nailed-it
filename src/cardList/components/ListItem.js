@@ -15,8 +15,6 @@ class ListItem extends Component {
     //  onClick={}
     const title = this.props.title;
     return (
-      <Row >
-        <Col s={12} m={6} l={6}>
           <Card
             onClick={() => {this.handleClick(title)}}
             className='blue-grey darken-1'
@@ -27,8 +25,6 @@ class ListItem extends Component {
               description
             </p>
           </Card>
-        </Col>
-      </Row>
       );
   }
 }

@@ -4,6 +4,7 @@ import CardList from '../../cardList/components/CardList';
 import { addRoom, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import database from '../../database';
+import { Row, Col} from 'react-materialize';
 const rooms = database.rooms;
 
 class RoomsList extends Component {
@@ -14,15 +15,20 @@ class RoomsList extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Room selected: {this.props.roomSelected || 'No room selected yet'}</h3>
-        <CardList
-          clickHandler={this.props.selectRoom}
-          intro={this.props.roomSelected}
-          list={this.props.rooms}
-          store={this.props.store}
-        />
-      </div>
+      <Row>
+        <Col s={12} m={6} l={6}>
+          <div>
+            <h3>Room selected: {this.props.roomSelected || 'No room selected yet'}</h3>
+            <CardList
+              clickHandler={this.props.selectRoom}
+              intro={this.props.roomSelected}
+              list={this.props.rooms}
+              store={this.props.store}
+            />
+          </div>
+        </Col>
+      </Row>
+
     );
   }
 }
