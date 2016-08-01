@@ -7,12 +7,10 @@ class AddRoom extends Component {
 
   render() {
     const { fields: { roomName } , handleSubmit } = this.props;
-    // const handleSubmit = this.props.handleSubmit;
-    // const roomName = this.props.fields.roomName;
     return (
       <form onSubmit = { handleSubmit(this.props.addRoom) } >
         <Input type="text" placeholder="Room Name" s={12} label="Room Name" { ...roomName } />
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
 
 
@@ -24,3 +22,8 @@ export default reduxForm({
   form: 'AddRoomForm',
   fields: ['roomName'],
 }, null, { addRoom } )(AddRoom);
+   
+
+    // Moved this outside of function  
+    // const handleSubmit=this.props.handleSubmit;
+    // const roomName=this.props.fields.roomName;

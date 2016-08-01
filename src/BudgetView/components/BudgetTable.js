@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Col  } from 'react-materialize';
+import { Table  } from 'react-materialize';
 
 class BudgetTable extends Component {
   render() {

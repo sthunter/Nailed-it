@@ -9,4 +9,4 @@ class BudgetGraph extends Component {
   }
 } 
 
-export default BudgetView;
+export default BudgetGraph;
