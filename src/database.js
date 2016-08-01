@@ -1,70 +1,69 @@
 const database = {
-  rooms: [{
-    roomName: "living room",
-    furniture: [{
-      name: "couch",
-      color: "blue"
-    }, {
-      name: "coffee table",
-      color: "brown"
-    }, {
-      name: "television",
-      color: "black"
-    }]
-
-  }, {
-    roomName: "dining room",
-    furniture: [{
-      name: "chair",
-      color: "blue"
-    }, {
-      name: "table",
-      color: "brown"
-    }]
-
-  }, {
-    roomName: "bathroom",
-    furniture: [{
-      name: "toilet",
-      color: "white"
-    }, {
-      name: "shower",
-      color: "green"
-    }, {
-      name: "medicine cabinet",
-      color: "white"
-    }]
-
-  }, {
-    roomName: "kitchen",
-    furniture: [{
-      name: "bed",
-      color: "blue"
-    }, {
-      name: "nightstand",
-      color: "brown"
-    }, {
-      name: "painting",
-      color: "green"
-    }]
-
-  }, {
-    roomName: "bedroom",
-    furniture: [{
-      name: "bed",
-      color: "blue"
-    }, {
-      name: "nightstand",
-      color: "brown"
-    }, {
-      name: "painting",
-      color: "green"
-    }]
-
-  }
-
-  ]
-
+  rooms: {
+    "living room": {
+      furniture: {
+        "couch": {
+          color: "blue"
+        },
+        "coffee table": {
+          color: "brown"
+        },
+        "television": {
+          color: "black"
+        }
+      }
+    },
+    "dining room": {
+      furniture: {
+        "chair": {
+          color: "blue"
+        },
+        "table": {
+          color: "brown"
+        }
+      }
+    },
+    "bathroom": {
+      furniture: {
+        "toilet": {
+          color: "white"
+        },
+        "shower": {
+          color: "green"
+        },
+        "medicine cabinet": {
+          color: "white"
+        }
+      }
+    },
+    "kitchen": {
+      furniture: {
+        "bed": {
+          color: "blue"
+        },
+        "nightstand": {
+          color: "brown"
+        },
+        "painting": {
+          color: "green"
+        }
+      }
+    },
+    "bedroom": {
+      furniture: {
+        "bed": {
+          color: "blue"
+        },
+        "nightstand": {
+          color: "brown"
+        },
+        "painting": {
+          color: "green"
+        }
+      }
+    }
+  },
+  budget: 10000
 };
 
 export default database;
