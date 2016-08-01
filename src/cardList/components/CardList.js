@@ -10,8 +10,8 @@ class CardList extends Component {
         {this.props.list.map((item) => {
           return (
             <ListItem
-              key={ item /* This assumes item is a string; we'll need to change this once item becomes an object */}
-              title={ item }
+              key={ item.roomName }
+              title={ item.roomName }
               clickHandler={this.props.clickHandler}
             />
           );
