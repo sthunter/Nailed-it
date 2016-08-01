@@ -18,7 +18,7 @@ class RoomsList extends Component {
       newRoom[roomName] = rooms[roomName];
       return _this.props.addRoom(newRoom);
     });
-}
+  }
 
   render() {
     return (
