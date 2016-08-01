@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Content from './Content';
 import Header from './Header';

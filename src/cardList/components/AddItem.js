@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, Button, Modal } from 'react-materialize';
+import { Card, Button, Modal } from 'react-materialize';
 import './cardList.css';
 import AddRoom from './Modal';
 
