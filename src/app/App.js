@@ -4,6 +4,7 @@ import Content from './Content';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Foot from './Footer';
+import FurnitureDetail from '../furniture/components/FurnitureDetail';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class App extends Component {
