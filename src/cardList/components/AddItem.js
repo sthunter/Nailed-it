@@ -10,21 +10,19 @@ class AddItem extends Component {
                 <Card className="blue-grey lighten-1 center-align">
               
             <Modal
-              header="Modal Header"        
+              header="Modal Header"
               trigger={
-                  <Button floating large  
+                <Button floating large
                   centered="true"
-                  className="grey" 
-                  waves="light" 
+                  className="grey"
+                  waves="light"
                   icon="add"
-                  />
-                }
-                >
-                <div>
-                <AddRoom
-                  store={ store } 
                 />
-                </div>
+              }
+            >
+              <div>
+                <AddRoom store={ store } />
+              </div>
             </Modal>
 
 
