@@ -1,4 +1,5 @@
 import { ADD_ROOM } from '../actions/rooms.action';
+import { ADD_FURNITURE } from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
@@ -12,6 +13,11 @@ const roomsReducer = (state = {}, action) => {
         // Todo: Check if the room already exists in the state
       }
       return Object.assign(_.cloneDeep(state), action.room);
+    case ADD_FURNITURE:
+      const newState = _.clone(state);
+      const furnitureName = Object.keys(action.furniture)[0];
+      newState[action.room][furnitureName] = action.furniture[furnitureName];
+      return newState;
   }
 
   return state;
