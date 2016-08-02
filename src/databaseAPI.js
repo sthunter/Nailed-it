@@ -18,9 +18,16 @@ export function addRoom(room) {
 };
 
 export function getRooms(cb) {
-  database.ref('rooms').once('value', function(snapshot){
-    return snapshot;
-  })
+  database.ref('rooms').once('value').then((snapshot) => {
+    const rooms = snapshot.val();
+    console.log('getRooms:', rooms)
+    for (var room in rooms){
+      let roomObj = {};
+      roomObj[room] = rooms[room]
+      cb(roomObj);
+    }
+    //cb(snapshot.val());
+  });
 };
 
 export function getFurniture(rooms) {
@@ -33,7 +40,6 @@ export function getFurniture(rooms) {
 
 export function getBudget(cb) {
   database.ref('budget').once('value').then((snapshot) => {
-    console.log('budget:',snapshot.val());
     cb(snapshot.val());
   });
 };
