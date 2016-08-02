@@ -11,14 +11,12 @@ class BudgetView extends Component {
   componentWillMount() {
 
     getBudget(this.props.GetBudget.bind(this));
-    //GetBudget(5000);
   }
 
   render() {
     return(
       <div>
-        <h3>Total Budget: { this.props.budget || 'no budget' }</h3>
-        <BudgetTable />
+        <BudgetTable budget={this.props.budget} list = {this.props.list}/>
         <BudgetGraph />
       </div>
     )
