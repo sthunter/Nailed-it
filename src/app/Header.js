@@ -6,7 +6,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-       <Navbar brand='Nailed-It' left className="indigo darken-1">
+       <Navbar brand='Nailed-It' right className="blue darken-3">
         <NavItem href='#'>Settings</NavItem>
         <NavItem href='#'>Profile</NavItem>
        </Navbar>

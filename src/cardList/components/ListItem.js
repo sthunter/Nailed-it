@@ -17,9 +17,9 @@ class ListItem extends Component {
     return (
           <Card
             onClick={() => {this.handleClick(title)}}
-            className='blue-grey darken-1'
+            className='grey lighten-2'
             title={ title }
-            textClassName='white-text'
+            textClassName='black-text'
           >
             <p >
               description
