@@ -1,18 +1,29 @@
-const database = firebase.database();
+import Firebase from 'firebase';
 
-export addRoom = function(room) {
+const config = {
+        apiKey: "AIzaSyArc1jthjsWkx91fsY2QTzXVhZm378B9AY",
+        authDomain: "nailed-it-c1d80.firebaseapp.com",
+        databaseURL: "https://nailed-it-c1d80.firebaseio.com",
+        storageBucket: "nailed-it-c1d80.appspot.com",
+      };
+firebase.initializeApp(config);
+
+
+const database = Firebase.database();
+
+export function addRoom(room) {
   for (var room in rooms) {
     database.ref('rooms/' + room).set(rooms[room]);
   }
 };
 
-export getRooms = function(cb) {
+export function getRooms(cb) {
   database.ref('rooms').once('value', function(snapshot){
     return snapshot;
   })
 };
 
-export getFurniture = function(rooms) {
+export function getFurniture(rooms) {
   for (var room in rooms) {
     database.ref('rooms/' + room + '/furniture').once('value', function(snapshot) {
       return snapshot;
@@ -20,17 +31,18 @@ export getFurniture = function(rooms) {
   }
 };
 
-export getBudget = function(cb) {
-  database.ref('budget').once('value', function(snapshot) {
-    return snapshot;
-  })
+export function getBudget(cb) {
+  database.ref('budget').once('value').then((snapshot) => {
+    console.log('budget:',snapshot.val());
+    cb(snapshot.val());
+  });
 };
 
-export updateBudget = function(budget) {
+export function updateBudget(budget) {
   database.ref('budget').set(budget);
 };
 
-export updateFurniture = function(rooms, furniture) {
+export function updateFurniture(rooms, furniture) {
   for (var room in rooms) {
     for (var pieceOfFurniture in furniture) {
       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).set(furniture[pieceOfFurniture]);
@@ -38,13 +50,13 @@ export updateFurniture = function(rooms, furniture) {
   }
 };
 
-export removeRoom = function(room) {
+export function removeRoom(room) {
   for (var room in rooms) {
     database.ref('rooms/' + room).remove();
   }
 };
 
-export removeFurniture = function(room, furniture) {
+export function removeFurniture(room, furniture) {
   for (var room in rooms) {
     for (var pieceOfFurniture in furniture) {
       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).remove();
