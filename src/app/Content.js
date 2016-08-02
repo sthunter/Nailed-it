@@ -5,7 +5,7 @@ export default class Content extends Component {
   render() {
     return (
       <div>
-        <RoomsList store={this.props.store} />
+        <RoomsList />
       </div>
     );
   }

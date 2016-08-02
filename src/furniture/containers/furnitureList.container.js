@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect} from 'react-redux';
 import CardList from '../../cardlist/components/CardList';
 
 
@@ -15,7 +16,6 @@ export default class FurnitureList extends Component {
         <h3>Current Rooms Furniture</h3>
         <CardList
           list={ furniture }
-          store={this.props.store}
           intro={ intro }
         />
       </div>

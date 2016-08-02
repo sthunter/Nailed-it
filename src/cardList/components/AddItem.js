@@ -6,7 +6,7 @@ import AddFurniture from './AddFurniture';
 
 class AddItem extends Component {
   state = {
-    form: 'room'
+    form: 'furniture'
   }
 
   render() {
