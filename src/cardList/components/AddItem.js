@@ -6,27 +6,11 @@ import AddFurniture from './AddFurniture';
 import FurnitureDetail from '../../furniture/components/FurnitureDetail';
 
 class AddItem extends Component {
-  state = {
-    form: 'furniture'
-  }
 
   render() {
-
-    //this.props.header
-    var header;
-    
-    // const onClick =  
-    var actions = [<Button waves='light' modal='close' flat >Submit</Button>, <Button waves='light' modal='close' flat>Close</Button>]
-    if(this.state.form === 'room') {
-      header = 'Add a Room';
-    } else if(this.state.form === 'furniture') {
-      header = 'Add an Item';
-    } else if(this.state.form === 'detail') {
-      header = this.props.title;
-      actions = [<Button waves='light' modal='close' flat>Close</Button>]
-
-    }
-    
+    const header = this.props.view === 'room' ? 'Add a room' : 'Add a piece of furniture';
+    const actions = [<Button waves='light' modal='close' flat >Submit</Button>, <Button waves='light' modal='close' flat>Close</Button>];
+    const form = this.props.view === 'room' ? <AddRoom /> : <AddFurniture/>;
 
     return (
       <Card className="grey lighten-4 center-align">
@@ -44,14 +28,7 @@ class AddItem extends Component {
           }
         >
           <div>
-            {(() => {
-              switch (this.state.form) {
-              case "room": return <AddRoom />;
-              case "furniture": return  <AddFurniture/>;
-              case "detail": return <FurnitureDetail/>
-              default: return "Did not work";
-            }
-            })()}
+            {/* form */}
           </div>
         </Modal>
       </Card>
