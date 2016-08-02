@@ -3,6 +3,7 @@ import { Card, Button, Modal } from 'react-materialize';
 import './cardList.css';
 import AddRoom from './AddRoom';
 import AddFurniture from './AddFurniture';
+import FurnitureDetail from '../../furniture/components/FurnitureDetail';
 
 class AddItem extends Component {
   state = {
@@ -26,7 +27,7 @@ class AddItem extends Component {
     
 
     return (
-      <Card className="blue-grey lighten-4 center-align">
+      <Card className="grey lighten-4 center-align">
 
         <Modal
           header={header}
@@ -34,7 +35,7 @@ class AddItem extends Component {
           trigger={
             <Button floating large
               centered="true"
-              className="grey"
+              className="grey lighten-1"
               waves="light"
               icon="add"
             />
@@ -45,6 +46,7 @@ class AddItem extends Component {
               switch (this.state.form) {
               case "room": return <AddRoom />;
               case "furniture": return  <AddFurniture/>;
+              case "detail": return <FurnitureDetail/>
               default: return "Did not work";
             }
             })()}
