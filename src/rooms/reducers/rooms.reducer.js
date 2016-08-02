@@ -1,5 +1,5 @@
 import { ADD_ROOM } from '../actions/rooms.action';
-import { ADD_FURNITURE } from '../../furniture/actions/furniture.action';
+import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE } from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
@@ -14,8 +14,17 @@ const roomsReducer = (state = {}, action) => {
       return Object.assign(_.cloneDeep(state), action.room);
     case ADD_FURNITURE:
       const newState = _.clone(state);
-      const furnitureName = Object.keys(action.furniture)[0];
-      newState[action.room][furnitureName] = action.furniture[furnitureName];
+      const furnitureName = Object.keys(action.furnitureName)[0];
+      newState[action.roomName][furnitureName] = action.furnitureName[furnitureName];
+      return newState;
+    case DELETE_FURNITURE:
+      const newState = _.clone(state);
+      delete newState[action.roomName].furniture[action.furnitureName];
+      return newState;
+    case UPDATE_FURNITURE:
+      const newState = _.clone(state);
+      Object.assign(newState[action.roomName].furniture[action.furnitureName],
+        action.newProps);
       return newState;
   }
 
