@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Content from "./Content";
 
 
 export default class App extends Component {
@@ -12,7 +13,7 @@ export default class App extends Component {
           <div className="App-header">
             <Header />
           </div>
-          {this.props.children}
+          <Content children={this.props.children}/>
         </div>
       </MuiThemeProvider>
     );
