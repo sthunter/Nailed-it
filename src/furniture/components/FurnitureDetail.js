@@ -5,7 +5,7 @@ import './COMPONENT.css';
 export default class FurnitureDetail extends Component {
   render() {
     return (
-      <div centered="true">
+      <div centered={true}>
         <Row centered="true">
           <Col s={12} centered="true">
             <MediaBox src="http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" centered='true' caption="Test" width="650"/>

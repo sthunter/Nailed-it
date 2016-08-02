@@ -14,16 +14,18 @@ class AddItem extends Component {
 
     //this.props.header
     var header;
+    
+    // const onClick =  
+    var actions = [<Button waves='light' modal='close' flat >Submit</Button>, <Button waves='light' modal='close' flat>Close</Button>]
     if(this.state.form === 'room') {
       header = 'Add a Room';
     } else if(this.state.form === 'furniture') {
       header = 'Add an Item';
-    } else {
-      header = 'Header';
+    } else if(this.state.form === 'detail') {
+      header = this.props.title;
+      actions = [<Button waves='light' modal='close' flat>Close</Button>]
+
     }
-    
-    // const onClick =  
-    const actions = [<Button waves='light' modal='close' flat >Submit</Button>, <Button waves='light' modal='close' flat>Close</Button>]
     
 
     return (
