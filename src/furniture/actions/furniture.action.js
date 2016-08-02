@@ -1,12 +1,30 @@
 export const ADD_FURNITURE = 'ADD_FURNITURE';
+export const DELETE_FURNITURE = 'DELETE_FURNITURE';
+export const UPDATE_FURNITURE = 'UPDATE_FURNITURE';
 
-/*
- * action creators
- */
-  export function addFurniture(furniture, room) {
+// NOTE: Many corresponding reducers are in rooms.reducer, not in the furniture directory
+
+export function addFurniture(furnitureName, roomName) {
   return {
     type: ADD_FURNITURE,
-    furniture,
-    room
-  }; // NOTE: The reducer is in rooms.reducer, not in the furniture directory
+    furnitureName,
+    roomName
+  };
+}
+
+export function deleteFurniture(furnitureName, roomName) {
+  return {
+    type: DELETE_FURNITURE,
+    furnitureName,
+    roomName
+  };
+}
+
+export function updateFurniture(furnitureName, roomName, newProps) {
+  return {
+    type: UPDATE_FURNITURE,
+    roomName,
+    furnitureName,
+    newProps
+  }
 }
