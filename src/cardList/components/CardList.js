@@ -17,7 +17,7 @@ class CardList extends Component {
             />
           );
         })}
-        <AddItem/>
+        <AddItem view={this.props.view === 'rooms' ? 'room' : 'furniture'} />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
   const rooms = Object.keys(state);
+  let newState;
   switch (action.type) {
     case ADD_ROOM:
       action.room = action.room || {};
@@ -13,16 +14,16 @@ const roomsReducer = (state = {}, action) => {
       }
       return Object.assign(_.cloneDeep(state), action.room);
     case ADD_FURNITURE:
-      const newState = _.clone(state);
+      newState = _.clone(state);
       const furnitureName = Object.keys(action.furnitureName)[0];
       newState[action.roomName][furnitureName] = action.furnitureName[furnitureName];
       return newState;
     case DELETE_FURNITURE:
-      const newState = _.clone(state);
+      newState = _.clone(state);
       delete newState[action.roomName].furniture[action.furnitureName];
       return newState;
     case UPDATE_FURNITURE:
-      const newState = _.clone(state);
+      newState = _.clone(state);
       Object.assign(newState[action.roomName].furniture[action.furnitureName],
         action.newProps);
       return newState;

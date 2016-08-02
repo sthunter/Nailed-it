@@ -19,6 +19,7 @@ class FurnitureList extends Component {
         <CardList
           list={ furniture }
           intro={ intro }
+          view="furniture"
         />
       </div>
     );
