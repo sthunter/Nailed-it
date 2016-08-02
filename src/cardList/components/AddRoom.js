@@ -8,7 +8,7 @@ import { addRoom } from '../../rooms/actions/rooms.action'
 class AddRoom extends Component {
 
   render() {
-    console.log(this.props)
+    
     const { fields: { roomName } , handleSubmit } = this.props;
     return (
       <form onSubmit = { handleSubmit(this.props.addRoom) } >
@@ -19,18 +19,18 @@ class AddRoom extends Component {
   }
 }
 
-const addRoomForm = reduxForm({
+export default reduxForm({
   form: 'AddRoomForm',
   fields: ['roomName']
-})(AddRoom);
+}, null, {addRoom})(AddRoom);
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({addRoom}, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({addRoom}, dispatch);
+// }
 
-const  mapStateToProps = state => state;
+// const  mapStateToProps = state => state;
 
-export default connect(mapStateToProps, mapDispatchToProps)(addRoomForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(addRoomForm);
     
     // Moved this outside of function  
     // const handleSubmit=this.props.handleSubmit;
