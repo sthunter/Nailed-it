@@ -1,24 +1,29 @@
 export const ADD_ROOM = 'ADD_ROOM';
-export function addRoom(room /* string or object */) {
-  let roomObj;
-  if (typeof room === 'String') { // e.g. Parlor
-    roomObj = {};
-    roomObj[room] = {}; // --> { parlor: {} }
-    room = roomObj;
-  } else { // else room is an object like { parlor: {} }
-    roomObj = room;
-    room = Object.keys(roomObj)[0];
-  }
+
+export function addRoomFromDb(room) {
+  const roomObj = room;
+  room = Object.keys(roomObj)[0];
 
   const roomWithEmptyFurniture = {};
-  roomWithEmptyFurniture[room] = { furniture: {} }
+  roomWithEmptyFurniture[room] = { furniture: {} };
   const newRoom = Object.assign({}, roomWithEmptyFurniture, roomObj);
 
-  const action = {
-    type: ADD_ROOM,
+  return {
+    type: ADD_ROOM, // Note that this uses the same reducer as the addRoom function uses
     room: newRoom
   };
-  return action;
+}
+
+export function addRoom(room) {
+  console.log('room data sent to addRoom fn: ', room);
+  const roomName = room.roomName;
+  room = {};
+  room[roomName] = { furniture: {} };
+
+  return {
+    type: ADD_ROOM,
+    room
+  };
 }
 
 export const SELECT_ROOM = 'SELECT_ROOM';
