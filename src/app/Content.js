@@ -6,8 +6,7 @@ export default class Content extends Component {
   render() {
     return (
       <div>
-        <RoomsList />
-        <FurnitureList />
+        {this.props.children}
       </div>
     );
   }

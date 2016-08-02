@@ -4,11 +4,13 @@ import { Route, IndexRoute } from 'react-router';
 import App from './app/App';
 import Content from './app/Content';
 import RoomsListContainer from './rooms/containers/roomsList.container';
+import FurnitureListContainer from './furniture/containers/furnitureList.container';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Content}>
-      <Route component={RoomsListContainer} />
-    </IndexRoute>
+    <IndexRoute component={RoomsListContainer} />
+    <Route path="room" component={RoomsListContainer}>
+    </Route>
+    <Route path="furniture" component={FurnitureListContainer}></Route>
   </Route>
 );
