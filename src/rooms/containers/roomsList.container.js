@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import CardList from '../../cardList/components/CardList';
-import { addRoom, selectRoom } from '../actions/rooms.action';
+import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 // import database from '../../database';
 import { Row, Col} from 'react-materialize';
@@ -19,7 +19,7 @@ export default class RoomsList extends Component {
     //   newRoom[roomName] = rooms[roomName];
     //   return _this.props.addRoom(newRoom);
     // });
-    getRooms(_this.props.addRoom);
+    getRooms(_this.props.addRoomFromDb);
   }
 
   render() {
@@ -32,6 +32,7 @@ export default class RoomsList extends Component {
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
               list ={this.props.rooms}
+              view="rooms"
             />
           </div>
         </Col>
@@ -51,7 +52,7 @@ function mapStateToProps({ rooms, roomSelected }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRoom, selectRoom }, dispatch);
+  return bindActionCreators({ addRoomFromDb, selectRoom }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
