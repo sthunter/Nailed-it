@@ -15,7 +15,7 @@ export function GetBudget(value) {
   //   if(value) {
       // const budget = value;
   
-    console.log(budget);
+    
     return {
       type: GET_BUDGET,
       budget
