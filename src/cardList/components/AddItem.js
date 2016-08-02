@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Card, Button, Modal } from 'react-materialize';
 import './cardList.css';
 import AddRoom from './AddRoom';
+import AddFurniture from './AddFurniture';
 
 class AddItem extends Component {
   state = {
-    form: 'room'
+    form: 'furniture'
   }
 
   render() {
@@ -14,13 +15,21 @@ class AddItem extends Component {
     // handleSubmit = () => {}
     const store = this.props.store
     //this.props.header
-    const header="Add a Room";
-    // const onClick = 
+    var header;
+    if(this.state.form === 'room') {
+      header = 'Add a Room';
+    } else if(this.state.form === 'furniture') {
+      header = 'Add an Item';
+    } else {
+      header = 'Header';
+    }
+    
+    // const onClick =  
     const actions = [<Button waves='light' modal='close' flat >Submit</Button>, <Button waves='light' modal='close' flat>Close</Button>]
     
-    const _form = <AddRoom store={ store } />
+
     return (
-      <Card className="blue-grey lighten-1 center-align">
+      <Card className="blue-grey lighten-4 center-align">
 
         <Modal
           header={header}
@@ -37,8 +46,9 @@ class AddItem extends Component {
           <div>
             {(() => {
               switch (this.state.form) {
-              case "room":   return <AddRoom store={ store }/>;
-              default:      return "Did not work";
+              case "room": return <AddRoom store={ store }/>;
+              case "furniture": return  <AddFurniture/>;
+              default: return "Did not work";
             }
             })()}
           </div>

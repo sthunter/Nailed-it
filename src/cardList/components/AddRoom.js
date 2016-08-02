@@ -12,8 +12,6 @@ class AddRoom extends Component {
         <Input type="text" placeholder="Room Name" s={12} label="Room Name" { ...roomName } />
         <Button type="submit">Submit</Button>
       </form>
-
-
       )
   }
 }
