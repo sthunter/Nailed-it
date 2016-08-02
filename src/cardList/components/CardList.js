@@ -5,13 +5,14 @@ import './cardList.css';
 
 class CardList extends Component {
   render() {
+    const listNames = Object.keys(this.props.list);
     return (
       <div className="CardList">
-        {this.props.list.map((item) => {
+        {listNames.map((itemName) => {
           return (
             <ListItem
-              key={ item.roomName }
-              title={ item.roomName }
+              key={ itemName }
+              title={ itemName }
               clickHandler={this.props.clickHandler}
             />
           );

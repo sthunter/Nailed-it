@@ -7,13 +7,17 @@ import database from '../../database';
 import { Row, Col} from 'react-materialize';
 import BudgetView from '../../BudgetView/components/BudgetView'
 
-
 const rooms = database.rooms;
 
 class RoomsList extends Component {
   componentWillMount() {
     const _this = this;
-    rooms.forEach(room => _this.props.addRoom(room));
+    const roomNames = Object.keys(rooms);
+    roomNames.forEach(roomName => {
+      const newRoom = {};
+      newRoom[roomName] = rooms[roomName];
+      return _this.props.addRoom(newRoom);
+    });
   }
 
   render() {
