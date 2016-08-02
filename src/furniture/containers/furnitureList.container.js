@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import CardList from '../../cardlist/components/CardList';
+import { bindActionCreators } from 'redux';
 
 
-export default class FurnitureList extends Component {
-  componentWillMount() {
-    const _this = this;
-  }
-
+class FurnitureList extends Component {
   render() {
     const intro = 'Furniture'
-    const furniture = this.props.furniture || ['chair', 'swing']
+    const furniture = {};
+    const [rooms, roomSelected] = [this.props.rooms, this.props.roomSelected];
+    if (roomSelected) {
+      Object.assign(furniture, rooms[roomSelected].furniture);
+    }
+    //const furniture = this.state.furniture || ['chair', 'swing']
     return (
       <div>
         <h3>Current Rooms Furniture</h3>
@@ -23,5 +25,12 @@ export default class FurnitureList extends Component {
   }
 }
 
+function mapStateToProps({ rooms, roomSelected }) {
+  return { rooms, roomSelected };
+}
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
+}
 
+export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);

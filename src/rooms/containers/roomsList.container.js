@@ -43,11 +43,8 @@ export default class RoomsList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    rooms: state.rooms,
-    roomSelected: state.roomSelected
-  };
+function mapStateToProps({ rooms, roomSelected }) {
+  return { rooms, roomSelected };
 }
 
 function mapDispatchToProps(dispatch) {
