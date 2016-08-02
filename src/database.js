@@ -3,12 +3,15 @@ const database = {
     "living room": {
       furniture: {
         "couch": {
+         "cost": 101,
           color: "blue"
         },
         "coffee table": {
+          "cost": 102,
           color: "brown"
         },
         "television": {
+          "cost": 103,
           color: "black"
         }
       }
@@ -16,9 +19,11 @@ const database = {
     "dining room": {
       furniture: {
         "chair": {
+          "cost": 104,
           color: "blue"
         },
         "table": {
+          "cost": 105,
           color: "brown"
         }
       }
@@ -26,12 +31,15 @@ const database = {
     "bathroom": {
       furniture: {
         "toilet": {
+          "cost": 106,
           color: "white"
         },
         "shower": {
+          "cost": 107,
           color: "green"
         },
         "medicine cabinet": {
+          "cost": 108,
           color: "white"
         }
       }
@@ -39,12 +47,15 @@ const database = {
     "kitchen": {
       furniture: {
         "bed": {
+          "cost": 109,
           color: "blue"
         },
         "nightstand": {
+          "cost": 110,
           color: "brown"
         },
         "painting": {
+          "cost": 111,
           color: "green"
         }
       }
@@ -52,12 +63,15 @@ const database = {
     "bedroom": {
       furniture: {
         "bed": {
+          "cost": 112,
           color: "blue"
         },
         "nightstand": {
+          "cost": 113,
           color: "brown"
         },
         "painting": {
+          "cost": 114,
           color: "green"
         }
       }

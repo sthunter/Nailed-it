@@ -3,6 +3,8 @@ import { }  from 'react-materialize';
 import { PieChart } from 'react-easy-chart';
 
 class BudgetGraph extends Component {
+  
+
   render() {
     return(
       <div>
