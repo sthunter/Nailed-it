@@ -35,7 +35,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.jsx'],
   },
   resolveLoader: {
     root: nodeModulesPath,
@@ -44,14 +44,14 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'eslint',
         include: srcPath,
       }
     ],
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: srcPath,
         loader: 'babel',
         query: require('./babel.dev')
