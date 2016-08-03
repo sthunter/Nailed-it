@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
-import AddItem from './AddItem';
+import AddItemButton from './AddItemButton';
 import './cardList.css';
 
 class CardList extends Component {
@@ -17,7 +17,7 @@ class CardList extends Component {
             />
           );
         })}
-        <AddItem view={this.props.view === 'rooms' ? 'room' : 'furniture'} />
+        <AddItemButton view={this.props.view === 'rooms' ? 'room' : 'furniture'} />
       </div>
     );
   }

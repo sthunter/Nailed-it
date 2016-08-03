@@ -3,22 +3,13 @@ import { connect} from 'react-redux';
 import CardList from '../../cardList/components/CardList';
 import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-// import database from '../../database';
 import { Row, Col} from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/BudgetView';
 import { getRooms } from '../../databaseAPI';
 
-// const rooms = database.rooms;
-
 export default class RoomsList extends Component {
   componentWillMount() {
     const _this = this;
-    // const roomNames = Object.keys(rooms);
-    // roomNames.forEach(roomName => {
-    //   const newRoom = {};
-    //   newRoom[roomName] = rooms[roomName];
-    //   return _this.props.addRoom(newRoom);
-    // });
     getRooms(_this.props.addRoomFromDb);
   }
 
@@ -40,7 +31,7 @@ export default class RoomsList extends Component {
         <Col s={12} m={6} l={6}>
           <h3>Budget Chart / Graph</h3>
           <BudgetView 
-            rooms={this.props.rooms}/>
+            list={this.props.rooms}/>
         </Col>
       </Row>
     );
