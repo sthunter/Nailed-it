@@ -20,7 +20,7 @@ export function addRoom(room) {
 export function getRooms(cb) {
   database.ref('rooms').once('value').then((snapshot) => {
     const rooms = snapshot.val();
-    console.log('getRooms:', rooms)
+    
     for (var room in rooms){
       let roomObj = {};
       roomObj[room] = rooms[room]
