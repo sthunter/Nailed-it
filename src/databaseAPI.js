@@ -38,10 +38,11 @@ export function getFurniture(rooms) {
   }
 };
 
-export function getBudget(cb) {
-  database.ref('budget').once('value').then((snapshot) => {
-    cb(snapshot.val());
-  });
+export function getBudget() {
+  return database.ref('budget').once('value')
+  // .then((snapshot) => {
+  //   cb(snapshot.val());
+  // });
 };
 
 export function updateBudget(budget) {
