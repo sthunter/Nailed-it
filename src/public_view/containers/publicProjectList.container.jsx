@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import CardList from '../../cardList/components/cardList.component';
-import { addRoomFromDb, selectRoom } from '../actions/public_rooms.action';
+import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col} from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/BudgetView';
@@ -18,7 +18,7 @@ export default class RoomsList extends Component {
       <Row>
         <Col s={12} m={6} l={6}>
           <div>
-            <h3> Select your room</h3>
+            <h3> Select your project</h3>
             <CardList
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
