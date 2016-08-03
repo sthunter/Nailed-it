@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'react-materialize';
 import './cardList.css';
+import { Link } from 'react-router';
 
 
 class ListItem extends Component {
@@ -15,16 +16,18 @@ class ListItem extends Component {
     //  onClick={}
     const title = this.props.title;
     return (
-          <Card
-            onClick={() => {this.handleClick(title)}}
-            className='grey lighten-2'
-            title={ title }
-            textClassName='black-text'
-          >
-            <p >
-              description
-            </p>
-          </Card>
+      <Link to={"furniture"}>
+        <Card
+          onClick={() => {this.handleClick(title)}}
+          className='grey lighten-2'
+          title={ title }
+          textClassName='black-text'
+        >
+          <p >
+            description
+          </p>
+        </Card>
+      </Link>
       );
   }
 }
