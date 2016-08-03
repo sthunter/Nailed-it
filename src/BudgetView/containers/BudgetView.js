@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BudgetTable from '../components/BudgetTable';
 import BudgetGraph from '../components/BudgetGraph';
-import { getBudget } from '../../databaseAPI';
-import { GetBudget } from '../actions/budgetView.action'
+// import { getBudget } from '../../databaseAPI';
+import { getBudget } from '../actions/budgetView.action'
 
 
 class BudgetView extends Component {
   componentWillMount() {
 
-    getBudget(this.props.GetBudget.bind(this));
+    this.props.getBudget();
   }
 
   render() {
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({GetBudget}, dispatch);
+  return bindActionCreators({getBudget}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BudgetView);
