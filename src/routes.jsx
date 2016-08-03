@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './app/App';
+import App from './app/app.component';
 import RoomsListContainer from './rooms/containers/roomsList.container';
 import FurnitureListContainer from './furniture/containers/furnitureList.container';
 
