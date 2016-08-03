@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {MediaBox, Table, Row, Col} from 'react-materialize';
-import './COMPONENT.css';
 
 export default class FurnitureDetail extends Component {
   render() {
@@ -28,4 +27,3 @@ export default class FurnitureDetail extends Component {
     )
   }
 }
-            // <img centered="true" style={src="https://eamesloungechairreplica.files.wordpress.com/2014/12/cheap-prices-eames-lounge-chair-cover.jpg"/>
