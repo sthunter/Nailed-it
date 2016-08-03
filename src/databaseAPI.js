@@ -17,7 +17,7 @@ const database = Firebase.database();
 // }
 
 export function getRooms(cb) {
-  database.ref('rooms').once('value').then((snapshot) => {
+  database.ref('Rene/rooms').once('value').then((snapshot) => {
     const rooms = snapshot.val();
     
       for (var room in rooms) {
@@ -32,8 +32,11 @@ export function getRooms(cb) {
   });
 };
 
-export function getProjects() {
-  return database.ref().once('value');
+export function getProjects(cb) {
+  return database.ref().once('value').then((snapshot) => {
+    const projects = snapshot.val();
+    cb(projects)
+  })
 };
 // export function getFurniture(rooms) {
 //   for (var room in rooms) {
@@ -44,14 +47,14 @@ export function getProjects() {
 // };
 
 export function getBudget() {
-  return database.ref('budget').once('value')
+  return database.ref('Rene/budget').once('value')
     // .then((snapshot) => {
     //   cb(snapshot.val());
     // });
 };
 
 export function updateBudget(budget) {
-  database.ref('budget').set(budget);
+  database.ref('Rene/budget').set(budget);
 };
 
 // export function updateFurniture(rooms, furniture) {

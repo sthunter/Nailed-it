@@ -14,15 +14,11 @@ export function addProjectFromDb(room) {
   };
 }
 
+export const SELECT_PROJECT = 'SELECT_PROJECT';
 
-export const SELECT_ROOM = 'SELECT_PROJECT';
 export function selectProject(projectName) {
   return {
     type: SELECT_PROJECT,
     projectName
   };
 }
-
-// Todo:
-// update room
-// removeRoom

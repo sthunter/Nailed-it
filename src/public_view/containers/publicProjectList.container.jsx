@@ -8,8 +8,8 @@ import { getProjects } from '../../databaseAPI';
 
 export default class ProjectList extends Component {
   componentWillMount() {
-    const _this = this;
-    getProjects(_this.props.addProjectFromDb);
+    getProjects(console.log)
+
   }
 
   render() {
