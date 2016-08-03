@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import CardList from '../../cardList/components/cardList.component';
 import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col} from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/BudgetView';
 import { getRooms } from '../../databaseAPI';
 
@@ -30,8 +30,7 @@ export default class RoomsList extends Component {
 
         <Col s={12} m={6} l={6}>
           <h3>Budget Chart / Graph </h3>  
-          <BudgetView 
-            rooms={this.props.rooms}/>
+          <BudgetView rooms={this.props.rooms}/>
         </Col>
       </Row>
     );

@@ -10,7 +10,7 @@ export function addRoomFromDb(room) {
 
   return {
     type: ADD_ROOM, // Note that this uses the same reducer as the addRoom function uses
-    room: newRoom
+    room: newRoom,
   };
 }
 
@@ -21,7 +21,7 @@ export function addRoom(room) {
 
   return {
     type: ADD_ROOM,
-    room
+    room,
   };
 }
 
@@ -29,10 +29,6 @@ export const SELECT_ROOM = 'SELECT_ROOM';
 export function selectRoom(roomName) {
   return {
     type: SELECT_ROOM,
-    roomName
+    roomName,
   };
 }
-
-// Todo:
-// update room
-// removeRoom

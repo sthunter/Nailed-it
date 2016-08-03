@@ -1,5 +1,7 @@
 import { ADD_ROOM } from '../actions/rooms.action';
-import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE } from '../../furniture/actions/furniture.action';
+import {
+  ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE
+} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
@@ -8,14 +10,18 @@ const roomsReducer = (state = {}, action) => {
     case ADD_ROOM:
       action.room = action.room || {};
       const newRooms = Object.keys(action.room);
-      if (newRooms.some(roomName => state[roomName])) { // If any new room name already exists in state
-        // Todo: Check if the room already exists in the state
-      }
+
+      // Todo: Check if the room already exists in the state
+      // If any new room name already exists in state
+      //if (newRooms.some(roomName => state[roomName])) {
+      //}
+
       return Object.assign(_.cloneDeep(state), action.room);
     case ADD_FURNITURE:
       if (!action.roomName) {
         return state;
       }
+
       newState = _.clone(state);
       const roomName = action.roomName;
       const furnitureName = action.furnitureProps.itemName;
@@ -37,22 +43,3 @@ const roomsReducer = (state = {}, action) => {
 };
 
 export default roomsReducer;
-
-/*
- deliveryDate
- :
- undefined
- description
- :
- undefined
- itemName
- :
- "aoe"
- price
- :
- "oae"
-
- url
- :
- undefined
- */
