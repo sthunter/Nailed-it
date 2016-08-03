@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CardList from '../../cardList/components/cardList.component';
+import CardList from '../components/cardList.component.jsx';
 import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-materialize';

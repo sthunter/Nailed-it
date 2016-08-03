@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FList from '../../cardlist/components/fList.component';
+import FList from '../components/fList.component';
 import { Row, Col } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 

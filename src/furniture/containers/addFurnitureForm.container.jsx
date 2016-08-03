@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, Row } from 'react-materialize';
 import { reduxForm } from 'redux-form';
-import { addFurniture } from '../../furniture/actions/furniture.action';
+import { addFurniture } from '../actions/furniture.action.js';
 
 class AddFurnitureForm extends Component {
   render() {

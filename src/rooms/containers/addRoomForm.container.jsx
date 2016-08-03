@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-materialize';
 import { reduxForm } from 'redux-form';
-import { addRoom } from '../../rooms/actions/rooms.action';
+import { addRoom } from '../actions/rooms.action.js';
 
 class AddRoomForm extends Component {
   render() {
