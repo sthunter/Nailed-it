@@ -16,14 +16,16 @@ class FurnitureList extends Component {
     
     return (
       <Row>
-        <div s={12} l={6}>
-          <h3>Current Rooms Furniture</h3>
-            <FList
-              list={ furniture }
-              intro={ intro }
-              view="furniture"
-            />
-        </div>
+        <Col s={12} l={6}>
+          <div>
+            <h3>Current Rooms Furniture</h3>
+              <FList
+                list={ furniture }
+                intro={ intro }
+                view="furniture"
+              />
+          </div>
+        </Col>
       </Row>
     );
   }
