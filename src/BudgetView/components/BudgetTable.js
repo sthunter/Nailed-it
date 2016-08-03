@@ -5,16 +5,18 @@ class BudgetTable extends Component {
 
   constructor(props) {
     super(props);
-
     this.calculateBudget = this.calculateBudget.bind(this);
   }
 
   calculateBudget(roomname) {
     let sum = 0;
+
     if(this.props.rooms[roomname]) {
       let list = this.props.rooms[roomname].furniture;
       for(var key in list) {
-        sum += Number(list[key].price);
+        if(key){
+          sum += Number(list[key].price);
+        }
       }
     }
     return sum;
@@ -54,8 +56,3 @@ class BudgetTable extends Component {
 }
 
 export default BudgetTable;
-
-          // <tr>
-          //   <td>{}</td>
-          //   <td>$0.87</td>
-          // </tr>

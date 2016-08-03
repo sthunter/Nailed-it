@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BudgetTable from '../components/BudgetTable';
 import BudgetGraph from '../components/BudgetGraph';
-// import { getBudget } from '../../databaseAPI';
 import { getBudget } from '../actions/budgetView.action';
 
 
@@ -25,7 +24,6 @@ class BudgetView extends Component {
 function mapStateToProps(state) {
   return {
     budget: state.budget
-    // roomSelected: state.roomSelected
   };
 }
 
