@@ -32,9 +32,9 @@ const roomsReducer = (state = {}, action) => {
       Object.assign(newState[action.roomName].furniture[action.furnitureName],
         action.newProps);
       return newState;
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export default roomsReducer;
