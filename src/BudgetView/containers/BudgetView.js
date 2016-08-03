@@ -11,7 +11,7 @@ class BudgetView extends Component {
   componentWillMount() {
     this.props.getBudget();
   }
-
+  
   render() {
     return(
       <div>
