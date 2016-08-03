@@ -19,12 +19,15 @@ const database = Firebase.database();
 export function getRooms(cb) {
   database.ref('rooms').once('value').then((snapshot) => {
     const rooms = snapshot.val();
+    
+      for (var room in rooms) {
+        if (room){
+          let roomObj = {};
+          roomObj[room] = rooms[room]
+          cb(roomObj);
+        }
+      }
 
-    for (var room in rooms) {
-      let roomObj = {};
-      roomObj[room] = rooms[room]
-      cb(roomObj);
-    }
     //cb(snapshot.val());
   });
 };
