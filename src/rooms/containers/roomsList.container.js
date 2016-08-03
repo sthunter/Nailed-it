@@ -18,7 +18,7 @@ export default class RoomsList extends Component {
       <Row>
         <Col s={12} m={6} l={6}>
           <div>
-            <h3>Room selected: {this.props.roomSelected || 'No room selected'}</h3>
+            <h3> Select your room</h3>
             <CardList
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
@@ -29,7 +29,7 @@ export default class RoomsList extends Component {
         </Col>
 
         <Col s={12} m={6} l={6}>
-          <h3>Budget Chart / Graph</h3>
+          <h3>Budget Chart / Graph </h3>   <button type="submit" className="btn btn-primary">Submit</button> 
           <BudgetView 
             list={this.props.rooms}/>
         </Col>
