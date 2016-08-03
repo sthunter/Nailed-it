@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import CardList from '../../cardlist/components/CardList';
+import FList from '../../cardlist/components/FList';
+import {Row, Col} from 'react-materialize';
 import { bindActionCreators } from 'redux';
 
 
@@ -14,14 +15,18 @@ class FurnitureList extends Component {
     }
     //const furniture = this.state.furniture || ['chair', 'swing']
     return (
-      <div>
+      <Row>
+      <div s={12} l={6}>
         <h3>Current Rooms Furniture</h3>
-        <CardList
+        
+
+        <FList
           list={ furniture }
           intro={ intro }
           view="furniture"
         />
       </div>
+      </Row>
     );
   }
 }
