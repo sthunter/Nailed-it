@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import roomsReducer from './rooms/reducers/rooms.reducer';
-import selectRoomReducer from './rooms/reducers/selectRoom.reducer.js';
+import selectRoomReducer from './rooms/reducers/selectRoom.reducer';
 import { reducer as formReducer} from 'redux-form';
 import budgetReducer from './BudgetView/reducers/BudgetView.reducer';
 
