@@ -13,19 +13,17 @@ class FurnitureList extends Component {
     if (roomSelected) {
       Object.assign(furniture, rooms[roomSelected].furniture);
     }
-    //const furniture = this.state.furniture || ['chair', 'swing']
+    
     return (
       <Row>
-      <div s={12} l={6}>
-        <h3>Current Rooms Furniture</h3>
-        
-
-        <FList
-          list={ furniture }
-          intro={ intro }
-          view="furniture"
-        />
-      </div>
+        <div s={12} l={6}>
+          <h3>Current Rooms Furniture</h3>
+            <FList
+              list={ furniture }
+              intro={ intro }
+              view="furniture"
+            />
+        </div>
       </Row>
     );
   }
