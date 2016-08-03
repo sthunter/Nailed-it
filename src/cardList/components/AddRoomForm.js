@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { addRoom } from '../../rooms/actions/rooms.action'
 
-class AddRoom extends Component {
+class AddRoomForm extends Component {
 
   render() {
     
@@ -22,7 +22,7 @@ class AddRoom extends Component {
 export default reduxForm({
   form: 'AddRoomForm',
   fields: ['roomName']
-}, null, {addRoom})(AddRoom);
+}, null, {addRoom})(AddRoomForm);
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({addRoom}, dispatch);

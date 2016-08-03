@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { Card, Button, Modal } from 'react-materialize';
 import './cardList.css';
-import AddRoom from './AddRoom';
-import AddFurniture from './AddFurniture';
+import AddRoomForm from './AddRoomForm';
+import AddFurnitureForm from './AddFurnitureForm';
 import FurnitureDetail from '../../furniture/components/FurnitureDetail';
 
-class AddItem extends Component {
+class AddItemButton extends Component {
   render() {
     return (
       <div>
         {this.props.view === 'room' ?
-          <AddRoom /> :
-          <AddFurniture />
+          <AddRoomForm /> :
+          <AddFurnitureForm />
         }
       </div>
     );
   }
 };
 
-export default AddItem;
+export default AddItemButton;

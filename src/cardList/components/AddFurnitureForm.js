@@ -5,9 +5,9 @@ import { reduxForm } from 'redux-form';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class AddFurniture extends Component {
+class AddFurnitureForm extends Component {
   render() {
-    console.log('[AddFurniture form] roomSelected: ', this.props.roomSelected);
+    console.log('[AddFurnitureForm form] roomSelected: ', this.props.roomSelected);
 
     return (
       <div>
@@ -29,4 +29,4 @@ function mapStateToProps({ roomSelected }) {
   return { roomSelected };
 }
 
-export default connect(mapStateToProps)(AddFurniture);
+export default connect(mapStateToProps)(AddFurnitureForm);
