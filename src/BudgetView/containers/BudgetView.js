@@ -16,8 +16,8 @@ class BudgetView extends Component {
   render() {
     return(
       <div>
-        <BudgetTable budget={this.props.budget} list = {this.props.list}/>
-        <BudgetGraph />
+        <BudgetTable budget={this.props.budget} rooms={this.props.rooms}/>
+        <BudgetGraph rooms={this.props.rooms}/>
       </div>
     )
   }
