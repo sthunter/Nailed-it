@@ -4,7 +4,7 @@ import CardList from '../components/cardList.component.jsx';
 import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-materialize';
-import BudgetView from '../../BudgetView/containers/BudgetView';
+import BudgetView from '../../BudgetView/containers/budgetView.container';
 import { getRooms } from '../../databaseAPI';
 
 export default class RoomsList extends Component {
