@@ -1,12 +1,12 @@
-import { SELECT_ROOM } from '../actions/rooms.action';
+import { SELECT_PROJECT } from '../actions/public.action';
 
-const selectRoomReducer = (state = '', action) => {
+const selectProjectReducer = (state = '', action) => {
   switch (action.type) {
-    case SELECT_ROOM:
-      return action.roomName;
+    case SELECT_PROJECT:
+      return action.projectName;
     default:
       return state;
   }
 };
 
-export default selectRoomReducer;
+export default selectProjectReducer;

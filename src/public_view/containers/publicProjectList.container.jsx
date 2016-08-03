@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import CardList from '../../cardList/components/cardList.component';
-import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
+import CardList from '../components/cardList.component';
+import { addProjectFromDb, selectProject } from '../actions/public.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col} from 'react-materialize';
-import BudgetView from '../../BudgetView/containers/BudgetView';
-import { getRooms } from '../../databaseAPI';
+import { Row, Col } from 'react-materialize';
+import { getProjects } from '../../databaseAPI';
 
-export default class RoomsList extends Component {
+export default class ProjectList extends Component {
   componentWillMount() {
     const _this = this;
-    getRooms(_this.props.addRoomFromDb);
+    getProjects(_this.props.addProjectFromDb);
   }
 
   render() {
@@ -20,30 +19,24 @@ export default class RoomsList extends Component {
           <div>
             <h3> Select your project</h3>
             <CardList
-              clickHandler={this.props.selectRoom}
-              intro={this.props.roomSelected}
-              list={this.props.rooms}
-              view="rooms"
+              clickHandler={this.props.selectProject}
+              intro={this.props.ProjectSelected}
+              list={this.props.Projects}
+              view="projects"
             />
           </div>
-        </Col>
-
-        <Col s={12} m={6} l={6}>
-          <h3>Budget Chart / Graph </h3>  
-          <BudgetView 
-            rooms={this.props.rooms}/>
         </Col>
       </Row>
     );
   }
 }
 
-function mapStateToProps({ rooms, roomSelected }) {
-  return { rooms, roomSelected };
+function mapStateToProps({ projects, projectSelected }) {
+  return { projects, projectSelected };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRoomFromDb, selectRoom }, dispatch);
+  return bindActionCreators({ addProjectFromDb, selectProject }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
