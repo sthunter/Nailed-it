@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import FList from '../../cardlist/components/fList.component';
-import {Row, Col} from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import { bindActionCreators } from 'redux';
-
 
 class FurnitureList extends Component {
   render() {
-    const intro = 'Furniture'
+    const intro = 'Furniture';
     const furniture = {};
     const [rooms, roomSelected] = [this.props.rooms, this.props.roomSelected];
     if (roomSelected) {
       Object.assign(furniture, rooms[roomSelected].furniture);
     }
-    
+
     return (
       <Row>
         <Col s={12} l={6}>
