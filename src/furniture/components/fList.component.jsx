@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Card, CardTitle } from 'react-materialize';
-import AddItemButton from './addItemButton.component';
+import AddItemButton from '../../app/addItemButton.component.jsx';
 
 class FList extends Component {
   render() {
@@ -10,7 +10,7 @@ class FList extends Component {
         {listNames.map((itemName) => {
           return (
             <div l={3} s={12}>
-              <Card header={<CardTitle reveal image={"http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg"} waves='light'/>}
+              <Card header={<CardTitle reveal image={ "http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" } waves='light'/>}
                 title={itemName}
                 reveal={
                   <Table>
