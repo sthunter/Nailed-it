@@ -3,7 +3,6 @@ import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE } from '../../furnitu
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
-  const rooms = Object.keys(state);
   let newState;
   switch (action.type) {
     case ADD_ROOM:

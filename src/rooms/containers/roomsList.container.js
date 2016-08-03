@@ -22,7 +22,7 @@ export default class RoomsList extends Component {
             <CardList
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
-              list ={this.props.rooms}
+              list={this.props.rooms}
               view="rooms"
             />
           </div>
