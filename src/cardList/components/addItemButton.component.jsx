@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Button, Modal } from 'react-materialize';
-import './cardList.css';
-import AddRoomForm from './AddRoomForm';
-import AddFurnitureForm from './AddFurnitureForm';
-import FurnitureDetail from '../../furniture/components/FurnitureDetail';
+import AddRoomForm from '../containers/addRoomForm.container';
+import AddFurnitureForm from '../containers/addFurnitureForm.container';
 
 class AddItemButton extends Component {
   render() {

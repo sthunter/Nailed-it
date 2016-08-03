@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card } from 'react-materialize';
-import './cardList.css';
 import { Link } from 'react-router';
 
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ListItem from './ListItem';
-import AddItemButton from './AddItemButton';
-import {Row, Col, Table, Card, CardTitle} from 'react-materialize';
-import './cardList.css';
+import { Table, Card, CardTitle } from 'react-materialize';
+import AddItemButton from './addItemButton.component';
 
 class FList extends Component {
   render() {

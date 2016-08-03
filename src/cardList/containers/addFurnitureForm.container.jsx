@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import {Button, Input, Row} from 'react-materialize';
-import DatePicker from 'material-ui/DatePicker';
 import { reduxForm } from 'redux-form';
-import { connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { addFurniture } from '../../furniture/actions/furniture.action';
 
 class AddFurnitureForm extends Component {
   render() {
-    const { fields: { itemName, price, description, url, deliveryDate, roomSelected }, handleSubmit } = this.props;
+    const { fields: { itemName, price, description, url, deliveryDate }, handleSubmit } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
@@ -35,8 +32,3 @@ export default reduxForm({
 }, state => ({ roomSelected: state.roomSelected }), {addFurniture})(AddFurnitureForm);
 
 
-//function mapStateToProps({ roomSelected }) {
-//  return { roomSelected };
-//}
-//
-//export default connect(mapStateToProps)(AddFurnitureForm);
