@@ -2,15 +2,32 @@ import React, { Component } from 'react';
 import { Table  } from 'react-materialize';
 
 class BudgetTable extends Component {
-  
+
+  constructor(props) {
+    super(props);
+
+    this.calculateBudget = this.calculateBudget.bind(this);
+  }
+
+  calculateBudget(roomname) {
+    let sum = 0;
+    if(this.props.rooms[roomname]) {
+      let list = this.props.rooms[roomname].furniture;
+      for(var key in list) {
+        sum += Number(list[key].price);
+      }
+    }
+    return sum;
+  }
+
   render() {
 
-  const BudgetRoom = Object.keys(this.props.list);
-  const currentBudget = this.props.budget;
-  console.log(this.props.list);
+    const CurrentRoom = this.props.rooms;
+    const BudgetRoom = Object.keys(CurrentRoom);
+    const currentBudget = this.props.budget;
+    const calcBudget = this.calculateBudget;
 
     return (
-    
       <div>
         <h3>Total Budget: { currentBudget || 'no budget' }</h3>
       <Table>
@@ -21,11 +38,11 @@ class BudgetTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {BudgetRoom.map((roomName)=> {
+          {BudgetRoom.map((roomName, id)=> {
             return (
-              <tr>
+              <tr key={id}>
                 <th>{ roomName }</th>
-                <th>blah</th>
+                <th>{calcBudget(roomName)} </th>
               </tr>
               )
           })}
