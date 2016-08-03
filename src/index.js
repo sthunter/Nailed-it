@@ -6,7 +6,7 @@ import { Router, browserHistory } from 'react-router';
 import promise from 'redux-promise';
 
 import './index.css';
-import reducers from './root_reducer';
+import reducers from './root.reducer';
 import routes from './routes';
 
 const specialStore = createStore(reducers, {}, compose(
