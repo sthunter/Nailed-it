@@ -1,4 +1,4 @@
-import { ADD_ROOM, GET_ROOMS } from '../actions/rooms.action';
+import { ADD_ROOM, GET_ROOMS, REMOVE_ROOM } from '../actions/rooms.action';
 import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
@@ -44,6 +44,10 @@ const roomsReducer = (state = {}, action) => {
       newState = _.clone(state);
       Object.assign(newState[action.roomName].furniture[action.furnitureName],
         action.newProps);
+      return newState;
+    case REMOVE_ROOM:
+      newState = _.clone(state);
+      delete newState[action.title]
       return newState;
     default:
       return state;

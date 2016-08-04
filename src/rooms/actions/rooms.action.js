@@ -1,4 +1,4 @@
-import { getRooms as getter, addRoom as adder } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder, removeRoom as remover } from '../../databaseAPI';
 
 export const ADD_ROOM = 'ADD_ROOM';
 
@@ -41,5 +41,13 @@ export function getRooms() {
     type: GET_ROOMS,
     //promise passed as action.payload
     payload: rooms
+  };
+}
+export const REMOVE_ROOM = 'REMOVE_ROOM';
+export function removeRoom(title) {
+  remover(title)
+  return {
+    type: REMOVE_ROOM,
+    title,
   };
 }
