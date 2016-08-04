@@ -16,20 +16,9 @@ const database = Firebase.database();
 //   }
 // }
 
-export function getRooms(cb) {
-  database.ref('Rene/rooms').once('value').then((snapshot) => {
-    const rooms = snapshot.val();
-    
-      for (var room in rooms) {
-        if (room){
-          let roomObj = {};
-          roomObj[room] = rooms[room]
-          cb(roomObj);
-        }
-      }
 
-    //cb(snapshot.val());
-  });
+export function getRooms(cb) {
+  return database.ref('Rene/rooms').once('value')
 };
 
 export function getProjects() {
