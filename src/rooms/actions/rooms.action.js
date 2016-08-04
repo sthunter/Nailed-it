@@ -31,9 +31,11 @@ export function addRoom(room) {
   };
 }
 
-export function makePublic_Private() {
+export const MAKE_PUBLIC_PRIVATE = 'MAKE_PUBLIC_PRIVATE';
+export function makePublic_Private(shared) {
   return {
-    type: MAKE_PUBLIC_PRIVATE
+    type: MAKE_PUBLIC_PRIVATE,
+    shared,
   };
 }
 
