@@ -14,8 +14,11 @@ class ListItem extends Component {
     // this.props.clickHandler('the other ballpit');
     //  onClick={}
     const title = this.props.title;
+    const lists = this.props.lists
+    const listNames = Object.keys(lists.rooms);
+
     return (
-      <Link to={"furniture"}>
+      <Link to={"publicRoom"}>
         <Card
           onClick={() => {this.handleClick(title)}}
           className='grey lighten-2'
@@ -23,8 +26,17 @@ class ListItem extends Component {
           textClassName='black-text'
         >
           <p >
-            description
+            Plans to spend: {lists.budget}$
           </p>
+
+            {listNames.map((itemName) => {
+              return (
+                <p>
+                  {itemName}
+                </p>
+              );
+            })}
+
         </Card>
       </Link>
       );

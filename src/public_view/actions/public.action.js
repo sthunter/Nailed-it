@@ -1,16 +1,13 @@
+import { getProjects } from '../../databaseAPI';
+
 export const ADD_PROJECT = 'ADD_PROJECT';
 
-export function addProjectFromDb(room) {
-  const projectObj = project;
-  room = Object.keys(projectObj)[0];
-
-  const roomWithEmptyFurniture = {};
-  roomWithEmptyFurniture[room] = { furniture: {} };
-  const newRoom = Object.assign({}, roomWithEmptyFurniture, roomObj);
-
+export function addProjectFromDb() {
+  const request = getProjects();
+  
   return {
     type: ADD_PROJECT,
-    project: newProject
+    payload: request
   };
 }
 

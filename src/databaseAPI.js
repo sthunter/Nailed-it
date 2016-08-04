@@ -32,11 +32,8 @@ export function getRooms(cb) {
   });
 };
 
-export function getProjects(cb) {
-  return database.ref().once('value').then((snapshot) => {
-    const projects = snapshot.val();
-    cb(projects)
-  })
+export function getProjects() {
+  return database.ref().once('value')
 };
 // export function getFurniture(rooms) {
 //   for (var room in rooms) {
