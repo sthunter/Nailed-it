@@ -1,30 +1,13 @@
 import { getRooms as getter, addRoom as adder } from '../../databaseAPI';
 
-
-//fixed where the promise was getting resolved so this is no longer needed 
-
-
-// export function addRoomFromDb(room) {
-//   const roomObj = room;
-//   room = Object.keys(roomObj)[0];
-
-//   const roomWithEmptyFurniture = {};
-//   roomWithEmptyFurniture[room] = { furniture: {} };
-//   const newRoom = Object.assign({}, roomWithEmptyFurniture, roomObj);
-
-//   return {
-//     type: ADD_ROOM, // Note that this uses the same reducer as the addRoom function uses
-//     room: newRoom,
-//   };
-// }
-
 export const ADD_ROOM = 'ADD_ROOM';
 
+//adds room to the react rooms state and makes database call along the way
 export function addRoom(room) {
   const roomName = room.roomName;
   room = {};
   room[roomName] = { furniture: {} };
-  console.log(adder);
+  //database call sends room with a empty object to later store new furniture
   adder(room, roomName);
   return {
     type: ADD_ROOM,
@@ -48,13 +31,15 @@ export function selectRoom(roomName) {
   };
 }
 
-//payload lets the firebase promise resolve in transit to reducer
+//initial pull from the database
 export const GET_ROOMS = 'GET_ROOMS';
 export function getRooms() {
+  //database call with promise stored in rooms
   let rooms = getter();
 
   return {
     type: GET_ROOMS,
+    //promise passed as action.payload
     payload: rooms
   };
 }
