@@ -13,9 +13,9 @@ export default class ProjectList extends Component {
   render() {
     return (
       <Row>
-        <Col s={12} m={6} l={6}>
+      <h3> Pick a project </h3>
+        <Col s={12} m={12} l={6}>
           <div>
-            <h3> Pick a project </h3>
             <CardList
               clickHandler={this.props.selectProject}
               intro={this.props.projectSelected}

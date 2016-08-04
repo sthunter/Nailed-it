@@ -1,5 +1,4 @@
-import { ADD_ROOM } from '../actions/rooms.action';
-import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
+import { ADD_ROOM } from '../actions/publicRooms.action';
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {

@@ -28,15 +28,16 @@ class ListItem extends Component {
           <p >
             Plans to spend: {lists.budget}$
           </p>
-
+          <p>
+          Rooms:{" "}
             {listNames.map((itemName) => {
               return (
-                <p>
-                  {itemName}
-                </p>
+                <span>
+                 {itemName},{" "}
+                </span>
               );
             })}
-
+        </p>
         </Card>
       </Link>
       );
