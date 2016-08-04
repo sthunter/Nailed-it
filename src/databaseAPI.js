@@ -10,14 +10,16 @@ Firebase.initializeApp(config);
 
 const database = Firebase.database();
 
-// export function addRoom(room) {
-//   for (var room in rooms) {
-//     database.ref('rooms/' + room).set(rooms[room]);
-//   }
-// }
+export function addRoom(room, roomName) {
+  console.log(room, roomName, room[roomName]);
+  let roomInfo = room[roomName];
+  database.ref('Rene/rooms/' + roomName).set({
+    furniture : "No furniture"
+  });
+}
 
 
-export function getRooms(cb) {
+export function getRooms() {
   return database.ref('Rene/rooms').once('value')
 };
 

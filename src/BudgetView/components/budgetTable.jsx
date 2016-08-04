@@ -14,9 +14,13 @@ class BudgetTable extends Component {
 
     if(this.props.rooms[roomname]) {
       let list = this.props.rooms[roomname].furniture;
-      for(var key in list) {
-        if(key){
-          sum += Number(list[key].price);
+      if(typeof(list) == 'object') {
+        console.log(typeof(list))
+        for(var key in list) {
+          if(key){
+            //console.log(list[key].price);
+            sum += Number(list[key].price);
+          }
         }
       }
     }
@@ -54,6 +58,7 @@ class BudgetTable extends Component {
               this.totalCost = 0;
             }
             let roomCost = calcBudget(roomName);
+            // if (roomCost)
             this.totalCost += roomCost;
             //console.log(totalCost);
             return (

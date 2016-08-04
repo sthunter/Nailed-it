@@ -1,4 +1,4 @@
-import { getRooms as getter } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder } from '../../databaseAPI';
 
 
 //fixed where the promise was getting resolved so this is no longer needed 
@@ -24,7 +24,8 @@ export function addRoom(room) {
   const roomName = room.roomName;
   room = {};
   room[roomName] = { furniture: {} };
-
+  console.log(adder);
+  adder(room, roomName);
   return {
     type: ADD_ROOM,
     room,
