@@ -6,6 +6,7 @@ class BudgetTable extends Component {
   constructor(props) {
     super(props);
     this.calculateBudget = this.calculateBudget.bind(this);
+    this.totalCost = 0;
   }
 
   calculateBudget(roomname) {
@@ -23,7 +24,7 @@ class BudgetTable extends Component {
   }
 
   render() {
-
+    
     const CurrentRoom = this.props.rooms;
     const BudgetRoom = Object.keys(CurrentRoom);
     const currentBudget = this.props.budget;
@@ -32,6 +33,8 @@ class BudgetTable extends Component {
     return (
       <div>
         <h3>Total Budget: { currentBudget || 'no budget' }</h3>
+        <h3>Total Cost: { this.totalCost || 'no costs' }</h3>
+        <h3>Budget Remaining: { currentBudget - this.totalCost }</h3>
       <Table>
         <thead>
           <tr>
@@ -41,6 +44,12 @@ class BudgetTable extends Component {
         </thead>
         <tbody>
           {BudgetRoom.map((roomName, id)=> {
+            if (id === 0) {
+              this.totalCost = 0;
+            }
+            let roomCost = calcBudget(roomName);
+            this.totalCost += roomCost;
+            //console.log(totalCost);
             return (
               <tr key={id}>
                 <th>{ roomName }</th>
