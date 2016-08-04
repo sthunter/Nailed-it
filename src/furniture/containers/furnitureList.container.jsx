@@ -15,9 +15,9 @@ class FurnitureList extends Component {
 
     return (
       <Row>
-        <Col s={12} l={6}>
+        <Col s={12} l={12}>
           <div>
-            <h3>Current Rooms Furniture</h3>
+            <h3>{this.props.roomSelected} Furniture</h3>
               <FList
                 list={ furniture }
                 intro={ intro }

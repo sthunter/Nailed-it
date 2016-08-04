@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Row } from 'react-materialize';
+import { Button, Input, Row, Col } from 'react-materialize';
 import { reduxForm } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
 
@@ -10,20 +10,22 @@ class AddFurnitureForm extends Component {
       }, handleSubmit, } = this.props;
 
     return (
-      <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
-        <Row>
-          <Input s={6} placeholder='Item'{ ...itemName } />
-          <Input s={6} placeholder='Price'{ ...price } />
-        </Row>
-        <Row>
-          <Input s={6} placeholder='Description'{ ...description } />
-          <Input s={6} placeholder='URL'{ ...url } />
-        </Row>
-        <Row>
-          <Input s={6} placeholder='Delivery Date' label='Date' { ...deliveryDate } />
-        </Row>
-        <Button type="submit">Submit</Button>
-      </form>
+      <Col s={12} l={6}>
+        <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
+          <Row>
+            <Input s={6} placeholder='Item'{ ...itemName } />
+            <Input s={6} placeholder='Price'{ ...price } />
+          </Row>
+          <Row>
+            <Input s={6} placeholder='Description'{ ...description } />
+            <Input s={6} placeholder='URL'{ ...url } />
+          </Row>
+          <Row>
+            <Input s={6} placeholder='Delivery Date' label='Date' { ...deliveryDate } />
+          </Row>
+          <Button type="submit">Submit</Button>
+        </form>
+      </Col>
     );
   }
 }
