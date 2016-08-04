@@ -6,8 +6,7 @@ import jsdom from 'jsdom';
 import chai, { expect } from 'chai';
 import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from '../src/root.reducer';
+import reduxStoreCreator from '../src/reduxStoreCreator';
 
 // Set up testing environment to run like a browser in the command line
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -21,7 +20,7 @@ chaiJquery(chai, chai.util, $);
 // build 'renderComponent' helper that should render a given react class
 function renderComponent(ComponentClass, props = {}, state = {}) {
   const componentInstance =  TestUtils.renderIntoDocument(
-    <Provider store={createStore(reducers, state)}>
+    <Provider store={reduxStoreCreator('test')}>
       <ComponentClass {...props} />
     </Provider>
   );
