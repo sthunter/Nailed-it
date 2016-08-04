@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
 import { getRooms, selectRoom,  makePublic_Private} from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col } from 'react-materialize';
+import { Row, Col, Button } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
 
 export default class RoomsList extends Component {
@@ -22,7 +22,7 @@ export default class RoomsList extends Component {
       <Row>
         <Col s={12} m={6} l={6}>
           <div>
-            <h3> Select your room  <button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</button></h3>
+            <h3> Select your room  <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button></h3>
             <CardList
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
