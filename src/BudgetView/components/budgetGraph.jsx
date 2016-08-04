@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { }  from 'react-materialize';
 import { PieChart } from 'react-easy-chart';
 
 class BudgetGraph extends Component {
