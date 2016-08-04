@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table  } from 'react-materialize';
+import { Table, Col, Row  } from 'react-materialize';
 
 class BudgetTable extends Component {
 
@@ -32,9 +32,15 @@ class BudgetTable extends Component {
 
     return (
       <div>
-        <h3>Total Budget: { currentBudget || 'no budget' }</h3>
-        <h3>Total Cost: { this.totalCost || 'no costs' }</h3>
-        <h3>Budget Remaining: { currentBudget - this.totalCost }</h3>
+        <Row>
+          <Col>
+            <h5>Total Budget: { currentBudget || 'no budget' }</h5>
+            <h5>Total Cost: { this.totalCost || 'no costs' }</h5>
+          </Col>
+          <Col>
+            <h5>Budget Remaining: { currentBudget - this.totalCost }</h5>
+          </Col>
+        </Row>
       <Table>
         <thead>
           <tr>
