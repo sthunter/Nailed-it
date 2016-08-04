@@ -25,12 +25,16 @@ const roomsReducer = (state = {}, action) => {
       if (!action.roomName) {
         return state;
       }
-
+      //clone state
       newState = _.clone(state);
-      const roomName = action.roomName;
-      const furnitureName = action.furnitureProps.itemName;
-      delete action.furnitureProps.itemName;
-      newState[roomName].furniture[furnitureName] = action.furnitureProps;
+      //check to see if storage loaction is an obj or placeholder text
+      if (typeof(newState[action.roomName].furniture) !== 'object') {
+
+        newState[action.roomName].furniture = {};
+      }
+      
+      //add in new furniture properties at the roomName.furnitureName location
+      newState[action.roomName].furniture[action.furnitureName] = action.furnitureProps;
       return newState;
     case DELETE_FURNITURE:
       newState = _.clone(state);

@@ -45,13 +45,10 @@ export function updateBudget(budget) {
   database.ref('Rene/budget').set(budget);
 };
 
-// export function updateFurniture(rooms, furniture) {
-//   for (var room in rooms) {
-//     for (var pieceOfFurniture in furniture) {
-//       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).set(furniture[pieceOfFurniture]);
-//     }
-//   }
-// };
+export function updateFurniture(roomName, furnitureName, furnitureProps) {
+  //take the roomName and furnitureName from the submit and put the obj at the loaction in the database
+  database.ref('Rene/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
+};
 
 // export function removeRoom(room) {
 //   for (var room in rooms) {
