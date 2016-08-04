@@ -19,7 +19,7 @@ class BudgetGraph extends Component {
   // }
 
 generateData(rooms) {
-  console.log("rooms: ", rooms);
+  
   let arr = [];
   // const roomsList = Object.keys(rooms);
   // console.log('keys: ', Object.keys(rooms));
@@ -57,18 +57,18 @@ generateData(rooms) {
         obj["key"] = room;
         obj["value"] = calculateBudget(room);
         obj["color"] = getRandomColor();
-        console.log(room)
+        
         arr.push(obj)
    //    }
    // }
   });
-      console.log(arr)
+      
     return arr;
 }
 
   render() {
     const genData = this.generateData(this.props.rooms)
-    console.log(genData)
+    
     // const test = this.test();
     // console.log('test invoked', test)
     return(
