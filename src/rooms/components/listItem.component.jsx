@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { Card } from 'react-materialize';
+import { Card, Button, Row, Col } from 'react-materialize';
 import { Link } from 'react-router';
+import { removeRoom } from '../actions/rooms.action';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class ListItem extends Component {
-  handleClick = (title) => {
+  handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
     }
-  };
+  }
+  removeRoomCall(title) {
+    removeRoom(title);
+  }
 
   render() {
-    // this.props.clickHandler('the other ballpit');
-    //  onClick={}
+    
     const title = this.props.title;
     return (
       <Link to={ 'furniture' }>
@@ -24,10 +29,28 @@ class ListItem extends Component {
           <p >
             description
           </p>
+          <Row>
+            <Col offset='s8' >
+              <Button
+                onClick={() => {this.removeRoomCall(title)} }
+              > 
+                Delete
+              </Button>
+            </Col>
+          </Row>
         </Card>
       </Link>
       );
   }
 }
 
-export default ListItem;
+// export default ListItem;
+// function mapStateToProps() {
+//   return {  };
+// }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeRoom }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(ListItem);

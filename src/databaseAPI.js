@@ -12,7 +12,7 @@ const database = Firebase.database();
 
 export function addRoom(room, roomName) {
   console.log(room, roomName, room[roomName]);
-  let roomInfo = room[roomName];
+  
   database.ref('Rene/rooms/' + roomName).set({
     furniture : "No furniture"
   });
@@ -36,9 +36,6 @@ export function getProjects() {
 
 export function getBudget() {
   return database.ref('Rene/budget').once('value')
-    // .then((snapshot) => {
-    //   cb(snapshot.val());
-    // });
 };
 
 export function updateBudget(budget) {
@@ -50,11 +47,9 @@ export function updateFurniture(roomName, furnitureName, furnitureProps) {
   database.ref('Rene/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
 };
 
-// export function removeRoom(room) {
-//   for (var room in rooms) {
-//     database.ref('rooms/' + room).remove();
-//   }
-// };
+export function removeRoom(room) {
+  database.ref('Rene/rooms/' + room).remove();
+};
 
 // export function removeFurniture(room, furniture) {
 //   for (var room in rooms) {
