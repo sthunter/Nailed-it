@@ -32,7 +32,6 @@ class FList extends Component {
                       </tr>
                     </tbody>
                   </Table>
-
                 }>
                 <p>Price <a href="#">This is a link</a></p>
               </Card>
