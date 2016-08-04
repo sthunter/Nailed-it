@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
-import { addRoomFromDb, selectRoom } from '../actions/rooms.action';
+import { getRooms, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
-import { getRooms } from '../../databaseAPI';
 
 export default class RoomsList extends Component {
   componentWillMount() {
     const _this = this;
-    getRooms(_this.props.addRoomFromDb);
+    this.props.getRooms();
   }
 
   render() {
@@ -42,7 +41,7 @@ function mapStateToProps({ rooms, roomSelected }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRoomFromDb, selectRoom }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
