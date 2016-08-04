@@ -4,12 +4,10 @@ import CardList from '../components/cardList.component';
 import { addProjectFromDb, selectProject } from '../actions/public.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-materialize';
-import { getProjects } from '../../databaseAPI';
 
 export default class ProjectList extends Component {
   componentWillMount() {
-    getProjects(console.log)
-
+    this.props.addProjectFromDb();
   }
 
   render() {
@@ -17,11 +15,11 @@ export default class ProjectList extends Component {
       <Row>
         <Col s={12} m={6} l={6}>
           <div>
-            <h3> Select your project</h3>
+            <h3> Pick a project </h3>
             <CardList
               clickHandler={this.props.selectProject}
-              intro={this.props.ProjectSelected}
-              list={this.props.Projects}
+              intro={this.props.projectSelected}
+              lists={this.props.projects}
               view="projects"
             />
           </div>

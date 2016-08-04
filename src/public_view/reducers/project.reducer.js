@@ -2,15 +2,16 @@ import { ADD_PROJECT } from '../actions/public.action';
 import _ from 'lodash';
 
 const projectReducer = (state = {}, action) => {
-  let newState;
   switch (action.type) {
     case ADD_PROJECT:
-      action.room = action.room || {};
-      const newRooms = Object.keys(action.room);
-      if (newRooms.some(roomName => state[roomName])) { // If any new room name already exists in state
-        // Todo: Check if the room already exists in the state
+      action.project = action.payload.val() || {};
+      action.publicProjects = {};
+      for (var key in action.project) {
+        if (action.project[key].public === true) {
+          action.publicProjects[key] = action.project[key];
+        }
       }
-      return Object.assign(_.cloneDeep(state), action.project);
+      return Object.assign(_.cloneDeep(state), action.publicProjects);
     default:
       return state;
   }
