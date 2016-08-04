@@ -14,17 +14,6 @@ export function addRoomFromDb(room) {
   };
 }
 
-export function addRoom(room) {
-  const roomName = room.roomName;
-  room = {};
-  room[roomName] = { furniture: {} };
-
-  return {
-    type: ADD_ROOM,
-    room,
-  };
-}
-
 export const SELECT_ROOM = 'SELECT_ROOM';
 export function selectRoom(roomName) {
   return {

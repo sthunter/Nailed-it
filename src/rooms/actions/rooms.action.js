@@ -31,6 +31,12 @@ export function addRoom(room) {
   };
 }
 
+export function makePublic_Private() {
+  return {
+    type: MAKE_PUBLIC_PRIVATE
+  };
+}
+
 export const SELECT_ROOM = 'SELECT_ROOM';
 export function selectRoom(roomName) {
   return {

@@ -14,10 +14,11 @@ export default class RoomsList extends Component {
 
   render() {
     return (
+
       <Row>
         <Col s={12} m={6} l={6}>
           <div>
-            <h3> Select your room</h3>
+            <h3> Select your room  <button></button></h3>
             <CardList
               clickHandler={this.props.selectRoom}
               intro={this.props.roomSelected}
