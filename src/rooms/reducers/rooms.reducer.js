@@ -6,15 +6,9 @@ const roomsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case ADD_PHOTO:
-      console.log(action.payload);
-      action.payload.url.then(function(snapshot) {
-          var url = snapshot.metadata.downloadURLs[0];
-          console.log('File available at', url); 
-          newState = _.clone(state);
-          newState[action.payload.selectedRoom].photoURL = url;
-          return newState;
-        });
-    return state;
+    newState = _.clone(state);
+    newState[action.selectedRoom].photoURL = action.url;
+    return newState;
     //handles initial pull from db
     case GET_ROOMS:
       let rooms = action.payload.val();
