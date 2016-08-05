@@ -41,6 +41,7 @@
     "node": "0.0.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-dropzone": "^3.5.3",
     "react-easy-chart": "^0.1.4",
     "react-materialize": "^0.14.6",
     "react-redux": "^4.4.5",

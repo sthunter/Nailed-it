@@ -9,6 +9,15 @@ const config = {
 Firebase.initializeApp(config);
 
 const database = Firebase.database();
+var storageRef = Firebase.storage().ref();
+var metadata = {
+  contentType: 'image/jpeg',
+};
+
+export function uploadPhoto(file) {
+  console.log()
+  storageRef.child('images/' + file[0].name).put(file[0], metadata);
+}
 
 export function addRoom(room, roomName) {
   console.log(room, roomName, room[roomName]);
@@ -18,14 +27,13 @@ export function addRoom(room, roomName) {
   });
 }
 
-
 export function getRooms() {
   return database.ref('Rene/rooms').once('value')
-};
+}
 
 export function getProjects() {
   return database.ref().once('value')
-};
+}
 // export function getFurniture(rooms) {
 //   for (var room in rooms) {
 //     database.ref('rooms/' + room + '/furniture').once('value', function(snapshot) {
@@ -36,11 +44,15 @@ export function getProjects() {
 
 export function getBudget() {
   return database.ref('Rene/budget').once('value')
-};
+
+    // .then((snapshot) => {
+    //   cb(snapshot.val());
+    // });
+}
 
 export function updateBudget(budget) {
   database.ref('Rene/budget').set(budget);
-};
+}
 
 export function updateFurniture(roomName, furnitureName, furnitureProps) {
   //take the roomName and furnitureName from the submit and put the obj at the loaction in the database

@@ -1,8 +1,39 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto } from '../../databaseAPI';
+
+
+
+//fixed where the promise was getting resolved so this is no longer needed 
+
+
+// export function addRoomFromDb(room) {
+//   const roomObj = room;
+//   room = Object.keys(roomObj)[0];
+
+//   const roomWithEmptyFurniture = {};
+//   roomWithEmptyFurniture[room] = { furniture: {} };
+//   const newRoom = Object.assign({}, roomWithEmptyFurniture, roomObj);
+
+//   return {
+//     type: ADD_ROOM, // Note that this uses the same reducer as the addRoom function uses
+//     room: newRoom,
+//   };
+// }
+
+
+export const ADD_PHOTO = 'ADD_PHOTO';
+export function addPhoto(file, selectedRoom) {
+  console.log("got here")
+  uploadPhoto(file);
+  return {
+    type: ADD_PHOTO,
+    file,
+  };
+}
+
+//adds room to the react rooms state and makes database call along the way
 
 export const ADD_ROOM = 'ADD_ROOM';
 
-//adds room to the react rooms state and makes database call along the way
 export function addRoom(room) {
   const roomName = room.roomName;
   room = {};

@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
-import { getRooms, selectRoom,  makePublic_Private} from '../actions/rooms.action';
+import { getRooms, selectRoom,  makePublic_Private, addPhoto } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col, Button } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
+import Dropzone from 'react-dropzone';
 
 export default class RoomsList extends Component {
   componentWillMount() {
-    const _this = this;
     this.props.getRooms();
   }
   changePublicStatus() {
     this.props.makePublic_Private(this.props.shared);
   }
+  onDrop(files) {
+    // console.log('Received files: ', files);
+    this.props.addPhoto(files)
 
+  }
 
   render() {
     return (
+<<<<<<< a3e870d558292d6e8ef78a26c6967bc4205e2847
 
       <Row>
         <Col s={12} m={6} l={6}>
@@ -37,6 +42,31 @@ export default class RoomsList extends Component {
           <BudgetView rooms={this.props.rooms}/>
         </Col>
       </Row>
+=======
+<div>
+  <Row>
+    <Col s={12} m={6} l={6}>
+      <div>
+        <h3> Select your room  <button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</button></h3>
+        <CardList
+          clickHandler={this.props.selectRoom}
+          intro={this.props.roomSelected}
+          list={this.props.rooms}
+          view="rooms"
+        />
+      </div>
+    </Col>
+
+    <Col s={12} m={6} l={6}>
+      <h3>Budget Chart / Graph </h3>  
+      <BudgetView rooms={this.props.rooms}/>
+    </Col>
+  </Row>
+  <Dropzone onDrop={files => this.onDrop(files)}>
+    <div>Try dropping some files here, or click to select files to upload.</div>
+  </Dropzone>
+</div>
+>>>>>>> feature: add functionality to upload photos
     );
   }
 }
@@ -46,7 +76,7 @@ function mapStateToProps({ rooms, roomSelected, shared }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRooms, selectRoom, makePublic_Private }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom, makePublic_Private, addPhoto }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
