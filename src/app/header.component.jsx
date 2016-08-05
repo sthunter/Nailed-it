@@ -16,16 +16,10 @@ class Header extends Component {
       <div>
        <Navbar brand='Nailed-It' right className="blue darken-3">
         <NavItem><Input name='public' type='checkbox' value='public' label='public' onChange={() => {this.changePublicStatus()}}/></NavItem>
-        <Dropdown trigger={
-            <NavItem>Settings</NavItem>
-          }>
-          <NavItem>one</NavItem>
-          <NavItem>two</NavItem>
-          <NavItem divider />
-          <NavItem>three</NavItem>
-        </Dropdown>
+          
+        <NavItem href='#'>Settings</NavItem>
         <NavItem href='#'>Profile</NavItem>
-        <NavItem><Link to={ 'public' }>Sell your skills</Link></NavItem>
+        <NavItem><Link to={ 'public' }>Sell Your Skills</Link></NavItem>
        </Navbar>
      </div>
     );
