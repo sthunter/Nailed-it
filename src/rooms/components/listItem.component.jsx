@@ -16,24 +16,24 @@ class ListItem extends Component {
   }
 
   render() {
-    
+
     const title = this.props.title;
     return (
       <Link to={ 'furniture' }>
         <Card
-          onClick={ () => { this.handleClick(title) } }
+          onClick={ () => this.handleClick(title) }
           className='grey lighten-2'
           title={ title }
           textClassName='black-text'
         >
-          <p >
+          <p>
             description
           </p>
           <Row>
             <Col offset='s8' >
               <Button
                 onClick={() => {this.removeRoomCall(title)} }
-              > 
+              >
                 Delete
               </Button>
             </Col>

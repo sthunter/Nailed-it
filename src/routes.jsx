@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './app/app.component';
-import RoomsListContainer from './rooms/containers/roomsList.container';
+import RoomsListContainer from './rooms/containers/roomsList.container.jsx';
 import FurnitureListContainer from './furniture/containers/furnitureList.container';
 import PublicProjectListContainer from './public_view/containers/publicProjectList.container';
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
