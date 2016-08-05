@@ -26,7 +26,7 @@ export default class RoomsList extends Component {
         <Row>
           <Col s={12} m={6} l={6}>
             <div>
-              <h3> Select your room  <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button></h3>
+              <span className="RoomListHeader"> Select your room </span>
               <CardList
                 clickHandler={this.props.selectRoom}
                 intro={this.props.roomSelected}
@@ -58,3 +58,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
+
+// <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button>
