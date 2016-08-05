@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Row, Col } from 'react-materialize';
+import { CardPanel, Button, Row, Col } from 'react-materialize';
 import { Link } from 'react-router';
 import { removeRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
@@ -20,25 +20,20 @@ class ListItem extends Component {
     const title = this.props.title;
     return (
       <Link to={ 'furniture' }>
-        <Card
+        <CardPanel
           onClick={ () => this.handleClick(title) }
-          className='grey lighten-2'
-          title={ title }
+          className='grey lighten-2 ListItem'
           textClassName='black-text'
         >
-          <p>
-            description
-          </p>
-          <Row>
-            <Col offset='s8' >
-              <Button
-                onClick={() => {this.removeRoomCall(title)} }
-              >
-                Delete
-              </Button>
-            </Col>
-          </Row>
-        </Card>
+          <div className='card-title'>
+            <span>{title}</span>
+          </div>
+          <div className='card-controls'>
+            <i className="material-icons md-dark">add_a_photo</i>
+            <i className="material-icons md-dark">create</i>
+            <i className="material-icons md-dark" onClick={() => {this.removeRoomCall(title)} }>delete_sweep</i>
+          </div>
+        </CardPanel>
       </Link>
       );
   }

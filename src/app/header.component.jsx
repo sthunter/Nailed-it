@@ -14,7 +14,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-       <Navbar brand='Nailed-It' right className="blue darken-3">
+       <Navbar brand='Nailed-It' right className="grey darken-3">
         <NavItem><Input name='public' type='checkbox' value='public' label='public' onChange={() => {this.changePublicStatus()}}/></NavItem>
           
         <NavItem href='#'>Settings</NavItem>
