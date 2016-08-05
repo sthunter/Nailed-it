@@ -2,12 +2,14 @@ import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhot
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
-  console.log("got here")
-  var url = uploadPhoto(file)
-  console.log(url);
+  var url = uploadPhoto(file);
+  var payload = {
+    url,
+    selectedRoom: "bathroom"
+  }
   return {
     type: ADD_PHOTO,
-    payload: url,
+    payload
   };
 }
 

@@ -1,11 +1,20 @@
-import { ADD_ROOM, GET_ROOMS, REMOVE_ROOM } from '../actions/rooms.action';
+import { ADD_ROOM, GET_ROOMS, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
 import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
 const roomsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
-
+    case ADD_PHOTO:
+      console.log(action.payload);
+      action.payload.url.then(function(snapshot) {
+          var url = snapshot.metadata.downloadURLs[0];
+          console.log('File available at', url); 
+          newState = _.clone(state);
+          newState[action.payload.selectedRoom].photoURL = url;
+          return newState;
+        });
+    return state;
     //handles initial pull from db
     case GET_ROOMS:
       let rooms = action.payload.val();
