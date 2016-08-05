@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { }  from 'react-materialize';
 import { PieChart } from 'react-easy-chart';
 
 class BudgetGraph extends Component {
@@ -21,9 +20,9 @@ class BudgetGraph extends Component {
 generateData(rooms) {
   
   let arr = [];
-  // const roomsList = Object.keys(rooms);
-  // console.log('keys: ', Object.keys(rooms));
-  const roomsList = ['bathroom', 'bedroom', 'dining room', 'living room', 'kitchen'];
+  const roomsList = Object.keys(rooms);
+  console.log('keys: ', Object.keys(rooms));
+  // const roomsList = ['bathroom', 'bedroom', 'dining room', 'living room', 'kitchen'];
   // const roomsList = [1,2,3,4,5]
   
 
@@ -50,7 +49,7 @@ generateData(rooms) {
       return sum;
     }
 
-  roomsList.map(function(room, id){
+  roomsList.map(function(room){
     // for(let room in rooms){
       // if(rooms.hasOwnProperty(room)){
         var obj = {};
@@ -67,17 +66,24 @@ generateData(rooms) {
 }
 
   render() {
-    const genData = this.generateData(this.props.rooms)
+    var genData;
+    // console.log('about to chekc', this.props.rooms);
+    if(Object.keys(this.props.rooms).length !== 0) {
+      genData = this.generateData(this.props.rooms)
+      // console.log('generated data', genData);
+    }
+    var that = this;
     
     // const test = this.test();
     // console.log('test invoked', test)
     return(
-      <div>
+      Object.keys(that.props.rooms).length !== 0 ? <div>
         <PieChart
           labels
           data={ genData }
+
         />
-      </div>
+      </div> : <div>Loading...</div>
     )
   }
 } 
