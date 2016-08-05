@@ -31,9 +31,14 @@ class ListItem extends Component {
           <p>
           Rooms:{" "}
             {listNames.map((itemName) => {
+              var photoURL = lists.rooms[itemName].photoURL.url
+              console.log(photoURL)
               return (
                 <span>
                  {itemName},{" "}
+                 <img
+                   src={photoURL}
+                 /> 
                 </span>
               );
             })}
