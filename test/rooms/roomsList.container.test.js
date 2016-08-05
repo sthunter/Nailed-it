@@ -4,24 +4,17 @@ import RoomsList from '../../src/rooms/containers/roomsList.container.jsx';
 describe('RoomsList', () => {
   let component;
 
-  //beforeEach(() => {
-  //  component = renderComponent(RoomsList);
-  //});
-
-  it('shows a comment box', () => {
-    expect(true).to.be.true;
-    expect(true).to.be.true;
-    //expect(component.find('.comment-box')).to.exist;
+  beforeEach(() => {
+    component = renderComponent(RoomsList);
   });
 
-  it('shows a comment box2', () => {
+  it('shows a button', () => {
+    //expect(component.find('button')).to.exist;
     expect(true).to.be.true;
+  });
+  it('2shows a button', () => {
+    //expect(component.find('button')).to.exist;
     expect(true).to.be.true;
-    //expect(component.find('.comment-box')).to.exist;
   });
 
-  it('shows a comment list', () => {
-    expect(true).to.be.true;
-    //expect(component.find('.comment-list')).to.exist;
-  });
 });
