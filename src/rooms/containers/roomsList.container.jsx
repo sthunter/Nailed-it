@@ -22,51 +22,29 @@ export default class RoomsList extends Component {
 
   render() {
     return (
-<<<<<<< a3e870d558292d6e8ef78a26c6967bc4205e2847
-
-      <Row>
-        <Col s={12} m={6} l={6}>
-          <div>
-            <h3> Select your room  <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button></h3>
-            <CardList
-              clickHandler={this.props.selectRoom}
-              intro={this.props.roomSelected}
-              list={this.props.rooms}
-              view="rooms"
-            />
-          </div>
-        </Col>
-
-        <Col s={12} m={6} l={6}>
-          <h3>Budget Chart / Graph </h3>  
-          <BudgetView rooms={this.props.rooms}/>
-        </Col>
-      </Row>
-=======
-<div>
-  <Row>
-    <Col s={12} m={6} l={6}>
       <div>
-        <h3> Select your room  <button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</button></h3>
-        <CardList
-          clickHandler={this.props.selectRoom}
-          intro={this.props.roomSelected}
-          list={this.props.rooms}
-          view="rooms"
-        />
-      </div>
-    </Col>
+        <Row>
+          <Col s={12} m={6} l={6}>
+            <div>
+              <h3> Select your room  <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button></h3>
+              <CardList
+                clickHandler={this.props.selectRoom}
+                intro={this.props.roomSelected}
+                list={this.props.rooms}
+                view="rooms"
+              />
+            </div>
+          </Col>
 
-    <Col s={12} m={6} l={6}>
-      <h3>Budget Chart / Graph </h3>  
-      <BudgetView rooms={this.props.rooms}/>
-    </Col>
-  </Row>
-  <Dropzone onDrop={files => this.onDrop(files)}>
-    <div>Try dropping some files here, or click to select files to upload.</div>
-  </Dropzone>
-</div>
->>>>>>> feature: add functionality to upload photos
+          <Col s={12} m={6} l={6}>
+            <h3>Budget Chart / Graph </h3>  
+            <BudgetView rooms={this.props.rooms}/>
+          </Col>
+        </Row>
+        <Dropzone onDrop={files => this.onDrop(files)}>
+          <div>Try dropping some files here, or click to select files to upload.</div>
+        </Dropzone>
+      </div>
     );
   }
 }
