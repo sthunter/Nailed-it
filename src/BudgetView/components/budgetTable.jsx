@@ -14,7 +14,7 @@ class BudgetTable extends Component {
 
     if(this.props.rooms[roomname]) {
       let list = this.props.rooms[roomname].furniture;
-      if(typeof(list) == 'object') {
+      if(typeof(list) === 'object') {
         
         for(var key in list) {
           if(key){
