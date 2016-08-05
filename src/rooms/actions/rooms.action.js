@@ -1,8 +1,18 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto } from '../../databaseAPI';
 
-export const ADD_ROOM = 'ADD_ROOM';
+export const ADD_PHOTO = 'ADD_PHOTO';
+export function addPhoto(file, selectedRoom) {
+  console.log("got here")
+  uploadPhoto(file);
+  return {
+    type: ADD_PHOTO,
+    file,
+  };
+}
 
 //adds room to the react rooms state and makes database call along the way
+export const ADD_ROOM = 'ADD_ROOM';
+
 export function addRoom(room) {
   const roomName = room.roomName;
   room = {};

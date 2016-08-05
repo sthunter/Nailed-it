@@ -41,6 +41,7 @@
     "node": "0.0.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-dropzone": "^3.5.3",
     "react-easy-chart": "^0.1.4",
     "react-materialize": "^0.14.6",
     "react-redux": "^4.4.5",
@@ -50,9 +51,9 @@
     "redux-promise": "^0.5.3"
   },
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node ./server/server.js",
     "dev": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
-    "deploy": "npm run build && git push https://github.com/Nailed-it/Nailed-it-deployed.git master"
+    "deploy": "npm run build && https://github.com/Nailed-it/Nailed-it.git deployed"
   }
 }
