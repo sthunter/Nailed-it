@@ -7,28 +7,29 @@ const config = {
   storageBucket: "nailed-it-c1d80.appspot.com"
 };
 Firebase.initializeApp(config);
-
 const database = Firebase.database();
-var storageRef = Firebase.storage().ref();
+
+// Firebase.storage is undefined when this file is run by tests, so
+// we only call Firebase.storage as a function if it's truthy.
+var storageRef = Firebase.storage && Firebase.storage().ref();
 var metadata = {
   contentType: 'image/jpeg',
 };
 
 export function uploadPhoto(file) {
-  console.log()
-  storageRef.child('images/' + file[0].name).put(file[0], metadata);
+  // Per the comment on the assignment of storageRef, if this code is run by our tests,
+  // then Firebase.storage is undefined
+  storageRef && storageRef.child('images/' + file[0].name).put(file[0], metadata);
 }
 
 export function addRoom(room, roomName) {
-  console.log(room, roomName, room[roomName]);
-  
   database.ref('Rene/rooms/' + roomName).set({
-    furniture : "No furniture"
+    furniture: "No furniture",
   });
 }
 
 export function getRooms() {
-  return database.ref('Rene/rooms').once('value')
+  return database.ref('Rene/rooms').once('value');
 }
 
 export function getProjects() {
