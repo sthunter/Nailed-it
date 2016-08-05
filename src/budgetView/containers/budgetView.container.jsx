@@ -18,7 +18,7 @@ class BudgetView extends Component {
     return(
       <div>
         <BudgetTable budget={this.props.budget} rooms={this.props.rooms}/>
-        <BudgetGraph rooms={this.props.rooms}/>
+        <BudgetGraph budget={this.props.budget} rooms={this.props.rooms}/>
       
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
           <Input type="number" placeholder="Budget" s={12} label="Budget" { ...newBudget } />
