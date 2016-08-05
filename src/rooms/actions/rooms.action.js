@@ -3,10 +3,11 @@ import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhot
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
   console.log("got here")
-  uploadPhoto(file);
+  var url = uploadPhoto(file)
+  console.log(url);
   return {
     type: ADD_PHOTO,
-    file,
+    payload: url,
   };
 }
 
