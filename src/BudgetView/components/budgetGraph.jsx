@@ -54,8 +54,8 @@ class BudgetGraph extends Component {
     let remainingBudget = currentBudget - totalCost;
     
     let costObj = {};
-    costObj["key"] = "Remaining Budget";
-    costObj["value"] = remainingBudget;
+    costObj["key"] = remainingBudget > 0 ? "Remaining Budget" : "";
+    costObj["value"] = remainingBudget > 0 ? remainingBudget : 0;
     costObj["color"] = "#00ff00";
     arr.push(costObj);
 
