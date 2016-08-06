@@ -13,6 +13,7 @@ class ListItem extends Component {
   }
   removeRoomCall(title) {
     removeRoom(title);
+    Materialize.toast(title + ' removed', 4000)
   }
 
   render() {
@@ -22,7 +23,7 @@ class ListItem extends Component {
       <Link to={ 'furniture' }>
         <CardPanel
           onClick={ () => this.handleClick(title) }
-          className='grey lighten-2 ListItem'
+          className='grey lighten-2 ListItem card-panel hoverable'
           textClassName='black-text'
         >
           <div className='card-title'>

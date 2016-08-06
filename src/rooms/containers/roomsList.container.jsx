@@ -24,7 +24,7 @@ export default class RoomsList extends Component {
       <div>
         <Row>
           <Col s={12} m={6} l={6}>
-            <div>
+            <div style={{"overflowY":"scroll"}}>
               <span className="RoomListHeader"> Select your room </span>
               <CardList
                 clickHandler={this.props.selectRoom}
@@ -34,10 +34,11 @@ export default class RoomsList extends Component {
               />
             </div>
           </Col>
-
           <Col s={12} m={6} l={6}>
-            <h3>Budget Chart / Graph </h3>  
-            <BudgetView rooms={this.props.rooms}/>
+            <div style={{"overflowY":"scroll"}}>
+              <h3>Budget Chart / Graph </h3>  
+              <BudgetView rooms={this.props.rooms}/>
+            </div>
           </Col>
         </Row>
         <Dropzone onDrop={files => this.onDrop(files)}>

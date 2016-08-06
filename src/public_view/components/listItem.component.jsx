@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'react-materialize';
+import { CardPanel, Row, Col, MediaBox} from 'react-materialize';
 import { Link } from 'react-router';
 
 
@@ -18,35 +18,49 @@ class ListItem extends Component {
     const listNames = Object.keys(lists.rooms);
 
     return (
-      <Link to={"publicRoom"}>
-        <Card
-          onClick={() => {this.handleClick(title)}}
-          className='grey lighten-2'
+      <div>
+        <CardPanel
+          className='grey lighten-2 card-panel hoverable'
           title={ title }
-          textClassName='black-text'
+          style={{'color':'black'}}
         >
-          <p >
-            Plans to spend: {lists.budget}$
-          </p>
-          <p>
-          Rooms:{" "}
+          <Row>
+            <Col s={6}>
+              <Link to={"publicRoom"}><span onClick={() => {this.handleClick(title)}} style={{'fontWeight':'bold'}}>{title}</span></Link>
+            </Col>
+            <Col s={6}>
+              <span>Budget: ${lists.budget}</span>
+            </Col>
+          </Row>
+          <Row>
             {listNames.map((itemName) => {
               var photoURL = lists.rooms[itemName].photoURL.url
-              console.log(photoURL)
               return (
-                <span>
-                 {itemName},{" "}
-                 <img
-                   src={photoURL}
-                 /> 
-                </span>
+                <div key={itemName}>
+                  <Col s={3}>
+                    <MediaBox src={photoURL} caption={itemName} width='100'/>
+                    <span className='center-align'>{itemName}</span>
+                  </Col>
+                </div>
               );
             })}
-        </p>
-        </Card>
-      </Link>
-      );
+          </Row>
+        </CardPanel>
+      </div>
+    );
   }
 }
 
 export default ListItem;
+
+   //  <p >
+   //            Plans to spend: ${lists.budget}
+   //          </p>
+   //          <p>
+   // <Row>
+   //                    <Col s={6}>
+   //                    {itemName},{" "}
+   //                    </Col>
+   //                  </Row>
+
+   //                            Rooms:{" "}
