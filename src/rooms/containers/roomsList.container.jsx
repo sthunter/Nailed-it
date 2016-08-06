@@ -24,7 +24,7 @@ export default class RoomsList extends Component {
       <div>
         <Row>
           <Col s={12} m={6} l={6}>
-            <div style={{"overflow-y":"scroll"}}>
+            <div style={{"overflowY":"scroll"}}>
               <span className="RoomListHeader"> Select your room </span>
               <CardList
                 clickHandler={this.props.selectRoom}
