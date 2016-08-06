@@ -6,7 +6,11 @@ const config = {
   databaseURL: 'https://nailed-it-c1d80.firebaseio.com',
   storageBucket: 'nailed-it-c1d80.appspot.com',
 };
-Firebase.initializeApp(config);
+try {
+  Firebase.initializeApp(config);
+} catch (e) {
+  console.log('[databaseAPI.js] Caught error: Firebase already initialized.');
+}
 const database = Firebase.database();
 
 // Firebase.storage is undefined when this file is run by tests, so
