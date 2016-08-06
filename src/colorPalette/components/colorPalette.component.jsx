@@ -7,13 +7,10 @@ const ColorPalette = (props) => {
     
     rects = props.colors.map((color, i) => (
       
-      <rect  x={i*rectWidth} y="0" fill={color} width={rectWidth} height="50" />
+      <rect key={i}  x={i*rectWidth} y="0" fill={color} width={rectWidth} height="50" />
     ));
-
-    console.log(rects);
-    rects.push(<rect stroke="black" width={rects.length * rectWidth} height="50" fill="transparent"/>)
+    rects.push(<rect key={rects.length} stroke="black" width={rects.length * rectWidth} height="50" fill="transparent"/>)
   } else { // If there were no colors passed to props
-    console.log('blue');
     rects = <rect x="0" y="0" fill="white" width={rectWidth} height="50"></rect>
   }
 
