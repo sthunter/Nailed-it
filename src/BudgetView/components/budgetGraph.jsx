@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
 import { PieChart } from 'react-easy-chart';
+import { Table, Col, Row  } from 'react-materialize';
+
 
 class BudgetGraph extends Component {
 
   constructor(props) {
     super(props);
-    
     this.generateData = this.generateData.bind(this);
+    this.calculateBudget = this.calculateBudget.bind(this);
     }
+
+  calculateBudget(roomname) {
+    let sum = 0;
+
+    if(this.props.rooms[roomname]) {
+      let list = this.props.rooms[roomname].furniture;
+      if(typeof(list) === 'object') {
+        for(var key in list) {
+          if(key){
+            sum += Number(list[key].price);
+          }
+        }
+      }
+    }
+    return sum;
+  }
+
+  getRandomColor() {
+    var letters = '0123456789abcdef';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   generateData(rooms) {
     
@@ -15,31 +42,9 @@ class BudgetGraph extends Component {
     let totalCost = 0;
     let currentBudget = this.props.budget;
     const roomsList = Object.keys(rooms);
+    const calculateBudget = this.calculateBudget;
+    const getRandomColor = this.getRandomColor;
 
-    var getRandomColor = function() {
-      var letters = '0123456789abcdef';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-    }
-
-    var calculateBudget = function(roomname){
-     let sum = 0;
-
-      if(rooms[roomname]) {
-        let list = rooms[roomname].furniture;
-        for(var key in list) {
-          if(key){
-            sum += Number(list[key].price);
-          }
-        }
-      }
-      return sum;
-    }
-
-    
     roomsList.forEach(function(room){
       let calc = calculateBudget(room);
      
@@ -64,18 +69,57 @@ class BudgetGraph extends Component {
 
   render() {
     var genData;
+    const CurrentRoom = this.props.rooms;
+    const BudgetRoom = Object.keys(CurrentRoom);
+    const currentBudget = this.props.budget;
+    const calcBudget = this.calculateBudget;
+
     if(Object.keys(this.props.rooms).length !== 0) {
-      genData = this.generateData(this.props.rooms)
+      genData = this.generateData(CurrentRoom)
     }
     var that = this;
 
     return(
-      Object.keys(that.props.rooms).length !== 0 ? <div>
+      Object.keys(that.props.rooms).length !== 0 ? 
+        <div>
+          <Row>
+            <Col>
+              <h5>Total Budget: { currentBudget || 'no budget' }</h5>
+              <h5>Total Cost: { this.totalCost || 'no costs' }</h5>
+            </Col>
+            <Col>
+              <h5>Budget Remaining: { currentBudget - this.totalCost }</h5>
+            </Col>
+          </Row>
+        <Table>
+          <thead>
+            <tr>
+              <th data-field="id">Room</th>
+              <th data-field="price">Total Room Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {BudgetRoom.map((roomName, id)=> {
+              if (id === 0) {
+                this.totalCost = 0;
+              }
+              let roomCost = calcBudget(roomName);
+              this.totalCost += roomCost;
+              return (
+                <tr key={id}>
+                  <th>{ roomName }</th>
+                  <th>{calcBudget(roomName)} </th>
+                </tr>
+                )
+            })}
+          </tbody>
+        </Table>  
+
         <PieChart
-          labels
-          data={ genData }
-        />
-      </div> : <div>Loading...</div>
+            labels
+            data={ genData }
+          />
+        </div> : <div>Loading...</div>
     )
   }
 } 
