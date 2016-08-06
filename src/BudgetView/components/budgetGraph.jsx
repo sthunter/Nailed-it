@@ -36,6 +36,10 @@ class BudgetGraph extends Component {
     return color;
   }
 
+  toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
   generateData(rooms) {
     
     let arr = [];
@@ -44,12 +48,13 @@ class BudgetGraph extends Component {
     const roomsList = Object.keys(rooms);
     const calculateBudget = this.calculateBudget;
     const getRandomColor = this.getRandomColor;
+    const toTitleCase = this.toTitleCase;
 
     roomsList.forEach(function(room){
       let calc = calculateBudget(room);
      
       var obj = {};
-      obj["key"] = room;
+      obj["key"] = toTitleCase(room);
       obj["value"] = calc;
       obj["color"] = getRandomColor();
       arr.push(obj)
@@ -73,6 +78,7 @@ class BudgetGraph extends Component {
     const BudgetRoom = Object.keys(CurrentRoom);
     const currentBudget = this.props.budget;
     const calcBudget = this.calculateBudget;
+    const toTitleCase = this.toTitleCase;
 
     if(Object.keys(this.props.rooms).length !== 0) {
       genData = this.generateData(CurrentRoom)
@@ -107,7 +113,7 @@ class BudgetGraph extends Component {
               this.totalCost += roomCost;
               return (
                 <tr key={id}>
-                  <th>{ roomName }</th>
+                  <th>{ toTitleCase(roomName) }</th>
                   <th>{calcBudget(roomName)} </th>
                 </tr>
                 )
