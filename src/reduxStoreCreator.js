@@ -40,8 +40,8 @@ const allMiddleware = [
 // allMiddleware array, and filters it according to whether each middleware
 // matches the `mode` parameter. Then it maps the array to return just the
 // middleware values.
-function storeCreator(mode = 'development') {
-  return createStore(reducers, {}, compose(
+function storeCreator(mode = 'development', state={}) {
+  return createStore(reducers, state, compose(
     ...allMiddleware
       .filter(middleware => middleware[mode])
       .map(middleware => middleware.middleware)

@@ -20,7 +20,7 @@ chaiJquery(chai, chai.util, $);
 // build 'renderComponent' helper that should render a given react class
 function renderComponent(ComponentClass, props = {}, state = {}) {
   const componentInstance =  TestUtils.renderIntoDocument(
-    <Provider store={reduxStoreCreator('test')}>
+    <Provider store={reduxStoreCreator('test', state)}>
       <ComponentClass {...props} />
     </Provider>
   );
@@ -37,4 +37,4 @@ $.fn.simulate = function (eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 };
 
-export {renderComponent, expect};
+export {renderComponent, expect, $};
