@@ -29,13 +29,13 @@ export function uploadPhoto(file, selectedRoom) {
 }
 
 export function addRoom(room, roomName) {
-  database.ref('Rene/rooms/' + roomName).set({
+  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set({
     furniture: 'No furniture',
   });
 }
 
 export function getRooms() {
-  return database.ref('Rene/rooms').once('value');
+  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms').once('value');
 }
 
 export function getProjects() {
@@ -51,7 +51,7 @@ export function getProjects() {
 // };
 
 export function getBudget() {
-  return database.ref('Rene/budget').once('value');
+  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').once('value');
 
   // .then((snapshot) => {
   //   cb(snapshot.val());
@@ -59,17 +59,17 @@ export function getBudget() {
 }
 
 export function updateBudget(budget) {
-  database.ref('Rene/budget').set(budget);
+  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').set(budget);
 }
 
 export function updateFurniture(roomName, furnitureName, furnitureProps) {
   //take the roomName and furnitureName from the submit and put the obj at the
   // location in the database
-  database.ref('Rene/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
+  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
 };
 
 export function removeRoom(room) {
-  database.ref('Rene/rooms/' + room).remove();
+  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room).remove();
 };
 
 // export function removeFurniture(room, furniture) {
