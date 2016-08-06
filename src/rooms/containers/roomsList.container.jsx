@@ -17,7 +17,6 @@ export default class RoomsList extends Component {
   onDrop(files) {
     // console.log('Received files: ', files);
     this.props.addPhoto(files)
-
   }
 
   render() {
