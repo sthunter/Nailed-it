@@ -13,6 +13,7 @@ class ListItem extends Component {
   }
   removeRoomCall(title) {
     removeRoom(title);
+    Materialize.toast(title + ' removed', 4000)
   }
 
   render() {

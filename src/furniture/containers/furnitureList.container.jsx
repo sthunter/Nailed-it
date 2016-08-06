@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FList from '../components/fList.component';
-import { Row, Col, Tabs, Tab } from 'react-materialize';
+import { Row, Col, Tabs, Tab, Button } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import { selectRoom } from '../../rooms/actions/rooms.action'
 
@@ -36,6 +36,14 @@ class FurnitureList extends Component {
                 })}
               </ul>
             </div>
+          </Col>
+          <Col s={1}>
+            <Button floating fab='vertical' icon='mode_edit' className='grey darken-3' small style={{top: '45px', right: '24px'}}>
+              <Button floating icon='insert_chart' className='red'/>
+              <Button floating icon='format_quote' className='yellow darken-1'/>
+              <Button floating icon='publish' className='green'/>
+              <Button floating icon='attach_file' className='blue'/>
+            </Button>
           </Col>
         </Row>
 
