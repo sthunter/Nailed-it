@@ -35,7 +35,18 @@ export function addRoom(room, roomName) {
 }
 
 export function getRooms() {
-  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms').once('value');
+  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms').once('value')
+    .then((snapshot) => {
+      let result = snapshot.val();
+      for (var room in result) {
+        if(result.hasOwnProperty(room)) {
+          if (result[room].colors) {
+            result[room].colors = result[room].colors.split(";")
+          }
+        }
+      }
+      return {val:() => result};
+    });
 }
 
 export function getProjects() {

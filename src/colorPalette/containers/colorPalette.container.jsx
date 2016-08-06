@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 
 class ColorPalette extends Component {
   buildPalette() {
-    let roomSelected = this.props.roomSelected
-    console.log(this.props.rooms[roomSelected].colors)
-    let colors = ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F'];
+    let roomSelected = this.props.roomSelected;
+    let colors = this.props.rooms[roomSelected].colors;
     let rectWidth = 100;
     let rects;
     if (colors && colors.length) {
