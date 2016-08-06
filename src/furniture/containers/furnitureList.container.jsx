@@ -13,7 +13,6 @@ class FurnitureList extends Component {
     const roomNames =  Object.keys(rooms);
     var furniture = {};
 
-
     if (roomSelected) {
       Object.assign(furniture, rooms[roomSelected].furniture);
     }
@@ -22,12 +21,12 @@ class FurnitureList extends Component {
       <div>
         <Row>
           <Col s={12}>
-            <div className=''>
+            <div className='tabNav'>
               <ul className="tabs z-depth-1">
                 {roomNames.map((room) => {
                   if(room === this.roomSelected) {
                     return (
-                      <li className="tab col s3 active"><span className='active' onClick={() => {this.changeRoom(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                      <li className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.changeRoom(room)}} style={{'cursor':'default'}}>{room}</span></li>
                     )
                   }
                   return (
@@ -37,14 +36,14 @@ class FurnitureList extends Component {
               </ul>
             </div>
           </Col>
-          <Col s={1}>
-            <Button floating fab='vertical' icon='mode_edit' className='grey darken-3' small style={{top: '45px', right: '24px'}}>
-              <Button floating icon='insert_chart' className='red'/>
-              <Button floating icon='format_quote' className='yellow darken-1'/>
-              <Button floating icon='publish' className='green'/>
-              <Button floating icon='attach_file' className='blue'/>
+          <div className='F-FAB'>
+            <Button floating fab='vertical' icon='arrow_drop_up' className='grey darken-3' small style={{'top': '24px', 'right': '24px'}}>
+              <Button floating icon='filter_list' className='grey'/>
+              <Button floating icon='sort' className='grey'/>
+              <Button floating icon='color_lens' className='grey'/>
+              <Button floating icon='add' className='grey'/>
             </Button>
-          </Col>
+          </div>
         </Row>
 
         <Row>
