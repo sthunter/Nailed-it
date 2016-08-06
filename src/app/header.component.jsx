@@ -15,10 +15,8 @@ class Header extends Component {
     return (
       <div>
        <Navbar brand='Nailed-It' right className="grey darken-3">
-        <NavItem><Input name='public' type='checkbox' value='public' label='public' onChange={() => {this.changePublicStatus()}}/></NavItem>
+        <NavItem><Input name='public' type='checkbox' value='Public' label='Public' onChange={() => {this.changePublicStatus()}}/></NavItem>
           
-        <NavItem href='#'>Settings</NavItem>
-        <NavItem href='#'>Profile</NavItem>
         <NavItem><Link to={ 'public' }>Sell Your Skills</Link></NavItem>
        </Navbar>
      </div>
@@ -35,3 +33,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+       
