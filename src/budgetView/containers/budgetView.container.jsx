@@ -17,7 +17,7 @@ class BudgetView extends Component {
     const { fields: { newBudget }, handleSubmit } = this.props;
     return(
       <div>
-        <BudgetTable budget={this.props.budget} rooms={this.props.rooms}/>
+        
         <BudgetGraph budget={this.props.budget} rooms={this.props.rooms}/>
       
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
