@@ -10,16 +10,25 @@ class Header extends Component {
   changePublicStatus() {
     this.props.makePublic_Private(this.props.shared);
   }
+  
+  signin() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      console.log(token)
+      var user = result.user;
+      console.log(user)
+    })
+  }
+
 
   render() {
     return (
-      <div>
        <Navbar brand='Nailed-It' right className="grey darken-3">
         <NavItem><Input name='public' type='checkbox' value='Public' label='Public' onChange={() => {this.changePublicStatus()}}/></NavItem>
-          
         <NavItem><Link to={ 'public' }>Sell Your Skills</Link></NavItem>
+        <NavItem onClick={this.signin}>SignIn</NavItem>
        </Navbar>
-     </div>
     );
   }
 }
