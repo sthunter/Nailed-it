@@ -14,6 +14,5 @@ export default (
     <Route path="furniture" component={FurnitureListContainer}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
     <Route path="publicRoom" component={PublicRoomsListContainer}></Route>
-    <Route path="signin" component={SignInContainer}></Route>
   </Route>
 );
