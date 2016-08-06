@@ -3,10 +3,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 class ColorPalette extends Component {
-  render() { 
+  buildPalette() {
+    let roomSelected = this.props.roomSelected
+    console.log(this.props.rooms[roomSelected].colors)
+    let colors = ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F'];
+    let rectWidth = 100;
     let rects;
-    const rectWidth = 100;
-    const colors = this.props.rooms[this.props.roomSelected].colors;
     if (colors && colors.length) {
       
       rects = colors.map((color, i) => (
@@ -17,7 +19,13 @@ class ColorPalette extends Component {
     } else { // If there were no colors passed to props
       rects = <rect x="0" y="0" fill="white" width={rectWidth} height="50"></rect>
     }
+    return rects
+  }
 
+  render() { 
+    let rects;
+    let rectWidth = 100;
+    rects = this.buildPalette();
     return (
       <div>
         <svg width={rectWidth * (rects.length - 1)}>
