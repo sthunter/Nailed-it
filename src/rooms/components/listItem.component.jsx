@@ -22,7 +22,7 @@ class ListItem extends Component {
       <Link to={ 'furniture' }>
         <CardPanel
           onClick={ () => this.handleClick(title) }
-          className='grey lighten-2 ListItem'
+          className='grey lighten-2 ListItem card-panel hoverable'
           textClassName='black-text'
         >
           <div className='card-title'>

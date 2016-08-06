@@ -22,7 +22,7 @@ class FurnitureList extends Component {
       <div>
         <Row>
           <Col s={12}>
-            <div>
+            <div className=''>
               <ul className="tabs z-depth-1">
                 {roomNames.map((room) => {
                   if(room === this.roomSelected) {
