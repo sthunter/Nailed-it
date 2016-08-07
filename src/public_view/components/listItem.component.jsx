@@ -34,7 +34,12 @@ class ListItem extends Component {
           </Row>
           <Row>
             {listNames.map((itemName) => {
-              var photoURL = lists.rooms[itemName].photoURL.url
+              if(!lists.rooms[itemName].photoURL) {
+                var photoURL = "http://cdn.home-designing.com/wp-content/uploads/2010/10/living-room-artificial-light-by-ferdaviola.jpg";
+              }
+              else {
+                var photoURL = lists.rooms[itemName].photoURL.url;
+              }
               return (
                 <div key={itemName}>
                   <Col s={3}>

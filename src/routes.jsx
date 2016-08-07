@@ -10,8 +10,8 @@ import requireAuth from './signup_signin/containers/requireAuthentification.cont
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={PublicProjectListContainer} />
-    <Route path="room" component={RoomsListContainer}></Route>
-    <Route path="furniture" component={FurnitureListContainer}></Route>
+    <Route path="room" component={requireAuth(RoomsListContainer)}></Route>
+    <Route path="furniture" component={requireAuth(FurnitureListContainer)}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
     <Route path="publicRoom" component={PublicRoomsListContainer}></Route>
   </Route>
