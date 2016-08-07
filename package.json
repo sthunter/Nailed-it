@@ -61,7 +61,7 @@
     "start": "node ./server/server.js",
     "dev": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
-    "deploy": "npm run build && https://github.com/Nailed-it/Nailed-it.git deployed",
+    "deploy": "git branch -dr Nailed-it/deployed && npm run build && git push https://github.com/Nailed-it/Nailed-it.git master:deployed",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.jsx \"test/**/*.js\"",
     "test:watch": "npm run test -- --watch --watch-extensions \"jsx\""
   }

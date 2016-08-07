@@ -5,6 +5,7 @@ import { reducer as formReducer} from 'redux-form';
 import budgetReducer from './BudgetView/reducers/BudgetView.reducer';
 import publicReducer from './public_view/reducers/project.reducer';
 import shareRooms from './rooms/reducers/shareRooms.reducer';
+import authenticationReducer from './signup_signin/reducers/authentication.reducer';
 
 const rootReducer = combineReducers({
   rooms: roomsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   budget: budgetReducer,
   projects: publicReducer,
   shared: shareRooms,
+  authenticated: authenticationReducer
 });
 
 export default rootReducer;

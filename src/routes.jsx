@@ -5,13 +5,13 @@ import RoomsListContainer from './rooms/containers/roomsList.container.jsx';
 import FurnitureListContainer from './furniture/containers/furnitureList.container';
 import PublicProjectListContainer from './public_view/containers/publicProjectList.container';
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
-import SignInContainer from './signup_signin/containers/signIn.container';
+import requireAuth from './signup_signin/containers/requireAuthentification.container';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={RoomsListContainer} />
-    <Route path="room" component={RoomsListContainer}></Route>
-    <Route path="furniture" component={FurnitureListContainer}></Route>
+    <IndexRoute component={PublicProjectListContainer} />
+    <Route path="room" component={requireAuth(RoomsListContainer)}></Route>
+    <Route path="furniture" component={requireAuth(FurnitureListContainer)}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
     <Route path="publicRoom" component={PublicRoomsListContainer}></Route>
   </Route>
