@@ -4,10 +4,12 @@ import CardList from '../components/cardList.component';
 import { addProjectFromDb, selectProject } from '../actions/public.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-materialize';
+import { changeRoute } from '../../routing/actions/routing.action';
 
 export default class ProjectList extends Component {
   componentWillMount() {
     this.props.addProjectFromDb();
+    this.props.changeRoute(this.props.location.pathname);
   }
 
   render() {
@@ -34,7 +36,7 @@ function mapStateToProps({ projects, projectSelected }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addProjectFromDb, selectProject }, dispatch);
+  return bindActionCreators({ addProjectFromDb, selectProject, changeRoute }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);

@@ -5,18 +5,21 @@ import { getRooms, selectRoom,  makePublic_Private, addPhoto } from '../actions/
 import { bindActionCreators } from 'redux';
 import { Row, Col, Button } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
+import { changeRoute } from '../../routing/actions/routing.action';
 import Dropzone from 'react-dropzone';
 
 export default class RoomsList extends Component {
   componentWillMount() {
+    this.props.changeRoute(this.props.location.pathname);
     this.props.getRooms();
   }
+
   changePublicStatus() {
     this.props.makePublic_Private(this.props.shared);
   }
   onDrop(files) {
     // console.log('Received files: ', files);
-    this.props.addPhoto(files)
+    this.props.addPhoto(files);
   }
 
   render() {
@@ -49,12 +52,12 @@ export default class RoomsList extends Component {
   }
 }
 
-function mapStateToProps({ rooms, roomSelected, shared }) {
-  return { rooms, roomSelected, shared };
+function mapStateToProps({ rooms, roomSelected, shared, route }) {
+  return { rooms, roomSelected, shared, route };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRooms, selectRoom, makePublic_Private, addPhoto }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom, makePublic_Private, addPhoto, changeRoute }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);

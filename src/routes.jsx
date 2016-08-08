@@ -6,10 +6,12 @@ import FurnitureListContainer from './furniture/containers/furnitureList.contain
 import PublicProjectListContainer from './public_view/containers/publicProjectList.container';
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
 import requireAuth from './signup_signin/containers/requireAuthentification.container';
+import LandingPage from './landing_page/containers/landingPage.container';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={PublicProjectListContainer} />
+    <IndexRoute component={LandingPage} />
+    <Route path ="welcome" component={LandingPage}></Route>
     <Route path="room" component={requireAuth(RoomsListContainer)}></Route>
     <Route path="furniture" component={requireAuth(FurnitureListContainer)}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>

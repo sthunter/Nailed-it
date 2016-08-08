@@ -7,16 +7,41 @@ import { authenticate } from '../signup_signin/actions/signIn.action';
 import { Link } from 'react-router';
 
 class Header extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
 
   changePublicStatus() {
     this.props.makePublic_Private(this.props.shared);
   }
-  authButton() {
-    if (!this.props.authenticated) {
-      return "Sign In";
+
+  checkforSignin() {
+    if(!this.props.authenticated) {
+      this.signin()
+    }
+    else {
+      this.context.router.push('room');
     }
   }
 
+  publicRoute() {
+    if(this.props.route !== "public")
+    return "Public Houses"
+  }
+  authButton() {
+    if (!this.props.authenticated && this.props.route !== "room") {
+      return "Sign In";
+    }
+    else if (this.props.route !== "room") {
+      return "Roomslist"
+    }
+  }
+  
+  makePublic() {
+    if(this.props.route === "room") {
+      return <Input name='public' type='checkbox' value='Public' label='Public' onChange={() => {this.changePublicStatus()}}/>
+    }
+  }
   signin() {
     var provider = new firebase.auth.GoogleAuthProvider();
     const _this = this;
@@ -24,23 +49,23 @@ class Header extends Component {
       var token = result.credential.accessToken;
       var user = result.user;
       _this.props.authenticate(token);
+      _this.context.router.push('room');
     })
   }
 
   render() {
     return (
        <Navbar brand='Nailed-It' right className="grey darken-3">
-        <NavItem><Input name='public' type='checkbox' value='Public' label='Public' onChange={() => {this.changePublicStatus()}}/></NavItem>
-        <NavItem><Link to={ 'public' }>Sell Your Skills</Link></NavItem>
-        <NavItem><Link to={ 'room' }>Go to my rooms</Link></NavItem>
-        <NavItem  onClick={()=>this.signin()}>{this.authButton()}</NavItem>
+        <NavItem>{this.makePublic()}</NavItem>
+        <NavItem><Link to={ 'public' }>{this.publicRoute()}</Link></NavItem>
+        <NavItem  onClick={()=>this.checkforSignin()}>{this.authButton()}</NavItem>
        </Navbar>
     );
   }
 }
 
-function mapStateToProps({ shared, authenticated }) {
-  return { shared, authenticated };
+function mapStateToProps({ shared, authenticated, route }) {
+  return { shared, authenticated, route };
 }
 
 function mapDispatchToProps(dispatch) {
