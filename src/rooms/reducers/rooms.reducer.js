@@ -1,4 +1,4 @@
-import { ADD_ROOM, GET_ROOMS, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
+import { ADD_ROOM, GET_ROOMS, UPDATE_ROOM, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
 import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
@@ -6,9 +6,10 @@ const roomsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case ADD_PHOTO:
-    newState = _.clone(state);
-    newState[action.selectedRoom].photoURL = action.url;
-    return newState;
+      newState = _.clone(state);
+      newState[action.selectedRoom].photoURL = action.url;
+      return newState;
+
     //handles initial pull from db
     case GET_ROOMS:
       let rooms = action.payload.val();
@@ -24,6 +25,10 @@ const roomsReducer = (state = {}, action) => {
       //}
 
       return Object.assign(_.cloneDeep(state), action.room);
+
+    case UPDATE_ROOM:
+      return state;
+
     case ADD_FURNITURE:
       if (!action.roomName) {
         return state;
