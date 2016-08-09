@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import {Button, Input} from 'react-materialize';
 import BudgetTable from '../components/BudgetTable';
 import BudgetGraph from '../components/BudgetGraph';
-import { getBudget, updateBudget } from '../actions/budgetView.action';
+import { getBudget, updateBudget, updateGraph } from '../actions/budgetView.action';
 import { reduxForm } from 'redux-form';
 
 
@@ -18,7 +18,7 @@ class BudgetView extends Component {
     return(
       <div>
         
-        <BudgetGraph budget={this.props.budget} rooms={this.props.rooms}/>
+        <BudgetGraph onClick={updateGraph} budget={this.props.budget} rooms={this.props.rooms}/>
       
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
           <Input type="number" placeholder="Budget" s={12} label="Budget" { ...newBudget } />
@@ -42,5 +42,5 @@ class BudgetView extends Component {
 export default reduxForm({
   form: 'BudgetView',
   fields: ['newBudget']
-}, state => ({ budget: state.budget}),{ getBudget, updateBudget })(BudgetView);
+}, state => ({ budget: state.budget, data: state.onClick}),{ getBudget, updateBudget, updateGraph })(BudgetView);
 

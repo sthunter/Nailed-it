@@ -9,6 +9,7 @@ class BudgetGraph extends Component {
     super(props);
     this.generateData = this.generateData.bind(this);
     this.calculateBudget = this.calculateBudget.bind(this);
+  
     }
 
   calculateBudget(roomname) {
@@ -42,7 +43,7 @@ class BudgetGraph extends Component {
 
   generateData(rooms) {
     
-    let arr = [];
+    let arr = []
     let totalCost = 0;
     let currentBudget = this.props.budget;
     const roomsList = Object.keys(rooms);
@@ -54,7 +55,7 @@ class BudgetGraph extends Component {
       let calc = calculateBudget(room);
      
       var obj = {};
-      obj["key"] = toTitleCase(room);
+      obj["key"] = calc > 0 ? toTitleCase(room) : ' ';
       obj["value"] = calc;
       obj["color"] = getRandomColor();
       arr.push(obj)
@@ -64,7 +65,7 @@ class BudgetGraph extends Component {
     let remainingBudget = currentBudget - totalCost;
     
     let costObj = {};
-    costObj["key"] = remainingBudget > 0 ? "Remaining Budget" : "";
+    costObj["key"] = remainingBudget >= 0 ? "Remaining Budget" : "";
     costObj["value"] = remainingBudget > 0 ? remainingBudget : 0;
     costObj["color"] = "#00ff00";
     arr.push(costObj);
@@ -112,9 +113,10 @@ class BudgetGraph extends Component {
               let roomCost = calcBudget(roomName);
               this.totalCost += roomCost;
               return (
-                <tr key={id}>
+                <tr 
+                key={id}>
                   <th>{ toTitleCase(roomName) }</th>
-                  <th>{calcBudget(roomName)} </th>
+                  <th>{ calcBudget(roomName) } </th>
                 </tr>
                 )
             })}
@@ -124,6 +126,10 @@ class BudgetGraph extends Component {
         <PieChart
             labels
             data={ genData }
+            clickHandler={(selection) => {
+              let data = this.props.onClick(selection.data);
+            }}
+
           />
         </div> : <div>Loading...</div>
     )
@@ -131,3 +137,6 @@ class BudgetGraph extends Component {
 } 
 
 export default BudgetGraph;
+              // console.log(selection)
+              // console.log(selection.data)
+              // console.log(selection.data.key)

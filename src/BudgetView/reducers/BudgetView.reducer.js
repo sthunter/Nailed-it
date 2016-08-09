@@ -1,4 +1,4 @@
-import { GET_BUDGET, UPDATE_BUDGET } from '../actions/budgetView.action';
+import { GET_BUDGET, UPDATE_BUDGET, UPDATE_GRAPH } from '../actions/budgetView.action';
 
 const budgetReducer = (state = null, action) => {
   switch (action.type) {
@@ -6,6 +6,8 @@ const budgetReducer = (state = null, action) => {
       return action.payload.val();
     case UPDATE_BUDGET:
       return action.newBudget;
+    case UPDATE_GRAPH:
+      return action.payload;
     default:
       return state;
   }
