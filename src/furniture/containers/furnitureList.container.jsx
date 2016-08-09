@@ -3,10 +3,24 @@ import { connect } from 'react-redux';
 import FList from '../components/fList.component';
 import { Row, Col, Tabs, Tab, Button } from 'react-materialize';
 import { bindActionCreators } from 'redux';
-import { selectRoom } from '../../rooms/actions/rooms.action'
+import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
+import { changeRoute } from '../../routing/actions/routing.action';
+import { browserHistory } from 'react-router';
 
 class FurnitureList extends Component {
-
+  componentWillMount() {
+    if(Object.keys(this.props.rooms).length === 0) {
+      this.props.getRooms();
+    }
+    if(this.props.params.name) {
+      this.props.selectRoom(this.props.params.name)
+    }
+    this.props.changeRoute(this.props.location.pathname);
+  }
+  click(room) {
+    this.props.selectRoom(room);
+    browserHistory.push('/furniture/' + room)
+  }
   render() {
     const intro = 'Furniture';
     const [rooms, roomSelected] = [this.props.rooms, this.props.roomSelected];
@@ -26,11 +40,11 @@ class FurnitureList extends Component {
                 {roomNames.map((room) => {
                   if(room === this.roomSelected) {
                     return (
-                      <li className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.changeRoom(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                      <li className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
                     )
                   }
                   return (
-                    <li className="tab col s3" ><span onClick={() => {this.props.selectRoom(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                    <li className="tab col s3" ><span onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
                   )
                 })}
               </ul>
@@ -67,7 +81,7 @@ function mapStateToProps({ rooms, roomSelected }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({selectRoom}, dispatch);
+  return bindActionCreators({selectRoom, getRooms,  changeRoute}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
