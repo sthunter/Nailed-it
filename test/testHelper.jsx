@@ -37,4 +37,16 @@ $.fn.simulate = function (eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 };
 
-export {renderComponent, expect, $};
+// Helper function that searches recursively for properties and/or values
+function deeplyHasKeyOrProp(obj, params) {
+  if (Array.isArray(params)) {
+    return params.every(param => deeplyHasKeyOrProp(obj, param));
+  } else if (typeof params === 'object') {
+    // Todo
+  } else { // else params should be a primitive value
+
+  }
+}
+
+// Exports
+export {renderComponent, expect, $, deeplyHasKeyOrProp};
