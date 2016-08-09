@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component';
-
+import { Row, Col, Modal, Button } from 'react-materialize';
 
 class CardList extends Component {
 

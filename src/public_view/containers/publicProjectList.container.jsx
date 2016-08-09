@@ -3,7 +3,7 @@ import { connect} from 'react-redux';
 import CardList from '../components/cardList.component';
 import { addProjectFromDb, selectProject } from '../actions/public.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col } from 'react-materialize';
+import { Row, Col, Modal, Button } from 'react-materialize';
 import { changeRoute } from '../../routing/actions/routing.action';
 
 export default class ProjectList extends Component {
@@ -11,14 +11,12 @@ export default class ProjectList extends Component {
     this.props.addProjectFromDb();
     this.props.changeRoute(this.props.location.pathname);
   }
-  getFurniture() {
 
-  }
   render() {
     return (
       <Row>
-      <h3> Pick a project </h3>
-        <Col s={12} m={12} l={6}>
+      <h3> List of Public Projects</h3>
+        <Col s={12} m={12} l={12}>
           <div>
             <CardList
               clickHandler={this.props.selectProject}

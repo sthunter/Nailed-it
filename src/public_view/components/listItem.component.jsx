@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { CardPanel, Row, Col, MediaBox} from 'react-materialize';
+import { CardPanel, Row, Col, MediaBox, Button, Modal} from 'react-materialize';
 import { Link } from 'react-router';
 import Mailto from 'react-mailto';
-
 
 class ListItem extends Component {
   handleClick = (title) => {
@@ -10,25 +9,18 @@ class ListItem extends Component {
       this.props.clickHandler(title);
     }
   }
-  getfurniture(rooms) {
-    this.props.lists.rooms.forEach(function(room) {
-      room.furniture.forEach(function(itemName) {
-        return (
-          <div key={itemName}>
-            <Col s={1}>
-              <MediaBox src={itemName.url} caption={itemName} width='25'/>
-              <span className='center-align'>{itemName}</span>
-            </Col>
-          </div>
-        )
-      })
-    })
+  getfurniture(room) {
+    var furnitures = []
+    console.log("room", this.props.lists.rooms[room].furniture)
+    for (var item in this.props.lists.rooms[room].furniture) {
+      furnitures.push(<MediaBox className="MediaBox" src="https://www.buira.net/assets/images/shared/default-profile.png" width='100'/>)
+    }
+    return (
+      <span>{furnitures}</span>
+      )
   }
 
   render() {
-    console.log(this.props);
-    // this.props.clickHandler('the other ballpit');
-    //  onClick={}
     const title = this.props.lists.profile.displayName;
     const lists = this.props.lists
     const listNames = Object.keys(lists.rooms);
@@ -43,17 +35,16 @@ class ListItem extends Component {
     return (
       <div>
         <CardPanel
-          className='grey lighten-2 card-panel hoverable'
+          className='grey lighten-2 card-panel'
           title={ title }
           style={{'color':'black'}}
         >
           <Row>
             <Col s={6}>
-              <MediaBox src={photoURL} width='25'/>
-              <span onClick={() => {this.handleClick(title)}} style={{'fontWeight':'bold'}}>{title}</span>
-              <span> <Mailto email={this.props.lists.profile.email} obfuscate={true}>
-                Contact me!
-              </Mailto></span>
+                <MediaBox src={photoURL} width='25'/>
+                <span> <Mailto email={this.props.lists.profile.email} obfuscate={true}>
+                  Get in touch with <span onClick={() => {this.handleClick(title)}} style={{'fontWeight':'bold'}}>{title}</span>
+                </Mailto></span> 
             </Col>
             <Col s={6}>
               <span>Budget: ${lists.budget}</span>
@@ -71,7 +62,15 @@ class ListItem extends Component {
               return (
                 <div key={itemName}>
                   <Col s={3}>
-                    <MediaBox src={photoURL} caption={itemName} width='100'/>
+                  <Modal
+                    header={itemName}
+                    trigger={
+                      <MediaBox src={photoURL} caption={itemName} width='100' style={{"cursor": "pointer"}}/>
+                    }>
+                    <p>
+                      {this.getfurniture(itemName)}
+                    </p>
+                  </Modal>
                     <span className='center-align'>{itemName}</span>
                   </Col>
                 </div>
