@@ -82,9 +82,9 @@ class ListItem extends Component {
               }
             </div>
             </Col>
-            <Col s={8}>
+            
               {this.photo ? <div><MediaBox src={photo} width='40'/></div> : null}
-            </Col>
+           
             </Row>
         </CardPanel>
       );

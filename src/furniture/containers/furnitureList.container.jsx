@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FList from '../components/fList.component';
-import { Row, Col, Tabs, Tab, Button } from 'react-materialize';
+import { Row, Col, Button } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
 
+import {Tabs, Tab} from 'material-ui/Tabs';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+
+
 class FurnitureList extends Component {
+  componentWillMount() {
+    injectTapEventPlugin();
+  }
+
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
@@ -17,10 +27,12 @@ class FurnitureList extends Component {
     }
     this.props.changeRoute(this.props.location.pathname);
   }
+
   click(room) {
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
+
   render() {
     const intro = 'Furniture';
     const { rooms, roomSelected } = this.props;
@@ -35,20 +47,22 @@ class FurnitureList extends Component {
       <div>
         <Row>
           <Col s={12}>
-            <div className='tabNav'>
-              <ul className="tabs z-depth-1">
+          
+              <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5', 'overflowY':'scroll'}}>
                 {roomNames.map((room, i) => {
-                  if(room === this.roomSelected) {
-                    return (
-                      <li key={i} className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
-                    )
-                  }
                   return (
-                    <li key={i} className="tab col s3" ><span onClick={() => {this.props.selectRoom(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                    <Tab className='navTab' 
+                    onClick={() => {this.click(room)}}
+                    label={room}
+                    key={i}
+                    style={{'color':'#424242', 'background':'#f5f5f5'}}
+                    >
+                    </Tab>
                   )
                 })}
-              </ul>
-            </div>
+              <Tab label='All' style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+             </Tabs>  
+            
           </Col>
           <div className='F-FAB'>
             <Button floating fab='vertical' icon='arrow_drop_up' className='grey darken-3' small style={{'top': '24px', 'right': '24px'}}>
@@ -85,3 +99,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
+

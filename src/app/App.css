@@ -23,6 +23,11 @@
   to { transform: rotate(360deg); }
 }
 */
+@media (max-width: 600px) {
+  .tabNav {
+    font-size:10px;
+  }
+}
 
 body {
   background-color: rgb(249, 249, 249);
@@ -48,6 +53,7 @@ body {
   display:inline-block;
   cursor:pointer;
 }
+
 .card-control:hover {
   color:#4db6ac;
 }
