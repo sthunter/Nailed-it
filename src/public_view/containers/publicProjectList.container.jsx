@@ -11,7 +11,9 @@ export default class ProjectList extends Component {
     this.props.addProjectFromDb();
     this.props.changeRoute(this.props.location.pathname);
   }
+  getFurniture() {
 
+  }
   render() {
     return (
       <Row>
