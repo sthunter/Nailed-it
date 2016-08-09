@@ -26,14 +26,14 @@ class Header extends Component {
 
   publicRoute() {
     if(this.props.route !== "public")
-    return "Public Houses"
+    return "List of public projects"
   }
   authButton() {
     if (!this.props.authenticated && this.props.route !== "room") {
       return "Sign In";
     }
     else if (this.props.route !== "room") {
-      return "Roomslist"
+      return "My Rooms"
     }
   }
   

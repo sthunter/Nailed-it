@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CardPanel, Button, Row, Col, MediaBox } from 'react-materialize';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { removeRoom, addPhoto, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,6 +11,8 @@ class ListItem extends Component {
   handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
+      browserHistory.push('/room/' + title)
+
     }
   }
   removeRoomCall(title) {
@@ -66,7 +68,6 @@ class ListItem extends Component {
           <div>
             <span><Link className="card-title" to={ 'furniture/' + this.props.title }>{title}</Link></span>
           </div>
-
           <div className='card-control-panel'>
             <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files)}>
               <i className="card-controls material-icons md-dark">add_a_photo</i>

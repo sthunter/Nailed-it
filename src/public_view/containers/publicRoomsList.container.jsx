@@ -32,6 +32,7 @@ export default class RoomsList extends Component {
           <h3>Budget Chart / Graph </h3>  
           <BudgetView rooms={this.props.rooms}/>
         </Col>
+
       </Row>
     );
   }

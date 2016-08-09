@@ -7,8 +7,7 @@ class Header extends Component {
   
   render() {
     return (
-      <div>
-      Pleae Login to proceed to your Rooms;
+      <div className="signin">
       </div>
     );
   }

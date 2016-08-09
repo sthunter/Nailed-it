@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component';
-import Dropzone from 'react-dropzone';
-
+import { Row, Col, Modal, Button } from 'react-materialize';
 
 class CardList extends Component {
-  onDrop(files) {
-    console.log('Received files: ', files);
-  }
 
   render() {
     const listNames = Object.keys(this.props.lists);
@@ -22,9 +18,6 @@ class CardList extends Component {
             />
           );
         })}
-        <Dropzone onDrop={this.onDrop}>
-          <div>Try dropping some files here, or click to select files to upload.</div>
-        </Dropzone>
       </div>
     );
   }
