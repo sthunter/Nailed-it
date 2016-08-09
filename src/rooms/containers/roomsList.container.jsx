@@ -17,9 +17,7 @@ export default class RoomsList extends Component {
     this.props.getRooms();
   }
 
-  changePublicStatus() {
-    this.props.makePublic_Private(this.props.shared);
-  }
+
   onDrop(files) {
     // console.log('Received files: ', files);
     this.props.addPhoto(files);
@@ -31,7 +29,7 @@ export default class RoomsList extends Component {
         <Row>
           <Col s={12} m={6} l={6}>
             <div style={{"overflowY":"scroll"}}>
-              <span className="RoomListHeader"> Select your room </span>
+              <span className="RoomListHeader"></span>
               <CardList
                 clickHandler={this.props.selectRoom}
                 intro={this.props.roomSelected}
@@ -60,9 +58,7 @@ function mapStateToProps({ rooms, roomSelected, shared, route }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRooms, selectRoom, makePublic_Private, addPhoto, changeRoute }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom, addPhoto, changeRoute }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
-
-// <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button>

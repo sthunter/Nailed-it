@@ -8,7 +8,6 @@ class FList extends Component {
     const listNames = Object.keys(this.props.list);
     return (
       <Row>
-      <ColorPalette />
       <div className="CardList">
         {listNames.map((itemName, i) => {
           return (
