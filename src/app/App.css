@@ -50,11 +50,3 @@ body {
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
-
-
-.tabs .indicator {
-    background-color:#424242;
-}
-.tabItem .active {
-  color:#424242;
-}
