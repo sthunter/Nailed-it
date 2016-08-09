@@ -8,11 +8,13 @@ class FList extends Component {
     const listNames = Object.keys(this.props.list);
     return (
       <Row>
+      <ColorPalette />
       <div className="CardList">
         {listNames.map((itemName, i) => {
           return (
             <div key = {i}> 
               <Col l={3} s={12}>
+
               <Card 
               
               className='card-panel hoverable' header={<CardTitle reveal image={ "http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" } waves='light'/>}

@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 class ColorPalette extends Component {
   buildPalette() {
     let roomSelected = this.props.roomSelected;
-    let colors = this.props.rooms[roomSelected].colors;
+    let colors;
+    if (this.props.rooms[roomSelected]) {
+      colors = this.props.rooms[roomSelected].colors;
+    };
     let rectWidth = 100;
     let rects;
     if (colors && colors.length) {
@@ -27,7 +30,7 @@ class ColorPalette extends Component {
     rects = this.buildPalette();
     return (
       <div>
-        <svg width={rectWidth * (rects.length - 1)}>
+        <svg width={rectWidth * (rects.length - 1) || rectWidth}>
           <g>
           {rects}
           </g>
