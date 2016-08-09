@@ -12,8 +12,8 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={LandingPage} />
     <Route path ="welcome" component={LandingPage}></Route>
-    <Route path="room" component={requireAuth(RoomsListContainer)}></Route>
-    <Route path="furniture" component={requireAuth(FurnitureListContainer)}></Route>
+    <Route path="room(/:name)" component={RoomsListContainer}></Route>
+    <Route path="furniture(/:name)" component={FurnitureListContainer}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
     <Route path="publicRoom" component={PublicRoomsListContainer}></Route>
   </Route>

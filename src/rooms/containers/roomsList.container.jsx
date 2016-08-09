@@ -10,6 +10,9 @@ import Dropzone from 'react-dropzone';
 
 export default class RoomsList extends Component {
   componentWillMount() {
+    if(this.props.params.name) {
+      this.props.selectRoom(this.props.params.name)
+    }
     this.props.changeRoute(this.props.location.pathname);
     this.props.getRooms();
   }

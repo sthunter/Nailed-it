@@ -17,10 +17,9 @@ class ListItem extends Component {
   }
 
   render() {
-
     const title = this.props.title;
     return (
-      <Link to={ 'furniture' }>
+      <Link to={ 'furniture/' + this.props.title }>
         <CardPanel
           onClick={ () => this.handleClick(title) }
           className='grey lighten-2 ListItem card-panel hoverable'
