@@ -1,4 +1,4 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto, updateRoom as updater } from '../../databaseAPI';
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
@@ -27,6 +27,27 @@ export function addRoom(room) {
     type: ADD_ROOM,
     room,
   };
+}
+export const UPDATE_ROOM = 'UPDATE_ROOM';
+export function updateRoom(selectedRoom, furniture, updatedRoom) {
+  let colors = updatedRoom.colors;
+  colors = colors.split(', ').join(';');
+  let dbRoom = {
+    furniture: furniture,
+    colors: colors,
+    photoURL: updatedRoom.photoURL
+  };
+  let newRoom = Object.assign({}, dbRoom, {
+    roomName: updatedRoom.roomName
+  });
+
+  //updater(selectedRoom, updatedRoom.roomName, dbRoom);
+  console.log(newRoom, selectedRoom)
+  return {
+    type: UPDATE_ROOM,
+    oldRoom: selectedRoom,
+    newRoom: newRoom
+  }
 }
 
 export const MAKE_PUBLIC_PRIVATE = 'MAKE_PUBLIC_PRIVATE';
