@@ -8,7 +8,7 @@ import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
 
 class FurnitureList extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
@@ -23,11 +23,11 @@ class FurnitureList extends Component {
   }
   render() {
     const intro = 'Furniture';
-    const [rooms, roomSelected] = [this.props.rooms, this.props.roomSelected];
+    const { rooms, roomSelected } = this.props;
     const roomNames =  Object.keys(rooms);
     var furniture = {};
 
-    if (roomSelected) {
+    if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
     }
   
@@ -37,14 +37,14 @@ class FurnitureList extends Component {
           <Col s={12}>
             <div className='tabNav'>
               <ul className="tabs z-depth-1">
-                {roomNames.map((room) => {
+                {roomNames.map((room, i) => {
                   if(room === this.roomSelected) {
                     return (
-                      <li className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                      <li key={i} className="tab col s3 active"><span style={{'fontWeight':'bold'}}className='active' onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
                     )
                   }
                   return (
-                    <li className="tab col s3" ><span onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
+                    <li key ={i} className="tab col s3" ><span onClick={() => {this.click(room)}} style={{'cursor':'default'}}>{room}</span></li>
                   )
                 })}
               </ul>
@@ -59,7 +59,7 @@ class FurnitureList extends Component {
             </Button>
           </div>
         </Row>
-
+        
         <Row>
           <Col s={12} l={12}>
             <div>
