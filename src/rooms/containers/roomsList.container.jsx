@@ -63,13 +63,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
-<<<<<<< cb2768857fe009a68a636d917d26ee4bcd303da3
-||||||| merged common ancestors
 
-// <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button>
-=======
-
-
-
-// <Button onClick={ () => {this.changePublicStatus()} }>public: {"" + this.props.shared}</Button>
->>>>>>> feat(wip): add photo upload to roomlist button
