@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CardPanel, Row, Col, MediaBox, Button, Modal} from 'react-materialize';
-import { Link } from 'react-router';
+import { Link, router } from 'react-router';
 import Mailto from 'react-mailto';
 
 class ListItem extends Component {
@@ -11,9 +11,9 @@ class ListItem extends Component {
   }
   getfurniture(room) {
     var furnitures = []
-    console.log("room", this.props.lists.rooms[room].furniture)
     for (var item in this.props.lists.rooms[room].furniture) {
-      furnitures.push(<MediaBox className="MediaBox" src="https://www.buira.net/assets/images/shared/default-profile.png" width='100'/>)
+      console.log(this.props.lists.rooms[room].furniture[item].url);
+      furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>)
     }
     return (
       <span>{furnitures}</span>
@@ -41,10 +41,12 @@ class ListItem extends Component {
         >
           <Row>
             <Col s={6}>
-                <MediaBox src={photoURL} width='25'/>
-                <span> <Mailto email={this.props.lists.profile.email} obfuscate={true}>
+                <MediaBox src={photoURL} width='50' style={{"cursor": "default"}}/>
+                <span> 
+                  <Mailto email={this.props.lists.profile.email} obfuscate={true}>
                   Get in touch with <span onClick={() => {this.handleClick(title)}} style={{'fontWeight':'bold'}}>{title}</span>
-                </Mailto></span> 
+                  </Mailto>
+                </span> 
             </Col>
             <Col s={6}>
               <span>Budget: ${lists.budget}</span>
