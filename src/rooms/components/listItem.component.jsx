@@ -32,9 +32,9 @@ class ListItem extends Component {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
-  onDrop(files) {
-    // console.log('Received files: ', files);
-    this.props.addPhoto(files);
+  onDrop(files, title) {
+    console.log('Received files: ', files, title);
+    this.props.addPhoto(files, title);
   }
 
 
@@ -56,16 +56,16 @@ class ListItem extends Component {
     return (
     
         <CardPanel
-          onTouchTap={ () => this.handleClick(title) }
+          
           className='grey lighten-2 ListItem card-panel hoverable'
         >
           <Row>
           <Col s={12}>
           <div>
-            <span><Link className="card-title" to={ 'furniture/' + this.props.title }>{title}</Link></span>
+            <span><Link className="card-title" to={ 'furniture/' + title }>{title}</Link></span>
           </div>
           <div className='card-control-panel'>
-            <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files)}>
+            <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, this.props.title)}>
               <i className="card-controls material-icons md-dark">add_a_photo</i>
             </Dropzone></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
