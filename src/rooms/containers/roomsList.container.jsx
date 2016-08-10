@@ -43,7 +43,7 @@ export default class RoomsList extends Component {
           </Col>
           <Col s={12} m={6} l={6}>
             <div style={{"overflowY":"scroll"}}>
-              <h3>Budget Chart / Graph </h3>  
+              
               <BudgetView rooms={this.props.rooms}/>
             </div>
           </Col>

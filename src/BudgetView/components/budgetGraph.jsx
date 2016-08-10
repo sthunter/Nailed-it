@@ -67,7 +67,7 @@ class BudgetGraph extends Component {
     let costObj = {};
     costObj["key"] = remainingBudget >= 0 ? "Remaining Budget" : "";
     costObj["value"] = remainingBudget > 0 ? remainingBudget : 0;
-    costObj["color"] = "#00ff00";
+    costObj["color"] = "#424242";
     arr.push(costObj);
 
     return arr;
@@ -91,13 +91,11 @@ class BudgetGraph extends Component {
         <div>
           <Row>
             <Col>
-              <h6><b>Total Budget:</b> { currentBudget || 'no budget' }</h6>
-              <h6><b>Total Cost:</b> { this.totalCost || 'no costs' }</h6>
-            </Col>
-            <Col>
-              <h6><b>Budget Remaining:</b> { 
+              <h5><b>Total Budget:</b> { currentBudget || 'no budget' }</h5>
+              <h5><b>Total Cost:</b> { this.totalCost || 'no costs' }</h5>
+              <h5><b>Budget Remaining:</b> { 
                 currentBudget - this.totalCost > 0 ? currentBudget - this.totalCost : <span style={{'color': 'red'}}>{currentBudget - this.totalCost}</span>
-              }</h6>
+              }</h5>
             </Col>
           </Row>
         <Table>
@@ -127,6 +125,7 @@ class BudgetGraph extends Component {
 
         <PieChart
             labels
+            size={ 330 }
             data={ genData }
             clickHandler={(selection) => {
               let data = this.props.onClick(selection.data);
