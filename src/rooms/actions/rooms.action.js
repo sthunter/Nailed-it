@@ -1,11 +1,12 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto, updateRoom as updater, updatePhotoURL } from '../../databaseAPI';
+import databaseAPI from '../../databaseAPI';
+import _ from 'lodash';
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
   return function(dispatch) {
-    uploadPhoto(file).then(function(snapshot) {
+    databaseAPI.uploadPhoto(file).then(function(snapshot) {
       var url = snapshot.metadata.downloadURLs[0];
-      updatePhotoURL(url, selectedRoom);
+      databaseAPI.updatePhotoURL(url, selectedRoom);
       dispatch({
         type: ADD_PHOTO,
         url,
@@ -15,30 +16,39 @@ export function addPhoto(file, selectedRoom) {
   };
 }
 
-//adds room to the react rooms state and makes database call along the way
+//adds room to the redux rooms state and makes database call along the way
 export const ADD_ROOM = 'ADD_ROOM';
+export function addRoom(details) {
+  const roomContents = {
+    furniture: {},
+    size: details.size,
+    notes: details.notes,
+  };
 
-export function addRoom(room) {
-  const roomName = room.roomName;
-  room = {};
-  room[roomName] = { furniture: {} };
   //database call sends room with a empty object to later store new furniture
-  adder(room, roomName);
+  databaseAPI.addRoom(roomContents, details.roomName);
   return {
     type: ADD_ROOM,
     room,
   };
 }
-export const UPDATE_ROOM_NAME = 'UPDATE_ROOM_NAME';
-export function updateRoomName(selectedRoom, furniture, updatedRoom) {
-  let newRoom = updatedRoom.roomName
-  //updater(selectedRoom, updatedRoom.roomName, furniture);
-  console.log(newRoom, selectedRoom)
-  return {
-    type: UPDATE_ROOM_NAME,
-    oldRoom: selectedRoom,
-    newRoom: newRoom
+export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
+export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails, ignoreDbCall) {
+  const clonedRoom = _.cloneDeep(roomContents);
+  const newRoomName = newRoomDetails.roomName;
+  delete newRoomDetails.roomName;
+  Object.assign(clonedRoom, newRoomDetails);
+
+  if (!ignoreDbCall) {
+    databaseAPI.updateRoom(oldRoomName, newRoomName, clonedRoom);
   }
+
+  return {
+    type: UPDATE_ROOM_DETAILS,
+    oldRoomName,
+    newRoomName,
+    contents: clonedRoom,
+  };
 }
 
 export const MAKE_PUBLIC_PRIVATE = 'MAKE_PUBLIC_PRIVATE';
@@ -61,7 +71,7 @@ export function selectRoom(roomName) {
 export const GET_ROOMS = 'GET_ROOMS';
 export function getRooms() {
   //database call with promise stored in rooms
-  let rooms = getter();
+  let rooms = databaseAPI.getRooms();
 
   return {
     type: GET_ROOMS,
@@ -71,7 +81,7 @@ export function getRooms() {
 }
 export const REMOVE_ROOM = 'REMOVE_ROOM';
 export function removeRoom(title) {
-  remover(title)
+  databaseAPI.removeRoom(title);
   return {
     type: REMOVE_ROOM,
     title,

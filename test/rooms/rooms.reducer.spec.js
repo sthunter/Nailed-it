@@ -1,67 +1,86 @@
 import roomsReducer from '../../src/rooms/reducers/rooms.reducer';
-import { UPDATE_ROOM } from '../../src/rooms/actions/rooms.action';
-import { expect } from '../testHelper.jsx';
+import { UPDATE_ROOM_DETAILS } from '../../src/rooms/actions/rooms.action';
+import { expect, deeplyHasKeyOrProp } from '../testHelper.jsx';
 
 describe('roomsReducer', () => {
-  describe('UPDATE_ROOM', () => {
+  describe(UPDATE_ROOM_DETAILS, () => {
     const initialState = {
       Aviary: {
         furniture: {},
         colors: ['green', 'blue'],
-      }
-    };
-    const actionWithNewProps = {
-      type: UPDATE_ROOM,
-      oldRoom: 'Aviary',
-      newRoom: {
-        roomName: 'Aviary',
-        photos: ['http://www.aviary.com/beautiful_photo.jpg'],
+        size: '14x20',
+        notes: 'Birds fly around in here',
+      },
+      Bathroom: {
+        furniture: {},
+        photos: [],
       },
     };
+    const initialStateStr = JSON.stringify(initialState);
 
-    it('should return state if there is the action doesn\'t have both' +
-      'oldRoom and newRoom properties', () => {
-      let action = { type: UPDATE_ROOM };
-      let initialStateStr = JSON.stringify(initialState);
-      expect(roomsReducer(initialState, action)).to.equal(initialState);
-      expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
-
-
-      action = {
-        type: UPDATE_ROOM,
-        newRoom: true,
-      };
-      initialStateStr = JSON.stringify(initialState);
+    it('should return state if there is the action doesn\'t have oldRoomName or contents properties', () => {
+      let action = { type: UPDATE_ROOM_DETAILS };
       expect(roomsReducer(initialState, action)).to.equal(initialState);
       expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
 
       action = {
-        type: UPDATE_ROOM,
-        oldRoom: true,
+        type: UPDATE_ROOM_DETAILS,
+        contents: {},
       };
-      initialStateStr = JSON.stringify(initialState);
+      expect(roomsReducer(initialState, action)).to.equal(initialState);
+      expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
+
+      action = {
+        type: UPDATE_ROOM_DETAILS,
+        oldRoomName: 'Aviary',
+      };
       expect(roomsReducer(initialState, action)).to.equal(initialState);
       expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
     });
 
-    xit('should add new properties to an existing room', () => {
-      const initialStateStr = JSON.stringify(initialState);
-      const newState = roomsReducer(initialState, actionWithNewProps);
-      expect(newState).to.have;
+    it('should return state if the oldRoomName property references a nonexistent room', () => {
+      let action = { type: UPDATE_ROOM_DETAILS, oldRoomName: 'Planetarium'};
+
+      expect(roomsReducer(initialState, action)).to.equal(initialState);
+    });
+
+    it('should update properties of the room', () => {
+      const actionWithPropUpdates = {
+        type: UPDATE_ROOM_DETAILS,
+        oldRoomName: 'Aviary',
+        contents: {
+          size: '30x30',
+          notes: 'Birds fly around in here, and flightless birds walk around in here'
+        },
+      };
+
+      const newState = roomsReducer(initialState, actionWithPropUpdates);
+      expect(deeplyHasKeyOrProp(newState, ['30x30', 'Birds fly around in here, and flightless birds walk around in here']), 'New properties should be found on the new state').to.be.true;
+      expect(deeplyHasKeyOrProp(newState, '14x20'), 'Old properties should not be found on the new state').to.be.false;
+      expect(deeplyHasKeyOrProp(newState, 'Birds fly around in here'), 'Old properties should not be found on the new state').to.be.false;
+
       expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
     });
 
-    xit('should overwrite existing properties to an existing room', () => {
-      expect(false).to.be.true;
+    it('should update the name of the room along with other properties', () => {
+      const actionWithPropUpdates = {
+        type: UPDATE_ROOM_DETAILS,
+        oldRoomName: 'Aviary',
+        newRoomName: 'Apiary',
+        contents: {
+          size: '30x30',
+          notes: 'Birds fly around in here, and flightless birds walk around in here'
+        },
+      };
+
+      const newState = roomsReducer(initialState, actionWithPropUpdates);
+      expect(deeplyHasKeyOrProp(newState, ['Apiary', '30x30', 'Birds fly around in here, and flightless birds walk around in here']), 'New properties should be found on the new state').to.be.true;
+      expect(deeplyHasKeyOrProp(newState, 'Aviary'), 'Old properties should not be found on the new state').to.be.false;
+      expect(deeplyHasKeyOrProp(newState, '14x20'), 'Old properties should not be found on the new state').to.be.false;
+      expect(deeplyHasKeyOrProp(newState, 'Birds fly around in here'), 'Old properties should not be found on the new state').to.be.false;
+
+      expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
     });
 
-    xit('should not affect existing properties to an existing room ' +
-      'if they aren\'t mentioned in the action object', () => {
-      expect(false).to.be.true;
-    });
-
-    xit('should update the name of a room when the user requests it', () => {
-      expect(false).to.be.true;
-    });
   });
 });

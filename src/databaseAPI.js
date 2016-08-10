@@ -83,10 +83,11 @@ export function updateFurniture(roomName, furnitureName, furnitureProps) {
   database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
 };
 
-export function updateRoom(oldRoomName, newRoomName, newRoom) {
-  
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(newRoom);
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
+export function updateRoom(oldRoomName, newRoomName, clonedRoom) {
+  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(clonedRoom).then((snapshot) => {
+    console.log('snapshot returned by update room: ', snapshot);
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
+  });
 }
 
 export function removeRoom(room) {

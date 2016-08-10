@@ -1,67 +1,70 @@
 import { expect, $ } from '../testHelper';
-import {UPDATE_ROOM, updateRoom} from '../../src/rooms/actions/rooms.action.js';
+import {UPDATE_ROOM_DETAILS, updateRoomDetails, ADD_ROOM, addRoom } from '../../src/rooms/actions/rooms.action.js';
+import _ from 'lodash';
 
-// describe ('Update Room', () => {
-  
-//   const state = {
-//       roomSelected: 'livingRoom',
-//       rooms: {
-//         livingRoom: {
-//           furniture: {
-//             couch: {
-//               color: 'blue',
-//               price: 200
-//             }
-//           },
-//           colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F'] 
-//         }
-//       }
-//     };
-//   const update = {
-//     roomName: 'family room',
-//     photoURL: 'https://www.robesondesign.com/wp-content/gallery/modern-traditional-family-room-ba/Modern-Traditional-Family-Room-1.1-After.jpg',
-//     colors: '#452434, #524C55, #231sed, #96A13A, #ACC12F'
-//   }
-//   const currentRoom = state.roomSelected;
-//   const furniture = state.rooms[currentRoom].furniture;
-//   // beforeEach(() => {
-    
-//   // });
+const IGNORE_DB_CALL = true;
 
-//   it ('is a function', () => {
-//     expect(updateRoom).to.be.a('function');
-//   });
+describe('Update Room Details', () => {
+  const state = {
+    roomSelected: 'livingRoom',
+    rooms: {
+      livingRoom: {
+        size: '15x20',
+        furniture: {
+          couch: {
+            color: 'blue',
+            price: 200
+          }
+        },
+        //colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F']
+      }
+    }
+  };
+  const currentRoom = state.roomSelected;
 
-//   describe ('that returns', () => {
-//     let test = updateRoom(currentRoom, furniture, update);
-    
-//     it('an object', () => {
-//       expect(test).to.be.a('object');
-//     });
-//     it ('that has a property type with value UPDATE_ROOM',()=> {
-//       expect(test).to.have.property('type', 'UPDATE_ROOM');
-//     });
-//     it ('that has a property oldRoom that is a string',()=> {
-//       expect(test).to.have.property('oldRoom').and.to.be.a('string');
-//     })
-//     describe ('that has a property newRoom',()=> {
-//       it ('that is an object', () => {
-//         expect(test).to.have.property('newRoom').and.to.be.a('object');
-//       })
-//       it ('that has a property roomName that is a string',()=> {
-//         expect(test.newRoom).to.have.property('roomName').and.to.be.a('string');
-//       });
-//       it ('that has a property colors that is a string',()=> {
-//         expect(test.newRoom).to.have.property('colors').and.to.be.a('string');
-//       });
-//       it ('that has a property photoURL that is a string',()=> {
-//         expect(test.newRoom).to.have.property('photoURL').and.to.be.a('string');
-//       });
-//       describe ('that has a property furniture',()=> {
-//         it ('that is an object', () => {
-//           expect(test.newRoom).to.have.property('furniture').and.to.be.a('object');
-//         });
-//       });  
-//     });
-//   });
-// });
+  it('is a function', () => {
+    expect(updateRoomDetails).to.be.a('function');
+  });
+
+  describe('Action object returned by updateRoomDetails', () => {
+    const formDetails = {
+      roomName: 'Living room',
+      size: '30x20',
+      notes: 'Let\'s play some Dominion in the living room!',
+    };
+    const clonedFormDetails = _.cloneDeep(formDetails);
+    const actionObj = updateRoomDetails(currentRoom, state.rooms[currentRoom], formDetails, IGNORE_DB_CALL);
+
+    it('should be an object', () => {
+      expect(actionObj).to.be.an('object');
+    });
+
+    describe('Action object returned by the action function', () => {
+      it ('has a property `type` with value UPDATE_ROOM_DETAILS',()=> {
+        expect(actionObj).to.have.property('type', UPDATE_ROOM_DETAILS);
+      });
+
+      it('has a property `oldRoomName` that is the correct value', ()=> {
+        expect(actionObj).to.have.property('oldRoomName').to.equal(state.roomSelected);
+      });
+
+      it('has a property `newRoomName` that is the requested new room name', () => {
+        expect(actionObj).to.have.property('newRoomName').to.equal(clonedFormDetails.roomName);
+      });
+
+      it('has a property `contents` that is an object', () => {
+        expect(actionObj).to.have.property('contents').and.to.be.an('object');
+      });
+
+      describe('`contents` object of action object', () => {
+        it ('has a property `size` with the correct value',()=> {
+          expect(actionObj.contents).to.have.property('size').that.equals(clonedFormDetails.size);
+        });
+
+        it ('has a property `notes` with the correct value',()=> {
+          expect(actionObj.contents).to.have.property('notes').that.equals(clonedFormDetails.notes);
+        });
+      });
+    });
+  });
+});
