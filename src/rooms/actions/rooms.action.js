@@ -3,9 +3,9 @@ import databaseAPI from '../../databaseAPI';
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
   return function(dispatch) {
-    uploadPhoto(file).then(function(snapshot) {
+    databaseAPI.uploadPhoto(file).then(function(snapshot) {
       var url = snapshot.metadata.downloadURLs[0];
-      updatePhotoURL(url, selectedRoom);
+      databaseAPI.updatePhotoURL(url, selectedRoom);
       dispatch({
         type: ADD_PHOTO,
         url,
@@ -32,15 +32,19 @@ export function addRoom(details) {
   };
 }
 export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
-export function updateRoomName(selectedRoom, furniture, updatedRoom) {
-  let newRoom = updatedRoom.roomName
+export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails) {
+  //let newRoom = updatedRoom.roomName
   //updater(selectedRoom, updatedRoom.roomName, furniture);
-  console.log(newRoom, selectedRoom)
+  //console.log(newRoom, selectedRoom)
   return {
     type: UPDATE_ROOM_DETAILS,
-    oldRoom: selectedRoom,
-    newRoom: newRoom
-  }
+    oldRoomName,
+    newRoomName: newRoomDetails.roomName,
+    contents: {
+      size: newRoomDetails.size,
+      notes: newRoomDetails.notes,
+    },
+  };
 }
 
 export const MAKE_PUBLIC_PRIVATE = 'MAKE_PUBLIC_PRIVATE';

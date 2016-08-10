@@ -32,10 +32,11 @@ const roomsReducer = (state = {}, action) => {
         return state;
       }
 
-      newState = _.clone(state);
-      newState[action.oldRoomName] = action.contents;
+      newState = _.cloneDeep(state);
+      Object.assign(newState[action.oldRoomName], action.contents);
 
-      if (action.newRoomName) {
+      // Rename the room object if there is a new room
+      if (action.newRoomName && action.newRoomName !== action.oldRoomName) {
         newState[action.newRoomName] = newState[action.oldRoomName];
         delete newState[action.oldRoomName];
       }
