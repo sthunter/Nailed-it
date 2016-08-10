@@ -9,15 +9,10 @@ import { browserHistory } from 'react-router';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-
+// import injectTapEventPlugin from 'react-tap-event-plugin';
+// injectTapEventPlugin();
 
 class FurnitureList extends Component {
-  componentWillMount() {
-    injectTapEventPlugin();
-  }
-
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
@@ -25,7 +20,7 @@ class FurnitureList extends Component {
     if(this.props.params.name) {
       this.props.selectRoom(this.props.params.name)
     }
-    this.props.changeRoute(this.props.location.pathname);
+    this.props.changeRoute(this.props.location.pathname)  ;
   }
 
   click(room) {
