@@ -31,10 +31,9 @@
 
 body {
   background-color: rgb(249, 249, 249);
-}
-
-button.btn{
-  color: 'black';
+  font-family: roboto;
+  color: rgba(0, 0, 0, 0.7)
+  
 }
 
 .ListItem {
@@ -44,7 +43,7 @@ button.btn{
 .card-title {
   font-size: 36px;
   font-family: roboto;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .card-controls {
