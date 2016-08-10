@@ -32,6 +32,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main', 'index']
   },
   resolveLoader: {
     root: nodeModulesPath,
