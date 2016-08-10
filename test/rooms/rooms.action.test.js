@@ -1,5 +1,8 @@
 import { expect, $ } from '../testHelper';
 import {UPDATE_ROOM_DETAILS, updateRoomDetails, ADD_ROOM, addRoom } from '../../src/rooms/actions/rooms.action.js';
+import _ from 'lodash';
+
+const IGNORE_DB_CALL = true;
 
 describe('Update Room Details', () => {
   const state = {
@@ -13,7 +16,7 @@ describe('Update Room Details', () => {
             price: 200
           }
         },
-        colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F']
+        //colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F']
       }
     }
   };
@@ -29,7 +32,8 @@ describe('Update Room Details', () => {
       size: '30x20',
       notes: 'Let\'s play some Dominion in the living room!',
     };
-    const actionObj = updateRoomDetails(currentRoom, state.rooms[currentRoom], formDetails);
+    const clonedFormDetails = _.cloneDeep(formDetails);
+    const actionObj = updateRoomDetails(currentRoom, state.rooms[currentRoom], formDetails, IGNORE_DB_CALL);
 
     it('should be an object', () => {
       expect(actionObj).to.be.an('object');
@@ -40,12 +44,12 @@ describe('Update Room Details', () => {
         expect(actionObj).to.have.property('type', UPDATE_ROOM_DETAILS);
       });
 
-      it('has a property `oldRoomName` that is a string', ()=> {
-        expect(actionObj).to.have.property('oldRoomName').and.to.be.a('string');
+      it('has a property `oldRoomName` that is the correct value', ()=> {
+        expect(actionObj).to.have.property('oldRoomName').to.equal(state.roomSelected);
       });
 
       it('has a property `newRoomName` that is the requested new room name', () => {
-        expect(actionObj).to.have.property('newRoomName').to.equal(formDetails.roomName);
+        expect(actionObj).to.have.property('newRoomName').to.equal(clonedFormDetails.roomName);
       });
 
       it('has a property `contents` that is an object', () => {
@@ -54,11 +58,11 @@ describe('Update Room Details', () => {
 
       describe('`contents` object of action object', () => {
         it ('has a property `size` with the correct value',()=> {
-          expect(actionObj.contents).to.have.property('size').that.equals(formDetails.size);
+          expect(actionObj.contents).to.have.property('size').that.equals(clonedFormDetails.size);
         });
 
         it ('has a property `notes` with the correct value',()=> {
-          expect(actionObj.contents).to.have.property('notes').that.equals(formDetails.notes);
+          expect(actionObj.contents).to.have.property('notes').that.equals(clonedFormDetails.notes);
         });
       });
     });

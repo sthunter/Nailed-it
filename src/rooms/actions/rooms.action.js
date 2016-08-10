@@ -1,4 +1,5 @@
 import databaseAPI from '../../databaseAPI';
+import _ from 'lodash';
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
@@ -32,18 +33,21 @@ export function addRoom(details) {
   };
 }
 export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
-export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails) {
-  //let newRoom = updatedRoom.roomName
-  //updater(selectedRoom, updatedRoom.roomName, furniture);
-  //console.log(newRoom, selectedRoom)
+export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails, ignoreDbCall) {
+  const clonedRoom = _.cloneDeep(roomContents);
+  const newRoomName = newRoomDetails.roomName;
+  delete newRoomDetails.roomName;
+  Object.assign(clonedRoom, newRoomDetails);
+
+  if (!ignoreDbCall) {
+    databaseAPI.updateRoom(oldRoomName, newRoomName, clonedRoom);
+  }
+
   return {
     type: UPDATE_ROOM_DETAILS,
     oldRoomName,
-    newRoomName: newRoomDetails.roomName,
-    contents: {
-      size: newRoomDetails.size,
-      notes: newRoomDetails.notes,
-    },
+    newRoomName,
+    contents: clonedRoom,
   };
 }
 
