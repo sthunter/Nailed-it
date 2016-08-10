@@ -28,23 +28,13 @@ export function addRoom(room) {
     room,
   };
 }
-export const UPDATE_ROOM = 'UPDATE_ROOM';
-export function updateRoom(selectedRoom, furniture, updatedRoom) {
-  let colors = updatedRoom.colors;
-  colors = colors.split(', ').join(';');
-  let dbRoom = {
-    furniture: furniture,
-    colors: colors,
-    photoURL: updatedRoom.photoURL
-  };
-  let newRoom = Object.assign({}, dbRoom, {
-    roomName: updatedRoom.roomName
-  });
-
-  //updater(selectedRoom, updatedRoom.roomName, dbRoom);
+export const UPDATE_ROOM_NAME = 'UPDATE_ROOM_NAME';
+export function updateRoomName(selectedRoom, furniture, updatedRoom) {
+  let newRoom = updatedRoom.roomName
+  //updater(selectedRoom, updatedRoom.roomName, furniture);
   console.log(newRoom, selectedRoom)
   return {
-    type: UPDATE_ROOM,
+    type: UPDATE_ROOM_NAME,
     oldRoom: selectedRoom,
     newRoom: newRoom
   }
