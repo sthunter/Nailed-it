@@ -1,4 +1,4 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto, updateRoom as updater, updatePhotoURL } from '../../databaseAPI';
+import databaseAPI from '../../databaseAPI';
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
@@ -15,15 +15,17 @@ export function addPhoto(file, selectedRoom) {
   };
 }
 
-//adds room to the react rooms state and makes database call along the way
+//adds room to the redux rooms state and makes database call along the way
 export const ADD_ROOM = 'ADD_ROOM';
+export function addRoom(details) {
+  const roomContents = {
+    furniture: {},
+    size: details.size,
+    notes: details.notes,
+  };
 
-export function addRoom(room) {
-  const roomName = room.roomName;
-  room = {};
-  room[roomName] = { furniture: {} };
   //database call sends room with a empty object to later store new furniture
-  adder(room, roomName);
+  databaseAPI.addRoom(roomContents, details.roomName);
   return {
     type: ADD_ROOM,
     room,
@@ -61,7 +63,7 @@ export function selectRoom(roomName) {
 export const GET_ROOMS = 'GET_ROOMS';
 export function getRooms() {
   //database call with promise stored in rooms
-  let rooms = getter();
+  let rooms = databaseAPI.getRooms();
 
   return {
     type: GET_ROOMS,
@@ -71,7 +73,7 @@ export function getRooms() {
 }
 export const REMOVE_ROOM = 'REMOVE_ROOM';
 export function removeRoom(title) {
-  remover(title)
+  databaseAPI.removeRoom(title);
   return {
     type: REMOVE_ROOM,
     title,
