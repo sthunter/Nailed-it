@@ -1,10 +1,11 @@
-import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto, updateRoom as updater } from '../../databaseAPI';
+import { getRooms as getter, addRoom as adder, removeRoom as remover, uploadPhoto, updateRoom as updater, updatePhotoURL } from '../../databaseAPI';
 
 export const ADD_PHOTO = 'ADD_PHOTO';
 export function addPhoto(file, selectedRoom) {
   return function(dispatch) {
     uploadPhoto(file).then(function(snapshot) {
       var url = snapshot.metadata.downloadURLs[0];
+      updatePhotoURL(url, selectedRoom);
       dispatch({
         type: ADD_PHOTO,
         url,

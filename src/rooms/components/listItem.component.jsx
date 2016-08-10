@@ -33,7 +33,6 @@ class ListItem extends Component {
   };
 
   onDrop(files, title) {
-    console.log('Received files: ', files, title);
     this.props.addPhoto(files, title);
   }
 
@@ -65,7 +64,7 @@ class ListItem extends Component {
             <span><Link className="card-title" to={ 'furniture/' + title }>{title}</Link></span>
           </div>
           <div className='card-control-panel'>
-            <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, this.props.title)}>
+            <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, title)}>
               <i className="card-controls material-icons md-dark">add_a_photo</i>
             </Dropzone></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
