@@ -1,5 +1,5 @@
 import { expect, $ } from '../testHelper';
-import {UPDATE_ROOM, updateRoom} from '../../src/rooms/actions/rooms.action.js';
+import {UPDATE_ROOM_NAME, updateRoom} from '../../src/rooms/actions/rooms.action.js';
 
 // describe ('Update Room', () => {
   
@@ -13,7 +13,7 @@ import {UPDATE_ROOM, updateRoom} from '../../src/rooms/actions/rooms.action.js';
 //               price: 200
 //             }
 //           },
-//           colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F'] 
+//           colors: ['#45425A', '#575C55', '#6C7D47', '#96A13A', '#ACC12F']
 //         }
 //       }
 //     };
@@ -61,7 +61,7 @@ import {UPDATE_ROOM, updateRoom} from '../../src/rooms/actions/rooms.action.js';
 //         it ('that is an object', () => {
 //           expect(test.newRoom).to.have.property('furniture').and.to.be.a('object');
 //         });
-//       });  
+//       });
 //     });
 //   });
 // });
