@@ -91,11 +91,13 @@ class BudgetGraph extends Component {
         <div>
           <Row>
             <Col>
-              <h5>Total Budget: { currentBudget || 'no budget' }</h5>
-              <h5>Total Cost: { this.totalCost || 'no costs' }</h5>
+              <h6><b>Total Budget:</b> { currentBudget || 'no budget' }</h6>
+              <h6><b>Total Cost:</b> { this.totalCost || 'no costs' }</h6>
             </Col>
             <Col>
-              <h5>Budget Remaining: { currentBudget - this.totalCost }</h5>
+              <h6><b>Budget Remaining:</b> { 
+                currentBudget - this.totalCost > 0 ? currentBudget - this.totalCost : <span style={{'color': 'red'}}>{currentBudget - this.totalCost}</span>
+              }</h6>
             </Col>
           </Row>
         <Table>

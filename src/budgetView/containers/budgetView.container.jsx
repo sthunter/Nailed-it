@@ -17,13 +17,13 @@ class BudgetView extends Component {
     const { fields: { newBudget }, handleSubmit } = this.props;
     return(
       <div>
-        
-        <BudgetGraph onClick={updateGraph} budget={this.props.budget} rooms={this.props.rooms}/>
-      
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
           <Input type="number" placeholder="Budget" s={12} label="Budget" { ...newBudget } />
           <Button type="submit">Update</Button>
         </form>
+        
+        <BudgetGraph onClick={updateGraph} budget={this.props.budget} rooms={this.props.rooms}/>
+      
       </div>
     );
   }
