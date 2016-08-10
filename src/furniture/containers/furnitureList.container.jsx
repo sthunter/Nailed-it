@@ -20,7 +20,7 @@ class FurnitureList extends Component {
     if(this.props.params.name) {
       this.props.selectRoom(this.props.params.name)
     }
-    this.props.changeRoute(this.props.location.pathname);
+    this.props.changeRoute(this.props.location.pathname)  ;
   }
 
   click(room) {

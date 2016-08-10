@@ -13,9 +13,10 @@ class AddFurnitureForm extends Component {
  
     return (
       <Col s={12} l={3}>
-        <Card 
+        <Card
+          style={{'background':'(255, 255, 255, 0.3)'}} 
           className='card-panel hoverable' header={<CardTitle reveal image={""} waves='light'/>}
-          title={<Icon className='center-align'>mode_edit</Icon>}
+          title={        <i className="medium material-icons center-align">add</i>}
           reveal={
             <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
             <Row>
@@ -28,15 +29,14 @@ class AddFurnitureForm extends Component {
             </Row>
             <Row>
               <Col s={6}>
-                <input type='date' className='datepicker'{...deliveryDate} />
+                
               </Col>
             </Row>
-            <Button className="small" type="submit">Submit</Button>
+            <Button small type="submit">Submit</Button>
            </form>
           }>
         </Card>
-        </Col>
-  
+      </Col>
     );
   }
 }
@@ -46,4 +46,4 @@ export default reduxForm({
   fields: ['itemName', 'price', 'description', 'url', 'deliveryDate', 'roomSelected'],
 }, state => ({ roomSelected: state.roomSelected }), { addFurniture })(AddFurnitureForm);
               
-
+// {...deliveryDate}
