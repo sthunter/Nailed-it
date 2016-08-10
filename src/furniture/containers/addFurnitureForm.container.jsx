@@ -3,13 +3,15 @@ import { Button, Input, Row, Col } from 'react-materialize';
 import { reduxForm } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
 import { DatePicker } from 'material-ui/DatePicker';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin = require("react-tap-event-plugin");
+
+
 
 class AddFurnitureForm extends Component {
-  componentWillMount(){
-    injectTapEventPlugin();
-  }
-  
+  // componentWillMount(){
+  //   // injectTapEventPlugin();
+  // }
+
   render() {
     const { fields: {
       itemName, price, description, url, deliveryDate,

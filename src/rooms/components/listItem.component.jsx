@@ -50,13 +50,13 @@ class ListItem extends Component {
       bottom: '0',
       left: '0',
     }
-    console.log(this.props)
+
     const title = this.props.title;
 
     return (
     
         <CardPanel
-          onClick={ () => this.handleClick(title) }
+          onTouchTap={ () => this.handleClick(title) }
           className='grey lighten-2 ListItem card-panel hoverable'
         >
           <Row>
@@ -91,7 +91,7 @@ export default ListItem;
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeRoom, addPhoto }, dispatch);
+  return   bindActionCreators({ removeRoom, addPhoto }, dispatch);
 }
 
 function mapStateToProps({ rooms, roomSelected, shared, route }) {

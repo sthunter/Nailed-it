@@ -3,8 +3,12 @@ import './app.css';
 import Header from './header.component';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Content from "./content.component";
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
 
 export default class App extends Component {
+
+
   render() {
     return (
       <MuiThemeProvider>

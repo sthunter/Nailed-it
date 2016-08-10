@@ -8,7 +8,7 @@ export function addPhoto(file, selectedRoom) {
       dispatch({
         type: ADD_PHOTO,
         url,
-        selectedRoom: "bathroom",
+        selectedRoom: selectedRoom,
       });
     });
   };
