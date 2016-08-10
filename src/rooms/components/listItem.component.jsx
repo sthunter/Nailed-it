@@ -60,7 +60,7 @@ class ListItem extends Component {
           className='grey lighten-2 ListItem card-panel hoverable'
         >
           <Row>
-          <Col s={4}>
+          <Col s={12}>
           <div>
             <span><Link className="card-title" to={ 'furniture/' + this.props.title }>{title}</Link></span>
           </div>
