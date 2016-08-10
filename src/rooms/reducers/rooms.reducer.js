@@ -1,4 +1,4 @@
-import { ADD_ROOM, GET_ROOMS, UPDATE_ROOM_NAME, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
+import { ADD_ROOM, GET_ROOMS, UPDATE_ROOM_DETAILS, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
 import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
@@ -26,15 +26,20 @@ const roomsReducer = (state = {}, action) => {
 
       return Object.assign(_.cloneDeep(state), action.room);
 
-    case UPDATE_ROOM_NAME:
-      // Return state with no changes if the correct properties aren't included
-      if (!action.oldRoom || !action.newRoom) {
+    case UPDATE_ROOM_DETAILS:
+      // Return state with no changes if action doesn't have contents, or if it doesn't have a correct oldRoomName
+      if (!state[action.oldRoomName] || !action.contents) {
         return state;
       }
 
       newState = _.clone(state);
-      newState[action.newRoom] = state[action.oldRoom];
-      delete newState[action.oldRoom];
+      newState[action.oldRoomName] = action.contents;
+
+      if (action.newRoomName) {
+        newState[action.newRoomName] = newState[action.oldRoomName];
+        delete newState[action.oldRoomName];
+      }
+
       return newState;
     case ADD_FURNITURE:
       if (!action.roomName) {

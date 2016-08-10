@@ -1,5 +1,5 @@
 import { expect, $ } from '../testHelper';
-import {UPDATE_ROOM_NAME, updateRoom} from '../../src/rooms/actions/rooms.action.js';
+import {UPDATE_ROOM_DETAILS, updateRoom} from '../../src/rooms/actions/rooms.action.js';
 
 // describe ('Update Room', () => {
   

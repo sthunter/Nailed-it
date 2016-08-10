@@ -29,13 +29,13 @@ export function addRoom(room) {
     room,
   };
 }
-export const UPDATE_ROOM_NAME = 'UPDATE_ROOM_NAME';
+export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
 export function updateRoomName(selectedRoom, furniture, updatedRoom) {
   let newRoom = updatedRoom.roomName
   //updater(selectedRoom, updatedRoom.roomName, furniture);
   console.log(newRoom, selectedRoom)
   return {
-    type: UPDATE_ROOM_NAME,
+    type: UPDATE_ROOM_DETAILS,
     oldRoom: selectedRoom,
     newRoom: newRoom
   }
