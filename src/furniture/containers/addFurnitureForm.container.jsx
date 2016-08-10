@@ -1,42 +1,42 @@
 import React, { Component } from 'react';
-import { Button, Input, Row, Col } from 'react-materialize';
+import { Card, CardTitle, Icon, Button, Input, Row, Col } from 'react-materialize';
 import { reduxForm } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
 import { DatePicker } from 'material-ui/DatePicker';
-// import injectTapEventPlugin = require("react-tap-event-plugin");
-
-
 
 class AddFurnitureForm extends Component {
-  // componentWillMount(){
-  //   // injectTapEventPlugin();
-  // }
 
   render() {
     const { fields: {
       itemName, price, description, url, deliveryDate,
       }, handleSubmit, } = this.props;
-
-        
+ 
     return (
-      <Col s={12} l={6}>
-        <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
-          <Row>
-            <Input s={6} placeholder='Item'{ ...itemName } />
-            <Input s={6} placeholder='Price'{ ...price } />
-          </Row>
-          <Row>
-            <Input s={6} placeholder='Description'{ ...description } />
-            <Input s={6} placeholder='URL'{ ...url } />
-          </Row>
-          <Row>
-            <Col s={6}>
-              <input type='date' className='datepicker'{...deliveryDate} />
-            </Col>
-          </Row>
-          <Button type="submit">Submit</Button>
-        </form>
-      </Col>
+      <Col s={12} l={3}>
+        <Card 
+          className='card-panel hoverable' header={<CardTitle reveal image={""} waves='light'/>}
+          title={<Icon className='center-align'>mode_edit</Icon>}
+          reveal={
+            <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
+            <Row>
+              <Input s={6} placeholder='Item'{ ...itemName } />
+              <Input s={6} placeholder='Price'{ ...price } />
+            </Row>
+            <Row>
+              <Input s={6} placeholder='Description'{ ...description } />
+              <Input s={6} placeholder='URL'{ ...url } />
+            </Row>
+            <Row>
+              <Col s={6}>
+                <input type='date' className='datepicker'{...deliveryDate} />
+              </Col>
+            </Row>
+            <Button className="small" type="submit">Submit</Button>
+           </form>
+          }>
+        </Card>
+        </Col>
+  
     );
   }
 }
