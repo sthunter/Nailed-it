@@ -20,12 +20,16 @@ var metadata = {
   contentType: 'image/jpeg',
 };
 
-export function uploadPhoto(file, selectedRoom) {
+export function uploadPhoto(file) {
   // Per the comment on the assignment of storageRef, if this code is run by our tests,
   // then Firebase.storage is undefined
   if(storageRef) {
     return storageRef.child('images/' + file[0].name).put(file[0], metadata);
   }
+}
+
+export function updatePhotoURL(url, selectedRoom) {
+  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + selectedRoom + '/photoURL').set(url);
 }
 
 export function addRoom(room, roomName) {
