@@ -36,9 +36,7 @@ const databaseAPI = {
   },
 
   addRoom(room, roomName) {
-    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set({
-      furniture: 'No furniture',
-    });
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set(room);
   },
 
   getRooms() {
