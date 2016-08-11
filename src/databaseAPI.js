@@ -1,11 +1,11 @@
 import Firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyArc1jthjsWkx91fsY2QTzXVhZm378B9AY',
-  authDomain: 'nailed-it-c1d80.firebaseapp.com',
-  databaseURL: 'https://nailed-it-c1d80.firebaseio.com',
-  storageBucket: 'nailed-it-c1d80.appspot.com',
-};
+    apiKey: 'AIzaSyArc1jthjsWkx91fsY2QTzXVhZm378B9AY',
+    authDomain: 'nailed-it-c1d80.firebaseapp.com',
+    databaseURL: 'https://nailed-it-c1d80.firebaseio.com',
+    storageBucket: 'nailed-it-c1d80.appspot.com',
+  };
 try {
   Firebase.initializeApp(config);
 } catch (e) {
@@ -20,84 +20,86 @@ var metadata = {
   contentType: 'image/jpeg',
 };
 
-export function uploadPhoto(file) {
-  // Per the comment on the assignment of storageRef, if this code is run by our tests,
-  // then Firebase.storage is undefined
-  if(storageRef) {
-    return storageRef.child('images/' + file[0].name).put(file[0], metadata);
-  }
-}
 
-export function updatePhotoURL(url, selectedRoom) {
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + selectedRoom + '/photoURL').set(url);
-}
+const databaseAPI = {
 
-export function addRoom(room, roomName) {
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set({
-    furniture: 'No furniture',
-  });
-}
+  uploadPhoto(file) {
+    // Per the comment on the assignment of storageRef, if this code is run by our tests,
+    // then Firebase.storage is undefined
+    if(storageRef) {
+      return storageRef.child('images/' + file[0].name).put(file[0], metadata);
+    }
+  },
 
-export function getRooms() {
-  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms').once('value')
-    .then((snapshot) => {
-      let result = snapshot.val();
-      for (var room in result) {
-        if(result.hasOwnProperty(room)) {
-          if (result[room].colors) {
-            result[room].colors = result[room].colors.split(";")
+  updatePhotoURL(url, selectedRoom) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + selectedRoom + '/photoURL').set(url);
+  },
+
+  addRoom(room, roomName) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set({
+      furniture: 'No furniture',
+    });
+  },
+
+  getRooms() {
+    return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms').once('value')
+      .then((snapshot) => {
+        let result = snapshot.val();
+        for (var room in result) {
+          if(result.hasOwnProperty(room)) {
+            if (result[room].colors) {
+              result[room].colors = result[room].colors.split(";")
+            }
           }
         }
-      }
-      return {val:() => result};
+        return {val:() => result};
+      });
+  },
+
+  getProjects() {
+    return database.ref().once('value');
+  },
+
+  // getFurniture(rooms) {
+  //   for (var room in rooms) {
+  //     database.ref('rooms/' + room + '/furniture').once('value', function(snapshot) {
+  //       return snapshot;
+  //     })
+  //   }
+  // };
+
+  getBudget() {
+    return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').once('value');
+  },
+
+  updateBudget(budget) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').set(budget);
+  },
+
+  updateFurniture(roomName, furnitureName, furnitureProps) {
+    //take the roomName and furnitureName from the submit and put the obj at the
+    // location in the database
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
+  },
+
+  updateRoom(oldRoomName, newRoomName, clonedRoom) {
+    return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(clonedRoom).then((snapshot) => {
+      console.log('snapshot returned by update room: ', snapshot);
+      database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
     });
-}
+  },
 
-export function getProjects() {
-  return database.ref().once('value');
-}
+  removeRoom(room) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room).remove();
+  },
 
-// export function getFurniture(rooms) {
-//   for (var room in rooms) {
-//     database.ref('rooms/' + room + '/furniture').once('value', function(snapshot) {
-//       return snapshot;
-//     })
-//   }
-// };
-
-export function getBudget() {
-  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').once('value');
-
-  // .then((snapshot) => {
-  //   cb(snapshot.val());
-  // });
-}
-
-export function updateBudget(budget) {
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').set(budget);
-}
-
-export function updateFurniture(roomName, furnitureName, furnitureProps) {
-  //take the roomName and furnitureName from the submit and put the obj at the
-  // location in the database
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
+  // removeFurniture(room, furniture) {
+  //   for (var room in rooms) {
+  //     for (var pieceOfFurniture in furniture) {
+  //       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).remove();
+  //     }
+  //   }
+  // };
 };
 
-export function updateRoom(oldRoomName, newRoomName, clonedRoom) {
-  return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(clonedRoom).then((snapshot) => {
-    console.log('snapshot returned by update room: ', snapshot);
-    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
-  });
-}
-
-export function removeRoom(room) {
-  database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room).remove();
-};
-
-// export function removeFurniture(room, furniture) {
-//   for (var room in rooms) {
-//     for (var pieceOfFurniture in furniture) {
-//       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).remove();
-//     }
-//   }
-// };
+export default databaseAPI;
