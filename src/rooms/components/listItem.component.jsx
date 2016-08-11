@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SwatchPicker } from 'react-color';
 import Dropzone from 'react-dropzone';
+import ColorInput from './colorPicker.component';
 
 class ListItem extends Component {
   handleClick(title) {
@@ -51,12 +52,15 @@ class ListItem extends Component {
     }
 
     const title = this.props.title;
+    var cardStyle = {'background':'#424242'}; 
 
     return (
     
         <CardPanel
-          
-          className='grey lighten-2 ListItem card-panel hoverable'
+
+          onTouchTap={ () => this.handleClick(title) }
+          className={'hoverable'}
+          style={cardStyle}
         >
           <Row>
           <Col s={12}>
@@ -70,11 +74,7 @@ class ListItem extends Component {
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.handleColorClick}}>format_paint</i></div>
-              { this.state.displayColorPicker ? <div style={ popover }>
-                <div style={ cover } onClick={ this.handleColorClose }/>
-                <SwatchPicker />
-                </div> : null 
-              }
+              <ColorInput />
             </div>
             </Col>
             
@@ -98,3 +98,11 @@ function mapStateToProps({ rooms, roomSelected, shared, route }) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
+
+
+
+ // { this.state.displayColorPicker ? <div style={ popover }>
+ //                <div style={ cover } onClick={ this.handleColorClose }/>
+ //                <SwatchPicker />
+ //                </div> : null 
+ //              }
