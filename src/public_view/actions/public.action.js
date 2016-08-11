@@ -1,9 +1,9 @@
-import { getProjects } from '../../databaseAPI';
+import databaseAPI from '../../databaseAPI';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 
 export function addProjectFromDb() {
-  const request = getProjects();
+  const request = databaseAPI.getProjects();
   
   return {
     type: ADD_PROJECT,
