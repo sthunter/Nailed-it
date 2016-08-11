@@ -17,8 +17,7 @@ const rootReducer = combineReducers({
   projects: publicReducer,
   shared: shareRooms,
   authenticated: authenticationReducer,
-  route: router,
-  color: roomColor
+  route: router
 });
 
 export default rootReducer;
