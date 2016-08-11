@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FList from '../components/fList.component';
-import { Row, Col, Button } from 'react-materialize';
+import { Row, Col, Button, Modal } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
+import AddFurnitureForm from './addFurnitureForm.container';
 
+import Dialog from 'material-ui/Dialog'; 
+import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-
-// import injectTapEventPlugin from 'react-tap-event-plugin';
-// injectTapEventPlugin();
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -23,6 +23,19 @@ class FurnitureList extends Component {
     this.props.changeRoute(this.props.location.pathname)  ;
   }
 
+  state = {
+    add:false
+  }
+
+  handleOpen = () => {
+    this.setState({add: true});
+  };
+
+  handleClose = () => {
+    this.setState({add: false});
+  };
+
+
   click(room) {
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
@@ -33,6 +46,7 @@ class FurnitureList extends Component {
     const { rooms, roomSelected } = this.props;
     const roomNames =  Object.keys(rooms);
     var furniture = {};
+    const actions = [];
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
@@ -59,12 +73,22 @@ class FurnitureList extends Component {
              </Tabs>  
             
           </Col>
+
           <div className='F-FAB'>
-            <Button floating fab='vertical' icon='arrow_drop_up' className='grey darken-3' small style={{'top': '24px', 'right': '24px'}}>
-              <Button floating icon='filter_list' className='grey'/>
-              <Button floating icon='sort' className='grey'/>
-              <Button floating icon='color_lens' className='grey'/>
-              <Button floating icon='add' className='grey'/>
+            <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+              <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
+                <div>
+                  <Dialog
+                    title="Add an Item"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.add}
+                    onRequestClose={this.handleClose}
+                  >
+                   <AddFurnitureForm/>
+                  </Dialog>
+                </div>
+
             </Button>
           </div>
         </Row>
@@ -94,4 +118,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
+  // <Button floating icon='sort' className='grey'/>
+              // <Button floating icon='color_lens' className='grey'/>
+              // <Button floating icon='add' className='grey'/>
+               // <AddFurnitureForm/>
+               // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
 
