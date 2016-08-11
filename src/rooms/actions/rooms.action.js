@@ -64,10 +64,11 @@ export function makePublic_Private(shared) {
 }
 
 export const GET_COLOR = "GET_COLOR";
-export function getColor(color){
+export function getColor(color, room) {
   return {
     type: GET_COLOR,
-    color: color
+    color,
+    room
   }
 }
 
@@ -78,6 +79,7 @@ export function selectRoom(roomName) {
     roomName,
   };
 }
+
 
 //initial pull from the database
 export const GET_ROOMS = 'GET_ROOMS';

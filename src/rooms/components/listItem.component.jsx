@@ -4,11 +4,15 @@ import { Link, browserHistory } from 'react-router';
 import { removeRoom, addPhoto, selectRoom } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { SwatchPicker } from 'react-color';
 import Dropzone from 'react-dropzone';
 import ColorInput from './colorPicker.component';
 
+
 class ListItem extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
@@ -24,12 +28,7 @@ class ListItem extends Component {
     displayColorPicker: false,
   };
 
-  handleColorClose = () => {
-    this.setState({ displayColorPicker: false })
-  };
-
   handleColorClick () {
-    console.log('got here')
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
@@ -37,6 +36,10 @@ class ListItem extends Component {
     this.props.addPhoto(files, title);
   }
 
+  openDesigner() {
+    this.props.openDesigner("/designer");
+    this.context.router.push('designer');
+  }
 
   render() {
     const popover = {
@@ -52,7 +55,10 @@ class ListItem extends Component {
     }
 
     const title = this.props.title;
-    var cardStyle = {'background':'#424242'}; 
+    var cardStyle = {'background':'#e0e0e0'}
+    if(this.props.rooms[title].color) {
+      cardStyle = {'background': this.props.rooms[title].color.hex }
+    }
 
     return (
     
@@ -63,7 +69,7 @@ class ListItem extends Component {
           style={cardStyle}
         >
           <Row>
-          <Col s={12}>
+          <Col s={6}>
           <div>
             <span><Link className="card-title" to={ 'furniture/' + title }>{title}</Link></span>
           </div>
@@ -73,21 +79,19 @@ class ListItem extends Component {
             </Dropzone></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.handleColorClick}}>format_paint</i></div>
-              <ColorInput />
+            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
+            <ColorInput />
             </div>
             </Col>
-            
-              {this.photo ? <div><MediaBox src={photo} width='40'/></div> : null}
-           
-            </Row>
+            <Col s={6}>
+              {this.props.rooms[title].photoURL ? <div className="valign-wrapper"><MediaBox className="valign right-align" src={this.props.rooms[title].photoURL} width='100'/></div> : null}
+           </Col>
+
+          </Row>
         </CardPanel>
       );
   }
 }
-
-export default ListItem;
-
 
 function mapDispatchToProps(dispatch) {
   return   bindActionCreators({ removeRoom, addPhoto }, dispatch);
@@ -98,11 +102,3 @@ function mapStateToProps({ rooms, roomSelected, shared, route }) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
-
-
-
- // { this.state.displayColorPicker ? <div style={ popover }>
- //                <div style={ cover } onClick={ this.handleColorClose }/>
- //                <SwatchPicker />
- //                </div> : null 
- //              }

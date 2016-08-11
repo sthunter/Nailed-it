@@ -38,6 +38,7 @@ export default class RoomsList extends Component {
                 intro={this.props.roomSelected}
                 list={this.props.rooms}
                 view="rooms"
+                openDesigner={this.props.changeRoute}
               />
             </div>
           </Col>

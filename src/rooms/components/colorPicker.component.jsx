@@ -1,79 +1,59 @@
 import React, {Component} from 'react';
-import Radium from 'radium';
-import SwatchesPicker from 'react-color';
-import _ from 'lodash';
-import Icon from '../../designer/src/Icon';
-import styles from '../../designer/src/panels/styles';
+import { SwatchesPicker}  from 'react-color';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getColor } from '../actions/rooms.action'
+import { CardPanel, Button, Row, Col, MediaBox } from 'react-materialize';
 
 class ColorInput extends Component {
+
   state = {
-    show: false,
-    x: 0,
-    y: 0
+     displayColorPicker: false,
+     background: '#fff',
+   };
+
+   handleClick = () => {
+     this.setState({ displayColorPicker: !this.state.displayColorPicker })
+   };
+
+   handleClose = () => {
+     this.setState({ displayColorPicker: false })
+   };
+
+  handleChangeComplete(color, room) {
+    this.props.getColor(color, room)
   };
-  newColor(color) {
-    this.props.getColor(color);
-  }
-
-  toggleVisibility(event) {
-    if (event.preventDefault) {
-      event.preventDefault();
-      let rect = event.target.getBoundingClientRect();
-      this.setState({
-        x: rect.left,
-        y: rect.top
-      });
-    }
-
-    let {show} = this.state;
-    this.setState({
-      show: !show
-    })
-  }
-
-  handleChange(color) {
-    let {r, g, b, a} = color.rgb;
-    this.props.getColor(color);
-  }
-
   render() {
-    let {show, x, y} = this.state;
-    let {value} = this.props;
-    
-    let position = {
-      position: "fixed",
-      left: x + 3,
-      top: y - 2
-    };
+    const popover = {
+          position: 'absolute',
+          zIndex: '2',
+        }
+        const cover = {
+          position: 'fixed',
+          top: '0',
+          right: '0',
+          bottom: '0',
+          left: '0',
+        }
 
     return (
       <div>
-        <SwatchesPicker
-          color={value}
-          display={show}
-          positionCSS={position}
-          onChange={this.handleChange.bind(this)}
-          onClose={this.toggleVisibility.bind(this)}
-          type="chrome" />
-        <a href="#" 
-         style={styles.colorInput}
-         onClick={this.toggleVisibility.bind(this)}>
-          <span style={[styles.color, {backgroundColor: value}]} />
-         </a>
+      <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={ this.handleClick }>format_paint</i></div>
+          { this.state.displayColorPicker ? <div style={ popover }>
+            <div style={ cover } onClick={ this.handleClose }/>
+            <SwatchesPicker onChangeComplete={(color) => this.handleChangeComplete(color, this.props.roomSelected)} />
+            </div> : null }
       </div>
     );
   }
 }
 
-function mapStateToProps({ color }) {
-  return { color }
+function mapStateToProps({ color, roomSelected }) {
+  return { color, roomSelected }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getColor }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(ColorInput));
+export default connect(mapStateToProps, mapDispatchToProps)(ColorInput);

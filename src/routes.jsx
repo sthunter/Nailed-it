@@ -7,7 +7,7 @@ import PublicProjectListContainer from './public_view/containers/publicProjectLi
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
 import requireAuth from './signup_signin/containers/requireAuthentification.container';
 import LandingPage from './landing_page/containers/landingPage.container';
-import Designer from './designer/examples/App';
+import Designer from './designer/drawingtool/App';
 
 export default (
   <Route path="/" component={App}>
