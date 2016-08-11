@@ -18,20 +18,24 @@ export function addPhoto(file, selectedRoom) {
 
 //adds room to the redux rooms state and makes database call along the way
 export const ADD_ROOM = 'ADD_ROOM';
-export function addRoom(details) {
+export function addRoom(details, ignoreDbCall) {
   const roomContents = {
-    furniture: {},
-    size: details.size,
-    notes: details.notes,
+    size: details && details.size,
+    notes: details && details.notes,
   };
 
-  //database call sends room with a empty object to later store new furniture
-  databaseAPI.addRoom(roomContents, details.roomName);
+  if (!ignoreDbCall) {
+    //database call sends room with a empty object to later store new furniture
+    databaseAPI.addRoom(roomContents, details && details.roomName);
+  }
+
   return {
     type: ADD_ROOM,
-    room,
+    roomName: details && details.roomName,
+    contents: roomContents,
   };
 }
+
 export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
 export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails, ignoreDbCall) {
   const clonedRoom = _.cloneDeep(roomContents);
@@ -58,6 +62,7 @@ export function makePublic_Private(shared) {
     shared,
   };
 }
+
 export const GET_COLOR = "GET_COLOR";
 export function getColor(color){
   return {
@@ -65,6 +70,7 @@ export function getColor(color){
     color: color
   }
 }
+
 export const SELECT_ROOM = 'SELECT_ROOM';
 export function selectRoom(roomName) {
   return {
@@ -85,6 +91,7 @@ export function getRooms() {
     payload: rooms
   };
 }
+
 export const REMOVE_ROOM = 'REMOVE_ROOM';
 export function removeRoom(title) {
   databaseAPI.removeRoom(title);
