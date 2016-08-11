@@ -5,7 +5,7 @@ import RoomsListContainer from './rooms/containers/roomsList.container.jsx';
 import FurnitureListContainer from './furniture/containers/furnitureList.container';
 import PublicProjectListContainer from './public_view/containers/publicProjectList.container';
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
-import requireAuth from './signup_signin/containers/requireAuthentification.container';
+//import requireAuth from './signup_signin/containers/requireAuthentification.container';
 import LandingPage from './landing_page/containers/landingPage.container';
 import Designer from './designer/drawingtool/App';
 
