@@ -24,15 +24,15 @@ class FurnitureList extends Component {
   }
 
   state = {
-    open:false
+    add:false
   }
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({add: true});
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({add: false});
   };
 
 
@@ -46,20 +46,7 @@ class FurnitureList extends Component {
     const { rooms, roomSelected } = this.props;
     const roomNames =  Object.keys(rooms);
     var furniture = {};
-     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleClose}
-      />,
-    ];
-
+    const actions = [];
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
@@ -95,7 +82,7 @@ class FurnitureList extends Component {
                     title="Add an Item"
                     actions={actions}
                     modal={false}
-                    open={this.state.open}
+                    open={this.state.add}
                     onRequestClose={this.handleClose}
                   >
                    <AddFurnitureForm/>
@@ -136,3 +123,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
               // <Button floating icon='add' className='grey'/>
                // <AddFurnitureForm/>
                // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
+
