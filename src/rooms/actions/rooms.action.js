@@ -65,6 +65,7 @@ export function makePublic_Private(shared) {
 
 export const GET_COLOR = "GET_COLOR";
 export function getColor(color, room) {
+    databaseAPI.updateRoomColor(color, room);
   return {
     type: GET_COLOR,
     color,

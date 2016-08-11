@@ -86,6 +86,9 @@ const databaseAPI = {
       database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
     });
   },
+  updateRoomColor(color, roomSelected) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomSelected + '/color').set(color);
+  },
 
   removeRoom(room) {
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room).remove();
