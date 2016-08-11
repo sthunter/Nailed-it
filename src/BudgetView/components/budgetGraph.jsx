@@ -53,11 +53,12 @@ class BudgetGraph extends Component {
 
     roomsList.forEach(function(room){
       let calc = calculateBudget(room);
+      
      
       var obj = {};
       obj["key"] = calc > 0 ? toTitleCase(room) : ' ';
       obj["value"] = calc;
-      obj["color"] = getRandomColor();
+      obj["color"] = rooms[room].color.hex;
       arr.push(obj)
       totalCost += calc;
     });
@@ -75,14 +76,14 @@ class BudgetGraph extends Component {
 
   render() {
     var genData;
-    const CurrentRoom = this.props.rooms;
-    const BudgetRoom = Object.keys(CurrentRoom);
+    const CurrentRooms = this.props.rooms;
+    const BudgetRoom = Object.keys(CurrentRooms);
     const currentBudget = this.props.budget;
     const calcBudget = this.calculateBudget;
     const toTitleCase = this.toTitleCase;
 
     if(Object.keys(this.props.rooms).length !== 0) {
-      genData = this.generateData(CurrentRoom)
+      genData = this.generateData(CurrentRooms)
     }
     var that = this;
 
