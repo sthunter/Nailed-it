@@ -58,7 +58,13 @@ export function makePublic_Private(shared) {
     shared,
   };
 }
-
+export const GET_COLOR = "GET_COLOR";
+export function getColor(color){
+  return {
+    type: GET_COLOR,
+    color: color
+  }
+}
 export const SELECT_ROOM = 'SELECT_ROOM';
 export function selectRoom(roomName) {
   return {
