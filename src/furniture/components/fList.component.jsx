@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { Table, Card, CardTitle, Row, Col } from 'react-materialize';
+import { Table, Card, CardTitle, Row, Col, Input, Button } from 'react-materialize';
 import AddItemButton from '../../app/addItemButton.component.jsx';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 import AddFurnitureForm from '../containers/addFurnitureForm.container'
 
 class FList extends Component {
 
-  changeHandler() {
+  state = {
+    edit:false
+  }
 
+  changeHandler() {
+    this.setState({edit:true})
   }
 
   clickEdit() {
@@ -17,6 +21,7 @@ class FList extends Component {
   render() {
     const listNames = Object.keys(this.props.list);
     return (
+      <div>
       <div>
         <Row>
           <div className='center-align' ><ColorPalette /></div>
@@ -31,23 +36,20 @@ class FList extends Component {
                 className='card-panel hoverable' header={<CardTitle reveal image={ "http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" } waves='light'/>}
                 title={itemName}
                 reveal={
-                  <Table>
-                    <tbody>
-                      <tr>
-                        <td>Name</td>
-                        <td>Price</td>
-                        <td>URL</td>
-                      </tr>
-                      <tr>
-                        <td>Description</td>
-                        <td>Quantity</td>
-                        <td>Delivery Date</td>
-                      </tr>
-                      <tr>
-                        <td>Notes</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <div>
+                  <Row>
+                    <div className='center-align'>
+                    <Input s={6} placeholder='Item' value={itemName} />
+                    <Input s={6} placeholder='Price' onChange={()=> this.changeHandler()}value={this.props.list[itemName].price}  />
+                    <Input s={6} placeholder='URL' />
+                    
+                    
+                    </div>
+                  </Row>  
+                  <Row>
+                    {this.state.edit ? <Button small type="submit">Submit</Button> : <div></div>}
+                  </Row>
+                  </div>
                 }>
                 <span className='card-body'>Price: ${this.props.list[itemName].price} <a href={this.props.list[itemName].url}>Link</a></span>
               </Card>
@@ -55,15 +57,19 @@ class FList extends Component {
             </div>
           );
         })}
-
-
         <AddItemButton view={this.props.view === 'rooms' ? 'room' : 'furniture'} />
       </div>
       </Row>
+      </div>
       </div>
     );
   }
 }
 
+
+
 export default FList;
 
+// <Input s={6} placeholder="Size"  />
+//                     <Input s={6} placeholder="ETA"  />
+//                     <Input s={12} placeholder='Notes'  />
