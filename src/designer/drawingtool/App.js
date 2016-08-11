@@ -15,7 +15,7 @@ export default class Designer extends Component {
       <div className={classes.container}>
         <div className={classes.example}>
           <div className={classes.info}>
-            <h3>Mondrian</h3>
+            <h3>Visualize it</h3>
           </div>
           <div className={classes.preview}>
             <MondrianExample />
