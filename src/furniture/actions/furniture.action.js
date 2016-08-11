@@ -1,5 +1,4 @@
-import { updateFurniture as updater } from '../../databaseAPI';
-
+import databaseAPI from '../../databaseAPI';
 
 export const ADD_FURNITURE = 'ADD_FURNITURE';
 export const DELETE_FURNITURE = 'DELETE_FURNITURE';
@@ -29,7 +28,7 @@ export function addFurniture(roomName, furnitureProps) {
     }
   }
   //database call
-  updater(roomName, furnitureName, furnitureObj)
+  databaseAPI.updateFurniture(roomName, furnitureName, furnitureObj)
 
   //send the expected value to the reducer
   return {
