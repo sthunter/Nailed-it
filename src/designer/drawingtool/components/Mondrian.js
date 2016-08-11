@@ -9,6 +9,7 @@ export default class Designing extends Component {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
+    console.log("Mounting", this.props)
   }
 
   state = {
@@ -60,7 +61,7 @@ export default class Designing extends Component {
   }
 
   handleUpdate(objects) {
-    console.log(this.props)
+    console.log("handling updates", this.props)
     this.setState({objects});
     this.props.setRoomDesign(objects)
   }
@@ -68,11 +69,10 @@ export default class Designing extends Component {
   render() {
     var currentRoom = "living room"
     if(this.props.roomSelected) {
-      roomSelected = this.props.roomSelected
+      currentRoom = this.props.roomSelected
     }
-    console.log(this.props)
-    console.log(currentRoom)
-    if (this.props.rooms[currentRoom].design) {
+    if (this.props.rooms[currentRoom] && this.props.rooms[currentRoom].design ) {
+      console.log("inside design", this.props.rooms[currentRoom])
       this.state = this.props.rooms[currentRoom].design
     }
     return (
