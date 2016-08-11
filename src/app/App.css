@@ -97,3 +97,7 @@ body {
 .MediaBox {
   display:inline-block;
 }
+
+.card-reveal {
+  padding:0px;
+}
