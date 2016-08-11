@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Designer from '../../src/Designer';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setRoomDesign } from '../actions/rooms.action';
 
-export default class extends Component {
+export default class Designing extends Component {
   state = {
     objects: [{
       "width": 300,
@@ -63,3 +66,13 @@ export default class extends Component {
     );
   }
 }
+
+function mapStateToProps({ roomSelected, setRoomDesign }) {
+  return { roomSelected, setRoomDesign };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Designing);

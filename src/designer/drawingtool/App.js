@@ -8,14 +8,13 @@ import classes from './App.module.css'
 
 import MondrianExample from './components/Mondrian';
 
-
 export default class Designer extends Component {
   render() {
     return (
       <div className={classes.container}>
         <div className={classes.example}>
           <div className={classes.info}>
-            <h3>Visualize it</h3>
+            <h3>Visualize your room</h3>
           </div>
           <div className={classes.preview}>
             <MondrianExample />
