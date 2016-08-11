@@ -1,4 +1,4 @@
-import { ADD_ROOM, GET_ROOMS, UPDATE_ROOM_DETAILS, REMOVE_ROOM, ADD_PHOTO } from '../actions/rooms.action';
+import { ADD_ROOM, GET_ROOMS, UPDATE_ROOM_DETAILS, REMOVE_ROOM, ADD_PHOTO, GET_COLOR } from '../actions/rooms.action';
 import { ADD_FURNITURE, DELETE_FURNITURE, UPDATE_FURNITURE} from '../../furniture/actions/furniture.action';
 import _ from 'lodash';
 
@@ -21,6 +21,11 @@ const roomsReducer = (state = {}, action) => {
       }
       newState = _.cloneDeep(state);
       newState[action.roomName] = action.contents;
+      return newState;
+
+    case GET_COLOR:
+      newState = _.cloneDeep(state);
+      newState[action.room].color = action.color;
       return newState;
 
     case UPDATE_ROOM_DETAILS:
@@ -47,7 +52,6 @@ const roomsReducer = (state = {}, action) => {
       newState = _.clone(state);
       //check to see if storage loaction is an obj or placeholder text
       if (typeof(newState[action.roomName].furniture) !== 'object') {
-
         newState[action.roomName].furniture = {};
       }
 

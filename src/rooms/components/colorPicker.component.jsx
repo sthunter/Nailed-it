@@ -21,7 +21,7 @@ class ColorInput extends Component {
    };
 
   handleChangeComplete(color, room) {
-    getColor(color, room)
+    this.props.getColor(color, room)
   };
   render() {
     const popover = {

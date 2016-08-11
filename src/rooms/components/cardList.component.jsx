@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component.jsx';
 import AddItemButton from '../../app/addItemButton.component.jsx';
+import { Link, browserHistory } from 'react-router';
 
 class CardList extends Component {
   render() {
@@ -12,6 +13,7 @@ class CardList extends Component {
               key={ itemName }
               title={ itemName }
               clickHandler={this.props.clickHandler}
+              openDesigner={this.props.openDesigner}
             />
           )
         )}

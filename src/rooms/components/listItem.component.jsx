@@ -7,7 +7,12 @@ import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import ColorInput from './colorPicker.component';
 
+
 class ListItem extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
@@ -24,12 +29,16 @@ class ListItem extends Component {
   };
 
   handleColorClick () {
-    console.log("got here")
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
   onDrop(files, title) {
     this.props.addPhoto(files, title);
+  }
+
+  openDesigner() {
+    this.props.openDesigner("/designer");
+    this.context.router.push('designer');
   }
 
   render() {
@@ -46,7 +55,10 @@ class ListItem extends Component {
     }
 
     const title = this.props.title;
-    var cardStyle = {'background':'#424242'}; 
+    var cardStyle = {'background':'#e0e0e0'}
+    if(this.props.rooms[title].color) {
+      cardStyle = {'background': this.props.rooms[title].color.hex }
+    }
 
     return (
     
@@ -67,6 +79,7 @@ class ListItem extends Component {
             </Dropzone></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
+            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
             <ColorInput />
             </div>
             </Col>
