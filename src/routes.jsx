@@ -12,7 +12,7 @@ import Designer from './designer/drawingtool/App';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={LandingPage} />
-    <Route path ="welcome" component={LandingPage}></Route>
+    <Route path="welcome" component={LandingPage}></Route>
     <Route path="room(/:name)" component={RoomsListContainer}></Route>
     <Route path="furniture(/:name)" component={FurnitureListContainer}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
