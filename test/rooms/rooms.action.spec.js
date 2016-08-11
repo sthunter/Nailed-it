@@ -68,3 +68,38 @@ describe('Update Room Details', () => {
     });
   });
 });
+
+describe('Add Room', () => {
+  it('should return an object', () => {
+    expect(addRoom(null, IGNORE_DB_CALL)).to.be.an('object');
+  });
+
+  describe('the object returned by the addRoom function', () => {
+    const roomFormDetails = {
+      roomName: 'Great Hall',
+      size: '45x45',
+      notes: 'This room needs more color.'
+    };
+    const actionObj = addRoom(roomFormDetails, IGNORE_DB_CALL);
+
+    it('should have a `type` of ADD_ROOM', () => {
+      expect(actionObj).to.have.property('type').which.equals(ADD_ROOM);
+    });
+
+    it('should include the name of the added room', () => {
+      expect(actionObj).to.have.property('roomName').which.equals(roomFormDetails.roomName);
+    });
+
+    it('should include the size of the added room', () => {
+      expect(actionObj).to.have.property('contents')
+        .which.has.property('size')
+        .which.equals(roomFormDetails.size);
+    });
+
+    it('should include the notes of the added room', () => {
+      expect(actionObj).to.have.property('contents')
+        .which.has.property('notes')
+        .which.equals(roomFormDetails.notes);
+    });
+  });
+});

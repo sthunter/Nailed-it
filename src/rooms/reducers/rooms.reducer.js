@@ -16,15 +16,12 @@ const roomsReducer = (state = {}, action) => {
       return Object.assign(_.cloneDeep(state), rooms);
 
     case ADD_ROOM:
-      action.room = action.room || {};
-      const newRooms = Object.keys(action.room);
-
-      // Todo: Check if the room already exists in the state
-      // If any new room name already exists in state
-      //if (newRooms.some(roomName => state[roomName])) {
-      //}
-
-      return Object.assign(_.cloneDeep(state), action.room);
+      if (!action.roomName) {
+        return state;
+      }
+      newState = _.cloneDeep(state);
+      newState[action.roomName] = action.contents;
+      return newState;
 
     case UPDATE_ROOM_DETAILS:
       // Return state with no changes if action doesn't have contents, or if it doesn't have a correct oldRoomName
@@ -53,7 +50,7 @@ const roomsReducer = (state = {}, action) => {
 
         newState[action.roomName].furniture = {};
       }
-      
+
       //add in new furniture properties at the roomName.furnitureName location
       newState[action.roomName].furniture[action.furnitureName] = action.furnitureProps;
       return newState;

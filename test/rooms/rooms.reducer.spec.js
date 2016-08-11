@@ -1,8 +1,56 @@
 import roomsReducer from '../../src/rooms/reducers/rooms.reducer';
-import { UPDATE_ROOM_DETAILS } from '../../src/rooms/actions/rooms.action';
+import { UPDATE_ROOM_DETAILS, ADD_ROOM } from '../../src/rooms/actions/rooms.action';
 import { expect, deeplyHasKeyOrProp } from '../testHelper.jsx';
 
 describe('roomsReducer', () => {
+  describe('addRoom', () => {
+    const initialState = {
+      Aviary: {
+        furniture: {},
+        colors: ['green', 'blue'],
+        size: '14x20',
+        notes: 'Birds fly around in here',
+      },
+      Bathroom: {
+        furniture: {},
+        photos: [],
+      },
+    };
+    const initialStateStr = JSON.stringify(initialState);
+    const newRoomAction = {
+      type: ADD_ROOM,
+      roomName: 'Orrery Chamber',
+      contents: {
+        size: '25x15',
+        notes: 'Keep an eye on Saturn\'s moons!',
+      },
+    };
+    const newState = roomsReducer(initialState, newRoomAction);
+
+    it('should return initial state when there is no roomName', () => {
+      expect(roomsReducer(initialState, { type: ADD_ROOM }))
+        .to.equal(initialState);
+    });
+
+    it('should add the room to the state', () => {
+      expect(newState).to.have.property(newRoomAction.roomName);
+    });
+
+    it('should add the size to the state', () => {
+      expect(newState).to.have.property(newRoomAction.roomName)
+        .which.has.property('size').which.equals(newRoomAction.contents.size);
+    });
+
+    it('should add the notes to the state', () => {
+      expect(newState).to.have.property(newRoomAction.roomName)
+        .which.has.property('notes').which.equals(newRoomAction.contents.notes);
+    });
+
+    it('should not mutate the initial state', () => {
+      expect(JSON.stringify(initialState), 'The reducer should not mutate the initial state.').to.equal(initialStateStr);
+    });
+  });
+
   describe(UPDATE_ROOM_DETAILS, () => {
     const initialState = {
       Aviary: {
