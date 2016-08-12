@@ -29,7 +29,7 @@ class BudgetGraph extends Component {
     const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
       console.log(rooms[roomNames[0]].color.hex);
-      genData = budgetHelper.generateData(rooms);
+      genData = budgetHelper.generateData(rooms, budget);
     }
 
     return(
