@@ -15,6 +15,11 @@ import Designer from '../../designer/drawingtool/App';
 
 
 class FurnitureList extends Component {
+  constructor(props) {
+    super(props);
+    // this.submit = this.submit.bind(this);
+  } 
+
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
@@ -35,7 +40,6 @@ class FurnitureList extends Component {
   }
 
   handleClose = () => {
-    this.setState({submit: true})
     this.setState({add: false});
   }
 
@@ -60,7 +64,7 @@ class FurnitureList extends Component {
 
   render() {
     const intro = 'Furniture';
-    const { rooms, roomSelected } = this.props;
+    const { rooms, roomSelected, onSubmit } = this.props;
     const roomNames =  Object.keys(rooms);
     var furniture = {};
     const actions = [];
@@ -73,7 +77,6 @@ class FurnitureList extends Component {
       <div>
         <Row>
           <Col s={12}>
-          
               <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5', 'overflowY':'scroll'}}>
                 {roomNames.map((room, i) => {
                   return (
@@ -88,7 +91,6 @@ class FurnitureList extends Component {
                 })}
               <Tab label='All' style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
              </Tabs>  
-            
           </Col>
 
           <div className='F-FAB'>
@@ -102,7 +104,8 @@ class FurnitureList extends Component {
                     open={this.state.add}
                     onRequestClose={this.handleClose}
                   >
-                   <AddFurnitureForm ref="furnitureForm"/>
+                   <AddFurnitureForm ref='myForm'/>
+                  
                   </Dialog>
                 </div>
                 <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
@@ -142,28 +145,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
               // <Button floating icon='add' className='grey'/>
                // <AddFurnitureForm/>
                // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
-
-               
-
-      //         <div>
-      //   <Paper zDepth={1}>
-      //     <BottomNavigation style={{'backgroundColor': 'rgb(255, 255, 255)'}} selectedIndex={this.state.selectedIndex}>
-      //       <BottomNavigationItem
-      //         label=""
-      //         icon={recentsIcon}
-      //         onTouchTap={() => this.select(0)}
-      //       />
-      //       <BottomNavigationItem
-      //         label="Favorites"
-      //         icon={favoritesIcon}
-      //         onTouchTap={() => this.select(1)}
-      //       />
-      //       <BottomNavigationItem
-      //         label="Nearby"
-      //         icon={nearbyIcon}
-      //         onTouchTap={() => this.select(2)}
-      //       />
-      //     </BottomNavigation>
-      //   </Paper>
-      // </div>
-
