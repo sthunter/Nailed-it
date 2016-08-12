@@ -23,7 +23,6 @@ var metadata = {
 
 const databaseAPI = {
   toggleProjectPrivacy(newPublicStatus) {
-    console.log('about to request the database change the public sattus of the project: ', newPublicStatus);
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/public').set(newPublicStatus);
   },
 
@@ -86,7 +85,6 @@ const databaseAPI = {
 
   updateRoom(oldRoomName, newRoomName, clonedRoom) {
     return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(clonedRoom).then((snapshot) => {
-      console.log('snapshot returned by update room: ', snapshot);
       database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
     });
   },

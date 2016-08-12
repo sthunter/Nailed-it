@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 class Header extends Component {
   static contextTypes = {
     router: React.PropTypes.object
-  }
+  };
 
   changePublicStatus() {
     const newPublicStatus = !this.props.public;
@@ -60,8 +60,8 @@ class Header extends Component {
   render() {
     return (
       <Navbar brand='Nailed-It' right className="grey darken-3">
-        <NavItem className={ 'nav-item' + this.activeIfRoom('public') }><Link to={ 'public' }>List of public projects</Link></NavItem>
-        <NavItem className={ 'nav-item' + this.activeIfRoom('room') }><Link to={ 'room' }>My Rooms</Link></NavItem>
+        <NavItem className={ 'nav-item' + this.activeIfRoom('public') }><Link to={ '/public' }>List of public projects</Link></NavItem>
+        <NavItem className={ 'nav-item' + this.activeIfRoom('room') }><Link to={ '/room' }>My Rooms</Link></NavItem>
         <NavItem onClick={()=>this.signInSignOut()}>{this.props.authenticated ? 'Sign Out' : 'Sign In'}</NavItem>
       </Navbar>
     );
@@ -73,7 +73,7 @@ function mapStateToProps(state) {
     'public': state.public, // apparently public is a reserved word, so I'm structuring this function this way
     authenticated: state.authenticated,
     route: state.route
-};
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -81,4 +81,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
-       

@@ -16,7 +16,6 @@ const projectReducer = (state = {}, action) => {
       return action.payload.val();
     case MAKE_PUBLIC_PRIVATE:
       const newState = _.cloneDeep(state);
-      console.log('newState: ', newState);
       if (newState.iGEKbLdXzHORTksYSB21JSd8cqA3) {
         newState.iGEKbLdXzHORTksYSB21JSd8cqA3.public = action.newPublicStatus;
       }
