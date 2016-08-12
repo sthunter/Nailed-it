@@ -14,7 +14,7 @@ class PieChartHolder extends Component {
 
   render() {
     const genData = this.state.genData;
-    console.log(this.state.genData);
+    
     return(
       <PieChart
           labels
