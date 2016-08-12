@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default ({object, startPoint, mouse}) => {
   return {
     ...object,

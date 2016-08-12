@@ -74,7 +74,7 @@ export function getColor(color, room) {
 }
 
 export const SET_DESIGN = "SET_DESIGN";
-export function setRoomDesign(design, room) {
+export function setRoomDesign(design, room) { 
   return {
     type: SET_DESIGN,
     design,
