@@ -59,10 +59,11 @@ class Header extends Component {
 
   render() {
     return (
-      <Navbar brand='Nailed-It' right className="grey darken-3">
-        <NavItem className={ 'nav-item' + this.activeIfRoom('public') }><Link to={ '/public' }>List of public projects</Link></NavItem>
-        <NavItem className={ 'nav-item' + this.activeIfRoom('room') }><Link to={ '/room' }>My Rooms</Link></NavItem>
-        <NavItem onClick={()=>this.signInSignOut()}>{this.props.authenticated ? 'Sign Out' : 'Sign In'}</NavItem>
+      <Navbar className="grey darken-3">
+        <NavItem><Link to="/room"><span id="brand">Nailed-It</span></Link></NavItem>
+        <NavItem className="left" onClick={()=>this.signInSignOut()}>{this.props.authenticated ? 'Sign Out' : 'Sign In'}</NavItem>
+        <NavItem className={ 'right nav-item' + this.activeIfRoom('public') }><Link to={ '/public' }>List of public projects</Link></NavItem>
+        <NavItem className={ 'right nav-item' + this.activeIfRoom('room') }><Link to={ '/room' }>My Rooms</Link></NavItem>
       </Navbar>
     );
   }
