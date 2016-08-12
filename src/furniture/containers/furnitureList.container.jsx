@@ -7,7 +7,7 @@ import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
 import AddFurnitureForm from './addFurnitureForm.container';
-
+import ListingFurniture from '../components/listingFurniture.component'
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -103,6 +103,16 @@ class FurnitureList extends Component {
                 />
             </div>
           </Col>
+        </Row>
+
+         <Row>
+           
+          <div className="center-aligned">
+          <Col l={8}>
+            <ListingFurniture className="center-aligned"/>
+          </Col>
+          </div>
+       
         </Row>
       </div>
     );

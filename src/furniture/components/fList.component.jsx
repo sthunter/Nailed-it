@@ -32,7 +32,7 @@ class FList extends Component {
         {listNames.map((itemName, i) => {
           return (
             <div key = {i}> 
-              <Col l={3} s={12}>
+              <Col l={4} m={6} s={12}>
               <Card 
               className='card-panel hoverable' header={<CardTitle reveal image={ list[itemName].url ||"http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" } waves='light'/>}
                 title={itemName}
