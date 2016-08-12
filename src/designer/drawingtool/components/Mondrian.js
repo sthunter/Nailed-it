@@ -6,6 +6,10 @@ import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/room
 import { changeRoute } from '../../../routing/actions/routing.action';
 
 export default class Designing extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   componentWillMount() {
     if(this.props.rooms[this.props.roomSelected]) {
       console.log(this.props.rooms[this.props.roomSelected])
@@ -20,7 +24,7 @@ export default class Designing extends Component {
     // }
     // this.props.changeRoute(this.props.location.pathname)
   }
-  state = this.props.rooms[this.props.roomSelected] ?
+  state = (this.props.rooms[this.props.roomSelected] && this.props.rooms[this.props.roomSelected].design)  ?
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
       "width": 300,
