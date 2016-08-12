@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { CardPanel, Button, Row, Col, MediaBox } from 'react-materialize';
+import { CardPanel, Button, Row, Col, MediaBox, Modal } from 'react-materialize';
 import { Link, browserHistory } from 'react-router';
 import Toolbar from './toolbar.component'
-
-
-
 
 class ListItem extends Component {
 

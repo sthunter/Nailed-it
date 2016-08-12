@@ -7,7 +7,9 @@ import PublicProjectListContainer from './public_view/containers/publicProjectLi
 import PublicRoomsListContainer from './public_view/containers/publicRoomsList.container';
 //import requireAuth from './signup_signin/containers/requireAuthentification.container';
 import LandingPage from './landing_page/containers/landingPage.container';
-import Designer from './designer/drawingtool/App';
+//import Designer from './designer/drawingtool/App';
+import MondrianExample from './designer/drawingtool/components/Mondrian';
+
 
 export default (
   <Route path="/" component={App}>
@@ -17,6 +19,6 @@ export default (
     <Route path="furniture(/:name)" component={FurnitureListContainer}></Route>
     <Route path="public" component={PublicProjectListContainer}></Route>
     <Route path="publicRoom" component={PublicRoomsListContainer}></Route>
-    <Route path="designer(/:name)" component={Designer}></Route>
+    <Route path="designer(/:name)" component={MondrianExample}></Route>
   </Route>
 );
