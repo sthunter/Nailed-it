@@ -19,10 +19,10 @@ export function addPhoto(file, selectedRoom) {
 //adds room to the redux rooms state and makes database call along the way
 export const ADD_ROOM = 'ADD_ROOM';
 export function addRoom(details, ignoreDbCall) {
-  
   const roomContents = {
     size: (details && details.size)|| false,
     notes: (details && details.notes)|| false,
+    color: {hex: '#d3d3d3'},
   };
 
   if (!(ignoreDbCall === true)) {
