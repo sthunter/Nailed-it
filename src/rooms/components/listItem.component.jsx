@@ -25,11 +25,11 @@ class ListItem extends Component {
 
   state = {
     displayColorPicker: false,
-  };
+  }
 
   handleColorClick () {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
-  };
+  }
 
   onDrop(files, title) {
     this.props.addPhoto(files, title);
@@ -62,6 +62,7 @@ class ListItem extends Component {
     return (
     
         <CardPanel
+          onTouchTap={ () => this.handleClick(title) }
           className={'hoverable'}
           style={cardStyle}>
 
@@ -85,7 +86,7 @@ class ListItem extends Component {
                   <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
                   <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
                   <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
-                  <ColorInput style={{'float': 'left'}} />
+                  <ColorInput />
               </Col>
             </Row>
         </CardPanel>
