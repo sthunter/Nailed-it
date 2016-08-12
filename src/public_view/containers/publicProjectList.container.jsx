@@ -3,7 +3,7 @@ import { connect} from 'react-redux';
 import CardList from '../components/cardList.component';
 import { addProjectFromDb, selectProject } from '../actions/public.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col, Modal, Button } from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import { changeRoute } from '../../routing/actions/routing.action';
 
 export default class ProjectList extends Component {
@@ -20,7 +20,6 @@ export default class ProjectList extends Component {
       }
       return projectsObj;
     }, {});
-    console.log('publicProjects: ', publicProjects);
     return (
       <Row>
       <h3> List of Public Projects</h3>
