@@ -4,22 +4,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
 import { changeRoute } from '../../../routing/actions/routing.action';
-import { browserHistory } from 'react-router';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 export default class Designing extends Component {
+  currentRoom = "nasty"
 
-  componentWillMount() {
-    if(this.props.rooms[this.props.roomSelected]) {
-    }
-  }
-  
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
+    this.props.changeRoute("/designer")
   }
 
-  state = (this.props.rooms[this.props.roomSelected] && this.props.rooms[this.props.roomSelected].design)  ?
+  componentDidUpdate() {
+    console.log(this.currentRoom)
+
+  }
+
+  state = (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design)  ?
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
       "width": 300,
@@ -67,17 +69,17 @@ export default class Designing extends Component {
       "y": 16
     }]
   }
-  currentRoom = this.props.roomSelected || "bedroom"
 
   handleUpdate(objects) {
     this.props.setRoomDesign(objects, this.currentRoom)
   }
 
   render() {
-
+    this.currentRoom = this.props.roomSelected || this.props.params.name
     if (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design ) {
       this.state.objects = this.props.rooms[this.currentRoom].design
     }
+    console.log(this.currentRoom);
 
     return (
       <Designer 

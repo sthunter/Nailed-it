@@ -14,7 +14,9 @@ export default class RoomsList extends Component {
       this.props.selectRoom(this.props.params.name)
     }
     this.props.changeRoute(this.props.location.pathname);
-    this.props.getRooms();
+    if(Object.keys(this.props.rooms).length === 0) {
+      this.props.getRooms();
+    }
   }
 
   changePublicStatus() {
