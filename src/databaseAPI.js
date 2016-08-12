@@ -22,6 +22,10 @@ var metadata = {
 
 
 const databaseAPI = {
+  toggleProjectPrivacy(newPublicStatus) {
+    console.log('about to request the database change the public sattus of the project: ', newPublicStatus);
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/public').set(newPublicStatus);
+  },
 
   uploadPhoto(file) {
     // Per the comment on the assignment of storageRef, if this code is run by our tests,

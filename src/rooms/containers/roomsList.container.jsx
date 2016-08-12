@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
 import { getRooms, selectRoom,  makePublic_Private, addPhoto } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col, Button } from 'react-materialize';
+import { Row, Col, Button, Input } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
 import { changeRoute } from '../../routing/actions/routing.action';
 import Dropzone from 'react-dropzone';
@@ -19,21 +19,24 @@ export default class RoomsList extends Component {
     }
   }
 
-  changePublicStatus() {
-    this.props.makePublic_Private(this.props.shared);
-  }
   onDrop(files) {
     // console.log('Received files: ', files);
     this.props.addPhoto(files);
   }
 
   render() {
+    const currentProject = this.props.projects.iGEKbLdXzHORTksYSB21JSd8cqA3;
+    const currentPublicStatus = currentProject && this.props.projects.iGEKbLdXzHORTksYSB21JSd8cqA3.public;
     return (
       <div>
         <Row>
           <Col s={12} m={6} l={6}>
             <div style={{"overflowY":"scroll"}}>
-              <span className="RoomListHeader"></span>
+              <div className="RoomListHeader">
+                <Input name='public' type='checkbox' value='Public' checked={currentPublicStatus}
+                       label='Make this project public'
+                       onChange={() => this.props.makePublic_Private(!currentPublicStatus)}/>
+              </div>
               <CardList
                 clickHandler={this.props.selectRoom}
                 addPhoto={this.onDrop}
@@ -57,12 +60,12 @@ export default class RoomsList extends Component {
   }
 }
 
-function mapStateToProps({ rooms, roomSelected, shared, route }) {
-  return { rooms, roomSelected, shared, route };
+function mapStateToProps({ projects, rooms, roomSelected, route }) {
+  return { projects, rooms, roomSelected, route };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRooms, selectRoom, addPhoto, changeRoute }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom, addPhoto, changeRoute, makePublic_Private }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);

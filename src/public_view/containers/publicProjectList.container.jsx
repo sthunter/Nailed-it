@@ -13,6 +13,14 @@ export default class ProjectList extends Component {
   }
 
   render() {
+    const projectNames = Object.keys(this.props.projects);
+    const publicProjects = projectNames.reduce((projectsObj, projectName) => {
+      if (this.props.projects[projectName].public) {
+        projectsObj[projectName] = this.props.projects[projectName];
+      }
+      return projectsObj;
+    }, {});
+    console.log('publicProjects: ', publicProjects);
     return (
       <Row>
       <h3> List of Public Projects</h3>
@@ -21,7 +29,7 @@ export default class ProjectList extends Component {
             <CardList
               clickHandler={this.props.selectProject}
               intro={this.props.projectSelected}
-              lists={this.props.projects}
+              lists={publicProjects}
               view="projects"
             />
           </div>
