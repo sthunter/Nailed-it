@@ -1,9 +1,27 @@
 import React, { Component } from 'react';
 import Designer from '../../src/Designer';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
+import { changeRoute } from '../../../routing/actions/routing.action';
+import { browserHistory } from 'react-router';
 
-export default class extends Component {
-  state = {
-    objects: [{
+export default class Designing extends Component {
+
+  componentWillMount() {
+    if(this.props.rooms[this.props.roomSelected]) {
+    }
+  }
+  
+  componentDidMount() {
+    if(Object.keys(this.props.rooms).length === 0) {
+      this.props.getRooms();
+    }
+  }
+
+  state = (this.props.rooms[this.props.roomSelected] && this.props.rooms[this.props.roomSelected].design)  ?
+    { objects: this.props.rooms[this.props.roomSelected].design } :
+     { objects: [{
       "width": 300,
       "height": 245,
       "rotate": 0,
@@ -48,18 +66,34 @@ export default class extends Component {
       "x": 190,
       "y": 16
     }]
-  };
+  }
+  currentRoom = this.props.roomSelected || "bedroom"
 
   handleUpdate(objects) {
-    this.setState({objects});
+    this.props.setRoomDesign(objects, this.currentRoom)
   }
 
   render() {
+
+    if (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design ) {
+      this.state.objects = this.props.rooms[this.currentRoom].design
+    }
+
     return (
-      <Designer
+      <Designer 
         width={800} height={600}
         objects={this.state.objects}
         onUpdate={this.handleUpdate.bind(this)}/>
     );
   }
 }
+
+function mapStateToProps({ roomSelected, rooms, route }) {
+  return { roomSelected, rooms, route };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Designing);

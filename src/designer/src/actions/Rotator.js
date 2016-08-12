@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default ({object, startPoint, mouse}) => {
   let angle = Math.atan2(
     startPoint.objectX + (object.width || 0) / 2 - mouse.x, 

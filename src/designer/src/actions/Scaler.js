@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default ({object, startPoint, mouse}) => {
   let {objectX, objectY, clientX, clientY} = startPoint;
   let width = startPoint.width + mouse.x - clientX;
