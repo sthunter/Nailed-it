@@ -16,7 +16,6 @@ class ListItem extends Component {
   handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
-
     }
   }
   removeRoomCall(title) {
@@ -63,31 +62,32 @@ class ListItem extends Component {
     return (
     
         <CardPanel
-
-          onTouchTap={ () => this.handleClick(title) }
           className={'hoverable'}
-          style={cardStyle}
-        >
-          <Row>
-          <Col s={6}>
-          <div>
-            <span><Link className="card-title" to={ 'furniture/' + title }>{title}</Link></span>
-          </div>
-          <div className='card-control-panel'>
-            <div className='card-control' hoverable><Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, title)}>
-              <i className="card-controls material-icons md-dark">add_a_photo</i>
-            </Dropzone></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
-            <ColorInput />
-            </div>
-            </Col>
-            <Col s={6}>
-              {this.props.rooms[title].photoURL ? <div className="valign-wrapper"><MediaBox className="valign right-align" src={this.props.rooms[title].photoURL} width='100'/></div> : null}
-           </Col>
+          style={cardStyle}>
 
-          </Row>
+          <Link className="card-title" to={ 'furniture/' + title }>
+            <Row onTouchTap={ () => this.handleClick(title) }>
+              <Col s={9}>
+                  <span>{title}</span>
+              </Col>
+              <Col s={3}>
+                {this.props.rooms[title].photoURL ? <div className="valign-wrapper"><MediaBox key={title} className="valign right-align" src={this.props.rooms[title].photoURL} width='100'/></div> : null}
+              </Col>
+            </Row>
+          </Link>
+            <Row>
+              <Col l={6}>
+                  <div className='card-control' hoverable>
+                    <Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, title)}>
+                      <i className="card-controls material-icons md-dark">add_a_photo</i>
+                    </Dropzone>
+                  </div>
+                  <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
+                  <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
+                  <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
+                  <ColorInput style={{'float': 'left'}} />
+              </Col>
+            </Row>
         </CardPanel>
       );
   }
