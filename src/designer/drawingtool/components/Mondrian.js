@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
 import { changeRoute } from '../../../routing/actions/routing.action';
-import { Router, Route, Link, browserHistory } from 'react-router';
 
 export default class Designing extends Component {
-  currentRoom = "nasty"
+  currentRoom = "bathroom"
 
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
