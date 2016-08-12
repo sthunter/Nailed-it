@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { CardPanel, Row, Col, MediaBox, Button, Modal} from 'react-materialize';
-import { Link, router } from 'react-router';
+import { CardPanel, Row, Col, MediaBox, Modal} from 'react-materialize';
+//import { Link, router } from 'react-router';
 import Mailto from 'react-mailto';
 
 class ListItem extends Component {
@@ -8,15 +8,17 @@ class ListItem extends Component {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
     }
-  }
+  };
   getfurniture(room) {
     var furnitures = []
     for (var item in this.props.lists.rooms[room].furniture) {
-      furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>)
+      if (this.props.lists.rooms[room].furniture.hasOwnProperty(item)) {
+        furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>);
+      }
     }
     return (
       <span>{furnitures}</span>
-      )
+      );
   }
 
   render() {
@@ -54,11 +56,12 @@ class ListItem extends Component {
           </Row>
           <Row>
             {listNames.map((itemName) => {
+              let photoURL;
               if(!lists.rooms[itemName].photoURL) {
-                var photoURL = "http://cdn.home-designing.com/wp-content/uploads/2010/10/living-room-artificial-light-by-ferdaviola.jpg";
+                photoURL = "http://cdn.home-designing.com/wp-content/uploads/2010/10/living-room-artificial-light-by-ferdaviola.jpg";
               }
               else {
-                var photoURL = lists.rooms[itemName].photoURL.url;
+                photoURL = lists.rooms[itemName].photoURL.url;
               }
               return (
                 <div key={itemName}>
