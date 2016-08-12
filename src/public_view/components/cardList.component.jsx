@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component';
-import { Row, Col, Modal, Button } from 'react-materialize';
+//import { Row, Col, Modal, Button } from 'react-materialize';
 
 class CardList extends Component {
 
@@ -13,8 +13,8 @@ class CardList extends Component {
             <ListItem
               key={ itemName }
               title={ itemName }
-              lists = { this.props.lists[itemName] }
-              clickHandler={this.props.clickHandler}
+              lists={ this.props.lists[itemName] }
+              clickHandler={ this.props.clickHandler }
             />
           );
         })}
