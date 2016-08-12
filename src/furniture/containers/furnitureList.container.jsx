@@ -11,7 +11,8 @@ import ListingFurniture from '../components/listingFurniture.component'
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Designer from '../../designer/drawingtool/App'
+import Designer from '../../designer/drawingtool/App';
+
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class FurnitureList extends Component {
 
   state = {
     add:false,
-    designer: false
+    selectedIndex: 0
   }
 
   handleOpen = () => {
@@ -34,20 +35,28 @@ class FurnitureList extends Component {
   }
 
   handleClose = () => {
+    this.setState({submit: true})
     this.setState({add: false});
   }
-
 
   click(room) {
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
-  handleOpenDesigner = () => {
-    this.setState({designer: true});
-  }
-  handleCloseDesigner = () => {
-    this.setState({designer: false});
-  }
+
+  // handleOpenDesigner = () => {
+  //   this.setState({view: 1});
+  // } 
+
+  // handleItemView = () => {
+  //   this.setState({view: 0});
+  // }
+
+  // handleItemView = () => {
+  // this.setState({view: 2});
+  // }
+
+  select = (index) => this.setState({selectedIndex: index});
 
   render() {
     const intro = 'Furniture';
@@ -83,8 +92,8 @@ class FurnitureList extends Component {
           </Col>
 
           <div className='F-FAB'>
-            <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
-              <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
+            <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+              <Button floating icon='weekend' tooltip="Add an Item" className='grey' onTouchTap={this.handleOpen}/>  
                 <div>
                   <Dialog
                     title="Add an Item"
@@ -93,7 +102,7 @@ class FurnitureList extends Component {
                     open={this.state.add}
                     onRequestClose={this.handleClose}
                   >
-                   <AddFurnitureForm/>
+                   <AddFurnitureForm ref="furnitureForm"/>
                   </Dialog>
                 </div>
                 <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
@@ -103,28 +112,18 @@ class FurnitureList extends Component {
         
         <Row>
           <Col s={12} l={12}>
+          <Button onTouchTap={this.select(0)}>Flist</Button>
+          <Button onTouchTap={this.select(1)}>Design</Button>
+          <Button onTouchTap={this.select(2)}>List</Button>
             <div>
-                {!this.state.designer ? <FList
-                  list={ furniture }
-                  intro={ intro }
-                  view="furniture"
-                /> : <Designer />
-
-              }
+              
+           
             </div>
           </Col>
         </Row>
-
-         <Row>
-           
-          <div className="center-aligned">
-          <Col l={12}>
-            <ListingFurniture className="center-aligned"/>
-          </Col>
-          </div>
-       
-        </Row>
-      </div>
+      
+      
+    </div>
     );
   }
 }
@@ -143,4 +142,28 @@ export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
               // <Button floating icon='add' className='grey'/>
                // <AddFurnitureForm/>
                // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
+
+               
+
+      //         <div>
+      //   <Paper zDepth={1}>
+      //     <BottomNavigation style={{'backgroundColor': 'rgb(255, 255, 255)'}} selectedIndex={this.state.selectedIndex}>
+      //       <BottomNavigationItem
+      //         label=""
+      //         icon={recentsIcon}
+      //         onTouchTap={() => this.select(0)}
+      //       />
+      //       <BottomNavigationItem
+      //         label="Favorites"
+      //         icon={favoritesIcon}
+      //         onTouchTap={() => this.select(1)}
+      //       />
+      //       <BottomNavigationItem
+      //         label="Nearby"
+      //         icon={nearbyIcon}
+      //         onTouchTap={() => this.select(2)}
+      //       />
+      //     </BottomNavigation>
+      //   </Paper>
+      // </div>
 

@@ -3,6 +3,9 @@ import { Card, CardTitle, Icon, Button, Input, Row, Col } from 'react-materializ
 import { reduxForm, reset } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
 import { DatePicker } from 'material-ui/DatePicker';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class AddFurnitureForm extends Component {
 
@@ -25,7 +28,7 @@ class AddFurnitureForm extends Component {
         <Input s={6} placeholder="ETA" {...ETA} />
       </Row>
      
-      <Button small type="submit">Submit</Button>
+      <RaisedButton primary={true} type="submit" label="submit"/>
      </form>
     );
   }
