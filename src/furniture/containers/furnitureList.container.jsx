@@ -29,11 +29,11 @@ class FurnitureList extends Component {
 
   handleOpen = () => {
     this.setState({add: true});
-  };
+  }
 
   handleClose = () => {
     this.setState({add: false});
-  };
+  }
 
 
   click(room) {
