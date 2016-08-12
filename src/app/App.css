@@ -40,6 +40,10 @@ body {
   margin: 15px 0;
 }
 
+.brand {
+  font-size: 2rem;
+}
+
 .ListItem {
   background: rgba(0, 0, 0, 0.4);
 }
