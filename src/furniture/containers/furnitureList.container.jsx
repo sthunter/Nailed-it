@@ -11,6 +11,7 @@ import ListingFurniture from '../components/listingFurniture.component'
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import Designer from '../../designer/drawingtool/App'
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -24,7 +25,8 @@ class FurnitureList extends Component {
   }
 
   state = {
-    add:false
+    add:false,
+    designer: false
   }
 
   handleOpen = () => {
@@ -39,6 +41,12 @@ class FurnitureList extends Component {
   click(room) {
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
+  }
+  handleOpenDesigner = () => {
+    this.setState({designer: true});
+  }
+  handleCloseDesigner = () => {
+    this.setState({designer: false});
   }
 
   render() {
@@ -88,7 +96,7 @@ class FurnitureList extends Component {
                    <AddFurnitureForm/>
                   </Dialog>
                 </div>
-
+                <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
             </Button>
           </div>
         </Row>
@@ -96,11 +104,13 @@ class FurnitureList extends Component {
         <Row>
           <Col s={12} l={12}>
             <div>
-                <FList
+                {!this.state.designer ? <FList
                   list={ furniture }
                   intro={ intro }
                   view="furniture"
-                />
+                /> : <Designer />
+
+              }
             </div>
           </Col>
         </Row>
