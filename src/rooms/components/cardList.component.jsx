@@ -12,8 +12,9 @@ class CardList extends Component {
             <ListItem
               key={ itemName }
               title={ itemName }
-              clickHandler={this.props.clickHandler}
-              openDesigner={this.props.openDesigner}
+              clickHandler={ this.props.clickHandler }
+              openDesigner={ this.props.openDesigner }
+              rooms={ this.props.list }
             />
           )
         )}
