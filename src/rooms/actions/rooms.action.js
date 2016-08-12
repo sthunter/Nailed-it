@@ -22,6 +22,7 @@ export function addRoom(details, ignoreDbCall) {
   const roomContents = {
     size: (details && details.size)|| false,
     notes: (details && details.notes)|| false,
+    color: {hex: '#d3d3d3'},
   };
 
   if (!(ignoreDbCall === true)) {
