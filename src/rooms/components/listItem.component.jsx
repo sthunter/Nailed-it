@@ -9,9 +9,6 @@ import ColorInput from './colorPicker.component';
 
 
 class ListItem extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
 
   handleClick(title) {
     if (this.props.clickHandler) {
@@ -33,11 +30,6 @@ class ListItem extends Component {
 
   onDrop(files, title) {
     this.props.addPhoto(files, title);
-  }
-
-  openDesigner() {
-    this.props.openDesigner("/designer");
-    this.context.router.push('designer');
   }
 
   render() {
@@ -85,7 +77,9 @@ class ListItem extends Component {
                   </div>
                   <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
                   <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
-                  <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.openDesigner(title)}}>gesture</i></div>
+                  <Link to={ 'designer/' + title }> 
+                    <div className='card-control' hoverable><i className="card-controls material-icons md-dark" >gesture</i></div>
+                  </Link>
                   <ColorInput />
               </Col>
             </Row>
