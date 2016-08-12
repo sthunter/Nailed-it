@@ -28,8 +28,7 @@ class BudgetGraph extends Component {
     const calcBudget = budgetHelper.calculateBudget;
     const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
-      
-      genData = budgetHelper.generateData(rooms, budget);
+      genData = budgetHelper.generateData(rooms);
     }
 
     return(
@@ -59,8 +58,7 @@ class BudgetGraph extends Component {
               let roomCost = calcBudget(roomName, rooms);
               this.totalCost += roomCost;
               return (
-                <tr 
-                key={id}>
+                <tr key={id}>
                   <th>{ budgetHelper.toTitleCase(roomName) }</th>
                   <th>{ roomCost } </th>
                 </tr>
@@ -75,6 +73,3 @@ class BudgetGraph extends Component {
 } 
 
 export default BudgetGraph;
-              // console.log(selection)
-              // console.log(selection.data)
-              // console.log(selection.data.key)

@@ -56,10 +56,13 @@ export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails, ign
 }
 
 export const MAKE_PUBLIC_PRIVATE = 'MAKE_PUBLIC_PRIVATE';
-export function makePublic_Private(shared) {
+export function makePublic_Private(newPublicStatus) {
+  // Update the public status of the project in the database
+  databaseAPI.toggleProjectPrivacy(newPublicStatus);
+
   return {
     type: MAKE_PUBLIC_PRIVATE,
-    shared,
+    newPublicStatus,
   };
 }
 

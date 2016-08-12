@@ -32,6 +32,14 @@ body {
 
 }
 
+.RoomListHeader {
+  height: 45px;
+}
+
+.RoomListHeader label, .RoomListHeader input {
+  margin: 15px 0;
+}
+
 .ListItem {
   background: rgba(0, 0, 0, 0.4);
 }
