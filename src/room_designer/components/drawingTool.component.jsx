@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import Designer from '../../src/Designer';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
-import { changeRoute } from '../../../routing/actions/routing.action';
+import Designer from '../src/Designer';
+
+import { setRoomDesign, getRooms, selectRoom } from '../../rooms/actions/rooms.action';
 
 export default class Designing extends Component {
-  currentRoom = "bathroom"
-
-  componentWillMount() {
-    console.log('store', this.props.store)
-  }
+  currentRoom = this.props.currentRoom
 
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
-    this.props.changeRoute("/designer")
+
   }
 
   state = (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design)  ?
@@ -87,13 +81,3 @@ export default class Designing extends Component {
     );
   }
 }
-
-function mapStateToProps({ roomSelected, rooms, route }) {
-  return { roomSelected, rooms, route };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Designing);
