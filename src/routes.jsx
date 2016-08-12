@@ -8,6 +8,8 @@ import PublicRoomsListContainer from './public_view/containers/publicRoomsList.c
 //import requireAuth from './signup_signin/containers/requireAuthentification.container';
 import LandingPage from './landing_page/containers/landingPage.container';
 import Designer from './designer/drawingtool/App';
+import MondrianExample from './designer/drawingtool/components/Mondrian';
+
 
 export default (
   <Route path="/" component={App}>
