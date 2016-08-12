@@ -13,7 +13,6 @@ export default class Designer extends Component {
       <div className={classes.container}>
         <div className={classes.example}>
           <div className={classes.info}>
-            <h3>Visualize your</h3>
           </div>
           <div className={classes.preview}>
             <MondrianExample params={this.props.params}/>
