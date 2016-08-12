@@ -41,6 +41,7 @@ export function addFurniture(roomName, furnitureProps) {
 
 export function deleteFurniture(furnitureName, roomName) {
   return {
+    //databaseAPI.deleteFurniture(furnitureName, roomName);
     type: DELETE_FURNITURE,
     furnitureName,
     roomName
