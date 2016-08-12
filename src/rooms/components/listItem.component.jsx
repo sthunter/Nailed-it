@@ -26,7 +26,10 @@ class ListItem extends Component {
       left: '0',
     }
 
-    const title = this.props.title;
+    const { title, rooms } = this.props;
+    const size = rooms[title].size || 'no size';
+    const notes = rooms[title].notes || 'no notes';
+    const splitNotes = notes.split('\n')
     var cardStyle = {'background':'#e0e0e0'}
     if(this.props.rooms[title].color) {
       cardStyle = {'background': this.props.rooms[title].color.hex }
@@ -42,7 +45,13 @@ class ListItem extends Component {
           <Link className="card-title" to={ 'furniture/' + title }>
             <Row onTouchTap={ () => this.handleClick(title) }>
               <Col s={9}>
-                  <span>{title}</span>
+                <span>{ title }</span>
+                <p style={{fontSize: '16px'}}>Size : { size }</p>
+                {splitNotes.map((note)=> {
+                  return (
+                    <p style={{fontSize: '16px'}}>{ note }</p>
+                    )
+                })}
               </Col>
               <Col s={3}>
                 {this.props.rooms[title].photoURL ? <div className="valign-wrapper"><MediaBox key={title} className="valign right-align" src={this.props.rooms[title].photoURL} width='100'/></div> : null}
