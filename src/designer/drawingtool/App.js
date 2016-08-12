@@ -13,10 +13,9 @@ export default class Designer extends Component {
       <div className={classes.container}>
         <div className={classes.example}>
           <div className={classes.info}>
-            <h3>Visualize your {this.props.params.name}</h3>
           </div>
           <div className={classes.preview}>
-            <MondrianExample params={this.props.params}/>
+            <MondrianExample/>
           </div>
         </div>
       </div>
