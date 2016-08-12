@@ -4,26 +4,21 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
 import { changeRoute } from '../../../routing/actions/routing.action';
+import { browserHistory } from 'react-router';
 
 export default class Designing extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
 
   componentWillMount() {
     if(this.props.rooms[this.props.roomSelected]) {
-      console.log(this.props.rooms[this.props.roomSelected])
     }
   }
+  
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
-    // if(this.props.params.name) {
-    //   this.props.selectRoom(this.props.params.name)
-    // }
-    // this.props.changeRoute(this.props.location.pathname)
   }
+
   state = (this.props.rooms[this.props.roomSelected] && this.props.rooms[this.props.roomSelected].design)  ?
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
@@ -81,7 +76,6 @@ export default class Designing extends Component {
   render() {
 
     if (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design ) {
-      console.log(this.currentRoom);
       this.state.objects = this.props.rooms[this.currentRoom].design
     }
 
