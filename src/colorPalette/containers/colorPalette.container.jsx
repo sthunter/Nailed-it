@@ -5,23 +5,9 @@ import { connect } from 'react-redux';
 class ColorPalette extends Component {
   buildPalette() {
     let roomSelected = this.props.roomSelected;
-    let colors;
-    if (this.props.rooms[roomSelected]) {
-      colors = this.props.rooms[roomSelected].colors;
-    };
+    const color = this.props.rooms[roomSelected].color && this.props.rooms[roomSelected].color.hex;
     let rectWidth = 100;
-    let rects;
-    if (colors && colors.length) {
-      
-      rects = colors.map((color, i) => (
-        
-        <rect key={i}  x={i*rectWidth} y="0" fill={color} width={rectWidth} height="50" />
-      ));
-      rects.push(<rect key={rects.length} stroke="black" width={rects.length * rectWidth} height="50" fill="transparent"/>)
-    } else { // If there were no colors passed to props
-      rects = <rect x="0" y="0" fill="white" width={rectWidth} height="50"></rect>
-    }
-    return rects
+    return <rect x="0" y="0" fill={color || 'white'} width={rectWidth} height="50" />
   }
 
   render() { 
