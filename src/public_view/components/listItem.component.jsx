@@ -12,7 +12,6 @@ class ListItem extends Component {
   getfurniture(room) {
     var furnitures = []
     for (var item in this.props.lists.rooms[room].furniture) {
-      console.log(this.props.lists.rooms[room].furniture[item].url);
       furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>)
     }
     return (

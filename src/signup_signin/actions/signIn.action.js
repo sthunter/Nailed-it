@@ -7,4 +7,11 @@ export function authenticate(isLoggedIn) {
   };
 }
 
+export const LOGOUT = 'LOGOUT';
+export function logOut() {
+  return {
+    type: LOGOUT,
+  };
+}
+
 export default authenticate;
