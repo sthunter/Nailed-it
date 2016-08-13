@@ -72,14 +72,14 @@ div.icon-row{
   display: inline-block;
 }
 
-tr#table-item {
+#table-item {
   padding: 0px 10px;
   white-space: nowrap;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 0px;
 }
-td.slimDown {
+.slimDown {
   padding: 0px 10px;
   margin-top: 0;
   margin-bottom: 0;
@@ -94,9 +94,10 @@ div.container {
   width: 80%;
   
 }
-.row{
+/*.row{
   margin-bottom: 0;
-}
+
+}*/
 .card-control {
   padding-right: 20px;
   display:inline-block;
@@ -112,7 +113,7 @@ div.container {
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
-
+.material-icons.md-dark:hover { color: rgba(0, 188, 212, 1); }
 
 .tabs .indicator {
   background-color:#424242;
@@ -157,4 +158,8 @@ div.container {
   font-weight: normal;
   color: #aaa;
   padding-right: 20px;
+}
+
+th.budget-table {
+  padding: 7px 7px;
 }
