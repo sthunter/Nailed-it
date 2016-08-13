@@ -1,17 +1,24 @@
+//Components
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FList from '../components/fList.component';
-import { Row, Col, Button, Modal } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
+import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
+import Designer from '../../designer/drawingtool/App';
+import ColorPalette from '../../colorPalette/containers/colorPalette.container';
+
+//UI
+import { Row, Col, Button, Modal } from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Designer from '../../designer/drawingtool/App'
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -24,10 +31,12 @@ class FurnitureList extends Component {
     this.props.changeRoute(this.props.location.pathname)  ;
   }
 
+
   state = {
     add:false,
-    designer: false
+    view: 0
   }
+
 
   handleOpen = () => {
     this.setState({add: true});
@@ -37,16 +46,21 @@ class FurnitureList extends Component {
     this.setState({add: false});
   }
 
-
   click(room) {
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
-  handleOpenDesigner = () => {
-    this.setState({designer: true});
+
+  handleFList = () => {
+    this.setState({view: 0});
   }
-  handleCloseDesigner = () => {
-    this.setState({designer: false});
+
+  handleDesigner = () => {
+    this.setState({view: 1});
+  } 
+
+  handleAll = () => {
+    this.setState({view: 2});
   }
 
   render() {
@@ -55,11 +69,14 @@ class FurnitureList extends Component {
     const roomNames =  Object.keys(rooms);
     var furniture = {};
     const actions = [];
+    var color;
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
+      color = this.props.rooms[roomSelected].color.hex;
     }
-  
+    
+
     return (
       <div>
         <Row>
@@ -77,13 +94,13 @@ class FurnitureList extends Component {
                     </Tab>
                   )
                 })}
-              <Tab label='All' style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+              <Tab label='All' onTouchTap={this.handleAll} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
              </Tabs>  
             
           </Col>
 
           <div className='F-FAB'>
-            <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+            <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
               <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
                 <div>
                   <Dialog
@@ -93,7 +110,7 @@ class FurnitureList extends Component {
                     open={this.state.add}
                     onRequestClose={this.handleClose}
                   >
-                   <AddFurnitureForm/>
+                   <AddFurnitureForm ref="furnitureForm"/>
                   </Dialog>
                 </div>
                 <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
@@ -102,27 +119,21 @@ class FurnitureList extends Component {
         </Row>
         
         <Row>
-          <Col s={12} l={12}>
-            <div>
-                {!this.state.designer ? <FList
-                  list={ furniture }
-                  intro={ intro }
-                  view="furniture"
-                /> : <Designer />
-
-              }
-            </div>
-          </Col>
+          <div className='right-align' style={{'background': color }}>
+          <FlatButton label='My Items' onTouchTap={this.handleFList} />
+          <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
+          <FlatButton label='All' onTouchTap={this.handleAll} />
+          </div>
         </Row>
 
-         <Row>
-           
-          <div className="center-aligned">
-          <Col l={12}>
-            <ListingFurniture className="center-aligned"/>
+        <Row>
+          <Col s={12} l={12}>
+            <div>
+                {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
+                {this.state.view === 1 ? <Designer/> : null}
+                {this.state.view === 2 ? <ListingFurniture className="center-aligned"/> : null}
+            </div>
           </Col>
-          </div>
-       
         </Row>
       </div>
     );
