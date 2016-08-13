@@ -14,9 +14,10 @@ class ListingFurniture extends Component {
     const roomName = Object.keys(rooms);
     const toTitleCase = this.toTitleCase;
 
+
       return (
 
-        <div>
+        <div className={"container"}>
           
               <h4>Full furniture list</h4>
               <Table>
@@ -25,19 +26,28 @@ class ListingFurniture extends Component {
                     <th data-field="room">Room</th>
                     <th data-field="furniture">Furniture</th>
                     <th data-field="price">Item Price</th>
+                    <th data-field="size">Item Size</th>
+                    <th data-field="quantity">Item Quantity</th>
+                    <th data-field="notes">Notes</th>
+                    <th data-field="url">URL</th>
+
                   </tr>
                 </thead>
                 {roomName.map(function(room){
-                  let thing = rooms[room];
+                  let currentRoom = rooms[room];
 
-                  if(thing.furniture){
-                    var arr = Object.keys(thing.furniture)
+                  if(currentRoom.furniture){
+                    var arr = Object.keys(currentRoom.furniture)
                     return arr.map(function(item, i){
                       return (
                         <tr>
                           <td><b>{ i===0 ? toTitleCase(room) : "" }</b></td>
                           <td>{ toTitleCase(item) }</td>
-                          <td>{ thing.furniture[item].price} </td>
+                          <td>{ currentRoom.furniture[item].price} </td>
+                          <td>{ currentRoom.furniture[item].size} </td>
+                          <td>{ currentRoom.furniture[item].quantity} </td>
+                          <td>{ currentRoom.furniture[item].notes} </td>
+                          <td>{ currentRoom.furniture[item].url} </td>
                         </tr>
                       )
                     })
