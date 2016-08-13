@@ -130,3 +130,14 @@ div.container {
 .MediaBox {
   display:inline-block;
 }
+
+.furniture-detail td {
+  vertical-align: top;
+}
+.furniture-detail th {
+  vertical-align: top;
+  text-align: right;
+  font-weight: normal;
+  color: #aaa;
+  padding-right: 20px;
+}
