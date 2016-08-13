@@ -24,9 +24,7 @@ class FList extends Component {
     const list = this.props.list;
     return (
       <div>
-        <Row>
-          <div className='center-align'><ColorPalette /></div>
-        </Row>
+       
       <Row>
        <div className="CardList">
         {listNames.map((itemName, i) => {

@@ -1,25 +1,26 @@
+//Components
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FList from '../components/fList.component';
-import { Row, Col, Button, Modal } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
 import { browserHistory } from 'react-router';
+import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
+import Designer from '../../designer/drawingtool/App';
+
+//UI
+import { Row, Col, Button, Modal } from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Designer from '../../designer/drawingtool/App';
-
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 
 class FurnitureList extends Component {
-  constructor(props) {
-    super(props);
-    // this.submit = this.submit.bind(this);
-  } 
-
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
@@ -30,9 +31,10 @@ class FurnitureList extends Component {
     this.props.changeRoute(this.props.location.pathname)  ;
   }
 
+
   state = {
     add:false,
-    selectedIndex: 0
+    view: 0
   }
 
   handleOpen = () => {
@@ -48,35 +50,35 @@ class FurnitureList extends Component {
     browserHistory.push('/furniture/' + room)
   }
 
-  // handleOpenDesigner = () => {
-  //   this.setState({view: 1});
-  // } 
+  handleFList = () => {
+    this.setState({view: 0});
+  }
 
-  // handleItemView = () => {
-  //   this.setState({view: 0});
-  // }
+  handleDesigner = () => {
+    this.setState({view: 1});
+  } 
 
-  // handleItemView = () => {
-  // this.setState({view: 2});
-  // }
-
-  select = (index) => this.setState({selectedIndex: index});
+  handleAll = () => {
+    this.setState({view: 2});
+  }
 
   render() {
     const intro = 'Furniture';
-    const { rooms, roomSelected, onSubmit } = this.props;
+    const { rooms, roomSelected } = this.props;
     const roomNames =  Object.keys(rooms);
     var furniture = {};
     const actions = [];
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
+      var color = this.props.rooms[roomSelected].color.hex;
     }
   
     return (
       <div>
         <Row>
           <Col s={12}>
+          
               <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5', 'overflowY':'scroll'}}>
                 {roomNames.map((room, i) => {
                   return (
@@ -89,13 +91,14 @@ class FurnitureList extends Component {
                     </Tab>
                   )
                 })}
-              <Tab label='All' style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+              <Tab label='All' onTouchTap={this.handleAll} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
              </Tabs>  
+            
           </Col>
 
           <div className='F-FAB'>
             <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
-              <Button floating icon='weekend' tooltip="Add an Item" className='grey' onTouchTap={this.handleOpen}/>  
+              <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
                 <div>
                   <Dialog
                     title="Add an Item"
@@ -104,8 +107,7 @@ class FurnitureList extends Component {
                     open={this.state.add}
                     onRequestClose={this.handleClose}
                   >
-                   <AddFurnitureForm ref='myForm'/>
-                  
+                   <AddFurnitureForm ref="furnitureForm"/>
                   </Dialog>
                 </div>
                 <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
@@ -114,19 +116,24 @@ class FurnitureList extends Component {
         </Row>
         
         <Row>
+          <span style={{'background': color}}></span>
+          <div className='right-align'>
+          <FlatButton label='My Items' onTouchTap={this.handleFList} />
+          <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
+          <FlatButton label='All' onTouchTap={this.handleAll} />
+          </div>
+        </Row>
+
+        <Row>
           <Col s={12} l={12}>
-          <Button onTouchTap={this.select(0)}>Flist</Button>
-          <Button onTouchTap={this.select(1)}>Design</Button>
-          <Button onTouchTap={this.select(2)}>List</Button>
             <div>
-              
-           
+                {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
+                {this.state.view === 1 ? <Designer/> : null}
+                {this.state.view === 2 ? <ListingFurniture className="center-aligned"/> : null}
             </div>
           </Col>
         </Row>
-      
-      
-    </div>
+      </div>
     );
   }
 }
@@ -145,3 +152,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
               // <Button floating icon='add' className='grey'/>
                // <AddFurnitureForm/>
                // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
+
