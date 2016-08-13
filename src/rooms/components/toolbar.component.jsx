@@ -26,16 +26,17 @@ class Toolbar extends Component {
   render() {
     const { title } = this.props;
     return (
-      <div>
+      <span>
             <div className='card-control' hoverable>
               <Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, title)}>
                 <i className="card-controls material-icons md-dark">add_a_photo</i>
               </Dropzone>
             </div>
             <div className='card-control' hoverable><i className="card-controls material-icons md-dark">create</i></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete_sweep</i></div>
+            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete</i></div>
             <ColorInput title = { title } />
-      </div>
+           
+      </span>
     )
   }
 }

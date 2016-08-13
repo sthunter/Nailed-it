@@ -48,7 +48,7 @@ export default class RoomsList extends Component {
             </div>
           </Col>
           <Col s={12} m={6} l={6} >
-            <div style={{"position": "fixed"}}>
+            <div style={{}}>
               
               <BudgetView rooms={this.props.rooms}/>
             </div>
