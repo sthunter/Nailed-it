@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Card, CardTitle, Row, Col } from 'react-materialize';
-import AddItemButton from '../../app/addItemButton.component.jsx';
+//import AddItemButton from '../../app/addItemButton.component.jsx';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container'
-import AddFurnitureForm from '../containers/addFurnitureForm.container'
+//import AddFurnitureForm from '../containers/addFurnitureForm.container'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { deleteFurniture } from '../actions/furniture.action'
@@ -25,13 +25,13 @@ class FList extends Component {
     return (
       <div>
         <Row>
-          <div className='center-align' ><ColorPalette /></div>
+          <div className='center-align'><ColorPalette /></div>
         </Row>
       <Row>
        <div className="CardList">
         {listNames.map((itemName, i) => {
           return (
-            <div key = {i}> 
+            <div key={i}>
               <Col l={4} m={6} s={12}>
               <Card 
               className='card-panel hoverable' header={<CardTitle reveal image={ list[itemName].url ||"http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg" } waves='light'/>}
