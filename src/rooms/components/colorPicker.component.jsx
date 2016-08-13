@@ -37,15 +37,15 @@ class ColorInput extends Component {
         }
 
     return (
-      <div>
-      <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={ this.handleClick }>format_paint</i></div>
+      
+      <span ><i  className="card-controls material-icons md-dark" style={{cursor: 'pointer'}} onClick={ this.handleClick }>format_paint</i>
           { this.state.displayColorPicker ? 
             <div style={ popover }>
             <div style={ cover } onClick={ this.handleClose }/>
             <SwatchesPicker onChangeComplete={(color) => this.handleChangeComplete(color, this.props.roomSelected)} />
             </div> 
             : null }
-      </div>
+      </span>
     
     );
   }
