@@ -31,7 +31,6 @@ body {
   font-family: roboto;
   color: rgba(0, 0, 0, 0.7);
   line-height: 1;
-
 }
 
 .RoomListHeader {
@@ -69,9 +68,23 @@ div.icon-row{
   display: inline-block;
 }
 
-td {
+tr#table-item {
   padding: 0px 10px;
   white-space: nowrap;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0px;
+}
+td.slimDown {
+  padding: 0px 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+input.slimDown {
+  margin: 0;
+  height: 1.5rem;
+
 }
 div.container {
   width: 80%;

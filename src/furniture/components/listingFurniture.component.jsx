@@ -20,7 +20,7 @@ class ListingFurniture extends Component {
         <div className="container">
           
               <h4>Full furniture list</h4>
-              <Table responsive>
+              <Table>
                 <thead>
                   <tr>
                     <th data-field="room">Room</th>
@@ -40,13 +40,13 @@ class ListingFurniture extends Component {
                     var arr = Object.keys(currentRoom.furniture)
                     return arr.map(function(item, i){
                       return (
-                        <tr>
-                          <td><b>{ i===0 ? toTitleCase(room) : "" }</b></td>
-                          <td><Input s={12} validate defaultValue={ toTitleCase(item) } /></td>
-                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].price} /></td>
-                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].size} /></td>
-                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].quantity} /></td>
-                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].notes} /></td>
+                        <tr id="table-item">
+                          <td className="slimDown"><b>{ i===0 ? toTitleCase(room) : "" }</b></td>
+                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ toTitleCase(item) } /></td>
+                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].price} /></td>
+                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].size} /></td>
+                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].quantity} /></td>
+                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].notes} /></td>
                         </tr>
                       )
                     })
