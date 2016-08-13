@@ -18,19 +18,19 @@ class FList extends Component {
     return (<CardTitle reveal image={ this.props.list[itemName].url || defaultUrl } waves='light'/>);
   }
 
-  createFurnitureDetails(furniture) {
+  createFurnitureDetails(name, details) {
     return (
       <Table className="furniture-detail">
         <tr>
-          <th>Name</th><td>Couch</td>
-          <th>Price</th><td>$100</td>
+          <th>Name</th><td>{ name }</td>
+          <th>Price</th><td>{ details.price || '' }</td>
         </tr>
         <tr>
-          <th>Delivery</th><td>9/1/16</td>
-          <th>Size</th><td>8x4</td>
+          <th>Delivery</th><td>{ details.deliveryDate || '' }</td>
+          <th>Size</th><td>{ details.size || '' }</td>
         </tr>
         <tr>
-          <th>Notes</th><td colSpan="3">This is a sweet couch! Really comfy, great for sleeping on.</td>
+          <th>Notes</th><td colSpan="3">{ details.description || '' }</td>
         </tr>
       </Table>
     );
@@ -55,7 +55,7 @@ class FList extends Component {
                   <Col l={4} m={6} s={12}>
                     <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
                       title={itemName}
-                      reveal={ this.createFurnitureDetails() }
+                      reveal={ this.createFurnitureDetails(itemName, this.props.list[itemName]) }
                     >
                       <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
                       <span className='card-body'>Price: ${this.props.list[itemName].price} <a href={this.props.list[itemName].url}>Link</a></span>
