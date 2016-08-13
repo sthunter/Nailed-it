@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ListItem from './listItem.component.jsx';
 import AddItemButton from '../../app/addItemButton.component.jsx';
 import { Link, browserHistory } from 'react-router';
+import AddRoomForm from '../containers/addRoomForm.container';
+
 
 class CardList extends Component {
   render() {
@@ -18,10 +20,17 @@ class CardList extends Component {
             />
           )
         )}
-        <AddItemButton view={this.props.view === 'rooms' ? 'room' : 'furniture'} />
+
+        <div>
+          <AddRoomForm/>
+          <br/>
+          <br/>
+        </div>
       </div>
     );
   }
 }
 
 export default CardList;
+
+// <AddItemButton view={this.props.view === 'rooms' ? 'room' : 'furniture'} />

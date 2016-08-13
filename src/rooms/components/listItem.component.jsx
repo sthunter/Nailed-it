@@ -4,6 +4,7 @@ import { Link, browserHistory } from 'react-router';
 import Toolbar from './toolbar.component'
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 class ListItem extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class ListItem extends Component {
       position: 'absolute',
       zIndex: '2',
     }
+    
     const cover = {
       position: 'fixed',
       top: '0',
@@ -66,8 +68,8 @@ class ListItem extends Component {
               />
             </Link>
             <CardActions>
-              <Toolbar title={ title } /> 
-              <RaisedButton fullWidth={true} label="Notes" onTouchTap={ () => this.handleToggle()} />
+              <Toolbar title={ title } handleToggle={this.handleToggle} /> 
+              <RaisedButton fullWidth={true} label="Details" onTouchTap={ () => this.handleToggle()} style={{'opacity':'0.4'}}/>
             </CardActions>
             { this.props.rooms[title].photoURL? <CardMedia
               expandable={true}

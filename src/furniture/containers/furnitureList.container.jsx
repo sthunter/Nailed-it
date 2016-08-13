@@ -19,6 +19,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -99,8 +101,31 @@ class FurnitureList extends Component {
             
           </Col>
 
-          <div className='F-FAB'>
-            <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+  
+        
+        </Row>
+        
+        <Row>
+          <Col s={12}>
+            <div className='right-align' style={{'background': color }}>
+              <FlatButton label='My Items' onTouchTap={this.handleFList} />
+              <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
+              <FlatButton label='All' onTouchTap={this.handleAll} />
+            </div>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col s={12} l={12}>
+            <div>
+                {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
+                {this.state.view === 1 ? <Designer/> : null}
+                {this.state.view === 2 ? <ListingFurniture className="center-aligned"/> : null}
+            </div>
+          </Col>
+        </Row>
+        <div className='F-FAB'>
+            <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
               <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
                 <div>
                   <Dialog
@@ -113,28 +138,11 @@ class FurnitureList extends Component {
                    <AddFurnitureForm ref="furnitureForm"/>
                   </Dialog>
                 </div>
-                <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
-            </Button>
-          </div>
-        </Row>
-        
-        <Row>
-          <div className='right-align' style={{'background': color }}>
-          <FlatButton label='My Items' onTouchTap={this.handleFList} />
-          <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
-          <FlatButton label='All' onTouchTap={this.handleAll} />
-          </div>
-        </Row>
-
-        <Row>
-          <Col s={12} l={12}>
-            <div>
-                {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
-                {this.state.view === 1 ? <Designer/> : null}
-                {this.state.view === 2 ? <ListingFurniture className="center-aligned"/> : null}
-            </div>
-          </Col>
-        </Row>
+            </Button>  
+  
+           
+          
+        </div>
       </div>
     );
   }
@@ -154,4 +162,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
               // <Button floating icon='add' className='grey'/>
                // <AddFurnitureForm/>
                // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
+
+
+            //     <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+            //   <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
+            //     <div>
+            //       <Dialog
+            //         title="Add an Item"
+            //         actions={actions}
+            //         modal={false}
+            //         open={this.state.add}
+            //         onRequestClose={this.handleClose}
+            //       >
+            //        <AddFurnitureForm ref="furnitureForm"/>
+            //       </Dialog>
+            //     </div>
+            //     <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
+            // </Button>
 
