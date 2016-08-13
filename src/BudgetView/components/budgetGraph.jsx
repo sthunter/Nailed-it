@@ -30,16 +30,29 @@ class BudgetGraph extends Component {
     if(Object.keys(rooms).length !== 0) {
       genData = budgetHelper.generateData(rooms, budget);
     }
-
+    Number.prototype.formatMoney = function(c, d, t){
+      var n = this, 
+        c = isNaN(c = Math.abs(c)) ? 2 : c,
+        d = d == undefined ? "." : d,
+        t = t == undefined ? "," : t,
+        s = n < 0 ? "-" : "", 
+        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+     };
+    if(budget) {
+      var formattedBudget = (budget).formatMoney(0);
+      var formattedCost = (this.totalCost).formatMoney(0);
+    }
     return(
       Object.keys(rooms).length !== 0 ? 
         <div>
           <Row>
             <Col>
-              <h5><b>Total Budget:</b> { budget || 'no budget' }</h5>
-              <h5><b>Total Cost:</b> { this.totalCost || 'no costs' }</h5>
+              <h5><b>Total Budget:</b> ${ formattedBudget || 'no budget' }</h5>
+              <h5><b>Total Cost:</b> ${ formattedCost || 'no costs' }</h5>
               <h5><b>Budget Remaining:</b> { 
-                budget - this.totalCost > 0 ? budget - this.totalCost : <span style={{'color': 'red'}}>{budget - this.totalCost}</span>
+                budget - this.totalCost > 0 ? "$"+ (budget - this.totalCost).formatMoney(0) : <span style={{'color': 'red'}}>${(budget - this.totalCost).formatMoney(0)}</span>
               }</h5>
             </Col>
           </Row>
@@ -60,7 +73,7 @@ class BudgetGraph extends Component {
               return (
                 <tr key={id}>
                   <th>{ budgetHelper.toTitleCase(roomName) }</th>
-                  <th>{ roomCost } </th>
+                  <th>${ (roomCost).formatMoney(0) } </th>
                 </tr>
                 )
             })}

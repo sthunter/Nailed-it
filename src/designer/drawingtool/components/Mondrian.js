@@ -2,22 +2,32 @@ import React, { Component } from 'react';
 import Designer from '../../src/Designer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
+import { setRoomDesign, getRooms, selectRoom, updateRoomDesign } from '../../../rooms/actions/rooms.action';
 import { changeRoute } from '../../../routing/actions/routing.action';
 
 export default class Designing extends Component {
   currentRoom = "bathroom"
 
-  componentWillMount() {
-    console.log('store', this.props.store)
+  shouldComponentUpdate(nextProps, nextState) {
+    if(this.props.roomSelected !== nextProps.roomSelected) {
+      console.log("uploading when unmounting")
+      this.props.updateRoomDesign(this.state.objects, this.props.roomSelected)
+      return true;
+    }
+    return true;
   }
-
+  
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
-    this.props.changeRoute("/designer")
   }
+
+  componentWillUnmount() {
+    console.log("uploading when unmounting")
+    this.props.updateRoomDesign(this.state.objects, this.props.roomSelected)
+  }
+
 
   state = (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design)  ?
     { objects: this.props.rooms[this.props.roomSelected].design } :
@@ -77,7 +87,6 @@ export default class Designing extends Component {
     if (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design ) {
       this.state.objects = this.props.rooms[this.currentRoom].design
     }
-    console.log(this.currentRoom);
 
     return (
       <Designer 
@@ -93,7 +102,7 @@ function mapStateToProps({ roomSelected, rooms, route }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute }, dispatch);
+  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute, updateRoomDesign }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Designing);

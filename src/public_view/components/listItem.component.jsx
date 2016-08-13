@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { CardPanel, Row, Col, MediaBox, Modal} from 'react-materialize';
-//import { Link, router } from 'react-router';
+import Avatar from 'material-ui/Avatar';
 import Mailto from 'react-mailto';
+import FlatButton from 'material-ui/FlatButton';
 
 class ListItem extends Component {
   handleClick = (title) => {
@@ -13,7 +14,12 @@ class ListItem extends Component {
     var furnitures = []
     for (var item in this.props.lists.rooms[room].furniture) {
       if (this.props.lists.rooms[room].furniture.hasOwnProperty(item)) {
-        furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>);
+        if(this.props.lists.rooms[room].furniture[item].url) {
+          furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>);
+        }
+        else {
+          furnitures.push(<MediaBox className="MediaBox" src="http://www.iconsdb.com/icons/preview/black/sofa-xxl.png" width='100'/>);
+        }
       }
     }
     return (
@@ -26,32 +32,42 @@ class ListItem extends Component {
     const lists = this.props.lists
     const listNames = Object.keys(lists.rooms);
     var photoURL;
-    if (this.props.lists.profile.photoURL === "null") {
+    if (!this.props.lists.profile.photoURL) {
       photoURL = "https://www.buira.net/assets/images/shared/default-profile.png"
     }
     else {
       photoURL = this.props.lists.profile.photoURL
+      console.log(photoURL)
     }
-
+    Number.prototype.formatMoney = function(c, d, t){
+    var n = this, 
+        c = isNaN(c = Math.abs(c)) ? 2 : c, 
+        d = d == undefined ? "." : d, 
+        t = t == undefined ? "," : t, 
+        s = n < 0 ? "-" : "", 
+        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+        j = (j = i.length) > 3 ? j % 3 : 0;
+       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+     };
+     var formattedBudget = (lists.budget).formatMoney(2);
     return (
       <div>
         <CardPanel
           className='grey lighten-2 card-panel'
-          title={ title }
-          style={{'color':'black'}}
-        >
+          title={ title } >
           <Row>
-            <Col s={6}>
-                <MediaBox src={photoURL} width='50' style={{"cursor": "default"}}/>
-                <span> 
-                  <Mailto email={this.props.lists.profile.email} obfuscate={true}>
-                  Get in touch with <span onClick={() => {this.handleClick(title)}} style={{'fontWeight':'bold'}}>{title}</span>
-                  </Mailto>
-                </span> 
+            <Col s={0.5}>
+              <Avatar src={photoURL} />
             </Col>
             <Col s={6}>
-              <span>Budget: ${lists.budget}</span>
-
+            <Row>
+              <Mailto email={this.props.lists.profile.email}>
+              {this.props.lists.profile.email}
+              </Mailto>             
+            </Row>
+            <Row>
+              ${formattedBudget}
+            </Row>
             </Col>
           </Row>
           <Row>
@@ -61,13 +77,19 @@ class ListItem extends Component {
                 photoURL = "http://cdn.home-designing.com/wp-content/uploads/2010/10/living-room-artificial-light-by-ferdaviola.jpg";
               }
               else {
-                photoURL = lists.rooms[itemName].photoURL.url;
+                photoURL = lists.rooms[itemName].photoURL;
+              }
+              let cardStyle = {'background':'#e0e0e0'}
+              if(lists.rooms[itemName].color) {
+                cardStyle = {'background': lists.rooms[itemName].color.hex }
+                console.log(cardStyle)
               }
               return (
                 <div key={itemName}>
                   <Col s={3}>
                   <Modal
-                    header={itemName}
+                    style = {cardStyle}
+                    header={itemName} 
                     trigger={
                       <MediaBox src={photoURL} caption={itemName} width='100' style={{"cursor": "pointer"}}/>
                     }>
