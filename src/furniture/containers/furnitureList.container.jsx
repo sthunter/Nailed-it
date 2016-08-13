@@ -9,6 +9,7 @@ import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
 import Designer from '../../designer/drawingtool/App';
+import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 
 //UI
 import { Row, Col, Button, Modal } from 'react-materialize';
@@ -18,7 +19,6 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -36,6 +36,7 @@ class FurnitureList extends Component {
     add:false,
     view: 0
   }
+
 
   handleOpen = () => {
     this.setState({add: true});
@@ -68,12 +69,14 @@ class FurnitureList extends Component {
     const roomNames =  Object.keys(rooms);
     var furniture = {};
     const actions = [];
+    var color;
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
-      var color = this.props.rooms[roomSelected].color.hex;
+      color = this.props.rooms[roomSelected].color.hex;
     }
-  
+    
+
     return (
       <div>
         <Row>
@@ -116,8 +119,7 @@ class FurnitureList extends Component {
         </Row>
         
         <Row>
-          <span style={{'background': color}}></span>
-          <div className='right-align'>
+          <div className='right-align' style={{'background': color }}>
           <FlatButton label='My Items' onTouchTap={this.handleFList} />
           <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
           <FlatButton label='All' onTouchTap={this.handleAll} />
