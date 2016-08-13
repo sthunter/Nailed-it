@@ -28,7 +28,7 @@ const helpers = {
     
     const roomsList = Object.keys(rooms);
     const calculateBudget = this.calculateBudget;
-    const getRandomColor = this.getRandomColor;
+    // const getRandomColor = this.getRandomColor;
     const toTitleCase = this.toTitleCase;
 
     roomsList.forEach(function(room){
@@ -53,14 +53,14 @@ const helpers = {
     return arr;
   },
 
-  getRandomColor() {
-    var letters = '0123456789abcdef';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
+  // getRandomColor() {
+  //   var letters = '0123456789abcdef';
+  //   var color = '#';
+  //   for (var i = 0; i < 6; i++) {
+  //       color += letters[Math.floor(Math.random() * 16)];
+  //   }
+  //   return color;
+  // }
 
 }
 
