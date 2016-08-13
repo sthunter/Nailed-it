@@ -88,6 +88,16 @@ const databaseAPI = {
       database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
     });
   },
+
+  updateRoomDesign(designArray, roomName) {
+    let ref = database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/design');
+    ref.remove().then(() => {
+      designArray.forEach((obj) => {
+        ref.push(obj);
+      });  
+    })
+  },
+
   updateRoomColor(color, roomSelected) {
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomSelected + '/color').set(color);
   },

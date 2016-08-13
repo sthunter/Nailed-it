@@ -78,9 +78,19 @@ export function getColor(color, room) {
 }
 
 export const SET_DESIGN = "SET_DESIGN";
-export function setRoomDesign(design, room) { 
+export function setRoomDesign(design, room) {
   return {
     type: SET_DESIGN,
+    design,
+    room
+  }
+}
+
+export const UPDATE_DESIGN = "UPDATE_DESIGN";
+export function updateRoomDesign(design, room) {
+  databaseAPI.updateRoomDesign(design, room);
+  return {
+    type: UPDATE_DESIGN,
     design,
     room
   }
