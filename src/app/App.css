@@ -70,6 +70,13 @@ html {
   line-height: 1;
 }
 
+td {
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+div.container {
+  width: 80%;
+}
 .row{
   margin-bottom: 0;
 }
