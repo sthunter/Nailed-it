@@ -551,7 +551,7 @@ class Designer extends Component {
               currentTool={selectedTool}
               onSelect={this.selectTool.bind(this)} />
           )}
-
+        
           {this.renderSVG()}
 
           {showPropertyPanel && (
