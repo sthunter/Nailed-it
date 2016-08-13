@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CardPanel, Row, Col, MediaBox, Modal} from 'react-materialize';
 import Avatar from 'material-ui/Avatar';
 import Mailto from 'react-mailto';
+import FlatButton from 'material-ui/FlatButton';
 
 class ListItem extends Component {
   handleClick = (title) => {
@@ -88,7 +89,7 @@ class ListItem extends Component {
                   <Col s={3}>
                   <Modal
                     style = {cardStyle}
-                    header={itemName}
+                    header={itemName} 
                     trigger={
                       <MediaBox src={photoURL} caption={itemName} width='100' style={{"cursor": "pointer"}}/>
                     }>

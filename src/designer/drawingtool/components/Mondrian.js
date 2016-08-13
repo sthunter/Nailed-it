@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Designer from '../../src/Designer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setRoomDesign, getRooms, selectRoom } from '../../../rooms/actions/rooms.action';
+import { setRoomDesign, getRooms, selectRoom, updateRoomDesign } from '../../../rooms/actions/rooms.action';
 import { changeRoute } from '../../../routing/actions/routing.action';
 
 export default class Designing extends Component {
@@ -10,21 +10,22 @@ export default class Designing extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if(this.props.roomSelected !== nextProps.roomSelected) {
-      console.log("true")
+      console.log("uploading when unmounting")
+      this.props.updateRoomDesign(this.state.objects, this.props.roomSelected)
       return true;
     }
     return true;
   }
   
   componentDidMount() {
-    console.log("got here")
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
   }
 
   componentWillUnmount() {
-    console.log("got here")
+    console.log("uploading when unmounting")
+    this.props.updateRoomDesign(this.state.objects, this.props.roomSelected)
   }
 
 
@@ -101,7 +102,7 @@ function mapStateToProps({ roomSelected, rooms, route }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute }, dispatch);
+  return bindActionCreators({ setRoomDesign, selectRoom, getRooms, changeRoute, updateRoomDesign }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Designing);
