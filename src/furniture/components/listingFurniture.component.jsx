@@ -29,7 +29,7 @@ class ListingFurniture extends Component {
                     <th data-field="size">Item Size</th>
                     <th data-field="quantity">Item Quantity</th>
                     <th data-field="notes">Notes</th>
-                    <th data-field="url">URL</th>
+                    
 
                   </tr>
                 </thead>
@@ -47,7 +47,6 @@ class ListingFurniture extends Component {
                           <td>{ currentRoom.furniture[item].size} </td>
                           <td>{ currentRoom.furniture[item].quantity} </td>
                           <td>{ currentRoom.furniture[item].notes} </td>
-                          <td>{ currentRoom.furniture[item].url} </td>
                         </tr>
                       )
                     })
