@@ -59,8 +59,8 @@ class BudgetGraph extends Component {
         <Table>
           <thead>
             <tr>
-              <th data-field="id">Room</th>
-              <th data-field="price">Total Room Cost</th>
+              <th className="budget-table" data-field="id">Room</th>
+              <th className="budget-table" data-field="price">Total Room Cost</th>
             </tr>
           </thead>
           <tbody>
@@ -72,8 +72,8 @@ class BudgetGraph extends Component {
               this.totalCost += roomCost;
               return (
                 <tr key={id}>
-                  <th>{ budgetHelper.toTitleCase(roomName) }</th>
-                  <th>${ (roomCost).formatMoney(0) } </th>
+                  <th className="budget-table">{ budgetHelper.toTitleCase(roomName) }</th>
+                  <th className="budget-table">${ (roomCost).formatMoney(0) } </th>
                 </tr>
                 )
             })}
