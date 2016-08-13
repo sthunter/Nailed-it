@@ -16,7 +16,7 @@ import { Row, Col, Button, Modal } from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 
