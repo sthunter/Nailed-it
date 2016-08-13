@@ -18,7 +18,7 @@ const roomsReducer = (state = {}, action) => {
     case GET_ROOMS:
       let rooms = action.payload.val();
       for (var roomName in rooms) {
-        if (room) {
+        if (roomName) {
           let room = rooms[roomName];
           let design = room.design;
           let designArr = [];
@@ -28,7 +28,7 @@ const roomsReducer = (state = {}, action) => {
               designArr.push(designObj);
             }
           }
-          rooms[roomName].design = designArr;
+          rooms[roomName].design = designArr.length > 0 ? designArr : false;
         }
       }
       return Object.assign(_.cloneDeep(state), rooms);
