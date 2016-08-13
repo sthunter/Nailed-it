@@ -20,26 +20,24 @@ class FList extends Component {
 
   createFurnitureDetails(furniture) {
     return (
-      <Table>
+      <Table className="furniture-detail">
         <tr>
-          <td>Name</td>
-          <td>Price</td>
-          <td>URL</td>
+          <th>Name</th><td>Couch</td>
+          <th>Price</th><td>$100</td>
         </tr>
         <tr>
-          <td>Description</td>
-          <td>Quantity</td>
-          <td>Delivery Date</td>
+          <th>Delivery</th><td>9/1/16</td>
+          <th>Size</th><td>8x4</td>
         </tr>
         <tr>
-          <td>Notes</td>
+          <th>Notes</th><td colSpan="3">This is a sweet couch! Really comfy, great for sleeping on.</td>
         </tr>
       </Table>
     );
   }
 
   deleteFurnitureCall(itemName) {
-    let currentRoom = this.props.roomSelected;
+    const currentRoom = this.props.roomSelected;
 
     this.props.deleteFurniture(itemName, currentRoom);
   }
@@ -49,26 +47,25 @@ class FList extends Component {
 
     return (
       <div>
-       
-      <Row>
-       <div className="CardList">
-        {listNames.map((itemName, i) => {
-          return (
-            <div key={i}>
-              <Col l={4} m={6} s={12}>
-                <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
-                  title={itemName}
-                  reveal={ this.createFurnitureDetails() }
-                >
-                  <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
-                  <span className='card-body'>Price: ${this.props.list[itemName].price} <a href={this.props.list[itemName].url}>Link</a></span>
-                </Card>
-              </Col>
-            </div>
-          );
-        })}
-      </div>
-      </Row>
+        <Row>
+          <div className="CardList">
+            {listNames.map((itemName, i) => {
+              return (
+                <div key={i}>
+                  <Col l={4} m={6} s={12}>
+                    <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
+                      title={itemName}
+                      reveal={ this.createFurnitureDetails() }
+                    >
+                      <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
+                      <span className='card-body'>Price: ${this.props.list[itemName].price} <a href={this.props.list[itemName].url}>Link</a></span>
+                    </Card>
+                  </Col>
+                </div>
+              );
+            })}
+          </div>
+        </Row>
       </div>
     );
   }
