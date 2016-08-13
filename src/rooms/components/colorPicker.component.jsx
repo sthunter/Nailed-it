@@ -42,7 +42,7 @@ class ColorInput extends Component {
           { this.state.displayColorPicker ? 
             <div style={ popover }>
             <div style={ cover } onClick={ this.handleClose }/>
-            <SwatchesPicker onChangeComplete={(color) => this.handleChangeComplete(color, this.props.roomSelected)} />
+            <SwatchesPicker onChangeComplete={(color) => this.handleChangeComplete(color, this.props.title)} />
             </div> 
             : null }
       </span>
