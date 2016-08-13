@@ -23,12 +23,14 @@
   .tabNav {
     font-size:10px;
   }
+
 }
 
 body {
   background-color: rgb(249, 249, 249);
   font-family: roboto;
-  color: rgba(0, 0, 0, 0.7)
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1;
 
 }
 
@@ -66,16 +68,14 @@ div.icon-row{
   margin: 0;
   display: inline-block;
 }
-html {
-  line-height: 1;
-}
 
 td {
-  padding: 5px 10px;
+  padding: 0px 10px;
   white-space: nowrap;
 }
 div.container {
   width: 80%;
+  
 }
 .row{
   margin-bottom: 0;

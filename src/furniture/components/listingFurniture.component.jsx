@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Card, CardTitle, Row, Col } from 'react-materialize';
+import { Table, Card, CardTitle, Row, Col, Input } from 'react-materialize';
 import AddItemButton from '../../app/addItemButton.component.jsx';
 import { connect } from 'react-redux';
 
@@ -17,10 +17,10 @@ class ListingFurniture extends Component {
 
       return (
 
-        <div className={"container"}>
+        <div className="container">
           
               <h4>Full furniture list</h4>
-              <Table>
+              <Table responsive>
                 <thead>
                   <tr>
                     <th data-field="room">Room</th>
@@ -42,11 +42,11 @@ class ListingFurniture extends Component {
                       return (
                         <tr>
                           <td><b>{ i===0 ? toTitleCase(room) : "" }</b></td>
-                          <td>{ toTitleCase(item) }</td>
-                          <td>{ currentRoom.furniture[item].price} </td>
-                          <td>{ currentRoom.furniture[item].size} </td>
-                          <td>{ currentRoom.furniture[item].quantity} </td>
-                          <td>{ currentRoom.furniture[item].notes} </td>
+                          <td><Input s={12} validate defaultValue={ toTitleCase(item) } /></td>
+                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].price} /></td>
+                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].size} /></td>
+                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].quantity} /></td>
+                          <td><Input s={12} validate defaultValue={ currentRoom.furniture[item].notes} /></td>
                         </tr>
                       )
                     })
