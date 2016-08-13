@@ -118,7 +118,7 @@ class FurnitureList extends Component {
          <Row>
            
           <div className="center-aligned">
-          <Col l={8}>
+          <Col l={12}>
             <ListingFurniture className="center-aligned"/>
           </Col>
           </div>
