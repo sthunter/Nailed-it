@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Input, Col, Row } from 'react-materialize';
-import { reduxForm, reset } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { addRoom } from '../actions/rooms.action.js';
 
 class AddRoomForm extends Component {
-  addRoom(newRoomObj) {
-    console.log(newRoomObj, this);
-    const {addRoom, dispatch} = this.props;
-    addRoom(newRoomObj);
-    dispatch(reset('AddRoomForm'));
-  }
-
   render() {
     const { fields: { roomName, size, notes }, handleSubmit } = this.props;
 
     return (
-      <form onSubmit={ handleSubmit(this.addRoom.bind(this)) } >
+      <form onSubmit={ handleSubmit(this.props.addRoom) } >
         <Col s={12}>
           <Row>
             <Input type="text" placeholder="Room Name" s={6} label="Room Name" { ...roomName } />
@@ -38,7 +31,3 @@ export default reduxForm({
   form: 'AddRoomForm',
   fields: ['roomName', 'size', 'notes'],
 }, null, { addRoom })(AddRoomForm);
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(null, dispatch);
-}
