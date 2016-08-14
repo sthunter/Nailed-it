@@ -42,6 +42,8 @@ class BudgetGraph extends Component {
      };
     if(budget) {
       var formattedBudget = (budget).formatMoney(0);
+    }
+    if(this.totalCost) {
       var formattedCost = (this.totalCost).formatMoney(0);
     }
     return(
