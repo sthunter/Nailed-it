@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import Radium from 'radium';
-import ColorPicker from 'react-color';
+import ChromePicker from 'react-color';
 import _ from 'lodash';
 import Icon from '../Icon';
 
@@ -9,26 +9,19 @@ import styles from './styles';
 
 class ColorInput extends Component {
   state = {
-    show: false,
+    displayColorPicker: false,
     x: 0,
     y: 0
   };
+  handleClick = () => {
+      console.log("got in here")
+      this.setState({ displayColorPicker: !this.state.displayColorPicker })
+    };
 
-  toggleVisibility(event) {
-    if (event.preventDefault) {
-      event.preventDefault();
-      let rect = event.target.getBoundingClientRect();
-      this.setState({
-        x: rect.left,
-        y: rect.top
-      });
-    }
-
-    let {show} = this.state;
-    this.setState({
-      show: !show
-    })
-  }
+    handleClose = () => {
+      console.log("trying to close")
+      this.setState({ displayColorPicker: false })
+  };
 
   handleChange(color) {
     let {r, g, b, a} = color.rgb;
@@ -36,7 +29,7 @@ class ColorInput extends Component {
   }
 
   render() {
-    let {show, x, y} = this.state;
+    let {x, y} = this.state;
     let {value} = this.props;
     
     let position = {
@@ -44,19 +37,28 @@ class ColorInput extends Component {
       left: x + 3,
       top: y - 2
     };
+    const popover = {
+      position: 'absolute',
+      zIndex: '2',
+    }
+    const cover = {
+      position: 'fixed',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+    }
 
     return (
       <div>
-        <ColorPicker
-          color={value}
-          display={show}
-          positionCSS={position}
-          onChange={this.handleChange.bind(this)}
-          onClose={this.toggleVisibility.bind(this)}
-          type="chrome" />
+      { this.state.displayColorPicker ? <div style={ popover }>
+                <div style={ cover } onClick={ this.handleClose }/>
+                <ChromePicker color={value} positionCSS={position}
+          onChange={this.handleChange.bind(this)} />
+              </div> : null }
         <a href="#" 
          style={styles.colorInput}
-         onClick={this.toggleVisibility.bind(this)}>
+         onClick={ this.handleClick }>
           <span style={[styles.color, {backgroundColor: value}]} />
          </a>
       </div>

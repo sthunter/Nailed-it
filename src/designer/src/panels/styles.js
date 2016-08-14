@@ -2,7 +2,7 @@
 export default {
   propertyPanel: {
     position: "absolute",
-    width: 200,
+    width: 250,
     top: 0,
     left: 0,
     padding: '0 5px 6px 5px',
@@ -31,7 +31,7 @@ export default {
   },
   panelTitle: {
     float: 'left',
-    width: 60,
+    width: 50,
     padding: 3,
     color: '#b8b8b8'
   },

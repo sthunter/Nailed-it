@@ -18,19 +18,19 @@ export default class SizePanel extends Panel {
     let {object} = this.props;
     return (
       <PropertyGroup object={object}>
-        {_.has(object, 'width', 'height') && <Columns label="Size">
+        {_.has(object, 'width', 'height') && <Columns label="Size in cm">
           <Column showIf={_.has(object, 'width')} 
                   label="width" value={object.width}
                   onChange={this.props.onChange.bind(this, 'width')} />
-          <Column showIf={_.has(object, 'height')} label="height" 
+          <Column showIf={_.has(object, 'height')} label="length" 
                   value={object.height}
                   onChange={this.props.onChange.bind(this, 'height')} />
         </Columns>}
-        <Columns label="Position">
+        <Columns label="Position from top left in cm">
           <Column showIf={_.has(object, 'x')} 
-                  label="top" value={object.x}
+                  label="to the right" value={object.x}
                   onChange={this.props.onChange.bind(this, 'x')} />
-          <Column showIf={_.has(object, 'y')} label="top" value={object.y}
+          <Column showIf={_.has(object, 'y')} label="down" value={object.y}
                   onChange={this.props.onChange.bind(this, 'y')} />
         </Columns>
         {_.has(object, 'rotate') && <Columns label="Rotation">
