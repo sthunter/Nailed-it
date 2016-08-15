@@ -25,7 +25,7 @@ class AddRoomForm extends Component {
   }
 
   addRoom(newRoomObj) {
-    console.log(newRoomObj, this);
+    
     const {addRoom, dispatch} = this.props;
     addRoom(newRoomObj);
     dispatch(reset('AddRoomForm'));
