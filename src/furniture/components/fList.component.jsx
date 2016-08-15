@@ -28,15 +28,29 @@ class FList extends Component {
         <Row>
           <div className="CardList">
             {listNames.map((itemName, i) => {
+              const item = this.props.list[itemName];
+              const initialFormValues = {
+                itemName,
+                price: item.price,
+                deliveryDate: item.deliveryDate,
+                size: item.size,
+                description: item.description,
+              };
+
               return (
                 <div key={i}>
                   <Col l={4} m={6} s={12}>
                     <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
                       title={itemName}
-                      reveal={ <UpdateFurnitureForm name={itemName} details={this.props.list[itemName]} /> }
+                      reveal={
+                        <UpdateFurnitureForm formKey={itemName} name={itemName}
+                          details={item}
+                          initialValues={ initialFormValues }
+                        />
+                      }
                     >
                       <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
-                      <span className='card-body'>Price: ${this.props.list[itemName].price} <a href={this.props.list[itemName].url}>Link</a></span>
+                      <span className='card-body'>Price: ${item.price} <a href={item.url}>Link</a></span>
                     </Card>
                   </Col>
                 </div>

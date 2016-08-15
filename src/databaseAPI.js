@@ -77,10 +77,15 @@ const databaseAPI = {
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/budget').set(budget);
   },
 
-  updateFurniture(roomName, furnitureName, furnitureProps) {
+  updateFurniture(roomName, furnitureName, furnitureProps, outdatedFurnitureName) {
     //take the roomName and furnitureName from the submit and put the obj at the
     // location in the database
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName + '/furniture/' + furnitureName).set(furnitureProps);
+
+    // If the furniture changed names, also delete the furniture at the outdated name location
+    if (outdatedFurnitureName) {
+      database.ref(`iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/${roomName}/furniture/${outdatedFurnitureName}`).remove();
+    }
   },
 
   updateRoom(oldRoomName, newRoomName, clonedRoom) {
