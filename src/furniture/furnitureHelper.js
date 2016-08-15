@@ -178,7 +178,7 @@ const furnitureHelper = {
         });
       //sorted by total room price from lowest to highest with items without a price last
       //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
-      console.log(data);
+      
       return data || [];
     }
     else {
