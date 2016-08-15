@@ -71,7 +71,12 @@ describe('Update Room Details', () => {
 
 describe('Add Room', () => {
   it('should return an object', () => {
-    expect(addRoom(null, IGNORE_DB_CALL)).to.be.an('object');
+    const roomFormDetails = {
+      roomName: 'Great Hall',
+      size: '45x45',
+      notes: 'This room needs more color.'
+    };
+    expect(addRoom(roomFormDetails, IGNORE_DB_CALL)).to.be.an('object');
   });
 
   describe('the object returned by the addRoom function', () => {
