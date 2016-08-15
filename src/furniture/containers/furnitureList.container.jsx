@@ -81,67 +81,63 @@ class FurnitureList extends Component {
 
     return (
       <div>
-        <Row>
-          <Col s={12}>
+        <div className="nav-items" style={{"position":"fixed", "width":"100%", "marginTop":"-15%","marginBottom":"0", "zIndex": 1000}}>
+          <Row style={{"position":"relative", "marginBottom":"0"}}>
+            <Col s={12}>
+                <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
+                  {roomNames.map((room, i) => {
+                    return (
+                      <Tab className='navTab'
+                      onClick={() => {this.click(room)}}
+                      label={room}
+                      key={i}
+                      style={{'color':'#424242', 'background':'#f5f5f5'}}
+                      >
+                      </Tab>
+                    )
+                  })}
+                <Tab label='All' onTouchTap={this.handleAll} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+              </Tabs>  
+            </Col>
+          </Row>
           
-              <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5', 'overflowY':'scroll'}}>
-                {roomNames.map((room, i) => {
-                  return (
-                    <Tab className='navTab' 
-                    onClick={() => {this.click(room)}}
-                    label={room}
-                    key={i}
-                    style={{'color':'#424242', 'background':'#f5f5f5'}}
+          <Row>
+            <Col s={12}>
+              <div className='right-align' style={{'background': color }}>
+                <FlatButton label='My Items' onTouchTap={this.handleFList} />
+                <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
+                <FlatButton label='All' onTouchTap={this.handleAll} />
+              </div>
+            </Col>
+          </Row>
+        </div>
+
+        <div style={{"position":"relative", "margin-top":"15%"}}>
+          <Row>
+            <Col s={12} l={12}>
+              <div>
+                  {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
+                  {this.state.view === 1 ? <Designer/> : null}
+                  {this.state.view === 2 ? <ListingFurniture className="center-aligned" /> : null}
+              </div>
+            </Col>
+          </Row>
+          <div className='F-FAB'>
+              <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
+                <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
+                  <div>
+                    <Dialog
+                      title="Add an Item"
+                      actions={actions}
+                      modal={false}
+                      open={this.state.add}
+                      onRequestClose={this.handleClose}
                     >
-                    </Tab>
-                  )
-                })}
-              <Tab label='All' onTouchTap={this.handleAll} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
-             </Tabs>  
-            
-          </Col>
-
-  
-        
-        </Row>
-        
-        <Row>
-          <Col s={12}>
-            <div className='right-align' style={{'background': color }}>
-              <FlatButton label='My Items' onTouchTap={this.handleFList} />
-              <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
-              <FlatButton label='All' onTouchTap={this.handleAll} />
-            </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col s={12} l={12}>
-            <div>
-                {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
-                {this.state.view === 1 ? <Designer/> : null}
-                {this.state.view === 2 ? <ListingFurniture className="center-aligned"/> : null}
-            </div>
-          </Col>
-        </Row>
-        <div className='F-FAB'>
-            <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
-              <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
-                <div>
-                  <Dialog
-                    title="Add an Item"
-                    actions={actions}
-                    modal={false}
-                    open={this.state.add}
-                    onRequestClose={this.handleClose}
-                  >
-                   <AddFurnitureForm ref="furnitureForm"/>
-                  </Dialog>
-                </div>
-            </Button>  
-  
-           
-          
+                     <AddFurnitureForm ref="furnitureForm"/>
+                    </Dialog>
+                  </div>
+              </Button>
+           </div>
         </div>
       </div>
     );

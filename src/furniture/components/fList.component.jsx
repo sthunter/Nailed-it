@@ -24,7 +24,7 @@ class FList extends Component {
     const listNames = Object.keys(this.props.list);
 
     return (
-      <div>
+      <div >
         <Row>
           <div className="CardList">
             {listNames.map((itemName, i) => {
@@ -38,7 +38,7 @@ class FList extends Component {
               };
 
               return (
-                <div key={i}>
+                <div key={i} >
                   <Col l={4} m={6} s={12}>
                     <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
                       title={itemName}
