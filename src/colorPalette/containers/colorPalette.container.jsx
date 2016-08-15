@@ -1,34 +1,47 @@
 import React, {Component} from 'react';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
+import { SwatchesPicker } from 'react-color';
 
 class ColorPalette extends Component {
-  color = this.props.rooms[this.props.roomSelected].color.hex
+
+  state = {
+      displayColorPicker: false,
+      color: this.props.rooms[this.props.roomSelected].color.hex
+    };
+
+    handleClick = () => {
+      this.setState({ displayColorPicker: !this.state.displayColorPicker })
+    };
+
+    handleClose = () => {
+      this.setState({ displayColorPicker: false })
+    };
 
   findMonochromaticColors() {
-    var color = this.color;
+    var color = this.state.color;
     var colors = tinycolor(color).monochromatic();
     var colorArray = colors.map(function(t) { return t.toHexString(); });
     return colorArray;
   }
 
   findComplementsColors() {
-    var color = this.color;
+    var color = this.state.color;
     var colors = tinycolor(color).splitcomplement();
     var colorArray = colors.map(function(t) { return t.toHexString(); });
     return colorArray;
   }
 
   findTetradColors() {
-    var color = this.color;
+    var color = this.state.color;
     var colors = tinycolor(color).tetrad();
     var colorArray = colors.map(function(t) { return t.toHexString(); });
     return colorArray;
   }
 
   findAnalogousColors() {
-    var color = this.color;
+    var color = this.state.color;
     var colors = tinycolor(color).analogous();
     colors.map(function(t) { return t.toHexString(); });
     var colorArray = colors.map(function(t) { return t.toHexString(); });
@@ -51,6 +64,17 @@ class ColorPalette extends Component {
   }
 
   render() { 
+    const popover = {
+      position: 'absolute',
+      zIndex: '2',
+    }
+    const cover = {
+      position: 'fixed',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+    }
     let MonochromaticRects = this.buildPalette(this.monochromaticColors);
     let AnalagousRects = this.buildPalette(this.analogousColors);
     let TetraRects = this.buildPalette(this.tetradColors);
@@ -58,6 +82,11 @@ class ColorPalette extends Component {
     let rectWidth = 100;
     return (
       <div>
+        <button onClick={ this.handleClick }>Pick Color</button>
+        { this.state.displayColorPicker ? <div style={ popover }>
+          <div style={ cover } onClick={ this.handleClose }/>
+          <SwatchesPicker />
+        </div> : null }
         <svg width={rectWidth * (MonochromaticRects.length - 1) || rectWidth}>
           <g>
           {MonochromaticRects}
@@ -87,9 +116,9 @@ function mapStateToProps({ rooms, roomSelected }) {
   return { rooms, roomSelected };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({selectRoom}, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({selectRoom}, dispatch);
+}
 
 
 export default connect(mapStateToProps)(ColorPalette);
