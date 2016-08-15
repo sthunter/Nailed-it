@@ -146,6 +146,44 @@ const furnitureHelper = {
     else {
       return null;
     }
-  }
+  },
+  filterByRoomPrice(rooms) {
+    if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
+      let data = furnitureHelper.listByRoom(rooms);
+      
+        data.sort((a, b) => {
+          let aPrice = 0;
+          let bPrice = 0;
+          for (var i = 0; i < a[2].length; i ++) {
+            if (!isNaN(a[2][i].price)) {
+              aPrice += Number(a[2][i].price);
+            }
+          }
+          for (var i = 0; i < b[2].length; i ++) {
+            if (!isNaN(b[2][i].price)) {
+
+              bPrice += Number(b[2][i].price);
+            }
+          }
+          if (isNaN(aPrice)) {
+            return 1;
+          }
+          if (aPrice < bPrice) {
+            return -1;
+          }
+          if (aPrice > bPrice) {
+            return 1;
+          }
+          return 0;
+        });
+      //sorted by total room price from lowest to highest with items without a price last
+      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
+      console.log(data);
+      return data || [];
+    }
+    else {
+      return null;
+    }
+  },
 };
 export default furnitureHelper;
