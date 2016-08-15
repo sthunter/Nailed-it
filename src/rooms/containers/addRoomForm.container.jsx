@@ -60,7 +60,7 @@ class AddRoomForm extends Component {
                 </div>
               </Row>
             </Col>
-            <Button type="submit">Submit</Button>
+            <RaisedButton label="Submit" type="submit"/>
           </form>
         </CardText>
       </Card>

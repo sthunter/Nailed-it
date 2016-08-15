@@ -6,6 +6,8 @@ import BudgetTable from '../components/BudgetTable';
 import BudgetGraph from '../components/BudgetGraph';
 import { getBudget, updateBudget, updateGraph } from '../actions/budgetView.action';
 import { reduxForm } from 'redux-form';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 
 class BudgetView extends Component {
@@ -19,7 +21,7 @@ class BudgetView extends Component {
       <div>
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
           <Input type="number" placeholder="Budget" s={12} label="Budget" { ...newBudget } />
-          <Button type="submit">Update</Button>
+          <RaisedButton label="Update" type="submit"/>
         </form>
         
         <BudgetGraph onClick={updateGraph} budget={this.props.budget} rooms={this.props.rooms}/>

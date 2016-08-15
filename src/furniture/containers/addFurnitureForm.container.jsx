@@ -28,7 +28,7 @@ class AddFurnitureForm extends Component {
         <Input s={6} placeholder="ETA" {...ETA} />
       </Row>
      
-      <RaisedButton primary={true} type="submit" label="submit"/>
+      <RaisedButton type="submit" label="submit"/>
      </form>
     );
   }
