@@ -48,11 +48,33 @@ export function deleteFurniture(furnitureName, roomName) {
   };
 }
 
-export function updateFurniture(furnitureName, roomName, newProps) {
+export function updateFurniture(originalFurnitureName, roomName, currentFurnitureProps, newProps) {
+  // Iterate through the new furniture properties, and merge them with the current
+  // furniture properties. The new object should not any undefined values. We also want to ignore the 'itemName'
+  // property, which shouldn't be stored as a property of the furniture.
+  const newFurnitureName = newProps.itemName;
+  delete newProps.itemName;
+  const newFurniturePropNames = Object.keys(newProps);
+  const updatedFurniture = _.clone(currentFurnitureProps);
+  newFurniturePropNames.forEach(prop => {
+    if (newProps[prop]) {
+      updatedFurniture[prop] = newProps[prop]; // Update with the new value
+    } else { // User left this field blank (or deleted a value that existed before)
+      delete updatedFurniture[prop]; // If the prop existed on the old furniture object, delete it
+    }
+  });
+
+  // If the furniture name didn't change, then change just update the furniture. If the furniture name
+  // did change, then send along the new information with the new furniture name, and delete
+  // the old furniture
+  const nameChange = originalFurnitureName !== newFurnitureName;
+  databaseAPI.updateFurniture(roomName, newFurnitureName, updatedFurniture, nameChange ? originalFurnitureName: '');
+
   return {
     type: UPDATE_FURNITURE,
     roomName,
-    furnitureName,
-    newProps
+    originalFurnitureName,
+    newFurnitureName,
+    updatedFurniture,
   }
 }

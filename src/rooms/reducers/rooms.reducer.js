@@ -76,19 +76,30 @@ const roomsReducer = (state = {}, action) => {
       //add in new furniture properties at the roomName.furnitureName location
       newState[action.roomName].furniture[action.furnitureName] = action.furnitureProps;
       return newState;
+
     case DELETE_FURNITURE:
       newState = _.clone(state);
       delete newState[action.roomName].furniture[action.furnitureName];
       return newState;
+
     case UPDATE_FURNITURE:
       newState = _.clone(state);
-      Object.assign(newState[action.roomName].furniture[action.furnitureName],
-        action.newProps);
+
+      // Update the furniture name if necessary by removing the old furniture
+      if (action.originalFurnitureName !== action.newFurnitureName) {
+        delete newState[action.originalFurnitureName];
+      }
+
+      // Add updated furniture props to the new state object, at the updated furniture name
+      newState[action.roomName].furniture[action.newFurnitureName] = action.updatedFurniture;
+
       return newState;
+
     case REMOVE_ROOM:
       newState = _.clone(state);
       delete newState[action.title]
       return newState;
+
     default:
       return state;
   }

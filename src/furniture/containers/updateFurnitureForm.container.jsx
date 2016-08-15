@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import { UPDATE_FURNITURE, updateFurniture } from '../actions/furniture.action';
+import { updateFurniture } from '../actions/furniture.action';
 //import { Table, Input } from 'react-materialize';
 
 class UpdateFurnitureForm extends Component {
   render() {
     const { fields: { itemName, price, deliveryDate, size, description }, handleSubmit } = this.props;
-    console.log(itemName);
-    // todo: Need to pass action into handleSubmit
+    const currentFurnitureObj = this.props.rooms[this.props.roomSelected].furniture[this.props.name];
+    const boundUpdateFurniture = this.props.updateFurniture.bind(null,
+      this.props.name, this.props.roomSelected, currentFurnitureObj
+    );
 
     return (
-      <form onSubmit={ handleSubmit(updateFurniture.bind(null, this.props.name, this.props.roomSelected)) }>
+      <form onSubmit={ handleSubmit(boundUpdateFurniture) }>
         <table className="furniture-detail">
           <tbody>
             <tr>
@@ -26,12 +28,13 @@ class UpdateFurnitureForm extends Component {
             </tr>
           </tbody>
         </table>
+        <button type="submit" disabled={this.props.pristine}>Submit</button>
       </form>
     );
   }
 }
 
-const mapStateToProps = ({ roomSelected }) => { roomSelected };
+const mapStateToProps = ({ roomSelected, rooms }) => ({ roomSelected, rooms });
 
 export default reduxForm({
   form: 'UpdateFurnitureForm',
