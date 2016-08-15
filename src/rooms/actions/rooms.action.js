@@ -25,6 +25,11 @@ export function addRoom(details, ignoreDbCall) {
     color: {hex: '#d3d3d3'},
   };
 
+  let toTitleCase = (str) => {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  };
+  details.roomName = toTitleCase(details.roomName);
+
   if (!(ignoreDbCall === true)) {
     //database call sends room with a empty object to later store new furniture
     databaseAPI.addRoom(roomContents, details && details.roomName);
