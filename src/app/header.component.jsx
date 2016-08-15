@@ -59,8 +59,9 @@ class Header extends Component {
 
   render() {
     return (
-      <Link to={ '/room' } ><Navbar className="grey darken-3" brand="Nailed-It" right href='/room' >
+      <Link to={ '/room' } ><Navbar style={{"zIndex":"1000"}} className="grey darken-3" brand="Nailed-It" right href='/room' >
         
+        <NavItem className={ 'right nav-item' + this.activeIfRoom('room') }><Link to={ '/room' }>My Rooms</Link></NavItem>
         <NavItem onClick={()=>this.signInSignOut()}>{this.props.authenticated ? 'Sign Out' : 'Sign In'}</NavItem>
         <NavItem className={ 'right nav-item' + this.activeIfRoom('public') }><Link to={ '/public' }>Shared Projects</Link></NavItem>
         
@@ -84,4 +85,3 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 // <NavItem><Link to={ '/room' } ><span id="brand">Nailed-It</span></Link></NavItem>
-// <NavItem className={ 'right nav-item' + this.activeIfRoom('room') }><Link to={ '/room' }>My Rooms</Link></NavItem>

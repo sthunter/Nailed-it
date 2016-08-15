@@ -81,7 +81,7 @@ class FurnitureList extends Component {
 
     return (
       <div>
-        <div className="nav-items" style={{"position":"fixed", "width":"100%", "marginTop":"-15%","marginBottom":"0", "zIndex": 1000}}>
+        <div className="nav-items" style={{"position":"fixed", "width":"100%", "marginTop":"-15%","marginBottom":"0", "zIndex": "500"}}>
           <Row style={{"position":"relative", "marginBottom":"0"}}>
             <Col s={12}>
                 <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
