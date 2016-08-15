@@ -16,15 +16,26 @@ class UpdateFurnitureForm extends Component {
         <table className="furniture-detail">
           <tbody>
             <tr>
-              <th>Name</th><td><input type="text" { ...itemName }  /></td>
-              <th>Price</th><td><input type="text" { ...price }  /></td>
+              <th>Name</th>
+              <th>Price</th>
             </tr>
             <tr>
-              <th>Delivery</th><td><input type="text" { ...deliveryDate }  /></td>
-              <th>Size</th><td><input type="text" { ...size }  /></td>
+              <td><input type="text" { ...itemName }  /></td>
+              <td><input type="text" { ...price }  /></td>
             </tr>
             <tr>
-              <th>Notes</th><td colSpan="3"><textarea { ...description }  /></td>
+              <th>Delivery</th>
+              <th>Size</th>
+            </tr>
+            <tr>
+              <td><input type="text" { ...deliveryDate }  /></td>
+              <td><input type="text" { ...size }  /></td>
+            </tr>
+            <tr>
+              <th>Notes</th>
+            </tr>
+            <tr>
+              <td colSpan="3"><textarea { ...description }  /></td>
             </tr>
           </tbody>
         </table>
@@ -36,7 +47,18 @@ class UpdateFurnitureForm extends Component {
 
 const mapStateToProps = ({ roomSelected, rooms }) => ({ roomSelected, rooms });
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.itemName.trim()) {
+    errors.itemName = 'The item must have a name.'
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'UpdateFurnitureForm',
   fields: ['itemName', 'price', 'deliveryDate', 'size', 'description'],
+  validate,
 }, mapStateToProps, { updateFurniture })(UpdateFurnitureForm);
