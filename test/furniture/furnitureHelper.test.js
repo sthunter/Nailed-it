@@ -261,11 +261,18 @@ describe('Furniture Helper ', () => {
     });
     let result = filterByDate(rooms);
   });
-    describe('that has property called "filterByPrice" that', () => {
+  describe('that has property called "filterByPrice" that', () => {
     let filterByPrice = furnitureHelper.filterByPrice;
     it('is a function', () => {
       expect(filterByPrice).to.be.a('function');
     });
     let result = filterByPrice(rooms);
+  });
+  describe('that has property called "filterByRoomPrice" that', () => {
+    let filterByRoomPrice = furnitureHelper.filterByRoomPrice;
+    it('is a function', () => {
+      expect(filterByRoomPrice).to.be.a('function');
+    });
+    let result = filterByRoomPrice(rooms);
   });
 });
