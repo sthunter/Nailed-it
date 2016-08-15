@@ -37,7 +37,6 @@ class ListItem extends Component {
     }
     else {
       photoURL = this.props.lists.profile.photoURL
-      console.log(photoURL)
     }
     Number.prototype.formatMoney = function(c, d, t){
     var n = this, 
@@ -82,7 +81,6 @@ class ListItem extends Component {
               let cardStyle = {'background':'#e0e0e0'}
               if(lists.rooms[itemName].color) {
                 cardStyle = {'background': lists.rooms[itemName].color.hex }
-                console.log(cardStyle)
               }
               return (
                 <div key={itemName}>

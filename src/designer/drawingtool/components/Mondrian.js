@@ -26,69 +26,6 @@ export default class Designing extends Component {
     this.props.updateRoomDesign(this.state.objects, this.props.roomSelected)
   }
 
-  // state = { objects: [{
-  //     "title": "chair",
-  //     "width": 300,
-  //     "height": 245,
-  //     "rotate": 0,
-  //     "strokeWidth": 0,
-  //     "fill": "#424242",
-  //     "radius": "0",
-  //     "blendMode": "normal",
-  //     "type": "rectangle",
-  //     "x": 10,
-  //     "y": 5
-  //   }, {
-  //     "title": "table",
-  //     "width": 330,
-  //     "height": 245,
-  //     "rotate": 0,
-  //     "strokeWidth": 0,
-  //     "fill": "#424242",
-  //     "radius": "0",
-  //     "blendMode": "normal",
-  //     "type": "rectangle",
-  //     "x": 369,
-  //     "y": 3
-  //   }, {
-  //     "title": "bottle"
-  //     "width": 300,
-  //     "height": 350,
-  //     "rotate": 0,
-  //     "strokeWidth": 0,
-  //     "fill": "rgba(241, 97, 99, 1)",
-  //     "radius": "0",
-  //     "blendMode": "normal",
-  //     "type": "rectangle",
-  //     "x": 10,
-  //     "y": 262
-  //   }, {
-  //     "title": "armrest"
-  //     "width": 100,
-  //     "height": 160,
-  //     "rotate": 0,
-  //     "strokeWidth": 0,
-  //     "fill": "rgba(255, 241, 0, 1)",
-  //     "radius": "0",
-  //     "blendMode": "normal",
-  //     "type": "rectangle",
-  //     "x": 190,
-  //     "y": 16
-  //   },
-  //   {
-  //     fill: "black",
-  //     fontFamily: "Helvetica",
-  //     fontSize: 50,
-  //     fontStyle: "normal",
-  //     fontWeight: "normal",
-  //     rotate: 0,
-  //     text: "armrest",
-  //     textDecoration: "none",
-  //     type: "text",
-  //     x: 190,
-  //     y: 16 
-  //   }]
-  // }
   state = (this.props.rooms[this.currentRoom] && this.props.rooms[this.currentRoom].design)  ?
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
