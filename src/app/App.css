@@ -60,7 +60,7 @@ body {
   /*display:inline-block;*/
 }
 
-.input.active {
+.input .active {
   background-color:#424242;
 }
 .card-control-panel {
@@ -88,6 +88,7 @@ div.icon-row{
 input.slimDown {
   margin: 0;
   height: 1.5rem;
+
 
 }
 div.container {
