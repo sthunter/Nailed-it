@@ -14,6 +14,7 @@ const furnitureHelper = {
         unsorted.push(triple);
         };
       }
+      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
       return unsorted;
     }
     else {
@@ -38,6 +39,7 @@ const furnitureHelper = {
         
         };
       }
+      //data shape is [[furnitureName, roomName, furnitureObj], ...]
       return unsorted;
     }
     else {
@@ -58,6 +60,8 @@ const furnitureHelper = {
           }
           return 0;
         });
+      //sorted by room name from a to z.
+      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
       return data || [];
     }
     else {
@@ -77,6 +81,8 @@ const furnitureHelper = {
           }
           return 0;
         });
+      //sorted by furniture name from a to z.
+      //data shape is [[furnitureName, roomName, furnitureObj], ...]
       return data || [];
     }
     else {
@@ -106,6 +112,9 @@ const furnitureHelper = {
           }
           return 0;
         });
+      //sorted by delivery date from soonest to latest with items without a delivery date last
+      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      return data || [];
     }
     else {
       return null;
@@ -130,7 +139,8 @@ const furnitureHelper = {
           }
           return 0;
         });
-        
+      //sorted by furniture price from lowest to highest with items without a price last
+      //data shape is [[furnitureName, roomName, furnitureObj], ...]
       return data || [];
     }
     else {
