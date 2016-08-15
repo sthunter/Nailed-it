@@ -76,6 +76,3 @@ export default reduxForm({
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(null, dispatch);
 }
-
-
-    
