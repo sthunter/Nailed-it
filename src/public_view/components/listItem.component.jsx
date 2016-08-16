@@ -85,23 +85,24 @@ class ListItem extends Component {
               }
               return (
                 <div key={itemName}>
-                  <Col s={2}>
-                  <Modal
-                    style = {cardStyle}
-                    header={itemName} 
-                    trigger={
-                      <MediaBox src={photoURL} caption={itemName} width='100' style={{"cursor": "pointer"}}/>
-                    }>
-                    <p>
-                      {this.getfurniture(itemName)}
-                    </p>
-                  </Modal>
+                  <Col s={3}>
+                    <Modal
+                      style = {cardStyle}
+                      header={itemName} 
+                      trigger={
+                        <MediaBox src={photoURL} caption={itemName} width='100' style={{"cursor": "pointer"}}/>
+                      }>
+                      <div className="center-align">
+                        {this.getfurniture(itemName)}
+                      </div>
+                    </Modal>
                     <span className='center-align'>{itemName}</span>
                   </Col>
                 </div>
               );
             })}
           </Row>
+          <br/>
         </CardPanel>
         </Col>
       </div>

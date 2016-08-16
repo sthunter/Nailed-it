@@ -35,8 +35,14 @@ body {
 
 .activator {
   height: 250px; 
-  width: 400px; 
+  widtx`h: auto; 
   object-fit: contain;
+}
+
+.materialboxed {
+  height:65px;
+  width:auto;
+  object-fit:contain;
 }
 
 .RoomListHeader {
