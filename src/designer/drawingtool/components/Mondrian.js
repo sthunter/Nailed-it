@@ -74,7 +74,9 @@ export default class Designing extends Component {
       );
     }
     if(this.state.objects.length < Object.keys(this.props.rooms[this.props.roomSelected].furniture).length) {
-      var counter = Object.keys(this.props.rooms[this.props.roomSelected].furniture).length - this.state.objects.length;  
+      var furnitureNames = Object.keys(this.props.rooms[this.props.roomSelected].furniture)
+      var counter = Object.keys(this.props.rooms[this.props.roomSelected].furniture).length - this.state.objects.length; 
+      console.log(this.props.rooms[this.props.roomSelected].color.hex)
       for (var i = 0; i < counter; i++ ) {
         this.state.objects.push({
           "width": 20,
@@ -87,7 +89,7 @@ export default class Designing extends Component {
           "type": "rectangle",
           "x": 10,
           "y": 5,
-          text: "Hello",
+          text: furnitureNames[furnitureNames.length - i - 1],
           fontWeight: "normal",
           fontStyle: "normal",
           textDecoration: "none",

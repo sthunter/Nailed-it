@@ -9,6 +9,7 @@ class ColorPalette extends Component {
 
   state = {
       displayColorPicker: false,
+      color: this.props.rooms[this.props.roomSelected].color.hex
     };
 
     handleClick = () => {
@@ -18,7 +19,6 @@ class ColorPalette extends Component {
     handleClose = () => {
       this.setState({ displayColorPicker: false })
     };
-
   findMonochromaticColors(color) {
 
     var colors = tinycolor(color).monochromatic();
@@ -58,6 +58,10 @@ class ColorPalette extends Component {
     return rects;
   }
 
+  handleChangeComplete(color) {
+    this.setState({color: color.hex})
+  };
+
   render() { 
     const popover = {
       position: 'absolute',
@@ -70,10 +74,10 @@ class ColorPalette extends Component {
       bottom: '0',
       left: '0',
     }
-    var complementsColors = this.findComplementsColors(this.props.rooms[this.props.roomSelected].color.hex)
-    var analogousColors = this.findAnalogousColors(this.props.rooms[this.props.roomSelected].color.hex)
-    var tetradColors = this.findTetradColors(this.props.rooms[this.props.roomSelected].color.hex)
-    var monochromaticColors = this.findMonochromaticColors(this.props.rooms[this.props.roomSelected].color.hex)
+    var complementsColors = this.findComplementsColors(this.state.color)
+    var analogousColors = this.findAnalogousColors(this.state.color)
+    var tetradColors = this.findTetradColors(this.state.color)
+    var monochromaticColors = this.findMonochromaticColors(this.state.color)
     let MonochromaticRects = this.buildPalette(monochromaticColors);
     let AnalagousRects = this.buildPalette(analogousColors);
     let TetraRects = this.buildPalette(tetradColors);
@@ -84,7 +88,7 @@ class ColorPalette extends Component {
         <button onClick={ this.handleClick }>Pick Color</button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
-          <SwatchesPicker />
+          <SwatchesPicker   onChangeComplete={(color) => this.handleChangeComplete(color, this.props.title)} />
         </div> : null }
 
         <Row>
