@@ -18,7 +18,8 @@ class PieChartHolder extends Component {
     return(
       <PieChart
           labels
-          size={ 330 }
+          size={ 600 }
+          innerHoleSize = { 300 }
           data={ genData }
           clickHandler={(selection) => {
             let data = this.props.onClick(selection.data);

@@ -62,6 +62,7 @@ class FurnitureList extends Component {
   } 
 
   handleAll = () => {
+    console.log(all)
     this.setState({view: 2});
   }
 
