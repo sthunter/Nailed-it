@@ -111,13 +111,9 @@ const databaseAPI = {
     database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room).remove();
   },
 
-  // removeFurniture(room, furniture) {
-  //   for (var room in rooms) {
-  //     for (var pieceOfFurniture in furniture) {
-  //       database.ref('rooms/' + room + '/furniture/' + pieceOfFurniture).remove();
-  //     }
-  //   }
-  // };
+  removeFurniture(furniture, room) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + room + '/furniture/' + furniture).remove();
+  },
 };
 
 export default databaseAPI;
