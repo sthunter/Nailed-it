@@ -16,6 +16,7 @@ class ListingFurniture extends Component {
   state = {
     filter: furnitureHelper.listByFurniture,
   }
+  
   filterByFurnitureName() {
     this.setState({filter: furnitureHelper.filterByFurniture});
   }

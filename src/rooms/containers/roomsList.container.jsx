@@ -20,7 +20,6 @@ export default class RoomsList extends Component {
   }
 
   onDrop(files) {
-    // console.log('Received files: ', files);
     this.props.addPhoto(files);
   }
 
@@ -34,7 +33,7 @@ export default class RoomsList extends Component {
             <div style={{"overflowY":"scroll"}}>
               <div className="RoomListHeader">
                 <Input name='public' type='checkbox' value='Public' checked={currentPublicStatus}
-                       label='Make this project public'
+                       label='Share My Project'
                        onChange={() => this.props.makePublic_Private(!currentPublicStatus)}/>
               </div>
               <CardList
@@ -49,12 +48,11 @@ export default class RoomsList extends Component {
           </Col>
           <Col s={12} m={6} l={6} >
             <div style={{}}>
-              
+
               <BudgetView rooms={this.props.rooms}/>
             </div>
           </Col>
         </Row>
-        
       </div>
     );
   }
