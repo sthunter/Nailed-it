@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import { SwatchesPicker } from 'react-color';
 import {Col, Row} from 'react-materialize';
+import FlatButton from 'material-ui/FlatButton';
 
 class ColorPalette extends Component {
 
@@ -85,7 +86,7 @@ class ColorPalette extends Component {
     let rectWidth = 100;
     return (
       <div>
-        <button onClick={ this.handleClick }>Pick Color</button>
+        <FlatButton onClick={ this.handleClick } label="Pick Color"/>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
           <SwatchesPicker   onChangeComplete={(color) => this.handleChangeComplete(color, this.props.title)} />
