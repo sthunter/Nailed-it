@@ -30,17 +30,18 @@ const furnitureHelper = {
         
           for (var furniture in rooms[room].furniture) {
             if (furniture) {
-              let triple = [];
-              triple.push(furniture)
-              triple.push(room)
-              triple.push(rooms[room].furniture[furniture])
+              let triple = {
+                furnitureName: furniture,
+                roomName: room,
+                furnitureObj: rooms[room].furniture[furniture],
+              };
               unsorted.push(triple);
             };
           };
         
         };
       }
-      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      //data shape is [{furnitureName, roomName, furnitureObj}, ...]
       return unsorted;
     }
     else {
@@ -53,8 +54,8 @@ const furnitureHelper = {
       let data = furnitureHelper.listByFurniture(rooms);
         
         data.sort((a, b) => {
-          let aName = a[1].toLowerCase();  
-          let bName = b[1].toLowerCase();
+          let aName = a.roomName.toLowerCase();  
+          let bName = b.roomName.toLowerCase();
           if (aName < bName) {
             return -1;
           }
@@ -77,8 +78,8 @@ const furnitureHelper = {
       let data = furnitureHelper.listByFurniture(rooms);
       
         data.sort((a, b) => {
-          let aName = a[0].toLowerCase();
-          let bName = b[0].toLowerCase();
+          let aName = a.furnitureName.toLowerCase();
+          let bName = b.furnitureName.toLowerCase();
           if (aName < bName) {
             return -1;
           }
@@ -88,7 +89,7 @@ const furnitureHelper = {
           return 0;
         });
       //sorted by furniture name from a to z.
-      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      //data shape is [{furnitureName, roomName, furnitureObj}, ...]
       return data || [];
     }
     else {
@@ -101,14 +102,14 @@ const furnitureHelper = {
       
         data.sort((a, b) => {
 
-          if (a[2].deliveryDate === undefined || !(a[2].deliveryDate)) {
+          if (a.furnitureObj.deliveryDate === undefined || !(a.furnitureObj.deliveryDate)) {
             return 1;
           }
-          if (b[2].deliveryDate === undefined || !(b[2].deliveryDate)) {
+          if (b.furnitureObj.deliveryDate === undefined || !(b.furnitureObj.deliveryDate)) {
             return -1;
           }
-          let aDate = Date.UTC(...(a[2].deliveryDate.split('-')));
-          let bDate = Date.UTC(...(b[2].deliveryDate.split('-')));
+          let aDate = Date.UTC(...(a.furnitureObj.deliveryDate.split('-')));
+          let bDate = Date.UTC(...(b.furnitureObj.deliveryDate.split('-')));
          
           if (aDate < bDate) {
             return -1;
@@ -119,7 +120,7 @@ const furnitureHelper = {
           return 0;
         });
       //sorted by delivery date from soonest to latest with items without a delivery date last
-      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      //data shape is [{furnitureName, roomName, furnitureObj}, ...]
       return data || [];
     }
     else {
@@ -131,8 +132,8 @@ const furnitureHelper = {
       let data = furnitureHelper.listByFurniture(rooms);
       
         data.sort((a, b) => {
-          let aPrice = new Number(a[2].price);
-          let bPrice = new Number(b[2].price);
+          let aPrice = new Number(a.furnitureObj.price);
+          let bPrice = new Number(b.furnitureObj.price);
 
           if (isNaN(aPrice)) {
             return 1;
@@ -146,7 +147,7 @@ const furnitureHelper = {
           return 0;
         });
       //sorted by furniture price from lowest to highest with items without a price last
-      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      //data shape is [{furnitureName, roomName, furnitureObj}, ...]
       return data || [];
     }
     else {
