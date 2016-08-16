@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component';
+import { Col } from 'react-materialize';
 //import { Row, Col, Modal, Button } from 'react-materialize';
 
 class CardList extends Component {
@@ -8,6 +9,7 @@ class CardList extends Component {
     const listNames = Object.keys(this.props.lists);
     return (
       <div className="CardList">
+        <Col s={12}>
         {listNames.map((itemName) => {
           return (
             <ListItem
@@ -18,6 +20,7 @@ class CardList extends Component {
             />
           );
         })}
+        </Col>
       </div>
     );
   }

@@ -22,7 +22,6 @@ export default class ProjectList extends Component {
     }, {});
     return (
       <Row>
-      <h3> List of Public Projects</h3>
         <Col s={12} m={12} l={12}>
           <div>
             <CardList
