@@ -36,7 +36,7 @@ class ListingFurniture extends Component {
     const roomName = Object.keys(rooms);
     const toTitleCase = this.toTitleCase;
     let furnitureList = this.state.filter(rooms);
-    console.log('render')
+    
     //const roomList = furnitureHelper.listByRoom(rooms);
 
 
@@ -77,7 +77,7 @@ class ListingFurniture extends Component {
                   </tr>
                 </thead>
                 {furnitureList.map(function(triple, i){
-                  console.log(triple)
+                  
                       return (
                         <tr key={i} id="table-item">
                           <td className="slimDown"><b>{  triple[1] || "" }</b></td>
