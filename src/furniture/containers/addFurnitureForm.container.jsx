@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardTitle, Icon, Button, Input, Row, Col } from 'react-materialize';
 import { reduxForm, reset } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
-import { DatePicker } from 'material-ui/DatePicker';
+import DatePicker from 'material-ui/DatePicker';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -25,7 +25,7 @@ class AddFurnitureForm extends Component {
         <Input s={6} placeholder='Photo URL'{ ...url } />
       <Row>
         <Input s={6} placeholder="Size" {...size} />
-        <Input s={6} placeholder="ETA" {...ETA} />
+        <DatePicker hintText="Delivery Date" mode="landscape" />
       </Row>
      
       <RaisedButton type="submit" label="submit"/>
