@@ -30,10 +30,10 @@ export default class Designing extends Component {
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
           "width": 20,
-          "height": 20,
+          "height": 40,
           "rotate": 0,
           "strokeWidth": 0,
-          "fill": "#424242",
+          "fill": "#ffffff",
           "radius": "0",
           "blendMode": "normal",
           "type": "rectangle",
@@ -81,18 +81,24 @@ export default class Designing extends Component {
           "height": 20,
           "rotate": 0,
           "strokeWidth": 0,
-          "fill": "#424242",
+          "fill": this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
           "radius": "0",
           "blendMode": "normal",
           "type": "rectangle",
           "x": 10,
-          "y": 5
+          "y": 5,
+          text: "Hello",
+          fontWeight: "normal",
+          fontStyle: "normal",
+          textDecoration: "none",
+          fontSize: 50,
+          fontFamily: "Helvetica"
         })
       }
     }
     return (
       <Designer 
-        width={800} height={600}
+        width={this.props.rooms[this.props.roomSelected].size || 800} height={this.props.rooms[this.props.roomSelected].size || 600}
         objects={this.state.objects}
         onUpdate={this.handleUpdate.bind(this)}/>
     );
