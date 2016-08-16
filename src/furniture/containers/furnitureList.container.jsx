@@ -85,7 +85,7 @@ class FurnitureList extends Component {
 
     return (
       <div>
-        <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-15%","marginBottom":"0", "zIndex": "500"}}>
+        <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-7%", "marginBottom":"0", "zIndex": "500"}}>
           <Row style={{"position":"relative", "marginBottom":"0"}}>
             <Col s={12}>
                 <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
@@ -115,7 +115,7 @@ class FurnitureList extends Component {
           </Row>
         </div>
 
-        <div style={{"position":"relative", "margin-top":"15%"}}>
+        <div style={{"position":"relative", "marginTop":"7%"}}>
           <Row>
             <Col s={12} l={12}>
               
