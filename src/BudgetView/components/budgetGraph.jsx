@@ -21,11 +21,17 @@ class BudgetGraph extends Component {
   }
 
   render() {
-    var genData;
-    
+    var genData;  
     const { rooms, budget } = this.props;
     const roomNames = Object.keys(rooms);
     const calcBudget = budgetHelper.calculateBudget;
+    roomNames.map((roomName, id) => {
+      if (id === 0) {
+        this.totalCost = 0;
+      }
+      let roomCost = calcBudget(roomName, rooms);
+      this.totalCost += roomCost;
+    })
     const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
       genData = budgetHelper.generateData(rooms, budget);
@@ -67,11 +73,7 @@ class BudgetGraph extends Component {
           </thead>
           <tbody>
             {roomNames.map((roomName, id)=> {
-              if (id === 0) {
-                this.totalCost = 0;
-              }
               let roomCost = calcBudget(roomName, rooms);
-              this.totalCost += roomCost;
               return (
                 <tr key={id}>
                   <th className="budget-table">{ budgetHelper.toTitleCase(roomName) }</th>

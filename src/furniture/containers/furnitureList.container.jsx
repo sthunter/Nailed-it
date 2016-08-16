@@ -57,12 +57,10 @@ class FurnitureList extends Component {
   }
 
   handleFList = () => {
-    console.log("got here")
     this.setState({view: 0});
   }
 
   handleDesigner = () => {
-    console.log("got here")
     this.setState({view: 1});
   } 
 
