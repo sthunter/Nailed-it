@@ -84,6 +84,7 @@ div.icon-row{
   margin-top: 0;
   margin-bottom: 0;
   white-space: nowrap;
+  height: 1.5rem;
 }
 input.slimDown {
   margin: 0;
