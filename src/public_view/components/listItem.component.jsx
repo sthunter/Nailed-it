@@ -51,11 +51,12 @@ class ListItem extends Component {
      var formattedBudget = (lists.budget).formatMoney(2);
     return (
       <div>
-        <CardPanel
+        <Col s={6}>
+        <CardPanel hoverable
           className='grey lighten-2 card-panel'
           title={ title } >
           <Row>
-            <Col s={.5}>
+            <Col s={.5  }>
               <Avatar src={photoURL} />
             </Col>
             <Col s={6}>
@@ -84,7 +85,7 @@ class ListItem extends Component {
               }
               return (
                 <div key={itemName}>
-                  <Col s={3}>
+                  <Col s={2}>
                   <Modal
                     style = {cardStyle}
                     header={itemName} 
@@ -102,6 +103,7 @@ class ListItem extends Component {
             })}
           </Row>
         </CardPanel>
+        </Col>
       </div>
     );
   }
