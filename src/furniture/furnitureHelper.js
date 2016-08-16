@@ -65,7 +65,7 @@ const furnitureHelper = {
         });
       //sorted by room name from a to z.
       //data shape is [[furnitureName, roomName, furnitureObj], ...]
-      console.log(data)
+      
       return data || [];
     }
     else {
