@@ -5,7 +5,7 @@ import { updateFurniture } from '../actions/furniture.action';
 
 class UpdateFurnitureForm extends Component {
   render() {
-    const { fields: { itemName, price, deliveryDate, size, description }, handleSubmit } = this.props;
+    const { fields: { itemName, price, deliveryDate, size, description, originalItemName }, handleSubmit } = this.props;
     const currentFurnitureObj = this.props.rooms[this.props.roomSelected].furniture[this.props.name];
     const boundUpdateFurniture = this.props.updateFurniture.bind(null,
       this.props.name, this.props.roomSelected, currentFurnitureObj
@@ -16,30 +16,45 @@ class UpdateFurnitureForm extends Component {
         <table className="furniture-detail">
           <tbody>
             <tr>
-              <th>Name</th>
-              <th>Price</th>
+              <td>
+                <label>Name
+                  <input type="text" id="itemName" className={ itemName.error ? 'invalid' : 'valid'} { ...itemName }  />
+                </label>
+                <div className="help-text"><span className="form-warning">{ itemName.error }</span></div>
+              </td>
+              <td>
+                <label>Price
+                  <input type="text" className={ price.error ? 'invalid' : 'valid'} { ...price }  />
+                </label>
+                <div className="help-text"><span className="form-warning">{ price.error }</span></div>
+              </td>
             </tr>
             <tr>
-              <td><input type="text" { ...itemName }  /></td>
-              <td><input type="text" { ...price }  /></td>
+              <td>
+                <label>Delivery Date
+                  <input type="text" className={ deliveryDate.error ? 'invalid' : 'valid'} { ...deliveryDate }  />
+                </label>
+                <div className="help-text"><span className="form-warning">{ deliveryDate.error }</span></div>
+              </td>
+              <td>
+                <label>Dimensions
+                  <input type="text" className={ size.error ? 'invalid' : 'valid'} { ...size }  />
+                </label>
+                <div className="help-text"><span className="form-warning">{ size.error }</span></div>
+              </td>
             </tr>
             <tr>
-              <th>Delivery</th>
-              <th>Size</th>
-            </tr>
-            <tr>
-              <td><input type="text" { ...deliveryDate }  /></td>
-              <td><input type="text" { ...size }  /></td>
-            </tr>
-            <tr>
-              <th>Notes</th>
-            </tr>
-            <tr>
-              <td colSpan="3"><textarea { ...description }  /></td>
+              <td colSpan="3">
+                <label>Notes
+                  <textarea className={ description.error ? 'invalid' : 'valid'} { ...description }  />
+                </label>
+                <div className="help-text"><span className="form-warning">{ description.error }</span></div>
+              </td>
             </tr>
           </tbody>
         </table>
         <button type="submit" disabled={this.props.pristine}>Submit</button>
+        <input type="text" className="hidden-field" value={ this.props.name } disabled { ...originalItemName } aria-hidden="true" />
       </form>
     );
   }
@@ -50,8 +65,18 @@ const mapStateToProps = ({ roomSelected, rooms }) => ({ roomSelected, rooms });
 function validate(values) {
   const errors = {};
 
-  if (!values.itemName.trim()) {
+  if (!values.itemName) {
     errors.itemName = 'The item must have a name.'
+  }
+
+  //const furnitureNames = Object.keys(this.props.rooms[this.props.roomSelected].furniture);
+  //// If the user changed the item name to the name of another existing piece of furniture, alert the user
+  //if (values.itemName !== values.originalItemName && ~furnitureNames.indexOf(values.itemName)) {
+  //  errors.itemName = `There is already a "${values.itemName}".`;
+  //}
+
+  if (values.price && values.price.match(/\D/)) {
+    errors.price = 'The price must only contain numbers.';
   }
 
   return errors;
@@ -59,6 +84,6 @@ function validate(values) {
 
 export default reduxForm({
   form: 'UpdateFurnitureForm',
-  fields: ['itemName', 'price', 'deliveryDate', 'size', 'description'],
+  fields: ['itemName', 'price', 'deliveryDate', 'size', 'description', 'originalItemName'],
   validate,
 }, mapStateToProps, { updateFurniture })(UpdateFurnitureForm);
