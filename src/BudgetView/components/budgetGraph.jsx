@@ -80,8 +80,10 @@ class BudgetGraph extends Component {
                 )
             })}
           </tbody>
-        </Table>  
-        <PieChartHolder genData ={genData} />
+        </Table> 
+        <br/>
+        <br/> 
+        <div className="center-align"><PieChartHolder genData ={genData} /></div>
         </div> : <div>Loading...</div>
     )
   }
