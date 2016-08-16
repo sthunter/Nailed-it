@@ -2,7 +2,7 @@ import { expect, $ } from '../testHelper';
 import furnitureHelper from '../../src/furniture/furnitureHelper';
 
 
-describe('Furniture Helper ', () => {
+xdescribe('Furniture Helper ', () => {
   const rooms = {
       "Aviary" : {
         "color" : {
