@@ -51,6 +51,7 @@ class FurnitureList extends Component {
   }
 
   click(room) {
+    this.setState({view: 0});
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
