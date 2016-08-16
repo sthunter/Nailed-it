@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import { Table, Card, CardTitle, Row, Col, Input } from 'react-materialize';
+import { Table, Card, CardTitle, Row, Col, Input} from 'react-materialize';
 import AddItemButton from '../../app/addItemButton.component.jsx';
 import { connect } from 'react-redux';
+import furnitureHelper from '../furnitureHelper';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class ListingFurniture extends Component {
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
-
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    filter: furnitureHelper.listByFurniture,
+  }
+  filterByFurnitureName() {
+    this.setState({filter: furnitureHelper.filterByFurniture});
+  }
+  filterByFurniturePrice() {
+    this.setState({filter: furnitureHelper.filterByPrice});
+  }
+  filterByDeliveryDate() {
+    this.setState({filter: furnitureHelper.filterByDate});
+  }
+  filterByRoomName = () => {
+    this.setState({filter: furnitureHelper.filterByRoom});
+  }
+  unfilter() {
+    this.setState({filter: furnitureHelper.listByFurniture});
+  }
   render () {
     const { rooms } = this.props;
     const roomName = Object.keys(rooms);
     const toTitleCase = this.toTitleCase;
+    let furnitureList = this.state.filter(rooms);
+    console.log('render')
+    //const roomList = furnitureHelper.listByRoom(rooms);
 
 
       return (
@@ -20,6 +45,23 @@ class ListingFurniture extends Component {
         <div className="container">
           
               <h4>Full furniture list</h4>
+              <Row>
+                <Col s={2}>
+                  <FlatButton onClick={()=> {this.filterByFurnitureName()}} label={'By Name'} waves='light'/>
+                </Col>
+                <Col s={2}>
+                  <FlatButton onClick={()=> {this.filterByRoomName()}} label={'By Room Name'} waves='light'/>
+                </Col>
+                <Col s={2}>
+                  <FlatButton onClick={()=> {this.filterByFurniturePrice()}} label={'By Price'} waves='light'/>
+                </Col>
+                <Col s={2}>
+                  <FlatButton onClick={()=> {this.filterByDeliveryDate()}} label={'By ETA'} waves='light' />
+                </Col>
+                <Col s={2}>
+                  <FlatButton onClick={()=> {this.unfilter()}}label={'Reset'} waves='light' />
+                </Col>
+              </Row>
               <Table>
                 <thead>
                   <tr>
@@ -29,29 +71,26 @@ class ListingFurniture extends Component {
                     <th data-field="size">Item Size</th>
                     <th data-field="quantity">Item Quantity</th>
                     <th data-field="notes">Notes</th>
+                    <th data-field="notes">Delivery Date</th>
                     
 
                   </tr>
                 </thead>
-                {roomName.map(function(room){
-                  let currentRoom = rooms[room];
-
-                  if(currentRoom.furniture){
-                    var arr = Object.keys(currentRoom.furniture)
-                    return arr.map(function(item, i){
+                {furnitureList.map(function(triple, i){
+                  console.log(triple)
                       return (
-                        <tr id="table-item">
-                          <td className="slimDown"><b>{ i===0 ? toTitleCase(room) : "" }</b></td>
-                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ toTitleCase(item) } /></td>
-                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].price} /></td>
-                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].size} /></td>
-                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].quantity} /></td>
-                          <td className="slimDown"><Input className="slimDown" s={12} validate defaultValue={ currentRoom.furniture[item].notes} /></td>
+                        <tr key={i} id="table-item">
+                          <td className="slimDown"><b>{  triple[1] || "" }</b></td>
+                          <td className="slimDown"> { triple[0] } </td>
+                          <td className="slimDown"> { triple[2].price} </td>
+                          <td className="slimDown"> { triple[2].size} </td>
+                          <td className="slimDown"> { triple[2].quantity} </td>
+                          <td className="slimDown"> { triple[2].notes} </td>
+                          <td className="slimDown"> { triple[2].deliveryDate} </td>
                         </tr>
-                      )
-                    })
-                  }
+                    )
                 })}
+                
                 <tbody>
                 </tbody>
               </Table>
