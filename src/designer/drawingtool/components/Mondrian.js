@@ -66,10 +66,9 @@ export default class Designing extends Component {
       var furnitureNames = Object.keys(this.props.rooms[this.props.roomSelected].furniture)
       var counter = Object.keys(this.props.rooms[this.props.roomSelected].furniture).length - this.state.objects.length; 
       for (var i = 0; i < counter; i++ ) {
-        console.log(furnitureNames[furnitureNames.length - i - 1]);
         this.state.objects.push({
-          "width": 20,
-          "height": 20,
+          "width": this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].width || 20,
+          "height": this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].length || 20,
           "rotate": 0,
           "strokeWidth": 0,
           "fill": this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
@@ -89,7 +88,7 @@ export default class Designing extends Component {
     }
     return (
       <Designer 
-        width={800} height={600}
+        width={800 || this.props.rooms[this.props.roomSelected].width} height={600 || this.props.rooms[this.props.roomSelected].length}
         objects={this.state.objects}
         onUpdate={this.handleUpdate.bind(this)}/>
     );
