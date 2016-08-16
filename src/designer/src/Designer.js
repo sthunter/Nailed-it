@@ -209,6 +209,7 @@ class Designer extends Component {
 
   updateHandler(index, object) {
     let target = this.objectRefs[index];
+    console.log(target);
     let bbox = target.getBoundingClientRect();
     let {canvasOffsetX, canvasOffsetY} = this.getCanvas();
 

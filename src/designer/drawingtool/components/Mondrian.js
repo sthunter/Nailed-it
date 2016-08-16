@@ -30,10 +30,10 @@ export default class Designing extends Component {
     { objects: this.props.rooms[this.props.roomSelected].design } :
      { objects: [{
           "width": 20,
-          "height": 20,
+          "height": 40,
           "rotate": 0,
           "strokeWidth": 0,
-          "fill": "#424242",
+          "fill": "#ffffff",
           "radius": "0",
           "blendMode": "normal",
           "type": "rectangle",
@@ -74,25 +74,33 @@ export default class Designing extends Component {
       );
     }
     if(this.state.objects.length < Object.keys(this.props.rooms[this.props.roomSelected].furniture).length) {
-      var counter = Object.keys(this.props.rooms[this.props.roomSelected].furniture).length - this.state.objects.length;  
+      var furnitureNames = Object.keys(this.props.rooms[this.props.roomSelected].furniture)
+      var counter = Object.keys(this.props.rooms[this.props.roomSelected].furniture).length - this.state.objects.length; 
+      console.log(this.props.rooms[this.props.roomSelected].color.hex)
       for (var i = 0; i < counter; i++ ) {
         this.state.objects.push({
           "width": 20,
           "height": 20,
           "rotate": 0,
           "strokeWidth": 0,
-          "fill": "#424242",
+          "fill": this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
           "radius": "0",
           "blendMode": "normal",
           "type": "rectangle",
           "x": 10,
-          "y": 5
+          "y": 5,
+          text: furnitureNames[furnitureNames.length - i - 1],
+          fontWeight: "normal",
+          fontStyle: "normal",
+          textDecoration: "none",
+          fontSize: 50,
+          fontFamily: "Helvetica"
         })
       }
     }
     return (
       <Designer 
-        width={800} height={600}
+        width={this.props.rooms[this.props.roomSelected].size || 800} height={this.props.rooms[this.props.roomSelected].size || 600}
         objects={this.state.objects}
         onUpdate={this.handleUpdate.bind(this)}/>
     );
