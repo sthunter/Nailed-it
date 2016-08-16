@@ -12,13 +12,13 @@ import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 export default class Designer extends Component {
   render() {
     return (
-      <div className={classes.container}>
+      <div className={classes.container} >
         <div className={classes.example}>
           <div className={classes.info}>
           </div>
           <div className={classes.preview}>
             <ColorPalette />
-            <MondrianExample params={this.props.params}/>
+            <MondrianExample params={this.props.params} />              
           </div>
         </div>
       </div>
