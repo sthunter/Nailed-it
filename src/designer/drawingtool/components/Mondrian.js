@@ -90,7 +90,8 @@ export default class Designing extends Component {
       <Designer 
         width={800 || this.props.rooms[this.props.roomSelected].width} height={600 || this.props.rooms[this.props.roomSelected].length}
         objects={this.state.objects}
-        onUpdate={this.handleUpdate.bind(this)}/>
+        onUpdate={this.handleUpdate.bind(this)}
+        style={{"border": "1px solid black"}}/>
     );
   }
 }
