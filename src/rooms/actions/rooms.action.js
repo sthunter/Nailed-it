@@ -125,6 +125,12 @@ export function getRooms() {
 
 export const REMOVE_ROOM = 'REMOVE_ROOM';
 export function removeRoom(title) {
+  if (title === 'All Rooms') {
+    return {
+      type: REMOVE_ROOM,
+      title,
+    };
+  }
   databaseAPI.removeRoom(title);
   return {
     type: REMOVE_ROOM,
