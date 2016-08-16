@@ -51,16 +51,17 @@ class FurnitureList extends Component {
   }
 
   click(room) {
-    this.setState({view: 0});
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
 
   handleFList = () => {
+    console.log("got here")
     this.setState({view: 0});
   }
 
   handleDesigner = () => {
+    console.log("got here")
     this.setState({view: 1});
   } 
 
