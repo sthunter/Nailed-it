@@ -97,6 +97,9 @@ const roomsReducer = (state = {}, action) => {
 
     case REMOVE_ROOM:
       newState = _.clone(state);
+      if (action.title === 'All Rooms') {
+        return newState;
+      }
       delete newState[action.title]
       return newState;
 
