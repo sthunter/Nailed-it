@@ -37,7 +37,7 @@ const helpers = {
       var obj = {};
       obj["key"] = calc > 0 ? toTitleCase(room) : ' ';
       obj["value"] = calc;
-      obj["color"] = rooms[room].color ? rooms[room].color.hex || '#424242';
+      obj["color"] = rooms[room].color ? rooms[room].color.hex : '#424242';
       arr.push(obj)
       totalCost += calc;
     });
