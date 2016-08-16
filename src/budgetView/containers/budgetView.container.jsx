@@ -20,10 +20,9 @@ class BudgetView extends Component {
     return(
       <div>
         <form onSubmit={ handleSubmit(this.props.updateBudget) }>
-          <Input type="number" placeholder="Budget" s={12} label="Budget" { ...newBudget } />
-          <RaisedButton label="Update" type="submit"/>
+          <Input type="number" placeholder="Budget" s={9} label="Budget" { ...newBudget } />
+          <RaisedButton s={3} label="Update" type="submit" style={{"marginTop":"20px"}}/>
         </form>
-        
         <BudgetGraph onClick={updateGraph} budget={this.props.budget} rooms={this.props.rooms}/>
       
       </div>
