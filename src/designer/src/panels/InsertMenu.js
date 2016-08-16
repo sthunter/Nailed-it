@@ -13,6 +13,7 @@ class InsertMenu extends Component {
 
     return (
       <div style={styles.insertMenu}>
+      {/*
         <div style={styles.mainIcon}>
         {currentTool
           ? tools[currentTool].meta.icon
@@ -30,6 +31,7 @@ class InsertMenu extends Component {
             </li>
           ))}
         </ul>
+      */}
       </div>
     );
   }
