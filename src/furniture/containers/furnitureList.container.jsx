@@ -115,7 +115,7 @@ class FurnitureList extends Component {
           </Row>
         </div>
 
-        <div style={{"position":"relative", "margin-top":"15%"}}>
+        <div style={{"position":"relative", "marginTop":"15%"}}>
           <Row>
             <Col s={12} l={12}>
               <div>
