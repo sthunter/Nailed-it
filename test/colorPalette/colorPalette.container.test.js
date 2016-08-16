@@ -1,7 +1,7 @@
 import { renderComponent, expect, $ } from '../testHelper';
-import ColorPalette from '../../src/colorPalette/containers/colorPalette.container';
+//import ColorPalette from '../../src/colorPalette/containers/colorPalette.container';
 
-describe ('ColorPalette', () => {
+xdescribe ('ColorPalette', () => {
   let component;
   let props;
   let state = {

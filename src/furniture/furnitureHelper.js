@@ -1,26 +1,27 @@
 const furnitureHelper = {
-  listByRoom(rooms) {
-    if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
-      let unsorted = [];
-      for (var room in rooms) {
-        if (room) {
-        let triple = [room,[],[]];
-          for (var furniture in rooms[room].furniture) {
-            if (furniture) {
-              triple[1].push(furniture)
-              triple[2].push(rooms[room].furniture[furniture])
-            };
-          };
-        unsorted.push(triple);
-        };
-      }
-      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
-      return unsorted;
-    }
-    else {
-      return null;
-    }
-  },
+  //this is no good for the listingFurniture components map function
+  // listByRoom(rooms) {
+  //   if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
+  //     let unsorted = [];
+  //     for (var room in rooms) {
+  //       if (room) {
+  //       let triple = [room,[],[]];
+  //         for (var furniture in rooms[room].furniture) {
+  //           if (furniture) {
+  //             triple[1].push(furniture)
+  //             triple[2].push(rooms[room].furniture[furniture])
+  //           };
+  //         };
+  //       unsorted.push(triple);
+  //       };
+  //     }
+  //     //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
+  //     return unsorted;
+  //   }
+  //   else {
+  //     return null;
+  //   }
+  // },
   listByFurniture(rooms) {
     if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
       let unsorted = [];
@@ -49,19 +50,22 @@ const furnitureHelper = {
 
   filterByRoom(rooms) {
     if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
-      let data = furnitureHelper.listByRoom(rooms);
-      
+      let data = furnitureHelper.listByFurniture(rooms);
+        
         data.sort((a, b) => {
-          if (a[0] < b[0]) {
+          let aName = a[1].toLowerCase();  
+          let bName = b[1].toLowerCase();
+          if (aName < bName) {
             return -1;
           }
-          if (a[0] > b[0]) {
+          if (aName > bName) {
             return 1;
           }
           return 0;
         });
       //sorted by room name from a to z.
-      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
+      //data shape is [[furnitureName, roomName, furnitureObj], ...]
+      
       return data || [];
     }
     else {
@@ -73,10 +77,12 @@ const furnitureHelper = {
       let data = furnitureHelper.listByFurniture(rooms);
       
         data.sort((a, b) => {
-          if (a[0] < b[0]) {
+          let aName = a[0].toLowerCase();
+          let bName = b[0].toLowerCase();
+          if (aName < bName) {
             return -1;
           }
-          if (a[0] > b[0]) {
+          if (aName > bName) {
             return 1;
           }
           return 0;
@@ -147,43 +153,44 @@ const furnitureHelper = {
       return null;
     }
   },
-  filterByRoomPrice(rooms) {
-    if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
-      let data = furnitureHelper.listByRoom(rooms);
+  //for now this is not a useful function and doesn't work
+  // filterByRoomPrice(rooms) {
+  //   if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
+  //     let data = furnitureHelper.listByRoom(rooms);
       
-        data.sort((a, b) => {
-          let aPrice = 0;
-          let bPrice = 0;
-          for (var i = 0; i < a[2].length; i ++) {
-            if (!isNaN(a[2][i].price)) {
-              aPrice += Number(a[2][i].price);
-            }
-          }
-          for (var i = 0; i < b[2].length; i ++) {
-            if (!isNaN(b[2][i].price)) {
+  //       data.sort((a, b) => {
+  //         let aPrice = 0;
+  //         let bPrice = 0;
+  //         for (var i = 0; i < a[2].length; i ++) {
+  //           if (!isNaN(a[2][i].price)) {
+  //             aPrice += Number(a[2][i].price);
+  //           }
+  //         }
+  //         for (var i = 0; i < b[2].length; i ++) {
+  //           if (!isNaN(b[2][i].price)) {
 
-              bPrice += Number(b[2][i].price);
-            }
-          }
-          if (isNaN(aPrice)) {
-            return 1;
-          }
-          if (aPrice < bPrice) {
-            return -1;
-          }
-          if (aPrice > bPrice) {
-            return 1;
-          }
-          return 0;
-        });
-      //sorted by total room price from lowest to highest with items without a price last
-      //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
+  //             bPrice += Number(b[2][i].price);
+  //           }
+  //         }
+  //         if (isNaN(aPrice)) {
+  //           return 1;
+  //         }
+  //         if (aPrice < bPrice) {
+  //           return -1;
+  //         }
+  //         if (aPrice > bPrice) {
+  //           return 1;
+  //         }
+  //         return 0;
+  //       });
+  //     //sorted by total room price from lowest to highest with items without a price last
+  //     //data shape is [[roomName, [furnitureName, ...], [furnitureObj, ...]], ...]
       
-      return data || [];
-    }
-    else {
-      return null;
-    }
-  },
+  //     return data || [];
+  //   }
+  //   else {
+  //     return null;
+  //   }
+  // },
 };
 export default furnitureHelper;
