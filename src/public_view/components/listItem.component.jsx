@@ -55,7 +55,7 @@ class ListItem extends Component {
           className='grey lighten-2 card-panel'
           title={ title } >
           <Row>
-            <Col s={0.5}>
+            <Col s={.5}>
               <Avatar src={photoURL} />
             </Col>
             <Col s={6}>

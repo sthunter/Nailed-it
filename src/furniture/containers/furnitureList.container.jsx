@@ -33,12 +33,14 @@ class FurnitureList extends Component {
     this.props.changeRoute(this.props.location.pathname)  ;
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({add:false})
+  }
 
   state = {
     add:false,
     view: 0
   }
-
 
   handleOpen = () => {
     this.setState({add: true});
@@ -49,6 +51,7 @@ class FurnitureList extends Component {
   }
 
   click(room) {
+    this.setState({view: 0});
     this.props.selectRoom(room);
     browserHistory.push('/furniture/' + room)
   }
@@ -62,8 +65,8 @@ class FurnitureList extends Component {
   } 
 
   handleAll = () => {
-    console.log(all)
     this.setState({view: 2});
+    browserHistory.push('/furniture/all')
   }
 
   render() {
@@ -97,18 +100,17 @@ class FurnitureList extends Component {
                       </Tab>
                     )
                   })}
-                <Tab label='All' onTouchTap={this.handleAll} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+                <Tab label='All' onClick={()=>{this.handleAll()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
               </Tabs>  
             </Col>
           </Row>
           
           <Row>
             <Col s={12}>
-              <div className='right-align' style={{'background': color }}>
+              {this.state.view < 2 ? <div className='right-align' style={{'background': color }}>
                 <FlatButton label='My Items' onTouchTap={this.handleFList} />
                 <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
-                <FlatButton label='All' onTouchTap={this.handleAll} />
-              </div>
+              </div> : null}
             </Col>
           </Row>
         </div>
@@ -123,7 +125,7 @@ class FurnitureList extends Component {
               </div>
             </Col>
           </Row>
-          <div className='F-FAB'>
+          {this.state.view < 2 ? <div className='F-FAB'>
               <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
                 <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
                   <div>
@@ -138,7 +140,7 @@ class FurnitureList extends Component {
                     </Dialog>
                   </div>
               </Button>
-           </div>
+           </div> : null}
         </div>
       </div>
     );
