@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { Button, Input, Col, Row } from 'react-materialize';
 import { reduxForm } from 'redux-form';
-import { updateRoom } from '../actions/rooms.action.js';
+import { updateRoomDetails } from '../actions/rooms.action.js';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class UpdateRoomForm extends Component {
   render() {
-    const { fields: { roomName, size, notes }, handleSubmit, roomSelected, rooms, updateRoom } = this.props;
-    const details = rooms[roomSelected];
-
+    const { fields: { size, notes }, handleSubmit, title, rooms, updateRoomDetails } = this.props;
+    const details = rooms[title];
+  
     return (
-      <form onSubmit={ handleSubmit(updateRoom.bind(null, roomSelected, details)) } >
-        <Col s={12}>
-          <Row>
-            <Input type="text" placeholder="Room Name" s={6} label="Room Name" defaultValue={ roomSelected } { ...roomName } />
-            <Input type="text" placeholder="Size" s={6} label="Size" defaultValue={ details.size } { ...size } />
-          </Row>
-          <Row>
-            <div class="input-field col s12">
-              <label for="textarea1">Notes</label>
-              <textarea id="textarea1" className="materialize-textarea" placeholder="Notes" defaultValue={ details.notes } { ...notes }></textarea>
-            </div>
-          </Row>
-        </Col>
-        <Button type="submit">Submit</Button>
+      <form onSubmit={handleSubmit(updateRoomDetails.bind(null, title, details))}  className="updateRoomForm" style={{"display":"inline-block"}} >
+               
+        <Row className="updateRoomField">
+          <Col s={12}>
+            <p>Size: </p><Input type="text" validate placeholder={details.size ? details.size : "no size entered"} {...size}/>
+          </Col>
+        </Row>
+
+        <Row className="updateRoomField">
+          <Col s={12}>
+            <p>Notes: </p><Input type="text" validate placeholder={details.notes ? details.notes : "no details entered"} {...notes}/>
+          </Col>
+        </Row>
+        <RaisedButton label="Edit" type="submit"/>
+
       </form>
     );
   }
@@ -30,5 +32,5 @@ class UpdateRoomForm extends Component {
 
 export default reduxForm({
   form: 'UpdateRoomForm',
-  fields: ['roomName', 'size', 'notes'],
-}, state => ({ roomSelected: state.roomSelected, rooms: state.rooms }), { updateRoom })(UpdateRoomForm);
+  fields: ['size', 'notes'],
+}, state => ({ roomSelected: state.roomSelected, rooms: state.rooms }), { updateRoomDetails })(UpdateRoomForm);

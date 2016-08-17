@@ -48,7 +48,7 @@ class AddRoomForm extends Component {
 
         <CardText expandable={true}>
            <form onSubmit={ handleSubmit(this.addRoom.bind(this)) } >
-            <Col s={12}>
+            
               <Row>
                 <Input type="text" placeholder="Room Name" s={6} label="Room Name" { ...roomName } />
                 <Input type="text" placeholder="Size" s={6} label="Size" { ...size } />
@@ -59,7 +59,7 @@ class AddRoomForm extends Component {
                   <textarea id="textarea1" className="materialize-textarea" placeholder="Notes" { ...notes }></textarea>
                 </div>
               </Row>
-            </Col>
+            
             <RaisedButton label="Submit" type="submit"/>
           </form>
         </CardText>
