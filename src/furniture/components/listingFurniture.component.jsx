@@ -4,7 +4,8 @@ import AddItemButton from '../../app/addItemButton.component.jsx';
 import { connect } from 'react-redux';
 import furnitureHelper from '../furnitureHelper';
 import FlatButton from 'material-ui/FlatButton';
-
+import UpdateFurnitureFormTable from '../containers/updateFurnitureFormTable.container.jsx';
+import ListingFurnitureRow from './listingFurnitureRow.component.jsx';
 
 class ListingFurniture extends Component {
   toTitleCase(str) {
@@ -12,9 +13,11 @@ class ListingFurniture extends Component {
   }
   constructor(props) {
     super(props);
-  }
-  state = {
-    filter: furnitureHelper.listByFurniture,
+
+    this.state = {
+      filter: furnitureHelper.listByFurniture.bind(this),
+      editing: {},
+    };
   }
   
   filterByFurnitureName() {
@@ -32,59 +35,59 @@ class ListingFurniture extends Component {
   unfilter() {
     this.setState({filter: furnitureHelper.listByFurniture});
   }
+  updateEditStatus(furniture, status) {
+    const editing = Object.assign({}, this.state.editing);
+    editing[furniture] = status;
+    this.setState({ editing });
+  }
+
   render () {
     const { rooms } = this.props;
     const roomName = Object.keys(rooms);
     const toTitleCase = this.toTitleCase;
     let furnitureList = this.state.filter(rooms);
-    
-    
-    //const roomList = furnitureHelper.listByRoom(rooms);
+    const _this = this;
 
+    return (
+      <div className="container">
+        <h4>Full furniture list</h4>
+        <div className="table">
+          <div className="tr">
+            <span className="th room" data-field="room"  onClick={()=> {this.filterByRoomName()}} >Room Name</span>
+            <span className="th furniture" data-field="furniture" onClick={()=> {this.filterByFurnitureName()}} >Furniture Name</span>
+            <span className="th price" data-field="price" onClick={()=> {this.filterByFurniturePrice()}} >Price</span>
+            <span className="th size" data-field="size">Size</span>
+            <span className="th quantity" data-field="quantity">Quantity</span>
+            <span className="th notes" data-field="notes">Notes</span>
+            <span className="th deliveryDate" data-field="deliveryDate" onClick={()=> {this.filterByDeliveryDate()}} >Delivery Date</span>
+            <span className="th controls" data-field="deliveryDate" >&nbsp;</span>
+          </div>
+          {
+            furnitureList.map(function(data, i){
+              const initialFormValues = {
+                itemName: data.furnitureName,
+                price: data.furnitureObj.price,
+                deliveryDate: data.furnitureObj.deliveryDate,
+                size: data.furnitureObj.size,
+                quantity: data.furnitureObj.quantity,
+                description: data.furnitureObj.description,
+              };
 
-      return (
-
-        <div className="container">
-          
-              <h4>Full furniture list</h4>
-              
-              <Table>
-                <thead>
-                  <tr>
-                    <th data-field="room"  onClick={()=> {this.filterByRoomName()}} >Room Name</th>
-                    <th data-field="furniture" onClick={()=> {this.filterByFurnitureName()}} >Furniture Name</th>
-                    <th data-field="price" onClick={()=> {this.filterByFurniturePrice()}} >Item Price</th>
-                    <th data-field="size">Item Size</th>
-                    <th data-field="quantity">Item Quantity</th>
-                    <th data-field="notes">Notes</th>
-                    <th data-field="deliveryDate" onClick={()=> {this.filterByDeliveryDate()}} >Delivery Date</th>
-                    
-
-                  </tr>
-                </thead>
-                {furnitureList.map(function(data, i){
-                  
-                      return (
-                        <tr key={i} id="table-item">
-                          <td className="slimDown"><b>{  data.roomName || "" }</b></td>
-                          <td className="slimDown"> { data.furnitureName } </td>
-                          <td className="slimDown"> { data.furnitureObj.price } </td>
-                          <td className="slimDown"> { data.furnitureObj.size } </td>
-                          <td className="slimDown"> { data.furnitureObj.quantity } </td>
-                          <td className="slimDown"> { data.furnitureObj.notes } </td>
-                          <td className="slimDown"> { data.furnitureObj.deliveryDate } </td>
-                        </tr>
-                    )
-                })}
-                
-                <tbody>
-                </tbody>
-              </Table>
-           
+                //<UpdateFurnitureFormTable data={ data } key={ i } formKey={ data.furnitureName }
+                //  initialValues={ initialFormValues } editing={ _this.state.editing[data.furnitureName] } />
+              return (
+                <ListingFurnitureRow
+                  editing={ _this.state.editing[data.furnitureName] }
+                  data={ data } key={ i }
+                  updateEditStatus={_this.updateEditStatus.bind(_this)}
+                  initialValues={ initialFormValues }
+                />
+              );
+            })
+          }
         </div>
-
-
-      )
+      </div>
+    )
   }
 }
 

@@ -49,6 +49,13 @@ export function deleteFurniture(furnitureName, roomName) {
 }
 
 export function updateFurniture(originalFurnitureName, roomName, currentFurnitureProps, newProps) {
+  // Then we passed a props object instead of separate params
+  if (typeof originalFurnitureName === 'object') {
+    const { controlsClick } = originalFurnitureName;
+    [ originalFurnitureName, roomName, currentFurnitureProps ] = [ originalFurnitureName.furnitureName, originalFurnitureName.roomName, originalFurnitureName.furnitureObj ];
+    controlsClick(null, 'submit');
+  }
+
   // Iterate through the new furniture properties, and merge them with the current
   // furniture properties. The new object should not any undefined values. We also want to ignore the 'itemName'
   // property, which shouldn't be stored as a property of the furniture.
