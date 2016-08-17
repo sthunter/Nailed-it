@@ -40,12 +40,11 @@ class FList extends Component {
               <Col l={4} m={6} s={12}>
                 <Card className='card-panel hoverable' header={this.createFurnitureTitle(itemName)}
                   title={itemName}
-
-                  reveal={
-                    <UpdateFurnitureForm formKey={itemName} name={itemName}
-                      details={item}
-                      initialValues={ initialFormValues }
-                    />
+                  reveal={ <UpdateFurnitureForm formKey={itemName} name={itemName}
+                       details={item}
+                       initialValues={ initialFormValues }
+                     />
+                    
                   }
                 >
                   <div className='card-control'><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
@@ -70,5 +69,3 @@ function mapStateToProps({ rooms, roomSelected }) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FList);
-
-

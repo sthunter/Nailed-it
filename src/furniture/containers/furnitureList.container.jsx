@@ -10,6 +10,7 @@ import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
 import Designer from '../../designer/drawingtool/App';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
+import AllFurniture from '../components/allFurniture.component';
 
 //UI
 import { Row, Col, Button, Modal } from 'react-materialize';
@@ -39,7 +40,8 @@ class FurnitureList extends Component {
 
   state = {
     add:false,
-    view: 0
+    view: 0,
+    all: false
   }
 
   handleOpen = () => {
@@ -64,10 +66,20 @@ class FurnitureList extends Component {
     this.setState({view: 1});
   } 
 
-  handleAll = () => {
+  handleAllList = () => {
     this.setState({view: 2});
     browserHistory.push('/furniture/all')
   }
+
+  handleAllCard = () => {
+    this.setState({view: 3});
+    browserHistory.push('/furniture/all')
+  }
+
+  //   handleAll = () => {
+  //   this.setState({view: 2});
+  //   browserHistory.push('/furniture/all')
+  // }
 
   render() {
     const intro = 'Furniture';
@@ -82,7 +94,6 @@ class FurnitureList extends Component {
       color = this.props.rooms[roomSelected].color.hex;
     }
     
-
     return (
       <div>
         <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-7%", "marginBottom":"0", "zIndex": "500"}}>
@@ -100,17 +111,25 @@ class FurnitureList extends Component {
                       </Tab>
                     )
                   })}
-                <Tab label='All' onClick={()=>{this.handleAll()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+                <Tab label='All' onClick={()=>{this.handleAllList()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
               </Tabs>  
             </Col>
           </Row>
           
           <Row>
             <Col s={12}>
+              
               {this.state.view < 2 ? <div className='left-align' style={{'background': color }}>
                 <FlatButton label='My Items' onTouchTap={this.handleFList} />
+                <FlatButton label='List' onTouchTap={this.handleList} />
                 <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
-              </div> : null}
+              </div> : 
+
+              <div className='left-align' style={{'background': 'rgba(255, 255, 255, 0.3)'}}>
+                <FlatButton label='My Items' onTouchTap={this.handleAllCard} />
+                <FlatButton label='List' onTouchTap={this.handleAllList} />
+              </div>}
+
             </Col>
           </Row>
         </div>
@@ -122,7 +141,8 @@ class FurnitureList extends Component {
               
                   {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
                   {this.state.view === 1 ? <Designer/> : null}
-                  {this.state.view === 2 ? <ListingFurniture className="center-aligned" /> : null}
+                  {this.state.view === 2 ? <ListingFurniture /> : null}
+                  {this.state.view === 3 ? <AllFurniture /> : null}
               
             </Col>
           </Row>
