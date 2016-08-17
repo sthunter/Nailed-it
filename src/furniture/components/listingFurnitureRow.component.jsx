@@ -1,4 +1,5 @@
 import React from 'react';
+import UpdateFurnitureFormTable from '../containers/updateFurnitureFormTable.container.jsx';
 
 export default function listingFurnitureRow(props)  {
   const _props = props;
@@ -21,7 +22,9 @@ export default function listingFurnitureRow(props)  {
   }
 
   return props.editing ? (
-    <div>Form will go here</div>
+    <UpdateFurnitureFormTable data={ props.data } controlsClick={ controlsClick }
+      formKey={ props.data.furnitureName }
+      initialValues={ props.initialValues } />
   ) : (
     <div className="table-item tr">
       <span className="td room slimDown"><strong>{ roomName }</strong></span>

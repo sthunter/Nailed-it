@@ -79,7 +79,9 @@ class ListingFurniture extends Component {
                 <ListingFurnitureRow
                   editing={ _this.state.editing[data.furnitureName] }
                   data={ data } key={ i }
-                  updateEditStatus={_this.updateEditStatus.bind(_this)} />
+                  updateEditStatus={_this.updateEditStatus.bind(_this)}
+                  initialValues={ initialFormValues }
+                />
               );
             })
           }
