@@ -78,7 +78,7 @@ export default class Designing extends Component {
           "height": newLength ? newLength[0] : 20,
           "rotate": 0,
           "strokeWidth": 0,
-          "fill": this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
+          "fill":  this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].color || this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
           "radius": "0",
           "blendMode": "multiply",
           "type": "rectangle",
