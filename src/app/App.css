@@ -26,6 +26,22 @@
 
 }
 
+input[type="text"]::-webkit-input-placeholder {
+color: #424242 !important;
+}
+ 
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
+color: #424242 !important;  
+}
+ 
+input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
+color: #424242 !important;  
+}
+ 
+input[type="text"]:-ms-input-placeholder {  
+color: #424242 !important;  
+}
+
 body {
   background-color: rgb(249, 249, 249);
   font-family: roboto;
@@ -199,4 +215,9 @@ th.budget-table {
 
 .furniture-detail .hidden-field {
   display: none;
+}
+
+.updateRoomForm {
+  display:inline-block;
+
 }

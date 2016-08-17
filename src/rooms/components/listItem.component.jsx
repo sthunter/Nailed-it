@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { CardPanel, Button, Row, Col, MediaBox, Modal } from 'react-materialize';
+import { CardPanel, Button, Row, Col, MediaBox, Modal, Input } from 'react-materialize';
 import { Link, browserHistory } from 'react-router';
 import Toolbar from './toolbar.component'
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import UpdateRoomForm from '../containers/updateRoomForm.container'
 
 class ListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       expanded: false,
+      update: false
     }
   }
   handleToggle() {
@@ -21,12 +23,24 @@ class ListItem extends Component {
       this.setState({expanded: true});
     }
   }
+
   handleExpandChange = (expanded) => {
     this.setState({expanded: expanded});
   }
+
   handleClick(title) {
     if (this.props.clickHandler) {
       this.props.clickHandler(title);
+    }
+  }
+  
+  //state change to handle update form
+  handleChange() {
+    if (this.state.expanded) {
+      this.setState({update: false});
+    }
+    else {
+      this.setState({update: true});
     }
   }
 
@@ -52,6 +66,11 @@ class ListItem extends Component {
     if(this.props.rooms[title].color) {
       cardStyle = {'background': this.props.rooms[title].color.hex }
     }
+    const initialFormValues = {
+      price: rooms[title].size,
+      notes: notes
+    }
+
 
     return (
         <div>
@@ -60,6 +79,7 @@ class ListItem extends Component {
             expanded={this.state.expanded} onExpandChange={this.handleExpandChange}
             style={cardStyle}
             >
+
             <Link className="card-title" to={ 'furniture/' + title }>
               <CardHeader
                 onTouchTap={ () => this.handleClick(title) }
@@ -67,26 +87,21 @@ class ListItem extends Component {
                 subtitle="Subtitle"
               />
             </Link>
+
             <CardActions>
               <Toolbar title={ title } handleToggle={this.handleToggle} /> 
               <RaisedButton fullWidth={true} label="Details" onTouchTap={ () => this.handleToggle()} style={{'opacity':'0.4'}}/>
             </CardActions>
+
             { this.props.rooms[title].photoURL? <CardMedia
               expandable={true}
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-            >
+              >
               <img src= {this.props.rooms[title].photoURL }/>
             </CardMedia> : null}
-            <CardText expandable={true}>
-              <p>Size: {size} </p>
-              <p>Notes: </p>
-              {splitNotes.map((note)=> {
-                return (
-                  <p>{ note }</p>
-                )
-              }
-              )}
-
+            
+            <CardText expandable={true} className="updateRoom">
+              <UpdateRoomForm title={title} formKey={title} initialFormValues={ initialFormValues }/>
             </CardText>
           </Card>
         </div>
@@ -95,26 +110,3 @@ class ListItem extends Component {
 }
 
 export default ListItem;
-// <CardPanel
-//   onTouchTap={ () => this.handleClick(title) }
-//   className={'hoverable'}
-//   style={cardStyle}>
-
-//   <Link className="card-title" to={ 'furniture/' + title }>
-//     <Row onTouchTap={ () => this.handleClick(title) }>
-//       <Col s={9}>
-//         <span>{ title }</span>
-//         <p style={{fontSize: '16px'}}>Size : { size }</p>
-//         {splitNotes.map((note)=> {
-//           return (
-//             <p style={{fontSize: '16px'}}>{ note }</p>
-//             )
-//         })}
-//       </Col>
-//       <Col s={3}>
-//         {this.props.rooms[title].photoURL ? <div className="valign-wrapper"><MediaBox key={title} className="valign right-align" src={this.props.rooms[title].photoURL} width='100'/></div> : null}
-//       </Col>
-//     </Row>
-//   </Link>
-//   <Toolbar title={ title } />
-// </CardPanel>
