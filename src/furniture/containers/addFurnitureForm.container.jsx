@@ -6,12 +6,10 @@ import DatePicker from 'material-ui/DatePicker';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 class AddFurnitureForm extends Component {
-
   render() {
     const { fields: {
-      itemName, price, description, url, size, ETA, photoURL
+      itemName, price, description, url, size, color
       }, handleSubmit, } = this.props;
  
     return (
@@ -20,12 +18,13 @@ class AddFurnitureForm extends Component {
         <Input s={6} placeholder='Item'{ ...itemName } />
         <Input s={6} placeholder='Price'{ ...price } />
       </Row>
-      
+      <Row>
         <Input s={6} placeholder='Notes'{ ...description } />
         <Input s={6} placeholder='Photo URL'{ ...url } />
+      </Row>
       <Row>
-        <Input s={6} placeholder="Size" {...size} />
-        <DatePicker hintText="Delivery Date" mode="landscape" />
+        <Input s={6} placeholder="Size (centimeters)" { ...size } />
+        <Input s={6} placeholder="Primary color" { ...color } />
       </Row>
      
       <RaisedButton type="submit" label="submit"/>
@@ -36,7 +35,7 @@ class AddFurnitureForm extends Component {
 
 export default reduxForm({
   form: 'AddFurnitureForm',
-  fields: ['itemName', 'price', 'description', 'url', 'size', 'ETA', 'photoURL', 'roomSelected'],
+  fields: ['itemName', 'price', 'description', 'url', 'size', 'color'],
 }, state => ({ roomSelected: state.roomSelected }), { addFurniture })(AddFurnitureForm);
               
 // {...deliveryDate}
