@@ -30,19 +30,19 @@ input[type="text"]::-webkit-input-placeholder {
 color: #424242 !important;
 mix-blend-mode: multiply;
 }
- 
+
 input[type="text"]:-moz-placeholder { /* Firefox 18- */
-color: #424242 !important;  
+color: #424242 !important;
 mix-blend-mode: multiply;
 }
- 
+
 input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
-color: #424242 !important;  
+color: #424242 !important;
 mix-blend-mode: multiply;
 }
- 
-input[type="text"]:-ms-input-placeholder {  
-color: #424242 !important;  
+
+input[type="text"]:-ms-input-placeholder {
+color: #424242 !important;
 mix-blend-mode: multiply;
 }
 
@@ -55,7 +55,7 @@ body {
 
 .activator {
   height: 250px; 
-  widtx`h: auto; 
+  width: auto;
   object-fit: contain;
 }
 
@@ -189,7 +189,6 @@ table.furniture-detail {
 }
 
 .furniture-detail td, .furniture-detail th {
-  /*border: 1px solid black;*/
   padding: 0;
 }
 
@@ -202,7 +201,6 @@ table.furniture-detail {
   font-weight: normal;
   color: #aaa;
   padding-top: 20px;
-  /*padding: 0 20px 20px 0;*/
 }
 th.budget-table {
   padding: 7px 7px;
@@ -219,6 +217,63 @@ th.budget-table {
 
 .furniture-detail .hidden-field {
   display: none;
+}
+
+div.table {
+  display: table;
+}
+form.tr, div.tr
+{
+  display:table-row;
+}
+span.td
+{
+  display:table-cell;
+}
+
+.tr {
+  height: 40px;
+}
+.td, .th {
+  /*border: solid black 1px;*/
+  padding: 0 3px;
+  margin: 0;
+}
+.th {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+.tr .room {
+  width: 200px;
+  display: inline-block;
+}
+.tr .furniture {
+  width: 200px;
+  display: inline-block;
+}
+.tr .price {
+  width: 60px;
+  display: inline-block;
+}
+.tr .size {
+  width: 80px;
+  display: inline-block;
+}
+.tr .quantity {
+  width: 80px;
+  display: inline-block;
+}
+.tr .notes {
+  width: 200px;
+  display: inline-block;
+}
+.tr .deliveryDate {
+  width: 110px;
+  display: inline-block;
+}
+.tr .controls {
+  width: 100px;
+  display: inline-block;
 }
 
 .updateRoomForm {
