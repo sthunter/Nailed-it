@@ -84,7 +84,7 @@ class ListItem extends Component {
               <CardHeader
                 onTouchTap={ () => this.handleClick(title) }
                 title= { title }
-                subtitle="Subtitle"
+                subtitle=""
               />
             </Link>
 
@@ -95,7 +95,7 @@ class ListItem extends Component {
 
             { this.props.rooms[title].photoURL? <CardMedia
               expandable={true}
-              overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+              overlay={<CardTitle title={title} subtitle="" />}
               >
               <img src= {this.props.rooms[title].photoURL }/>
             </CardMedia> : null}
