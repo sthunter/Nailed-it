@@ -57,9 +57,6 @@ class ListingFurniture extends Component {
             <span className="th furniture" data-field="furniture" onClick={()=> {this.filterByFurnitureName()}} >Furniture Name</span>
             <span className="th price" data-field="price" onClick={()=> {this.filterByFurniturePrice()}} >Price</span>
             <span className="th size" data-field="size">Size</span>
-            <span className="th quantity" data-field="quantity">Quantity</span>
-            <span className="th notes" data-field="notes">Notes</span>
-            <span className="th deliveryDate" data-field="deliveryDate" onClick={()=> {this.filterByDeliveryDate()}} >Delivery Date</span>
             <span className="th controls" data-field="deliveryDate" >&nbsp;</span>
           </div>
           {

@@ -42,18 +42,6 @@ class UpdateFurnitureFormTable extends Component {
           <input type="text" className={ price.error ? 'invalid' : 'valid' } { ...size }  />
           <div className="edit-view help-text"><span className="form-warning">{ size.error }</span></div>
         </span>
-        <span className="td quantity slimDown">
-          <input type="text" className={ quantity.error ? 'invalid' : 'valid' } { ...quantity }  />
-          <div className="edit-view help-text"><span className="form-warning">{ quantity.error }</span></div>
-        </span>
-        <span className="td notes slimDown">
-          <input type="text" className={ description.error ? 'invalid' : 'valid' } { ...description }  />
-          <div className="edit-view help-text"><span className="form-warning">{ description.error }</span></div>
-        </span>
-        <span className="td deliveryDate slimDown">
-          <input type="text" className={ deliveryDate.error ? 'invalid' : 'valid' } { ...deliveryDate }  />
-          <div className="edit-view help-text"><span className="form-warning">{ deliveryDate.error }</span></div>
-        </span>
         <span className="td controls slimDown">
           <button className="btn-flat" type="submit">Submit</button>
           <button className="btn-flat" type="reset" onClick={ (e) => this.props.controlsClick(e, 'cancel') }>Cancel</button>
