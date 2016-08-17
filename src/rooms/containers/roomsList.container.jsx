@@ -43,6 +43,7 @@ export default class RoomsList extends Component {
                 list={this.props.rooms}
                 view="rooms"
                 openDesigner={this.props.changeRoute}
+                style={{"mix-blend-mode":"color-dodge"}}
               />
             </div>
           </Col>
