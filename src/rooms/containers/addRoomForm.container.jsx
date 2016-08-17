@@ -50,13 +50,17 @@ class AddRoomForm extends Component {
            <form onSubmit={ handleSubmit(this.addRoom.bind(this)) } >
             
               <Row>
-                <Input type="text" placeholder="Room Name" s={6} label="Room Name" { ...roomName } />
-                <Input type="text" placeholder="Size" s={6} label="Size" { ...size } />
+              <Col s={6} m={6} l={6}>
+                <input className="updateRoomTextField" type="text" placeholder="Room Name" s={6} m={6} l={6} label="Room Name" { ...roomName } />
+              </Col>
+              <Col s={6} m={6} l={6}>
+                <input className="updateRoomTextField" type="text" placeholder="Size" s={6} m={6} l={6} label="Size" { ...size } />
+              </Col>
               </Row>
               <Row>
                 <div class="input-field col s12">
                   <label for="textarea1">Notes</label>
-                  <textarea id="textarea1" className="materialize-textarea" placeholder="Notes" { ...notes }></textarea>
+                  <textarea id="textarea1" className="materialize-textarea" placeholder="Notes" { ...notes } style={{"padding":"0"}}></textarea>
                 </div>
               </Row>
             

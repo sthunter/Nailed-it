@@ -11,20 +11,17 @@ class UpdateRoomForm extends Component {
   
     return (
       <form onSubmit={handleSubmit(updateRoomDetails.bind(null, title, details))}  className="updateRoomForm" style={{"display":"inline-block"}} >
-               
         <Row className="updateRoomField">
           <Col s={12}>
-            <p>Size: </p><input type="text" validate {...size}/>
+            <p>Size: </p><input className="updateRoomTextField" type="text" validate {...size}/>
           </Col>
         </Row>
-
         <Row className="updateRoomField">
           <Col s={12}>
-            <p>Notes: </p><input type="text" validate  {...notes}/>
+            <p>Notes: </p><input className="updateRoomTextField" type="text" validate  {...notes}/>
           </Col>
         </Row>
         <RaisedButton label="Edit" type="submit"/>
-
       </form>
     );
   }
@@ -34,3 +31,4 @@ export default reduxForm({
   form: 'UpdateRoomForm',
   fields: ['size', 'notes'],
 }, state => ({ roomSelected: state.roomSelected, rooms: state.rooms }), { updateRoomDetails })(UpdateRoomForm);
+

@@ -23,27 +23,11 @@
   .tabNav {
     font-size:10px;
   }
-
 }
 
-input[type="text"]::-webkit-input-placeholder {
-color: #424242 !important;
-mix-blend-mode: multiply;
-}
-
-input[type="text"]:-moz-placeholder { /* Firefox 18- */
-color: #424242 !important;
-mix-blend-mode: multiply;
-}
-
-input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
-color: #424242 !important;
-mix-blend-mode: multiply;
-}
-
-input[type="text"]:-ms-input-placeholder {
-color: #424242 !important;
-mix-blend-mode: multiply;
+input.updateRoomTextField {
+  font-size: 1.25em;
+  mix-blend-mode: multiply;
 }
 
 body {

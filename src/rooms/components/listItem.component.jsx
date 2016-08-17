@@ -84,7 +84,8 @@ class ListItem extends Component {
               <CardHeader
                 onTouchTap={ () => this.handleClick(title) }
                 title= { title }
-                subtitle=""
+                className="roomListItemHeader"
+                titleStyle={{"font-size":"28px"}}
               />
             </Link>
 
