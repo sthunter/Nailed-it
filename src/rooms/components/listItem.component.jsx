@@ -66,8 +66,8 @@ class ListItem extends Component {
     if(this.props.rooms[title].color) {
       cardStyle = {'background': this.props.rooms[title].color.hex }
     }
-    const initialFormValues = {
-      price: rooms[title].size,
+    const initialValues = {
+      size: size,
       notes: notes
     }
 
@@ -101,7 +101,7 @@ class ListItem extends Component {
             </CardMedia> : null}
             
             <CardText expandable={true} className="updateRoom">
-              <UpdateRoomForm title={title} formKey={title} initialFormValues={ initialFormValues }/>
+              <UpdateRoomForm title={title} formKey={title} initialValues={ initialValues }/>
             </CardText>
           </Card>
         </div>

@@ -45,7 +45,6 @@ export function addRoom(details, ignoreDbCall) {
 export const UPDATE_ROOM_DETAILS = 'UPDATE_ROOM_DETAILS';
 export function updateRoomDetails(oldRoomName, roomContents, newRoomDetails, ignoreDbCall) {
   const clonedRoom = _.cloneDeep(roomContents);
-  const newRoomName = newRoomDetails;
   
   Object.assign(clonedRoom, newRoomDetails);
 
