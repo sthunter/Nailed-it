@@ -3,11 +3,28 @@ import { reduxForm } from 'redux-form';
 import { updateFurniture } from '../actions/furniture.action';
 
 class UpdateFurnitureFormTable extends Component {
+  handleClick(e, type) {
+    // Todo: Should I refactor this function some? It isn't doing a lot.
+    e.preventDefault(); // Prevent the page from reloading due to form being submitted
+
+    if (type === 'cancel') {
+      this.props.controlsClick(e, 'cancel');
+    } else {
+      this.props.controlsClick(e, 'submit');
+    }
+  }
+
   render() {
     const { roomName, furnitureName, furnitureObj } = this.props.data;
     const { fields: { itemName, price, deliveryDate, size, quantity, description }, handleSubmit } = this.props;
+    const boundProps = {
+      furnitureName,
+      roomName,
+      furnitureObj,
+      controlsClick: this.props.controlsClick,
+    };
     const boundUpdateFurniture = this.props.updateFurniture.bind(null,
-      furnitureName, roomName, furnitureObj
+      boundProps, null, null
     );
 
     return (
@@ -38,14 +55,16 @@ class UpdateFurnitureFormTable extends Component {
           <div className="edit-view help-text"><span className="form-warning">{ deliveryDate.error }</span></div>
         </span>
         <span className="td controls slimDown">
-          <button className="btn-flat" onClick={ (e) => this.props.controlsClick(e, 'submit') } type="submit">Submit</button>
-          <button className="btn-flat" onClick={ (e) => this.props.controlsClick(e, 'cancel') }>Cancel</button>
+          <button className="btn-flat" type="submit">Submit</button>
+          <button className="btn-flat" type="reset" onClick={ (e) => this.props.controlsClick(e, 'cancel') }>Cancel</button>
         </span>
       </form>
     );
   }
 }
+//onClick={ (e) => this.props.controlsClick(e, 'submit') }
 
+//onClick={ (e) => this.props.controlsClick(e, 'cancel') }
 function validate(values) {
   const errors = {};
 
