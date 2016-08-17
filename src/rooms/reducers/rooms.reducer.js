@@ -56,10 +56,10 @@ const roomsReducer = (state = {}, action) => {
       newState[action.oldRoomName] = action.contents;
 
       // Rename the room object if there is a new room
-      if (action.newRoomName && action.newRoomName !== action.oldRoomName) {
-        newState[action.newRoomName] = newState[action.oldRoomName];
-        delete newState[action.oldRoomName];
-      }
+      // if (action.newRoomName && action.newRoomName !== action.oldRoomName) {
+      //   newState[action.newRoomName] = newState[action.oldRoomName];
+      //   delete newState[action.oldRoomName];
+      // }
 
       return newState;
     case ADD_FURNITURE:

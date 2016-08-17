@@ -88,10 +88,8 @@ const databaseAPI = {
     }
   },
 
-  updateRoom(oldRoomName, newRoomName, clonedRoom) {
-    return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + newRoomName).set(clonedRoom).then((snapshot) => {
-      database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).remove();
-    });
+  updateRoom(oldRoomName, clonedRoom) {
+    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + oldRoomName).set(clonedRoom);
   },
 
   updateRoomDesign(designArray, roomName) {
