@@ -22,6 +22,7 @@ import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ReactTooltip from 'react-tooltip'
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -100,6 +101,7 @@ class FurnitureList extends Component {
     
     return (
       <div>
+      <ReactTooltip />
         <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-7%", "marginBottom":"0", "zIndex": "500"}}>
           <Row style={{"position":"relative", "marginBottom":"0"}}>
             <Col s={12}>
@@ -150,7 +152,7 @@ class FurnitureList extends Component {
               
             </Col>
           </Row>
-          {this.state.view < 2 ? <div onTouchTap={this.handleOpen} className='F-FAB'>
+          {this.state.view < 2 ? <div onTouchTap={this.handleOpen} className='F-FAB' data-tip="Add Furniture">
               <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
                   <div>
                     <Dialog
