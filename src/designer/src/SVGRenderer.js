@@ -23,7 +23,7 @@ class SVGRenderer extends Component {
   }
 
   render() {
-    let roomColor = this.props.rooms[this.props.roomSelected].color ? this.props.rooms[this.props.roomSelected].color.hex : "black"
+    let roomColor = this.props.rooms ? this.props.rooms[this.props.roomSelected].color.hex : "black"
     let {background, objects, svgStyle, canvas, 
          onMouseDown, onRender} = this.props;
     let {width, height, canvasOffsetX, canvasOffsetY} = canvas;
