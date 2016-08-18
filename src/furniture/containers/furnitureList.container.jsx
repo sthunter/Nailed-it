@@ -11,6 +11,7 @@ import ListingFurniture from '../components/listingFurniture.component'
 import Designer from '../../designer/drawingtool/App';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 import AllFurniture from '../components/allFurniture.component';
+import listView from '../components/listView.component';
 
 //UI
 import { Row, Col, Button, Modal } from 'react-materialize';
@@ -64,21 +65,25 @@ class FurnitureList extends Component {
   }
 
   handleDesigner = () => {
-    this.setState({view: 1});
+    this.setState({view: 2});
   } 
 
   handleAllList = () => {
-    this.setState({view: 2});
+    this.setState({view: 3});
     browserHistory.push('/furniture/all')
   }
 
   handleAllCard = () => {
-    this.setState({view: 3});
+    this.setState({view: 4});
     browserHistory.push('/furniture/all')
   }
 
   handleOverBudget = () => {
     Materialize.toast()
+  }
+
+  handleList = () => {
+    this.setState({view: 1});
   }
 
   //   handleAll = () => {
@@ -117,7 +122,7 @@ class FurnitureList extends Component {
                       </Tab>
                     )
                   })}
-                <Tab label='All' onClick={()=>{this.handleAllList()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+                <Tab label='All' onClick={()=>{this.handleAllCard()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
               </Tabs>  
             </Col>
           </Row>
@@ -125,15 +130,15 @@ class FurnitureList extends Component {
           <Row>
             <Col s={12}>
               
-              {this.state.view < 2 ? <div className='left-align' style={{'background': color }}>
-                <FlatButton label='My Items' onTouchTap={this.handleFList} />
+              {this.state.view < 3 ? <div className='left-align' style={{'background': color }}>
+                <FlatButton label='Gallery' onTouchTap={this.handleFList} />
                 <FlatButton label='List' onTouchTap={this.handleList} />
                 <FlatButton label='Designer' onTouchTap={this.handleDesigner} />
               </div> : 
 
               <div className='left-align' style={{'background': 'rgba(255, 255, 255, 0.3)'}}>
-                <FlatButton label='Gallery' onTouchTap={this.handleAllCard} />
                 <FlatButton label='List' onTouchTap={this.handleAllList} />
+                <FlatButton label='Gallery' onTouchTap={this.handleAllCard} />
               </div>}
 
             </Col>
@@ -146,13 +151,14 @@ class FurnitureList extends Component {
             <Col s={12} l={12}>
               
                   {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
-                  {this.state.view === 1 ? <Designer/> : null}
-                  {this.state.view === 2 ? <ListingFurniture /> : null}
-                  {this.state.view === 3 ? <AllFurniture /> : null}
+                  {this.state.view === 1 ? <listView list={ furniture } intro={ intro } view="furniture" /> : null}
+                  {this.state.view === 2 ? <Designer/> : null}
+                  {this.state.view === 3 ? <ListingFurniture /> : null}
+                  {this.state.view === 4 ? <AllFurniture /> : null}
               
             </Col>
           </Row>
-          {this.state.view < 2 ? <div onTouchTap={this.handleOpen} className='F-FAB' data-tip="Add Furniture">
+          {this.state.view < 3 ? <div onTouchTap={this.handleOpen} className='F-FAB' data-tip="Add Furniture">
               <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
                   <div>
                     <Dialog
