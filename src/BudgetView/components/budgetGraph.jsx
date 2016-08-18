@@ -24,14 +24,8 @@ class BudgetGraph extends Component {
     var genData;  
     const { rooms, budget } = this.props;
     const roomNames = Object.keys(rooms);
-    const calcBudget = budgetHelper.calculateBudget;
-    roomNames.map((roomName, id) => {
-      if (id === 0) {
-        this.totalCost = 0;
-      }
-      let roomCost = calcBudget(roomName, rooms);
-      this.totalCost += roomCost;
-    })
+    const calculateRoomCost = budgetHelper.calculateRoomCost;
+    const totalCost = budgetHelper.calculateTotalCost(rooms);
     const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
       genData = budgetHelper.generateData(rooms, budget);
@@ -49,8 +43,8 @@ class BudgetGraph extends Component {
     if(budget) {
       var formattedBudget = (budget).formatMoney(0);
     }
-    if(this.totalCost) {
-      var formattedCost = (this.totalCost).formatMoney(0);
+    if(totalCost) {
+      var formattedCost = (totalCost).formatMoney(0);
     }
     return(
       Object.keys(rooms).length !== 0 ? 
@@ -60,7 +54,7 @@ class BudgetGraph extends Component {
               <h5><b>Total Budget:</b> ${ formattedBudget || 'no budget' }</h5>
               <h5><b>Total Cost:</b> ${ formattedCost || 'no costs' }</h5>
               <h5><b>Budget Remaining:</b> { 
-                budget - this.totalCost > 0 ? "$"+ (budget - this.totalCost).formatMoney(0) : <span style={{'color': 'red'}}>${(budget - this.totalCost).formatMoney(0)}</span>
+                budget - totalCost > 0 ? "$"+ (budget - totalCost).formatMoney(0) : <span style={{'color': 'red'}}>${(budget - totalCost).formatMoney(0)}</span>
               }</h5>
             </Col>
           </Row>
@@ -73,7 +67,7 @@ class BudgetGraph extends Component {
           </thead>
           <tbody>
             {roomNames.map((roomName, id)=> {
-              let roomCost = calcBudget(roomName, rooms);
+              let roomCost = calculateRoomCost(roomName, rooms);
               return (
                 <tr key={id}>
                   <th className="budget-table">{ budgetHelper.toTitleCase(roomName) }</th>

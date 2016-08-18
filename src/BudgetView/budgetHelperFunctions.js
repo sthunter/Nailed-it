@@ -1,6 +1,6 @@
 const helpers = {
 
-  calculateBudget(roomName, rooms) {
+  calculateRoomCost(roomName, rooms) {
     let sum = 0;
 
     if(rooms[roomName]) {
@@ -16,6 +16,14 @@ const helpers = {
     return sum;
   },
 
+  calculateTotalCost(rooms) {
+  let sum = 0;
+  for(var room in rooms) {
+    sum += this.calculateRoomCost(room, rooms)
+  }
+  return sum;
+  },
+
 
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -24,22 +32,22 @@ const helpers = {
   generateData(rooms, budget) {
     
     let arr = []
-    let totalCost = 0;
+    let totalCost = this.calculateTotalCost(rooms);
     
     const roomsList = Object.keys(rooms);
-    const calculateBudget = this.calculateBudget;
+    const calculateRoomCost = this.calculateRoomCost;
     // const getRandomColor = this.getRandomColor;
     const toTitleCase = this.toTitleCase;
 
     roomsList.forEach(function(room){
-      let calc = calculateBudget(room, rooms);
-      
-      var obj = {};
-      obj["key"] = calc > 0 ? toTitleCase(room) : ' ';
-      obj["value"] = calc;
-      obj["color"] = rooms[room].color ? rooms[room].color.hex : '#424242';
-      arr.push(obj)
-      totalCost += calc;
+      let roomCost = calculateRoomCost(room, rooms);
+      if (roomCost > 0) {
+        var obj = {};
+        obj["key"] = toTitleCase(room);
+        obj["value"] = roomCost;
+        obj["color"] = rooms[room].color ? rooms[room].color.hex : '#424242';
+        arr.push(obj)
+      };
     });
     
     let remainingBudget = budget - totalCost;
