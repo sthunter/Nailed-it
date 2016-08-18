@@ -21,7 +21,7 @@ class UpdateRoomForm extends Component {
             <p>Notes: </p><input className="updateRoomTextField" type="text" validate  {...notes}/>
           </Col>
         </Row>
-        <RaisedButton label="Edit" type="submit"/>
+        <RaisedButton label="Submit" type="submit"/>
       </form>
     );
   }
