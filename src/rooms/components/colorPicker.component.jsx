@@ -22,8 +22,10 @@ class ColorInput extends Component {
    };
 
   handleChangeComplete(color, room) {
-    this.props.getColor(color, room)
+    const action = this.props.action || this.props.getColor;
+    action(color, room);
   };
+
   render() {
     const popover = {
           position: 'absolute',
@@ -39,14 +41,14 @@ class ColorInput extends Component {
 
     return (
       
-      <span >
-      <ReactTooltip />
-      <i data-tip="Choose Your Color"  className="card-controls material-icons md-dark" style={{cursor: 'pointer'}} onClick={ this.handleClick }>format_paint</i>
-          { this.state.displayColorPicker ? 
+      <span>
+        <ReactTooltip />
+        <i data-tip="Choose Your Color"  className="card-controls material-icons md-dark" style={{cursor: 'pointer'}} onClick={ this.handleClick }>format_paint</i>
+          { this.state.displayColorPicker ?
             <div style={ popover }>
             <div style={ cover } onClick={ this.handleClose }/>
             <SwatchesPicker onChangeComplete={(color) => this.handleChangeComplete(color, this.props.title)} />
-            </div> 
+            </div>
             : null }
       </span>
     
