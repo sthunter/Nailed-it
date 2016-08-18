@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
-import { getRooms, selectRoom,  makePublic_Private, addPhoto } from '../actions/rooms.action';
+import { getRooms, selectRoom,  makePublic_Private, addPhoto, getPublicStatus } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
 import { Row, Col, Button, Input } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
@@ -13,10 +13,12 @@ export default class RoomsList extends Component {
     if(this.props.params.name) {
       this.props.selectRoom(this.props.params.name)
     }
+    this.props.getPublicStatus();
     this.props.changeRoute(this.props.location.pathname);
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
     }
+
   }
 
   onDrop(files) {
@@ -24,8 +26,7 @@ export default class RoomsList extends Component {
   }
 
   render() {
-    const currentProject = this.props.projects.iGEKbLdXzHORTksYSB21JSd8cqA3;
-    const currentPublicStatus = currentProject && this.props.projects.iGEKbLdXzHORTksYSB21JSd8cqA3.public;
+    let currentPublicStatus = this.props.shared
     return (
       <div>
         <Row>
@@ -58,12 +59,12 @@ export default class RoomsList extends Component {
   }
 }
 
-function mapStateToProps({ projects, rooms, roomSelected, route }) {
-  return { projects, rooms, roomSelected, route };
+function mapStateToProps({ rooms, roomSelected, route, shared }) {
+  return { rooms, roomSelected, route, shared };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRooms, selectRoom, addPhoto, changeRoute, makePublic_Private }, dispatch);
+  return bindActionCreators({ getRooms, selectRoom, addPhoto, changeRoute, makePublic_Private, getPublicStatus }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList);
