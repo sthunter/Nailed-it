@@ -57,7 +57,8 @@ class ListingFurniture extends Component {
             <span className="th furniture" data-field="furniture" onClick={()=> {this.filterByFurnitureName()}} >Furniture Name</span>
             <span className="th price" data-field="price" onClick={()=> {this.filterByFurniturePrice()}} >Price</span>
             <span className="th size" data-field="size">Size</span>
-            <span className="th controls" data-field="deliveryDate" >&nbsp;</span>
+            <span className="th color" data-field="color">Color</span>
+            <span className="th controls">&nbsp;</span>
           </div>
           {
             furnitureList.map(function(data, i){
@@ -68,6 +69,7 @@ class ListingFurniture extends Component {
                 size: data.furnitureObj.size,
                 quantity: data.furnitureObj.quantity,
                 description: data.furnitureObj.description,
+                color: data.furnitureObj.color,
               };
 
                 //<UpdateFurnitureFormTable data={ data } key={ i } formKey={ data.furnitureName }

@@ -33,6 +33,7 @@ class FList extends Component {
             deliveryDate: item.deliveryDate,
             size: item.size,
             description: item.description,
+            color: item.color,
           };
 
           return (

@@ -251,6 +251,10 @@ span.td
   width: 200px;
   display: inline-block;
 }
+.tr .color {
+  width: 80px;
+  display: inline-block;
+}
 .tr .deliveryDate {
   width: 110px;
   display: inline-block;

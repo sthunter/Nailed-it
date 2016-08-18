@@ -28,6 +28,7 @@ export default function listingFurnitureRow(props)  {
       <span className="td slimDown furniture">{ furnitureName }</span>
       <span className="td slimDown price">{ furnitureObj.price }</span>
       <span className="td slimDown size">{ furnitureObj.size }</span>
+      <span className="td slimDown color">{ furnitureObj.color }</span>
       <span className="td controls slimDown">
         <button className={ `btn-flat` } onClick={ (e) => controlsClick(e, 'edit') }>Edit</button>
       </span>
