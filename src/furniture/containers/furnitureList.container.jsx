@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectRoom, getRooms } from '../../rooms/actions/rooms.action';
 import { changeRoute } from '../../routing/actions/routing.action';
+import { getBudget } from '../../BudgetView/actions/budgetView.action';
 import { browserHistory } from 'react-router';
 import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
@@ -40,10 +41,12 @@ class FurnitureList extends Component {
 
   componentWillReceiveProps(props) {
     this.setState({add:false})
-    let total = furnitureHelper.calculateTotalCost(this.props.rooms)
-    if (this.props.budget < total) {
-      console.log(this.props.budget);
-      Materialize.toast('$' + (total - this.props.budget) + '.00 over budget', 4000);
+    let total = furnitureHelper.calculateTotalCost(props.rooms)
+    if (!props.budget) {
+      this.props.getBudget();
+    }
+    if (props.budget && props.budget < total) {
+      Materialize.toast('$' + (total - props.budget) + '.00 over budget', 4000);
     }
   }
 
@@ -191,7 +194,7 @@ function mapStateToProps({ rooms, roomSelected, budget }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({selectRoom, getRooms,  changeRoute}, dispatch);
+  return bindActionCreators({selectRoom, getRooms,  changeRoute, getBudget}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
