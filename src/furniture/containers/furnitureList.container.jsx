@@ -76,6 +76,10 @@ class FurnitureList extends Component {
     browserHistory.push('/furniture/all')
   }
 
+  handleOverBudget = () => {
+    Materialize.toast()
+  }
+
   //   handleAll = () => {
   //   this.setState({view: 2});
   //   browserHistory.push('/furniture/all')
@@ -126,7 +130,7 @@ class FurnitureList extends Component {
               </div> : 
 
               <div className='left-align' style={{'background': 'rgba(255, 255, 255, 0.3)'}}>
-                <FlatButton label='My Items' onTouchTap={this.handleAllCard} />
+                <FlatButton label='Gallery' onTouchTap={this.handleAllCard} />
                 <FlatButton label='List' onTouchTap={this.handleAllList} />
               </div>}
 
@@ -146,9 +150,8 @@ class FurnitureList extends Component {
               
             </Col>
           </Row>
-          {this.state.view < 2 ? <div className='F-FAB'>
+          {this.state.view < 2 ? <div onTouchTap={this.handleOpen} className='F-FAB'>
               <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
-                <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
                   <div>
                     <Dialog
                       title="Add an Item"

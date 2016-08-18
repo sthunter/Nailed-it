@@ -12,6 +12,8 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+
 
 
 class AllFurniture extends Component {
@@ -30,6 +32,7 @@ class AllFurniture extends Component {
 
   state = {
     filter: furnitureHelper.listByFurniture,
+    edit:false
   }
   
   filterByFurnitureName() {
@@ -84,6 +87,7 @@ class AllFurniture extends Component {
               >
                 <img src={tile.furnitureObj.url} />
               </GridTile>
+              
             ))}
           </GridList>
         </div>
@@ -101,7 +105,7 @@ function mapStateToProps({ rooms, roomSelected }) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllFurniture);
 
-
+// actionIcon={<IconButton><ModeEdit color="white" /></IconButton>}
  // <div >
         // {furnitureList.map((element, i) => {      // 
           // return (

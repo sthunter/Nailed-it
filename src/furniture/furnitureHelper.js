@@ -27,7 +27,6 @@ const furnitureHelper = {
       let unsorted = [];
       for (var room in rooms) {
         if (room) {
-        
           for (var furniture in rooms[room].furniture) {
             if (furniture) {
               let triple = {
@@ -154,6 +153,31 @@ const furnitureHelper = {
       return null;
     }
   },
+
+calculateRoomCost(roomName, rooms) {
+  let sum = 0;
+
+  if(rooms[roomName]) {
+    let list = rooms[roomName].furniture;
+    if(typeof(list) === 'object') {
+      for(var key in list) {
+        if(key){
+          sum += Number(list[key].price);
+        }
+      }
+    }
+  }
+  return sum;
+},
+
+//Partially completed
+calculateTotalCost(rooms) {
+  let sum = 0;
+  for(var room in rooms) {
+    sum += calculateRoomCost(room)
+  }
+  return sum;
+}
   //for now this is not a useful function and doesn't work
   // filterByRoomPrice(rooms) {
   //   if (typeof(rooms) === 'object' && !(Array.isArray(rooms))) {
