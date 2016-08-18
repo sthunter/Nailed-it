@@ -55,7 +55,7 @@ const helpers = {
     let costObj = {};
     costObj["key"] = remainingBudget >= 0 ? "Remaining Budget" : "";
     costObj["value"] = remainingBudget > 0 ? remainingBudget : 0;
-    costObj["color"] = "#424242";
+    costObj["color"] = "#e0e0e0";
     arr.push(costObj);
 
     return arr;
