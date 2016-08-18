@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/../build'));
 app.set('build', __dirname + '/../build');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
+app.get('*', function(request, response) {
   response.render('pages/index');
 });
 
