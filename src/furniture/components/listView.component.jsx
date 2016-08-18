@@ -6,7 +6,7 @@ import furnitureHelper from '../furnitureHelper';
 import FlatButton from 'material-ui/FlatButton';
 
 
-class listView extends Component {
+class ListView extends Component {
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
@@ -37,9 +37,8 @@ class listView extends Component {
     const roomName = Object.keys(rooms);
     const toTitleCase = this.toTitleCase;
     let furnitureList = this.state.filter(rooms);
-    
-    
-    //const roomList = furnitureHelper.listByRoom(rooms);
+    const roomSelected = this.props.roomSelected
+    console.log(furnitureList)
 
 
       return (
@@ -55,28 +54,21 @@ class listView extends Component {
                     <th data-field="furniture" onClick={()=> {this.filterByFurnitureName()}} >Furniture Name</th>
                     <th data-field="price" onClick={()=> {this.filterByFurniturePrice()}} >Item Price</th>
                     <th data-field="size">Item Size</th>
-                    <th data-field="quantity">Item Quantity</th>
-                    <th data-field="notes">Notes</th>
-                    <th data-field="deliveryDate" onClick={()=> {this.filterByDeliveryDate()}} >Delivery Date</th>
-                    
-
                   </tr>
                 </thead>
-                {furnitureList.map(function(data, i){
-                  
-                      return (
+                {furnitureList.filter(function(data, i){
+                  return data.roomName === roomSelected;
+                }).map(function(data, i){
+                    return(  
                         <tr key={i} id="table-item">
                           <td className="slimDown"><b>{  data.roomName || "" }</b></td>
                           <td className="slimDown"> { data.furnitureName } </td>
                           <td className="slimDown"> { data.furnitureObj.price } </td>
                           <td className="slimDown"> { data.furnitureObj.size } </td>
-                          <td className="slimDown"> { data.furnitureObj.quantity } </td>
-                          <td className="slimDown"> { data.furnitureObj.notes } </td>
-                          <td className="slimDown"> { data.furnitureObj.deliveryDate } </td>
                         </tr>
-                    )
-                })}
-                
+                        )
+                  })
+               }
                 <tbody>
                 </tbody>
               </Table>
@@ -92,4 +84,4 @@ function mapStateToProps({ rooms, roomSelected }) {
   return { rooms, roomSelected };
 }
 
-export default connect(mapStateToProps)(listView);
+export default connect(mapStateToProps)(ListView);

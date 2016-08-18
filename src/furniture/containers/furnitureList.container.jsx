@@ -11,10 +11,10 @@ import ListingFurniture from '../components/listingFurniture.component'
 import Designer from '../../designer/drawingtool/App';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 import AllFurniture from '../components/allFurniture.component';
-import listView from '../components/listView.component';
+import ListView from '../components/listView.component';
 
 //UI
-import { Row, Col, Button, Modal } from 'react-materialize';
+import { Row, Col, Button, Modal, Table } from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -98,6 +98,8 @@ class FurnitureList extends Component {
     var furniture = {};
     const actions = [];
     var color;
+    
+
 
     if (roomSelected && rooms[roomSelected]) {
       Object.assign(furniture, rooms[roomSelected].furniture);
@@ -137,8 +139,8 @@ class FurnitureList extends Component {
               </div> : 
 
               <div className='left-align' style={{'background': 'rgba(255, 255, 255, 0.3)'}}>
-                <FlatButton label='List' onTouchTap={this.handleAllList} />
                 <FlatButton label='Gallery' onTouchTap={this.handleAllCard} />
+                <FlatButton label='List' onTouchTap={this.handleAllList} />
               </div>}
 
             </Col>
@@ -151,7 +153,7 @@ class FurnitureList extends Component {
             <Col s={12} l={12}>
               
                   {this.state.view === 0 ? <FList list={ furniture } intro={ intro } view="furniture" /> : null}
-                  {this.state.view === 1 ? <listView list={ furniture } intro={ intro } view="furniture" /> : null}
+                  {this.state.view === 1 ? <ListView currentRoom={this.props.roomSelected} /> : null}
                   {this.state.view === 2 ? <Designer/> : null}
                   {this.state.view === 3 ? <ListingFurniture /> : null}
                   {this.state.view === 4 ? <AllFurniture /> : null}
