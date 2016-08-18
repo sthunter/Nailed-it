@@ -23,6 +23,7 @@ class SVGRenderer extends Component {
   }
 
   render() {
+    let roomColor = this.props.rooms[this.props.roomSelected].color ? this.props.rooms[this.props.roomSelected].color.hex : "black"
     let {background, objects, svgStyle, canvas, 
          onMouseDown, onRender} = this.props;
     let {width, height, canvasOffsetX, canvasOffsetY} = canvas;
@@ -34,8 +35,9 @@ class SVGRenderer extends Component {
       }: styles.grid, 
       {
         ...svgStyle,
-        marginTop: canvasOffsetY,
-        marginLeft: canvasOffsetX
+        marginTop: canvasOffsetY - 6,
+        marginLeft: canvasOffsetX - 6,
+        border: "6px solid " + roomColor
       }
     ];
 
