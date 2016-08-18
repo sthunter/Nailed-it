@@ -170,11 +170,10 @@ calculateRoomCost(roomName, rooms) {
   return sum;
 },
 
-//Partially completed
 calculateTotalCost(rooms) {
   let sum = 0;
   for(var room in rooms) {
-    sum += calculateRoomCost(room)
+    sum += this.calculateRoomCost(room, rooms)
   }
   return sum;
 }

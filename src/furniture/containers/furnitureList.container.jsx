@@ -12,6 +12,7 @@ import Designer from '../../designer/drawingtool/App';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 import AllFurniture from '../components/allFurniture.component';
 import listView from '../components/listView.component';
+import furnitureHelper from '../furnitureHelper';
 
 //UI
 import { Row, Col, Button, Modal } from 'react-materialize';
@@ -23,7 +24,8 @@ import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
+
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -38,6 +40,11 @@ class FurnitureList extends Component {
 
   componentWillReceiveProps(props) {
     this.setState({add:false})
+    let total = furnitureHelper.calculateTotalCost(this.props.rooms)
+    if (this.props.budget < total) {
+      console.log(this.props.budget);
+      Materialize.toast('$' + (total - this.props.budget) + '.00 over budget', 4000);
+    }
   }
 
   state = {
@@ -179,8 +186,8 @@ class FurnitureList extends Component {
   }
 }
 
-function mapStateToProps({ rooms, roomSelected }) {
-  return { rooms, roomSelected };
+function mapStateToProps({ rooms, roomSelected, budget }) {
+  return { rooms, roomSelected, budget };
 }
 
 function mapDispatchToProps(dispatch) {
