@@ -45,7 +45,6 @@ class FList extends Component {
                        details={item}
                        initialValues={ initialFormValues }
                      />
-                    
                   }
                 >
                   <div className='card-control'><i className="card-controls material-icons md-dark" onClick={() => {this.deleteFurnitureCall(itemName)}}>delete</i></div>
