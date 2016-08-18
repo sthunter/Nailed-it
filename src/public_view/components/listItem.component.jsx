@@ -17,9 +17,6 @@ class ListItem extends Component {
         if(this.props.lists.rooms[room].furniture[item].url) {
           furnitures.push(<MediaBox className="MediaBox" src={this.props.lists.rooms[room].furniture[item].url} width='100'/>);
         }
-        else {
-          furnitures.push(<MediaBox className="MediaBox" src="http://www.iconsdb.com/icons/preview/black/sofa-xxl.png" width='100'/>);
-        }
       }
     }
     return (
