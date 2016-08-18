@@ -70,12 +70,11 @@ export default class Designing extends Component {
           var regLength = new RegExp("[0-9]+");
           var regWidth = new RegExp("[0-9]+$");
           var newLength = regLength.exec(this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].size);
-          console.log("this")
           var newWidth = regWidth.exec(this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].size);          
         }
         this.state.objects.push({
-          "width": newWidth ? newWidth[0] : 20,
-          "height": newLength ? newLength[0] : 20,
+          "width": newWidth ? +newWidth[0] : 20,
+          "height": newLength ? +newLength[0] : 20,
           "rotate": 0,
           "strokeWidth": 0,
           "fill":  this.props.rooms[this.props.roomSelected].furniture[furnitureNames[furnitureNames.length - i - 1]].color || this.props.rooms[this.props.roomSelected].color.hex || "#ffffff",
@@ -108,7 +107,10 @@ export default class Designing extends Component {
       <Designer 
         width={ +roomNewWidth || 400} height={ +roomNewLength || 600}
         objects={this.state.objects}
-        onUpdate={this.handleUpdate.bind(this)}/>
+        onUpdate={this.handleUpdate.bind(this)}
+        roomSelected = {this.props.roomSelected}
+        rooms = {this.props.rooms}
+        />
     );
   }
 }

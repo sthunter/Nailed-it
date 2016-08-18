@@ -379,7 +379,9 @@ class Designer extends Component {
          objectTypes={objectTypes}
          objectRefs={this.objectRefs}
          onRender={(ref) => this.svgElement = ref}
-         onMouseDown={this.newObject.bind(this)} />
+         onMouseDown={this.newObject.bind(this)}
+         roomSelected = {this.props.roomSelected}
+         rooms = {this.props.rooms} />
     );
   }
 
