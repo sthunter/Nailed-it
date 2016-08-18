@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { updateFurniture } from '../actions/furniture.action';
-//import { Table, Input } from 'react-materialize';
 
 class UpdateFurnitureForm extends Component {
   render() {
-    const { fields: { itemName, price, deliveryDate, size, description, originalItemName }, handleSubmit } = this.props;
+    const { fields: {
+      itemName, price, deliveryDate, size, description, originalItemName, color
+    }, handleSubmit } = this.props;
     const currentFurnitureObj = this.props.rooms[this.props.roomSelected].furniture[this.props.name];
     const boundUpdateFurniture = this.props.updateFurniture.bind(null,
       this.props.name, this.props.roomSelected, currentFurnitureObj
@@ -31,10 +32,10 @@ class UpdateFurnitureForm extends Component {
             </tr>
             <tr>
               <td>
-                <label>Delivery Date
-                  <input type="text" className={ deliveryDate.error ? 'invalid' : 'valid'} { ...deliveryDate }  />
+                <label>Color
+                  <input type="text" className={ color.error ? 'invalid' : 'valid'} { ...color }  />
                 </label>
-                <div className="help-text"><span className="form-warning">{ deliveryDate.error }</span></div>
+                <div className="help-text"><span className="form-warning">{ color.error }</span></div>
               </td>
               <td>
                 <label>Dimensions
@@ -84,6 +85,6 @@ function validate(values) {
 
 export default reduxForm({
   form: 'UpdateFurnitureForm',
-  fields: ['itemName', 'price', 'deliveryDate', 'size', 'description', 'originalItemName'],
+  fields: ['itemName', 'price', 'deliveryDate', 'size', 'description', 'color', 'originalItemName'],
   validate,
 }, mapStateToProps, { updateFurniture })(UpdateFurnitureForm);
