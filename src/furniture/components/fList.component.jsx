@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize';
+import { Card, CardTitle, Row, Col, } from 'react-materialize';
 //import AddItemButton from '../../app/addItemButton.component.jsx';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 //import AddFurnitureForm from '../containers/addFurnitureForm.container'
@@ -15,6 +15,7 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import AddFurnitureForm from '../containers/addFurnitureForm.container';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Delete from 'material-ui/svg-icons/action/delete';
+
 
 class FList extends Component {
   
@@ -81,7 +82,7 @@ class FList extends Component {
                 <GridTile
                 key={i}
                 title={itemName}
-                subtitle={<span><b>Price: $</b>{_this.props.list[itemName].price}</span>}
+                subtitle={<span><b>Price: $</b>{_this.props.list[itemName].price} </span>}
                 actionIcon={
                   this.state.edit === itemName ? 
                   <span><IconButton onClick={()=>{this.deleteFurnitureCall(itemName)}}><Delete color="white" /></IconButton><IconButton onTouchTap={this.handleCloseEdit}><Close color="white" /></IconButton></span> 
