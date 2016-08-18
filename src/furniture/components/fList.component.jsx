@@ -22,10 +22,8 @@ class FList extends Component {
     this.setState({edit:null})
   }
 
-  deleteFurnitureCall(itemName) {
-
-    const currentRoom = this.props.roomSelected;
-
+  deleteFurnitureCall = (itemName) => {
+    let currentRoom = this.props.roomSelected;
     this.props.deleteFurniture(itemName, currentRoom);
   }
 
@@ -86,8 +84,8 @@ class FList extends Component {
                 subtitle={<span><b>Price: $</b>{_this.props.list[itemName].price}</span>}
                 actionIcon={
                   this.state.edit === itemName ? 
-                  <span><IconButton ><Delete color="white" /></IconButton><IconButton onTouchTap={this.handleCloseEdit}><Close color="white" /></IconButton></span> 
-                  : <span><IconButton ><Delete color="white" /></IconButton><IconButton onTouchTap={()=>{this.handleEdit(itemName)}}><ModeEdit color="white" /></IconButton></span>
+                  <span><IconButton onClick={()=>{this.deleteFurnitureCall(itemName)}}><Delete color="white" /></IconButton><IconButton onTouchTap={this.handleCloseEdit}><Close color="white" /></IconButton></span> 
+                  : <span><IconButton onClick={()=> this.deleteFurnitureCall(itemName)}><Delete color="white" /></IconButton><IconButton onTouchTap={()=>{this.handleEdit(itemName)}}><ModeEdit color="white" /></IconButton></span>
                   }
               >
                 {this.state.edit === itemName ? <UpdateFurnitureForm formKey={itemName} name={itemName}
