@@ -6,6 +6,7 @@ import { Row, Col, Modal, Button} from 'react-materialize';
 import { Link, browserHistory } from 'react-router';
 import Dropzone from 'react-dropzone';
 import ColorInput from './colorPicker.component';
+import ReactTooltip from 'react-tooltip'
 // import UpdateRoomForm from '../containers/updateRoomForm.container'
 class Toolbar extends Component {
   state = {
@@ -37,14 +38,15 @@ class Toolbar extends Component {
 
     return (
       <span>
+      <ReactTooltip />
             <div className='card-control' hoverable>
               <Dropzone style={{'width': '24px', 'height': '24px', 'border': '0px'}} onDrop={files => this.onDrop(files, title)}>
-                <i className="card-controls material-icons md-dark">add_a_photo</i>
+                <i data-tip="Add Photo" className="card-controls material-icons md-dark">add_a_photo</i>
               </Dropzone>
             </div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.handleOpen()}}>create</i></div>
-            <div className='card-control' hoverable><i className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete</i></div>
-            <ColorInput title = { title } />
+            <div className='card-control' hoverable><i data-tip="Edit Room" className="card-controls material-icons md-dark" onClick={() => {this.handleOpen()}}>create</i></div>
+            <div className='card-control' hoverable><i data-tip="Delete Room" className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete</i></div>
+            <ColorInput title = { title } data-tip="Pick Color" />
       </span>
     )
   }

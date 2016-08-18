@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getColor } from '../actions/rooms.action'
 import { CardPanel, Button, Row, Col, MediaBox } from 'react-materialize';
+import ReactTooltip from 'react-tooltip'
 
 class ColorInput extends Component {
 
@@ -38,7 +39,9 @@ class ColorInput extends Component {
 
     return (
       
-      <span ><i  className="card-controls material-icons md-dark" style={{cursor: 'pointer'}} onClick={ this.handleClick }>format_paint</i>
+      <span >
+      <ReactTooltip />
+      <i data-tip="Choose Your Color"  className="card-controls material-icons md-dark" style={{cursor: 'pointer'}} onClick={ this.handleClick }>format_paint</i>
           { this.state.displayColorPicker ? 
             <div style={ popover }>
             <div style={ cover } onClick={ this.handleClose }/>
