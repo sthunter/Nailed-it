@@ -121,6 +121,18 @@ export function getRooms() {
   };
 }
 
+//initial pull from the database
+export const GET_PUBLIC_STATUS = 'GET_PUBLIC_STATUS';
+export function getPublicStatus() {
+  //database call with promise stored in rooms
+  let publicStatus = databaseAPI.getPublicStatus();
+  return {
+    type: GET_PUBLIC_STATUS,
+    //promise passed as action.payload
+    payload: publicStatus
+  };
+}
+
 export const REMOVE_ROOM = 'REMOVE_ROOM';
 export function removeRoom(title) {
   if (title === 'All Rooms') {

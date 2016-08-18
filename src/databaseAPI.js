@@ -57,6 +57,10 @@ const databaseAPI = {
       });
   },
 
+  getPublicStatus() {
+    return database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/public').once('value')
+  },
+
   getProjects() {
     return database.ref().once('value');
   },
