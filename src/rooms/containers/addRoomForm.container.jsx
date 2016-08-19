@@ -54,7 +54,7 @@ class AddRoomForm extends Component {
                 <input className="updateRoomTextField" type="text" placeholder="Room Name" s={6} m={6} l={6} label="Room Name" { ...roomName } />
               </Col>
               <Col s={6} m={6} l={6}>
-                <input className="updateRoomTextField" type="text" placeholder="Size" s={6} m={6} l={6} label="Size" { ...size } />
+                <input className="updateRoomTextField" type="text" placeholder="Size ( L x W )" s={6} m={6} l={6} label="Size" { ...size } />
               </Col>
               </Row>
               <Row>
