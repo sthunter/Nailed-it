@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import furnitureHelper from '../furnitureHelper';
-import UpdateFurnitureForm from '../containers/updateFurnitureForm.container';
 import { bindActionCreators } from 'redux';
 import { deleteFurniture } from '../actions/furniture.action';
 import {GridList, GridTile} from 'material-ui/GridList';
 
 
 class AllFurniture extends Component {
-  constructor(props) {
-    super(props);
-  
-  }
 
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -43,10 +38,7 @@ class AllFurniture extends Component {
   }
   render () {
     const { rooms } = this.props;
-    const roomName = Object.keys(rooms);
-    const toTitleCase = this.toTitleCase;
     let furnitureList = this.state.filter(rooms);
-    const defaultUrl = "http://blog.wanken.com/wp-content/uploads/2010/10/Eames-Lounge-Chair-and-Ottoman.jpeg";
     const styles = {
       root: {
         display: 'flex',

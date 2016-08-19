@@ -1,4 +1,5 @@
 import databaseAPI from '../../databaseAPI';
+import _ from 'lodash';
 
 export const ADD_FURNITURE = 'ADD_FURNITURE';
 export const DELETE_FURNITURE = 'DELETE_FURNITURE';

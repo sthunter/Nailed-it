@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Card, CardTitle, Row, Col, Input} from 'react-materialize';
-import AddItemButton from '../../app/addItemButton.component.jsx';
 import { connect } from 'react-redux';
 import furnitureHelper from '../furnitureHelper';
-import FlatButton from 'material-ui/FlatButton';
 import ListingFurnitureRow from './listingFurnitureRow.component.jsx';
 
 class ListView extends Component {
@@ -40,8 +37,6 @@ class ListView extends Component {
   }
   render () {
     const { rooms } = this.props;
-    const roomName = Object.keys(rooms);
-    const toTitleCase = this.toTitleCase;
     let furnitureList = this.state.filter(rooms);
     const roomSelected = this.props.roomSelected
     const _this = this;

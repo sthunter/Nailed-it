@@ -16,7 +16,7 @@ class UpdateFurnitureFormTable extends Component {
 
   render() {
     const { roomName, furnitureName, furnitureObj } = this.props.data;
-    const { fields: { itemName, price, deliveryDate, size, color }, handleSubmit } = this.props;
+    const { fields: { itemName, price, size, color }, handleSubmit } = this.props;
     const boundProps = {
       furnitureName,
       roomName,
@@ -54,16 +54,8 @@ class UpdateFurnitureFormTable extends Component {
     );
   }
 }
-//onClick={ (e) => this.props.controlsClick(e, 'submit') }
-
-//onClick={ (e) => this.props.controlsClick(e, 'cancel') }
-function validate(values) {
-  const errors = {};
-
-  return errors;
-}
 
 export default reduxForm({
   form: 'UpdateFurnitureFormTable',
-  fields: ['itemName', 'price', 'deliveryDate', 'size', 'color'],
+  fields: ['itemName', 'price', 'size', 'color'],
 }, null, { updateFurniture })(UpdateFurnitureFormTable);
