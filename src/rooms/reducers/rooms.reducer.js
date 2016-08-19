@@ -87,7 +87,7 @@ const roomsReducer = (state = {}, action) => {
 
       // Update the furniture name if necessary by removing the old furniture
       if (action.originalFurnitureName !== action.newFurnitureName) {
-        delete newState[action.originalFurnitureName];
+        delete newState[action.roomName].furniture[action.originalFurnitureName];
       }
 
       // Add updated furniture props to the new state object, at the updated furniture name
