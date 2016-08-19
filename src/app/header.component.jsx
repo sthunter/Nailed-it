@@ -81,5 +81,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
-
-// <NavItem><Link to={ '/room' } ><span id="brand">Nailed-It</span></Link></NavItem>
