@@ -73,7 +73,7 @@
     "start": "node ./server/server.js",
     "dev": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
-    "deploy": "node ./scripts/build.js && git add . && git commit -m \"deploy: getting ready\" && git push https://github.com/Nailed-it/Nailed-it.git master:deployed --force",
+    "deploy": "node ./scripts/build.js && git add . && git commit -m \"deploy: getting ready\" && git push https://github.com/Nailed-it/Designify.git master:deployed --force",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.jsx \"test/**/*.js\"",
     "test:watch": "npm run test -- --watch --watch-extensions \"jsx\""
   }

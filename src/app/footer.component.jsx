@@ -17,8 +17,8 @@ export default class Foot extends Component {
           }
           className="indigo darken-1"
         >
-            <h5 className="white-text">Nailed-It</h5>
-            <p className="grey-text text-lighten-4">MKS Thesis Project. Please check out our GitHub links to the right!</p>
+            <h5 className="white-text">Designify</h5>
+            <p className="grey-text text-lighten-4">HackReactor / Makersquare Thesis Project. Please check out our GitHub links to the right!</p>
         </Footer>
       </div>
     )
