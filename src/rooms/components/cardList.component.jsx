@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './listItem.component.jsx';
-import AddItemButton from '../../app/addItemButton.component.jsx';
 import AddRoomForm from '../containers/addRoomForm.container';
-
 
 class CardList extends Component {
   render() {

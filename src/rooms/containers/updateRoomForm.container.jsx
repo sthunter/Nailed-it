@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Row } from 'react-materialize';
+import { Col, Row } from 'react-materialize';
 import { reduxForm } from 'redux-form';
 import { updateRoomDetails } from '../actions/rooms.action.js';
 import RaisedButton from 'material-ui/RaisedButton';
