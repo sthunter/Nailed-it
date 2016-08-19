@@ -2,8 +2,6 @@ import React from 'react';
 import UpdateFurnitureFormTable from '../containers/updateFurnitureFormTable.container.jsx';
 
 export default function listingFurnitureRow(props)  {
-  const _props = props;
-  //console.log('listingFurnitureRow props: ', props);
   const { roomName, furnitureName, furnitureObj } = props.data;
 
   function controlsClick(e, type) {
@@ -35,7 +33,3 @@ export default function listingFurnitureRow(props)  {
     </div>
   );
 }
-
-/*
- onClick={ (e) => this.controlsClick(e, 'edit') }
- */

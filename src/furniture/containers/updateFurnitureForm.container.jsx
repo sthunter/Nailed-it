@@ -6,9 +6,8 @@ import ColorInput from '../../rooms/components/colorPicker.component.jsx';
 
 class UpdateFurnitureForm extends Component {
   render() {
-    console.log('[updateFurnForm] this.props: ', this.props);
     const { fields: {
-      itemName, price, deliveryDate, size, description, originalItemName, color
+      itemName, price, size, description, originalItemName, color
     }, handleSubmit } = this.props;
     const currentFurnitureObj = this.props.rooms[this.props.roomSelected].furniture[this.props.name];
     const boundUpdateFurniture = this.props.updateFurniture.bind(null,
@@ -73,13 +72,6 @@ function validate(values) {
   if (!values.itemName) {
     errors.itemName = 'The item must have a name.'
   }
-
-  //const furnitureNames = Object.keys(this.props.rooms[this.props.roomSelected].furniture);
-  //// If the user changed the item name to the name of another existing piece of furniture, alert the user
-  //if (values.itemName !== values.originalItemName && ~furnitureNames.indexOf(values.itemName)) {
-  //  errors.itemName = `There is already a "${values.itemName}".`;
-  //}
-
   if (values.price && values.price.match(/\D/)) {
     errors.price = 'The price must only contain numbers.';
   }
@@ -93,6 +85,6 @@ function mapDispatchToProps(dispatch) {
 
 export default reduxForm({
   form: 'UpdateFurnitureForm',
-  fields: ['itemName', 'price', 'deliveryDate', 'size', 'description', 'color', 'originalItemName'],
+  fields: ['itemName', 'price', 'size', 'description', 'color', 'originalItemName'],
   validate,
 }, mapStateToProps, mapDispatchToProps)(UpdateFurnitureForm);

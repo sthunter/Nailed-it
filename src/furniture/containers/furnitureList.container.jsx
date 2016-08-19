@@ -39,10 +39,8 @@ class FurnitureList extends Component {
       this.props.getBudget();
     }
     
-    console.log("total")
-    console.log(this.state.total)
     if (nextProps.budget && nextProps.budget < total && total !== this.state.total) {
-      Materialize.toast('$' + (total - nextProps.budget) + '.00 over budget', 4000);
+      Materialize.toast('$' + (total - nextProps.budget) + '.00 over budget', 4000); // eslint-disable-line no-undef
     }
     this.setState({total:total})
   }
@@ -87,7 +85,7 @@ class FurnitureList extends Component {
   }
 
   handleOverBudget = () => {
-    Materialize.toast()
+    Materialize.toast();   // eslint-disable-line no-undef
   }
 
   handleList = () => {
