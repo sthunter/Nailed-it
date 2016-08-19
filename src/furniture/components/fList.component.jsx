@@ -63,7 +63,7 @@ class FList extends Component {
         width: 'auto',
         height: 'auto',
         overflowY: 'auto',
-        marginBottom: 24,
+        marginBottom: 75,
       },
     };
 
