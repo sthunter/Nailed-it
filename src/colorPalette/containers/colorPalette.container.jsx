@@ -120,7 +120,7 @@ class ColorPalette extends Component {
           </svg>
           </Col>
           <Col s={6}>
-            <div>Complimentary Colors</div>
+            <div>Complementary Colors</div>
             <svg width={rectWidth * (ComplementsRects.length - 1) || rectWidth} height={50}>
               <g>
               {ComplementsRects}

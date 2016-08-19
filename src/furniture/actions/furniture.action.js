@@ -4,7 +4,6 @@ import _ from 'lodash';
 export const ADD_FURNITURE = 'ADD_FURNITURE';
 export const DELETE_FURNITURE = 'DELETE_FURNITURE';
 export const UPDATE_FURNITURE = 'UPDATE_FURNITURE';
-
 // NOTE: Many corresponding reducers are in rooms.reducer, not in the furniture directory
 
 export function addFurniture(roomName, furnitureProps) {
@@ -41,7 +40,7 @@ export function addFurniture(roomName, furnitureProps) {
 }
 
 export function deleteFurniture(furnitureName, roomName) {
-    databaseAPI.removeFurniture(furnitureName, roomName);
+  databaseAPI.removeFurniture(furnitureName, roomName);
   return {
     type: DELETE_FURNITURE,
     furnitureName,
@@ -52,8 +51,10 @@ export function deleteFurniture(furnitureName, roomName) {
 export function updateFurniture(originalFurnitureName, roomName, currentFurnitureProps, newProps) {
   // Then we passed a props object instead of separate params
   if (typeof originalFurnitureName === 'object') {
-    const { controlsClick } = originalFurnitureName;
-    [ originalFurnitureName, roomName, currentFurnitureProps ] = [ originalFurnitureName.furnitureName, originalFurnitureName.roomName, originalFurnitureName.furnitureObj ];
+    const {
+      controlsClick
+    } = originalFurnitureName;
+    [originalFurnitureName, roomName, currentFurnitureProps] = [originalFurnitureName.furnitureName, originalFurnitureName.roomName, originalFurnitureName.furnitureObj];
     controlsClick(null, 'submit');
   }
 
@@ -76,7 +77,7 @@ export function updateFurniture(originalFurnitureName, roomName, currentFurnitur
   // did change, then send along the new information with the new furniture name, and delete
   // the old furniture
   const nameChange = originalFurnitureName !== newFurnitureName;
-  databaseAPI.updateFurniture(roomName, newFurnitureName, updatedFurniture, nameChange ? originalFurnitureName: '');
+  databaseAPI.updateFurniture(roomName, newFurnitureName, updatedFurniture, nameChange ? originalFurnitureName : '');
 
   return {
     type: UPDATE_FURNITURE,
