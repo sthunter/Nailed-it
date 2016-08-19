@@ -10,23 +10,16 @@ import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
 import Designer from '../../designer/drawingtool/App';
-import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 import AllFurniture from '../components/allFurniture.component';
 import furnitureHelper from '../furnitureHelper';
 import ListView from '../components/listView.component';
 
 //UI
-import { Row, Col, Button, Modal, Table } from 'react-materialize';
+import { Row, Col, Button} from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-
-import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import ReactTooltip from 'react-tooltip';
-
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -100,11 +93,6 @@ class FurnitureList extends Component {
   handleList = () => {
     this.setState({view: 1});
   }
-
-  //   handleAll = () => {
-  //   this.setState({view: 2});
-  //   browserHistory.push('/furniture/all')
-  // }
 
   render() {
     const intro = 'Furniture';
