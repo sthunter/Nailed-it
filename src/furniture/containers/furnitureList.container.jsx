@@ -39,15 +39,19 @@ class FurnitureList extends Component {
     this.props.changeRoute(this.props.location.pathname)  ;
   }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps(nextProps) {
     this.setState({add:false})
-    let total = furnitureHelper.calculateTotalCost(props.rooms)
-    if (!props.budget) {
+    let total = furnitureHelper.calculateTotalCost(nextProps.rooms)
+    if (!nextProps.budget) {
       this.props.getBudget();
     }
-    if (props.budget && props.budget < total) {
-      Materialize.toast('$' + (total - props.budget) + '.00 over budget', 4000);
+    
+    console.log("total")
+    console.log(this.state.total)
+    if (nextProps.budget && nextProps.budget < total && total !== this.state.total) {
+      Materialize.toast('$' + (total - nextProps.budget) + '.00 over budget', 4000);
     }
+    this.setState({total:total})
   }
 
   state = {
