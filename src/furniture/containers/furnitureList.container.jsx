@@ -85,6 +85,7 @@ class FurnitureList extends Component {
 
   handleAllCard = () => {
     this.setState({view: 4});
+    this.props.selectRoom('All');
     browserHistory.push('/furniture/all')
   }
 
@@ -118,23 +119,24 @@ class FurnitureList extends Component {
     
     return (
       <div>
-      <ReactTooltip />
+      
         <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-7%", "marginBottom":"0", "zIndex": "500"}}>
           <Row style={{"position":"relative", "marginBottom":"0"}}>
             <Col s={12}>
-                <Tabs className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
+                <Tabs value={this.props.roomSelected } className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
                   {roomNames.map((room, i) => {
                     return (
                       <Tab className='navTab'
                       onClick={() => {this.click(room)}}
                       label={room}
                       key={i}
+                      value={room}
                       style={{'color':'#424242', 'background':'#f5f5f5'}}
                       >
                       </Tab>
                     )
                   })}
-                <Tab label='All' onClick={()=>{this.handleAllCard()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
+                <Tab label='All' value='All' onClick={()=>{this.handleAllCard()}} style={{'color':'#424242', 'background':'#f5f5f5', 'fontWeight':'bold'}}></Tab>
               </Tabs>  
             </Col>
           </Row>
@@ -170,6 +172,7 @@ class FurnitureList extends Component {
               
             </Col>
           </Row>
+          <ReactTooltip />
           {this.state.view < 3 ? <div onTouchTap={this.handleOpen} className='F-FAB' data-tip="Add Furniture">
               <Button floating fab='vertical' icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
                   <div>
