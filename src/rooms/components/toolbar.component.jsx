@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { removeRoom, addPhoto, updateRoomDetails } from '../actions/rooms.action';
-import { Row, Col, Modal, Button} from 'react-materialize';
-import { Link, browserHistory } from 'react-router';
 import Dropzone from 'react-dropzone';
 import ColorInput from './colorPicker.component';
 import ReactTooltip from 'react-tooltip'
-// import UpdateRoomForm from '../containers/updateRoomForm.container'
 class Toolbar extends Component {
   state = {
     displayColorPicker: false,
@@ -22,13 +19,12 @@ class Toolbar extends Component {
   }
   removeRoomCall(title) {
     this.props.removeRoom(title);
-    Materialize.toast(title + ' removed', 4000)
+    Materialize.toast(title + ' removed', 4000); // eslint-disable-line no-undef
   }
 
   handleOpen () {
     this.setState({edit: true})
     console.log('im clicked')
-    // this.props.updateRoomDetails
   }
 
   render() {
@@ -44,7 +40,7 @@ class Toolbar extends Component {
         </div>
         
         <div className='card-control' ><i data-tip="Delete Room" className="card-controls material-icons md-dark" onClick={() => {this.removeRoomCall(title)}}>delete</i></div>
-        <ColorInput title = { title } data-tip="Pick Color" />
+        <ColorInput title={ title } data-tip="Pick Color" />
       </span>
     )
   }

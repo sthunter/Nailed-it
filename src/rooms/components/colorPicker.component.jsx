@@ -3,7 +3,6 @@ import { SwatchesPicker}  from 'react-color';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getColor } from '../actions/rooms.action'
-import { CardPanel, Button, Row, Col, MediaBox } from 'react-materialize';
 import ReactTooltip from 'react-tooltip';
 
 class ColorInput extends Component {

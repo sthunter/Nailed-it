@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { CardPanel, Button, Row, Col, MediaBox, Modal, Input } from 'react-materialize';
-import { Link, browserHistory } from 'react-router';
-import Toolbar from './toolbar.component'
+import { Link } from 'react-router';
+import Toolbar from './toolbar.component';
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
 import UpdateRoomForm from '../containers/updateRoomForm.container'
 
 class ListItem extends Component {
@@ -48,23 +46,9 @@ class ListItem extends Component {
   }
 
   render() {
-    const popover = {
-      position: 'absolute',
-      zIndex: '2',
-    }
-    
-    const cover = {
-      position: 'fixed',
-      top: '0',
-      right: '0',
-      bottom: '0',
-      left: '0',
-    }
-
     const { title, rooms } = this.props;
     const size = rooms[title].size || 'no size';
     const notes = rooms[title].notes || 'no notes';
-    const splitNotes = notes.split('\n')
     var cardStyle = {'background':'#e0e0e0'}
     if(this.props.rooms[title].color) {
       cardStyle = {'background': this.props.rooms[title].color.hex }
@@ -79,8 +63,7 @@ class ListItem extends Component {
 
     return (
         <div>
-    
-          <Card 
+          <Card
             expanded={this.state.expanded} onExpandChange={this.handleExpandChange}
             style={cardStyle}
             >
@@ -88,14 +71,14 @@ class ListItem extends Component {
             <Link className="card-title" to={ 'furniture/' + title }>
               <CardHeader
                 onTouchTap={ () => this.handleClick(title) }
-                title= { title }
+                title={ title }
                 className="roomListItemHeader"
                 titleStyle={{"font-size":"28px"}}
               />
             </Link>
 
             <CardActions>
-              <Toolbar title={ title } handleToggle={this.handleToggle} /> 
+              <Toolbar title={ title } />
               <RaisedButton fullWidth={true} label="Details" onTouchTap={ () => this.handleToggle()} style={{'opacity':'0.4'}}/>
             </CardActions>
 
@@ -103,7 +86,7 @@ class ListItem extends Component {
               expandable={true}
               overlay={<CardTitle title={title} subtitle="" />}
               >
-              <img src= { photoURL }/>
+              <img src={ photoURL }/>
             </CardMedia> : null}
             
             <CardText expandable={true} className="updateRoom">

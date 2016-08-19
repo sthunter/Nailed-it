@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Input, Col, Row } from 'react-materialize';
+import { Col, Row } from 'react-materialize';
 import { reduxForm, reset } from 'redux-form';
 import { addRoom } from '../actions/rooms.action.js';
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
 
 class AddRoomForm extends Component {
   state = {
@@ -25,7 +24,6 @@ class AddRoomForm extends Component {
   }
 
   addRoom(newRoomObj) {
-    
     const {addRoom, dispatch} = this.props;
     addRoom(newRoomObj);
     dispatch(reset('AddRoomForm'));
@@ -48,22 +46,21 @@ class AddRoomForm extends Component {
 
         <CardText expandable={true}>
            <form onSubmit={ handleSubmit(this.addRoom.bind(this)) } >
-            
-              <Row>
+            <Row>
               <Col s={6} m={6} l={6}>
                 <input className="updateRoomTextField" type="text" placeholder="Room Name" s={6} m={6} l={6} label="Room Name" { ...roomName } />
               </Col>
               <Col s={6} m={6} l={6}>
                 <input className="updateRoomTextField" type="text" placeholder="Size ( L x W )" s={6} m={6} l={6} label="Size" { ...size } />
               </Col>
-              </Row>
-              <Row>
+            </Row>
+            <Row>
                 <div class="input-field col s12">
                   <label for="textarea1">Notes</label>
                   <textarea id="textarea1" className="materialize-textarea" placeholder="Notes" { ...notes } style={{"padding":"0"}}></textarea>
                 </div>
-              </Row>
-            
+            </Row>
+
             <RaisedButton label="Submit" type="submit"/>
           </form>
         </CardText>
@@ -76,7 +73,3 @@ export default reduxForm({
   form: 'AddRoomForm',
   fields: ['roomName', 'size', 'notes'],
 }, null, { addRoom })(AddRoomForm);
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(null, dispatch);
-}
