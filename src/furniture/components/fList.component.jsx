@@ -4,6 +4,7 @@ import { Card, CardTitle, Row, Col, } from 'react-materialize';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 //import AddFurnitureForm from '../containers/addFurnitureForm.container'
 import { bindActionCreators } from 'redux';
+import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import { deleteFurniture } from '../actions/furniture.action';
 import UpdateFurnitureForm from '../containers/updateFurnitureForm.container.jsx';
@@ -33,11 +34,27 @@ class FList extends Component {
   }
 
   handleEdit = (itemName) => {
-    this.setState({edit: itemName})
+    const item = this.props.list[itemName];
+    const initialFormValues = {
+      itemName,
+      price: item.price,
+      deliveryDate: item.deliveryDate,
+      size: item.size,
+      description: item.description,
+      color: item.color,
+    };
+    //console.log('[flist] handleEdit: initialFormValues', initialFormValues);
+
+    this.setState({
+      edit: itemName,
+      initialFormValues,
+      item,
+    });
+    setTimeout(() => this.props.reset('UpdateFurnitureForm'), 50);
   }
 
   handleCloseEdit = () => {
-    this.setState({edit: null})
+    this.setState({edit: null});
   }
 
   
@@ -68,16 +85,8 @@ class FList extends Component {
           >
             
             {listNames.map((itemName, i) => {
-              const item = _this.props.list[itemName];
               const image = _this.props.list[itemName].url || "https://firebasestorage.googleapis.com/v0/b/nailed-it-c1d80.appspot.com/o/images%2FScreen%20Shot%202016-08-10%20at%2010.06.37%20AM.png?alt=media&token=eb6a6ea4-3f04-42e4-99c0-a639aa414792"
-              const initialFormValues = {
-                itemName,
-                price: item.price,
-                deliveryDate: item.deliveryDate,
-                size: item.size,
-                description: item.description,
-                color: item.color,
-              };
+
               return( 
                 <GridTile
                 key={i}
@@ -89,10 +98,11 @@ class FList extends Component {
                   : <span><IconButton onClick={()=> this.deleteFurnitureCall(itemName)}><Delete color="white" /></IconButton><IconButton onTouchTap={()=>{this.handleEdit(itemName)}}><ModeEdit color="white" /></IconButton></span>
                   }
               >
-                {this.state.edit === itemName ? <UpdateFurnitureForm formKey={itemName} name={itemName}
-                       details={item}
-                       initialValues={ initialFormValues }
-                     /> : <img src={ image } />}
+                {this.state.edit === itemName ?
+                  <UpdateFurnitureForm name={itemName}
+                    details={_this.state.item}
+                    initialValues={ _this.state.initialFormValues } /> :
+                  <img src={ image } />}
               </GridTile>
              ) 
             })}
@@ -104,7 +114,7 @@ class FList extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return   bindActionCreators({ deleteFurniture }, dispatch);
+  return bindActionCreators({ deleteFurniture, reset }, dispatch);
 }
 
 function mapStateToProps({ rooms, roomSelected }) {

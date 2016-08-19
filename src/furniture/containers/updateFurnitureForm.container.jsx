@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
+import { reduxForm, change as changeFieldValue } from 'redux-form';
 import { updateFurniture } from '../actions/furniture.action';
+import ColorInput from '../../rooms/components/colorPicker.component.jsx';
 
 class UpdateFurnitureForm extends Component {
   render() {
+    console.log('[updateFurnForm] this.props: ', this.props);
     const { fields: {
       itemName, price, deliveryDate, size, description, originalItemName, color
     }, handleSubmit } = this.props;
@@ -32,9 +35,10 @@ class UpdateFurnitureForm extends Component {
             </tr>
             <tr>
               <td>
-                <label>Color
+                <label s={10}>Color
                   <input type="text" className={ color.error ? 'invalid' : 'valid'} { ...color }  />
                 </label>
+                  <ColorInput s={2} action={ colorObj => this.props.changeFieldValue( 'UpdateFurnitureForm' , 'color', colorObj.hex) } />
                 <div className="help-text"><span className="form-warning">{ color.error }</span></div>
               </td>
               <td>
@@ -83,8 +87,12 @@ function validate(values) {
   return errors;
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ updateFurniture, changeFieldValue }, dispatch);
+}
+
 export default reduxForm({
   form: 'UpdateFurnitureForm',
   fields: ['itemName', 'price', 'deliveryDate', 'size', 'description', 'color', 'originalItemName'],
   validate,
-}, mapStateToProps, { updateFurniture })(UpdateFurnitureForm);
+}, mapStateToProps, mapDispatchToProps)(UpdateFurnitureForm);

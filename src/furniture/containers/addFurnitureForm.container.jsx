@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Card, CardTitle, Icon, Button, Input, Row, Col } from 'react-materialize';
-import { reduxForm, reset, change } from 'redux-form';
+import { reduxForm, reset, change as changeFieldValue } from 'redux-form';
 import { addFurniture } from '../actions/furniture.action.js';
 import DatePicker from 'material-ui/DatePicker';
 import FlatButton from 'material-ui/FlatButton';
@@ -30,9 +30,9 @@ class AddFurnitureForm extends Component {
         <Input s={6} placeholder='Photo URL'{ ...url } />
       </Row>
       <Row>
-        <Input s={4} placeholder="Size (centimeters)" { ...size } />
-        <Input s={4} placeholder="Primary color" { ...color } />
-        <ColorInput s={4} action={ colorObj => this.props.changeFieldValue('color', colorObj.hex) } />
+        <Input s={6} placeholder="Size (centimeters)" { ...size } />
+        <Input s={5} placeholder="Primary color" { ...color } />
+        <ColorInput s={1} action={ colorObj => this.props.changeFieldValue('AddFurnitureForm', 'color', colorObj.hex) } />
       </Row>
      
       <RaisedButton type="submit" label="submit"/>
@@ -42,12 +42,7 @@ class AddFurnitureForm extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    ...bindActionCreators({ addFurniture, change }, dispatch),
-    changeFieldValue: (field, value) => {
-      dispatch(change('AddFurnitureForm', field, value))
-    },
-  };
+  return bindActionCreators({ addFurniture, changeFieldValue }, dispatch);
 }
 
 export default reduxForm({
