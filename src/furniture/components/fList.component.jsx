@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Card, CardTitle, Row, Col, } from 'react-materialize';
+import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
@@ -41,7 +43,7 @@ class FList extends Component {
       initialFormValues,
       item,
     });
-    setTimeout(() => this.props.reset('UpdateFurnitureForm'), 50);
+    this.props.reset('UpdateFurnitureForm');
   }
 
   handleCloseEdit = () => {
@@ -76,24 +78,24 @@ class FList extends Component {
           {listNames.map((itemName, i) => {
             const image = _this.props.list[itemName].url || "https://firebasestorage.googleapis.com/v0/b/nailed-it-c1d80.appspot.com/o/images%2FScreen%20Shot%202016-08-10%20at%2010.06.37%20AM.png?alt=media&token=eb6a6ea4-3f04-42e4-99c0-a639aa414792"
 
-            return( 
+            return(
               <GridTile
               key={i}
               title={itemName}
               subtitle={<span><b>Price: $</b>{_this.props.list[itemName].price} </span>}
               actionIcon={
-                this.state.edit === itemName ? 
-                <span><IconButton onClick={()=>{this.deleteFurnitureCall(itemName)}}><Delete color="white" /></IconButton><IconButton onTouchTap={this.handleCloseEdit}><Close color="white" /></IconButton></span> 
+                this.state.edit === itemName ?
+                <span><IconButton onClick={()=>{this.deleteFurnitureCall(itemName)}}><Delete color="white" /></IconButton><IconButton onTouchTap={this.handleCloseEdit}><Close color="white" /></IconButton></span>
                 : <span><IconButton onClick={()=> this.deleteFurnitureCall(itemName)}><Delete color="white" /></IconButton><IconButton onTouchTap={()=>{this.handleEdit(itemName)}}><ModeEdit color="white" /></IconButton></span>
                 }
               >
               {this.state.edit === itemName ?
                 <UpdateFurnitureForm name={itemName}
                   details={_this.state.item}
-                  initialValues={ _this.state.initialFormValues } /> 
+                  initialValues={ _this.state.initialFormValues } />
                 : <img src={ image } />}
             </GridTile>
-           ) 
+           )
           })}
         </GridList>
       </div>
