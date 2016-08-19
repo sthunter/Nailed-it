@@ -23,14 +23,14 @@ class AddFurnitureForm extends Component {
       <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
       <Row>
         <Input s={6} placeholder='Item'{ ...itemName } />
-        <Input s={6} placeholder='Price'{ ...price } />
+        <Input s={6} placeholder='Price'{ ...price }  type="number" validate />
       </Row>
       <Row>
         <Input s={6} placeholder='Notes'{ ...description } />
         <Input s={6} placeholder='Photo URL'{ ...url } />
       </Row>
       <Row>
-        <Input s={6} placeholder="Size (centimeters)" { ...size } />
+        <Input s={6} placeholder="Size ( L x W )" { ...size } />
         <Input s={5} placeholder="Primary color" { ...color } />
         <ColorInput s={1} action={ colorObj => this.props.changeFieldValue('AddFurnitureForm', 'color', colorObj.hex) } />
       </Row>
