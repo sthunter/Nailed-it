@@ -15,6 +15,9 @@ class ListItem extends Component {
       update: false
     }
   }
+  componentWillReceiveProps(props) {
+    this.setState({expanded: false});
+  }
   handleToggle() {
     if (this.state.expanded) {
       this.setState({expanded: false});
@@ -66,9 +69,11 @@ class ListItem extends Component {
     if(this.props.rooms[title].color) {
       cardStyle = {'background': this.props.rooms[title].color.hex }
     }
+    const photoURL = rooms[title].photoURL
     const initialValues = {
       size: size,
-      notes: notes
+      notes: notes,
+      photoURL: photoURL
     }
 
 
@@ -94,15 +99,15 @@ class ListItem extends Component {
               <RaisedButton fullWidth={true} label="Details" onTouchTap={ () => this.handleToggle()} style={{'opacity':'0.4'}}/>
             </CardActions>
 
-            { this.props.rooms[title].photoURL? <CardMedia
+            { photoURL ? <CardMedia
               expandable={true}
               overlay={<CardTitle title={title} subtitle="" />}
               >
-              <img src= {this.props.rooms[title].photoURL }/>
+              <img src= { photoURL }/>
             </CardMedia> : null}
             
             <CardText expandable={true} className="updateRoom">
-              <UpdateRoomForm title={title} formKey={title} initialValues={ initialValues }/>
+              <UpdateRoomForm title={title} formKey={title} initialValues={ initialValues } />
             </CardText>
           </Card>
         </div>
