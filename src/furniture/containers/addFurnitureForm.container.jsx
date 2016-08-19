@@ -22,16 +22,28 @@ class AddFurnitureForm extends Component {
     return (
       <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
       <Row>
-        <Input s={6} placeholder='Item'{ ...itemName } />
-        <Input s={6} placeholder='Price'{ ...price }  type="number" validate />
+        <Col s={6} m={6} l={6}>
+        <input s={6} placeholder='Item'{ ...itemName } />
+        </Col>
+        <Col s={6} m={6} l={6}>
+        <input s={6} placeholder='Price'{ ...price }  type="number" validate />
+        </Col>
       </Row>
       <Row>
-        <Input s={6} placeholder='Notes'{ ...description } />
-        <Input s={6} placeholder='Photo URL'{ ...url } />
+        <Col s={6} m={6} l={6}>
+        <input s={6} placeholder='Notes'{ ...description } />
+        </Col>
+        <Col s={6} m={6} l={6}>
+        <input s={6} placeholder='Photo URL'{ ...url } />
+        </Col>
       </Row>
       <Row>
-        <Input s={6} placeholder="Size ( L x W )" { ...size } />
-        <Input s={5} placeholder="Primary color" { ...color } />
+        <Col s={6} m={6} l={6}>
+        <input s={6} placeholder="Size ( L x W )" { ...size } />
+        </Col>
+        <Col s={5} m={5} l={5}>
+        <input s={1} placeholder="Primary color" { ...color } />
+        </Col>
         <ColorInput s={1} action={ colorObj => this.props.changeFieldValue('AddFurnitureForm', 'color', colorObj.hex) } />
       </Row>
      
