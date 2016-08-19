@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import CardList from '../components/cardList.component.jsx';
 import { getRooms, selectRoom,  makePublic_Private, addPhoto, getPublicStatus } from '../actions/rooms.action';
 import { bindActionCreators } from 'redux';
-import { Row, Col, Button, Input } from 'react-materialize';
+import { Row, Col, Input } from 'react-materialize';
 import BudgetView from '../../BudgetView/containers/budgetView.container';
 import { changeRoute } from '../../routing/actions/routing.action';
-import Dropzone from 'react-dropzone';
+
 
 export default class RoomsList extends Component {
   componentWillMount() {
