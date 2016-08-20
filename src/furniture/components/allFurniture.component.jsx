@@ -37,6 +37,7 @@ class AllFurniture extends Component {
     this.setState({filter: furnitureHelper.listByFurniture});
   }
   render () {
+    let columns;
     const { rooms } = this.props;
     let furnitureList = this.state.filter(rooms);
     const styles = {
@@ -52,11 +53,19 @@ class AllFurniture extends Component {
         marginBottom: 24,
       },
     };
+
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      /* the viewport is at least 800 pixels wide */
+      columns = 4;
+    } else {
+      /* the viewport is less than 800 pixels wide */
+      columns = 1;
+    }
     
     return (
         <div style={styles.root}>
           <GridList
-            cols={4}
+            cols={columns}
             cellHeight={400}
             style={styles.gridList}
           >
