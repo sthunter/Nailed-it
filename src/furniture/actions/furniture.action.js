@@ -9,7 +9,7 @@ export const UPDATE_FURNITURE = 'UPDATE_FURNITURE';
 export function addFurniture(roomName, furnitureProps) {
   //make sure that a room to add furniture is selected 
   if (!roomName) {
-    return {
+    return { // reducer will return original state
       type: ADD_FURNITURE,
       roomName,
       furnitureProps,
@@ -18,6 +18,11 @@ export function addFurniture(roomName, furnitureProps) {
   //pull name property off of field input and delete the property from furnitureProps
   let furnitureName = furnitureProps.itemName;
   delete furnitureProps.itemName;
+
+  // If there is no price, create a placeholder field
+  if (!furnitureProps.price) {
+    furnitureProps.price = 'literally priceless';
+  }
 
   //create new Obj to pass to database
   let furnitureObj = {};

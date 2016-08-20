@@ -4,20 +4,12 @@ import budgetHelper from '../budgetHelperFunctions';
 import PieChartHolder from './pieChartHolder.component.jsx';
 
 class BudgetGraph extends Component {
-
-  // componentWillReceiveProps(nextProps) {
-  //   if(Object.keys(this.props.rooms).length !== 0) {
-  //     // var genData = budgetHelper.generateData(this.props.rooms);
-  //   }
-  // }
-
   render() {
     var genData;  
     const { rooms, budget } = this.props;
     const roomNames = Object.keys(rooms);
     const calculateRoomCost = budgetHelper.calculateRoomCost;
     const totalCost = budgetHelper.calculateTotalCost(rooms);
-    // const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
       genData = budgetHelper.generateData(rooms, budget);
     }
