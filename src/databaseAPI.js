@@ -39,7 +39,9 @@ const databaseAPI = {
   },
 
   addRoom(room, roomName) {
-    database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set(room);
+    if (roomName) {
+      database.ref('iGEKbLdXzHORTksYSB21JSd8cqA3/rooms/' + roomName).set(room);
+    }
   },
 
   getRooms() {
