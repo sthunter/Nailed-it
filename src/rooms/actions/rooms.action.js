@@ -112,7 +112,7 @@ export function selectRoom(roomName) {
 export const GET_ROOMS = 'GET_ROOMS';
 export function getRooms() {
   //database call with promise stored in rooms
-  let rooms = databaseAPI.getRooms();
+  const rooms = databaseAPI.getRooms();
 
   return {
     type: GET_ROOMS,

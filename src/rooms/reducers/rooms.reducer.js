@@ -14,12 +14,28 @@ const roomsReducer = (state = {}, action) => {
       newState = _.cloneDeep(state);
       newState[action.room].design = action.design;
       return newState;
+
     //handles initial pull from db
     case GET_ROOMS:
-      let rooms = action.payload.val();
-      for (var roomName in rooms) {
-        if (roomName) {
+      const rooms = action.payload.val();
+      //const roomNames = Object.keys(rooms);
+      //roomNames.forEach(room => {
+      //  const roomFurniture = rooms[room].furniture;
+      //  const furnitureNames = Object.keys(roomFurniture);
+      //});
+
+      for (let roomName in rooms) {
+        if (rooms.hasOwnProperty(roomName)) {
           let room = rooms[roomName];
+
+          // Replace any furniture with price of 'literally priceless' with undefined
+          for (let furnitureName in room.furniture) {
+            if (room.furniture[furnitureName].price === 'literally priceless') {
+              rooms[roomName].furniture[furnitureName].price = undefined;
+            }
+          }
+
+          // Set up the room's design object
           let design = room.design;
           let designArr = [];
           for (var designObjName in design) {
