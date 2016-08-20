@@ -27,8 +27,6 @@ class UpdateFurnitureFormTable extends Component {
       boundProps, null, null
     );
 
-    console.log('[updateFurnitureFormTable] this.props: ', this.props);
-
     return (
       <form onSubmit={ handleSubmit(boundUpdateFurniture) } className={ `table-item tr ${this.props.invalid ? 'row-has-error' : ''}` }>
         <span className="td room slimDown"><strong>{ roomName }</strong></span>
