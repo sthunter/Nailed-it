@@ -18,26 +18,30 @@ class AddFurnitureForm extends Component {
       <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
       <Row>
         <Col s={6} m={6} l={6}>
-        <input s={6} placeholder='Item'{ ...itemName } className={ (itemName.touched && itemName.error) ? 'invalid' : 'valid'}/>
+          <input s={6} placeholder='Item'{ ...itemName } className={ (itemName.touched && itemName.error) ? 'invalid' : 'valid'}/>
+          <div className="help-text"><span className="form-warning">{ itemName.touched && itemName.error }</span></div>
         </Col>
         <Col s={6} m={6} l={6}>
-        <input s={6} placeholder='Price'{ ...price } className={ price.error ? 'invalid' : 'valid'}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col s={6} m={6} l={6}>
-        <input s={6} placeholder='Notes'{ ...description } className={ description.error ? 'invalid' : 'valid'}/>
-        </Col>
-        <Col s={6} m={6} l={6}>
-        <input s={6} placeholder='Photo URL'{ ...url } />
+          <input s={6} placeholder='Price'{ ...price } className={ price.error ? 'invalid' : 'valid'}/>
+          <div className="help-text"><span className="form-warning">{ price.error }</span></div>
         </Col>
       </Row>
       <Row>
         <Col s={6} m={6} l={6}>
-        <input s={6} placeholder="Size ( L x W )" { ...size } className={ size.error ? 'invalid' : 'valid'}/>
+          <input s={6} placeholder='Notes'{ ...description } className={ description.error ? 'invalid' : 'valid'}/>
+          <div className="help-text"><span className="form-warning">{ description.error }</span></div>
+        </Col>
+        <Col s={6} m={6} l={6}>
+          <input s={6} placeholder='Photo URL'{ ...url } />
+        </Col>
+      </Row>
+      <Row>
+        <Col s={6} m={6} l={6}>
+          <input s={6} placeholder="Size ( L x W )" { ...size } className={ size.error ? 'invalid' : 'valid'}/>
+          <div className="help-text"><span className="form-warning">{ size.error }</span></div>
         </Col>
         <Col s={5} m={5} l={5}>
-        <input s={1} placeholder="Primary color" { ...color } className={ color.error ? 'invalid' : 'valid'}/>
+          <input s={1} placeholder="Primary color" { ...color } className={ color.error ? 'invalid' : 'valid'}/>
         </Col>
         <ColorInput s={1} action={ colorObj => this.props.changeFieldValue('AddFurnitureForm', 'color', colorObj.hex) } />
       </Row>
