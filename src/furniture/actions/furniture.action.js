@@ -19,11 +19,6 @@ export function addFurniture(roomName, furnitureProps) {
   let furnitureName = furnitureProps.itemName;
   delete furnitureProps.itemName;
 
-  // If there is no price, create a placeholder field
-  if (!furnitureProps.price) {
-    furnitureProps.price = 'literally priceless';
-  }
-
   //create new Obj to pass to database
   let furnitureObj = {};
   //only pass over defined variables to stop undefined from interrupting database call
@@ -32,8 +27,12 @@ export function addFurniture(roomName, furnitureProps) {
       furnitureObj[prop] = furnitureProps[prop];
     }
   }
-  //database call
-  databaseAPI.updateFurniture(roomName, furnitureName, furnitureObj)
+
+  //database call; make sure price isn't falsy
+  const dbFurnitureObj = furnitureProps.price ?
+    furnitureObj :
+    Object.assign(_.cloneDeep(furnitureObj), { price: 'literally priceless' });
+  databaseAPI.updateFurniture(roomName, furnitureName, dbFurnitureObj);
 
   //send the expected value to the reducer
   return {
@@ -62,6 +61,9 @@ export function updateFurniture(originalFurnitureName, roomName, currentFurnitur
     [originalFurnitureName, roomName, currentFurnitureProps] = [originalFurnitureName.furnitureName, originalFurnitureName.roomName, originalFurnitureName.furnitureObj];
     controlsClick(null, 'submit');
   }
+
+  // If there is no price, create a placeholder field
+  newProps.price = newProps.price || 'literally priceless';
 
   // Iterate through the new furniture properties, and merge them with the current
   // furniture properties. The new object should not any undefined values. We also want to ignore the 'itemName'
