@@ -20,6 +20,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import ReactTooltip from 'react-tooltip';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 class FurnitureList extends Component {
   componentDidMount() {
@@ -39,16 +41,31 @@ class FurnitureList extends Component {
       this.props.getBudget();
     }
     
+    console.log("total")
+    console.log(this.state.total)
     if (nextProps.budget && nextProps.budget < total && total !== this.state.total) {
-      Materialize.toast('$' + (total - nextProps.budget) + '.00 over budget', 4000); // eslint-disable-line no-undef
+      Materialize.toast('$' + (total - nextProps.budget) + '.00 over budget', 4000);
     }
     this.setState({total:total})
+  }
+
+  componentWillMount() {
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      /* the viewport is at least 800 pixels wide */
+      this.setState({mobile:false})
+    } else {
+      /* the viewport is less than 800 pixels wide */
+      this.setState({mobile:true})
+    }
+    this.setState({value:this.props.roomSelected})
   }
 
   state = {
     add:false,
     view: 0,
-    all: false
+    all: false,
+    mobile: false,
+    value: null
   }
 
   handleOpen = () => {
@@ -85,12 +102,14 @@ class FurnitureList extends Component {
   }
 
   handleOverBudget = () => {
-    Materialize.toast();   // eslint-disable-line no-undef
+    Materialize.toast()
   }
 
   handleList = () => {
     this.setState({view: 1});
   }
+
+  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     const intro = 'Furniture';
@@ -111,7 +130,7 @@ class FurnitureList extends Component {
       <div>
       
         <div className="nav-items" style={{"position":"fixed", "width":"100%", "height":"84px", "marginTop":"-7%", "marginBottom":"0", "zIndex": "500"}}>
-          <Row style={{"position":"relative", "marginBottom":"0"}}>
+          {!this.state.mobile ? <Row style={{"position":"relative", "marginBottom":"0"}}>
             <Col s={12}>
                 <Tabs value={this.props.roomSelected } className="z-depth-1 grey lighten-3" inkBarStyle={{'background':'#424242'}} style={{'background':'#f5f5f5'}}>
                   {roomNames.map((room, i) => {
@@ -130,6 +149,19 @@ class FurnitureList extends Component {
               </Tabs>  
             </Col>
           </Row>
+
+          :
+
+          <div className="center-align" style={{'background':'#f5f5f5'}}>
+            <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+              {roomNames.map((room, i) => {
+                return(
+                  <MenuItem value={room} primaryText={room} onClick={() => {this.click(room)}} />
+                  )
+              })}
+              <MenuItem value={'All'} primaryText='All' onClick={()=>{this.handleAllCard()}} />
+            </DropDownMenu>
+          </div>}
           
           <Row>
             <Col s={12}>

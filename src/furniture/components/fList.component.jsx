@@ -1,5 +1,7 @@
 //Components
 import React, { Component } from 'react';
+import { Card, CardTitle, Row, Col } from 'react-materialize';
+import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
@@ -12,9 +14,10 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Delete from 'material-ui/svg-icons/action/delete';
+import Lightbox from 'react-image-lightbox';
 
 class FList extends Component {
-  
+
   componentWillReceiveProps() {
     this.setState({edit:null})
   }
@@ -25,7 +28,7 @@ class FList extends Component {
   }
 
   state = {
-    edit: null
+    edit: null,
   }
 
   handleEdit = (itemName) => {
@@ -50,8 +53,17 @@ class FList extends Component {
   handleCloseEdit = () => {
     this.setState({edit: null});
   }
+   
+   handleOpen = () => {
+    this.setState({add: true});
+  }
+
+  handleClose = () => {
+    this.setState({add: false});
+  }           
 
   render() {
+    let columns;
     const listNames = Object.keys(this.props.list);
     const _this = this;
     const styles = {
@@ -68,10 +80,18 @@ class FList extends Component {
       },
     };
 
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      /* the viewport is at least 800 pixels wide */
+      columns = 4;
+    } else {
+      /* the viewport is less than 800 pixels wide */
+      columns = 1;
+    }
+
     return (
       <div style={styles.root}>
         <GridList
-          cols={4}
+          cols={columns}
           cellHeight={400}
           style={styles.gridList}
         >
@@ -90,6 +110,7 @@ class FList extends Component {
                 : <span><IconButton onClick={()=> this.deleteFurnitureCall(itemName)}><Delete color="white" /></IconButton><IconButton onTouchTap={()=>{this.handleEdit(itemName)}}><ModeEdit color="white" /></IconButton></span>
                 }
               >
+    
               {this.state.edit === itemName ?
                 <UpdateFurnitureForm name={itemName}
                   details={_this.state.item}
