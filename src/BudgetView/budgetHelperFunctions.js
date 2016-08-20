@@ -18,12 +18,13 @@ const helpers = {
 
   calculateTotalCost(rooms) {
   let sum = 0;
-  for(var room in rooms) {
-    sum += this.calculateRoomCost(room, rooms)
-  }
+    for(var room in rooms) {
+      if(room){
+      sum += this.calculateRoomCost(room, rooms)
+      }
+    }
   return sum;
   },
-
 
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -60,7 +61,6 @@ const helpers = {
 
     return arr;
   },
-
 
 }
 

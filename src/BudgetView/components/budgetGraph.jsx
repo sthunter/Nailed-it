@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-
 import { Table, Col, Row  } from 'react-materialize';
 import budgetHelper from '../budgetHelperFunctions';
 import PieChartHolder from './pieChartHolder.component.jsx';
 
-
 class BudgetGraph extends Component {
 
-
-  constructor(props) {
-    super(props);
-    //budgetHelper.generateData = budgetHelper.generateData.bind(this);
-    //budgetHelper.calculateBudget = budgetHelper.calculateBudget.bind(this);
-    
-  }
-  componentWillReceiveProps(nextProps) {
-    if(Object.keys(this.props.rooms).length !== 0) {
-      var genData = budgetHelper.generateData(this.props.rooms);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(Object.keys(this.props.rooms).length !== 0) {
+  //     // var genData = budgetHelper.generateData(this.props.rooms);
+  //   }
+  // }
 
   render() {
     var genData;  
@@ -26,26 +17,29 @@ class BudgetGraph extends Component {
     const roomNames = Object.keys(rooms);
     const calculateRoomCost = budgetHelper.calculateRoomCost;
     const totalCost = budgetHelper.calculateTotalCost(rooms);
-    const toTitleCase = budgetHelper.toTitleCase;
+    // const toTitleCase = budgetHelper.toTitleCase;
     if(Object.keys(rooms).length !== 0) {
       genData = budgetHelper.generateData(rooms, budget);
     }
+
     Number.prototype.formatMoney = function(c, d, t){
-      var n = this, 
-        c = isNaN(c = Math.abs(c)) ? 2 : c,
-        d = d == undefined ? "." : d,
-        t = t == undefined ? "," : t,
-        s = n < 0 ? "-" : "", 
-        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
-        j = (j = i.length) > 3 ? j % 3 : 0;
+      var n = this;
+       c = isNaN(c = Math.abs(c)) ? 2 : c;
+       d = d === undefined ? "." : d;
+       t = t === undefined ? "," : t;
+       let s = n < 0 ? "-" : "";
+       let i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "";
+       let j = (j = i.length) > 3 ? j % 3 : 0;
        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
      };
+
     if(budget) {
       var formattedBudget = (budget).formatMoney(0);
     }
     if(totalCost) {
       var formattedCost = (totalCost).formatMoney(0);
     }
+
     return(
       Object.keys(rooms).length !== 0 ? 
         <div>
@@ -79,7 +73,7 @@ class BudgetGraph extends Component {
         </Table> 
         <br/>
         <br/> 
-        <div className="center-align"><PieChartHolder genData ={genData} /></div>
+        <div className="center-align"><PieChartHolder genData={genData} /></div>
         </div> : <div>Loading...</div>
     )
   }

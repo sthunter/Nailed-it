@@ -8,9 +8,7 @@ class PieChartHolder extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({genData: nextProps.genData})
-  }
-
-  
+  } 
 
   render() {
     const genData = this.state.genData;
@@ -24,7 +22,6 @@ class PieChartHolder extends Component {
           clickHandler={(selection) => {
             let data = this.props.onClick(selection.data);
           }}
-
         />
     )
   }
