@@ -73,7 +73,7 @@ class ListItem extends Component {
                 onTouchTap={ () => this.handleClick(title) }
                 title={ title }
                 className="roomListItemHeader"
-                titleStyle={{"font-size":"28px"}}
+                titleStyle={{"fontSize":"28px"}}
               />
             </Link>
 
