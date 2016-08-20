@@ -5,15 +5,12 @@ export default function listingFurnitureRow(props)  {
   const { roomName, furnitureName, furnitureObj } = props.data;
 
   function controlsClick(e, type) {
-    // todo: Convert this to a switch-object. Or refactor otherwise; it's looking like it
-    // hardly does anything, and maybe could just be done inline or something.
-    if (type === 'edit') {
-      props.updateEditStatus(furnitureName, true);
-    } else if (type === 'cancel') {
-      props.updateEditStatus(furnitureName, false);
-    } else if (type === 'submit') {
-      props.updateEditStatus(furnitureName, false);
-    }
+    const status = {
+      edit: true,
+      cancel: false,
+      submit: false,
+    };
+    props.updateEditStatus(furnitureName, status[type]);
   }
 
   return props.editing ? (
