@@ -1,13 +1,14 @@
+//Components
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col, } from 'react-materialize';
-import ColorPalette from '../../colorPalette/containers/colorPalette.container'
 import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import { deleteFurniture } from '../actions/furniture.action';
 import UpdateFurnitureForm from '../containers/updateFurnitureForm.container.jsx';
+
+//UI
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Delete from 'material-ui/svg-icons/action/delete';

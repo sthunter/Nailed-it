@@ -90,11 +90,3 @@ function mapStateToProps({ rooms, roomSelected }) {
 }
 
 export default connect(mapStateToProps)(ListView);
-
-
-// <tr key={i} id="table-item">
-//                           <td className="slimDown"><b>{  data.roomName || "" }</b></td>
-//                           <td className="slimDown"> { data.furnitureName } </td>
-//                           <td className="slimDown"> { data.furnitureObj.price } </td>
-//                           <td className="slimDown"> { data.furnitureObj.size } </td>
-//                         </tr>

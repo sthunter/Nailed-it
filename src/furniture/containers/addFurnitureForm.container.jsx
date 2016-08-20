@@ -18,7 +18,7 @@ class AddFurnitureForm extends Component {
       <form onSubmit={ handleSubmit(this.props.addFurniture.bind(null, this.props.roomSelected)) }>
       <Row>
         <Col s={6} m={6} l={6}>
-        <input s={6} placeholder='Item'{ ...itemName } className={ itemName.error ? 'invalid' : 'valid'}/>
+        <input s={6} placeholder='Item'{ ...itemName } className={ (itemName.touched && itemName.error) ? 'invalid' : 'valid'}/>
         </Col>
         <Col s={6} m={6} l={6}>
         <input s={6} placeholder='Price'{ ...price } className={ price.error ? 'invalid' : 'valid'}/>

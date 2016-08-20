@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import furnitureHelper from '../furnitureHelper';
 import { bindActionCreators } from 'redux';
 import { deleteFurniture } from '../actions/furniture.action';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 
 
 class AllFurniture extends Component {
