@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
-import {Text} from '../src/objects/Text';
-import {Vector} from '../src/objects/Vector';
-import {Rect} from '../src/objects/Rect';
 import classes from './App.module.css'
 import MondrianExample from './components/Mondrian';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
