@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {MediaBox, Table, Row, Col} from 'react-materialize';
+import { MediaBox, Table, Row, Col } from 'react-materialize';
 
 export default class FurnitureDetail extends Component {
   render() {

@@ -15,10 +15,10 @@ import furnitureHelper from '../furnitureHelper';
 import ListView from '../components/listView.component';
 
 //UI
-import { Row, Col, Button} from 'react-materialize';
+import { Row, Col, Button } from 'react-materialize';
 import Dialog from 'material-ui/Dialog'; 
 import FlatButton from 'material-ui/FlatButton';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import ReactTooltip from 'react-tooltip';
 
 class FurnitureList extends Component {
@@ -193,26 +193,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FurnitureList);
-  // <Button floating icon='sort' className='grey'/>
-              // <Button floating icon='color_lens' className='grey'/>
-              // <Button floating icon='add' className='grey'/>
-               // <AddFurnitureForm/>
-               // <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>
-
-
-            //     <Button floating fab='vertical' onClick={this.handleOpen} icon='add' className='grey darken-3' large style={{'top': '24px', 'right': '24px'}}>
-            //   <Button floating icon='weekend' className='grey' onTouchTap={this.handleOpen}/>  
-            //     <div>
-            //       <Dialog
-            //         title="Add an Item"
-            //         actions={actions}
-            //         modal={false}
-            //         open={this.state.add}
-            //         onRequestClose={this.handleClose}
-            //       >
-            //        <AddFurnitureForm ref="furnitureForm"/>
-            //       </Dialog>
-            //     </div>
-            //     <Button floating icon='gesture' className='grey' onTouchTap={this.handleOpenDesigner}/>
-            // </Button>
-

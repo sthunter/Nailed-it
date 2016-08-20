@@ -21,9 +21,9 @@ class UpdateFurnitureForm extends Component {
             <tr>
               <td>
                 <label>Name
-                  <input type="text" id="itemName" className={ itemName.error ? 'invalid' : 'valid'} { ...itemName }  />
+                  <input type="text" id="itemName" className={ (itemName.touched && itemName.error) ? 'invalid' : 'valid'} { ...itemName }  />
                 </label>
-                <div className="help-text"><span className="form-warning">{ itemName.error }</span></div>
+                <div className="help-text"><span className="form-warning">{ itemName.touched ? itemName.error : null}</span></div>
               </td>
               <td>
                 <label>Price
