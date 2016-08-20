@@ -203,24 +203,25 @@ th.budget-table {
 
 div.table {
   display: table;
+  border-collapse: collapse;
 }
 
 form.tr, div.tr {
   display:table-row;
 }
 
-span.td
-{
-  display:table-cell;
-}
-
 .tr {
   height: 40px;
 }
 .td, .th {
-  /*border: solid black 1px;*/
+  display:table-cell;
   padding: 0 3px;
   margin: 0;
+}
+
+.tr.row-has-error {
+  height: 80px;
+  valign: top;
 }
 
 .th {
