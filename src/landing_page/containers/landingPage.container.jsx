@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 class Header extends Component {
 
@@ -12,8 +11,8 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(authenticated) {
-  return {authenticated};
+function mapStateToProps({ authenticated }) {
+  return { authenticated };
 }
 
 export default connect(mapStateToProps, {})(Header);
