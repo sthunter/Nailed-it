@@ -108,8 +108,8 @@ export default class Designing extends Component {
         width={ +roomNewWidth || 400} height={ +roomNewLength || 600}
         objects={this.state.objects}
         onUpdate={this.handleUpdate.bind(this)}
-        roomSelected = {this.props.roomSelected}
-        rooms = {this.props.rooms}
+        roomSelected={this.props.roomSelected}
+        rooms={this.props.rooms}
         />
     );
   }
