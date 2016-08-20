@@ -1,6 +1,4 @@
-// import { getBudget as getter, updateBudget as updater } from '../../databaseAPI';
 import databaseAPI from '../../databaseAPI';
-import { getGraphData } from './graphData';
 
 export const GET_BUDGET ='GET_BUDGET';
 export function getBudget() {
@@ -20,13 +18,4 @@ export function updateBudget(budgetObj) {
     payload: budget,
     newBudget: budgetObj.newBudget
   };
-}
-
-export const UPDATE_GRAPH = 'UPDATE_GRAPH';
-export function updateGraph(roomBudget) {
-  let selectedRoom = getGraphData(roomBudget);
-  return {
-    type: UPDATE_GRAPH,
-    payload: selectedRoom
-  }
 }
