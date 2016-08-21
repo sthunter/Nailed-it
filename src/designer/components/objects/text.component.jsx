@@ -1,23 +1,15 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import {modes} from '../constants';
-import Icon from '../Icon';
+import Icon from '../icon.component';
 import _ from 'lodash';
-import Text  from './Text';
 
-import Vector from './Vector';
+import Vector from './vector.component';
 
-export default class Rect extends Vector {
+export default class Text extends Vector {
   static meta = {
-    icon: <Icon icon={'rectangle'} size={30} />,
+    icon: <Icon icon={'text'} size={30} />,
     initial: {
-      width: 5,
-      height: 5,
-      strokeWidth: 0,
-      fill: "blue",
-      radius: 0,
-      blendMode: "normal",
-      rotate: 0,
       text: "Hello",
       rotate: 0,
       fontWeight: "normal",
@@ -27,7 +19,7 @@ export default class Rect extends Vector {
       fontSize: 50,
       fontFamily: "Helvetica"
     }
-  }
+  };
 
   getStyle() {
     let {object} = this.props;
@@ -42,16 +34,20 @@ export default class Rect extends Vector {
     };
   }
 
+  getTransformMatrix({rotate, x, y}) {
+    return `rotate(${rotate} ${x} ${y})`;
+  }
+
   render() {
     let {object, index} = this.props;
     return (
-      <rect style={this.getStyle()}
+      <text style={this.getStyle()}
          {...this.getObjectAttributes()}
-         rx={object.radius}
-         width={object.width}
-         height={object.height}
-        >
-        </rect>
+         textAnchor="middle"
+         fontSize={object.fontSize}
+         fontFamily={object.fontFamily}>
+        {object.text}
+       </text>
     );
   }
 }

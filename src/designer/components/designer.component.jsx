@@ -4,20 +4,20 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import {HotKeys} from 'react-hotkeys';
 import Radium from 'radium';
-import Icon from './Icon';
 
-import InsertMenu from './panels/InsertMenu';
-import SVGRenderer from './SVGRenderer';
-import Handler from './Handler';
+import Icon from './icon.component';
+import InsertMenu from './panels/insertMenu.component';
+import SVGRenderer from './svgRenderer.component';
+import Handler from './handler.component';
 import {modes} from './constants';
-import scale from './actions/Scaler';
-import rotate from './actions/Rotator';
-import drag from './actions/Dragger';
-import Text  from './objects/Text';
-import Path  from './objects/Path';
-import Circle  from './objects/Circle';
-import Rect from './objects/Rect';
-import PanelList from './panels/PanelList';
+import scale from '../actions/scaler.action';
+import rotate from '../actions/rotator.action';
+import drag from '../actions/dragger.action';
+import Text  from './objects/text.component';
+import Path  from './objects/path.component';
+import Circle  from './objects/circle.component';
+import Rect from './objects/rect.component';
+import PanelList from './panels/panelList.component';
 
 class Designer extends Component {
   static defaultProps = {

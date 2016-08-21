@@ -4,13 +4,13 @@ import Radium from 'radium';
 import _ from 'lodash';
 
 import styles from './styles';
-import Icon from '../Icon';
-import Panel from './Panel';
-import PropertyGroup from './PropertyGroup';
-import Button from './Button';
-import SwitchState from './SwitchState';
-import Columns from './Columns';
-import Column from './Column';
+import Icon from '../icon.component';
+import Panel from './panel.component';
+import PropertyGroup from './propertyGroup.component';
+import Button from './button.component';
+import SwitchState from './switchState.component';
+import Columns from './columns.component';
+import Column from './column.component';
 
 export default class ArrangePanel extends Panel {
   render() {

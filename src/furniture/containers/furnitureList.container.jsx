@@ -9,7 +9,7 @@ import { browserHistory } from 'react-router';
 import FList from '../components/fList.component';
 import AddFurnitureForm from './addFurnitureForm.container';
 import ListingFurniture from '../components/listingFurniture.component'
-import Designer from '../../designer/drawingtool/App';
+import Designer from '../../designer/components/roomDesigner.component';
 import AllFurniture from '../components/allFurniture.component';
 import furnitureHelper from '../furnitureHelper';
 import ListView from '../components/listView.component';

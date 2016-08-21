@@ -4,15 +4,15 @@ import Radium from 'radium';
 import _ from 'lodash';
 import Portal from 'react-portal';
 
-import Icon from '../Icon';
-import Panel from './Panel';
+import Icon from '../icon.component';
+import Panel from './panel.component';
 
 import styles from './styles';
-import PropertyGroup from './PropertyGroup';
-import Button from './Button';
-import SwitchState from './SwitchState';
-import Columns from './Columns';
-import Column from './Column';
+import PropertyGroup from './propertyGroup.component';
+import Button from './button.component';
+import SwitchState from './switchState.component';
+import Columns from './columns.component';
+import Column from './column.component';
 
 class PanelList extends Component {
   render() {

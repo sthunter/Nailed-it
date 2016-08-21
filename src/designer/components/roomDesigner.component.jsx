@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import classes from './App.module.css'
-import MondrianExample from './components/Mondrian';
+import classes from '../roomDesigner.module.css'
+import Designing from '../containers/mondrian.container';
 import ColorPalette from '../../colorPalette/containers/colorPalette.container';
 import FlatButton from 'material-ui/FlatButton'
 
@@ -28,7 +28,7 @@ handleColor = () => {
           <div className={classes.preview}>
             <FlatButton label="Color Tool" onClick={this.handleColor}/>
             {this.state.color ? <ColorPalette /> : null}
-            <MondrianExample params={this.props.params} />
+            <Designing params={this.props.params} />
           </div>
         </div>
       </div>

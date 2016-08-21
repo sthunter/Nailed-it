@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import ChromePicker from 'react-color';
 import _ from 'lodash';
-import Icon from '../Icon';
+import Icon from '../icon.component';
 
 import styles from './styles';
 

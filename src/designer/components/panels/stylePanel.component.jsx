@@ -3,16 +3,16 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 
-import Icon from '../Icon';
-import Panel from './Panel';
+import Icon from '../icon.component';
+import Panel from './panel.component';
 
 import styles from './styles';
-import PropertyGroup from './PropertyGroup';
-import Button from './Button';
-import SwitchState from './SwitchState';
-import Columns from './Columns';
-import Column from './Column';
-import ColorInput from './ColorInput';
+import PropertyGroup from './propertyGroup.component';
+import Button from './button.component';
+import SwitchState from './switchState.component';
+import Columns from './columns.component';
+import Column from './column.component';
+import ColorInput from './colorInput.component';
 
 export default class StylePanel extends Panel {
   modes = [
