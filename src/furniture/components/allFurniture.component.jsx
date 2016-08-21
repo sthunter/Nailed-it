@@ -7,6 +7,13 @@ import { GridList, GridTile } from 'material-ui/GridList';
 
 
 class AllFurniture extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: furnitureHelper.listByFurniture,
+      edit:false
+    }
+  }
 
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -14,11 +21,6 @@ class AllFurniture extends Component {
 
   deleteFurnitureCall(itemName, itemRoom) {
     this.props.deleteFurniture(itemName, itemRoom);
-  }
-
-  state = {
-    filter: furnitureHelper.listByFurniture,
-    edit:false
   }
   
   filterByFurnitureName() {

@@ -24,6 +24,17 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 class FurnitureList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      add:false,
+      view: 0,
+      all: false,
+      mobile: false,
+      value: null
+    }
+  }
+
   componentDidMount() {
     if(Object.keys(this.props.rooms).length === 0) {
       this.props.getRooms();
@@ -55,14 +66,6 @@ class FurnitureList extends Component {
       this.setState({mobile:true})
     }
     this.setState({value:this.props.roomSelected})
-  }
-
-  state = {
-    add:false,
-    view: 0,
-    all: false,
-    mobile: false,
-    value: null
   }
 
   handleOpen = () => {

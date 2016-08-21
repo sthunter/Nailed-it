@@ -1,40 +1,13 @@
-/*.App {
-  text-align: center;
-}
-.App-logo {
-  animation: spin infinite 20s linear;
-  height: 80px;
-}
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-.App-intro {
-  font-size: large;
-}
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-*/
-@media (max-width: 600px) {
-  .tabNav {
-    font-size:10px;
-  }
-}
-
-input.updateRoomTextField {
-  font-size: 1.25em;
-  mix-blend-mode: multiply;
-}
-
 body {
   background-color: rgb(249, 249, 249);
   font-family: roboto;
   color: rgba(0, 0, 0, 0.7);
   line-height: 1;
+}
+
+input.updateRoomTextField {
+  font-size: 1.25em;
+  mix-blend-mode: multiply;
 }
 
 .activator {
@@ -83,32 +56,6 @@ div.icon-row{
   padding: 0;
   margin: 0;
   display: inline-block;
-}
-
-#table-item {
-  padding: 0px 10px;
-  white-space: nowrap;
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 0px;
-}
-
-.slimDown {
-  padding: 0px 10px;
-  margin-top: 0;
-  margin-bottom: 0;
-  white-space: nowrap;
-  height: 1.5rem;
-}
-
-input.slimDown {
-  margin: 0;
-  height: 1.5rem;
-}
-
-div.container {
-  width: 80%;
-  
 }
 
 .card-control {
@@ -197,22 +144,8 @@ th.budget-table {
   display: none;
 }
 
-div.table {
-  display: table;
-  border-collapse: collapse;
-}
-
-form.tr, div.tr {
-  display:table-row;
-}
-
-.tr {
-  height: 40px;
-}
-.td, .th {
-  display:table-cell;
-  padding: 0 3px;
-  margin: 0;
+.updateRoomForm {
+  display:inline-block;
 }
 
 .tr.row-has-error {
@@ -220,57 +153,12 @@ form.tr, div.tr {
   valign: top;
 }
 
-.th {
-  font-weight: bold;
-  border-bottom: 1px solid black;
-}
-
-.tr .room {
-  width: 200px;
-  display: inline-block;
-}
-
-.tr .furniture {
-  width: 200px;
-  display: inline-block;
-}
-
-.tr .price {
-  width: 60px;
-  display: inline-block;
-}
-
-.tr .size {
-  width: 80px;
-  display: inline-block;
-}
-
-.tr .quantity {
-  width: 80px;
-  display: inline-block;
-}
-
-.tr .notes {
-  width: 200px;
-  display: inline-block;
-}
-
-.tr .color {
-  width: 80px;
-  display: inline-block;
-}
-
-.tr .deliveryDate {
-  width: 110px;
-  display: inline-block;
-}
-
-.tr .controls {
-  width: 100px;
-  display: inline-block;
-}
-
 .updateRoomForm {
   display:inline-block;
+  padding: 5px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
 
 }

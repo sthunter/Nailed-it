@@ -17,6 +17,12 @@ import Delete from 'material-ui/svg-icons/action/delete';
 import Lightbox from 'react-image-lightbox';
 
 class FList extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      edit: null
+    }
+  }
 
   componentWillReceiveProps() {
     this.setState({edit:null})
@@ -25,10 +31,6 @@ class FList extends Component {
   deleteFurnitureCall = (itemName) => {
     let currentRoom = this.props.roomSelected;
     this.props.deleteFurniture(itemName, currentRoom);
-  }
-
-  state = {
-    edit: null,
   }
 
   handleEdit = (itemName) => {
