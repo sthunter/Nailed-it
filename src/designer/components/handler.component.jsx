@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Radium from 'radium';
-import Icon from './Icon';
+import Icon from './icon.component';
 
 function ScaleAnchor(props) {
   let {boundingBox} = props;

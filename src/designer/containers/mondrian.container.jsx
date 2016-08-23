@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Designer from '../../src/Designer';
+import Designer from '../components/designer.component';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setRoomDesign, getRooms, selectRoom, updateRoomDesign } from '../../../rooms/actions/rooms.action';
-import { changeRoute } from '../../../routing/actions/routing.action';
+import { setRoomDesign, getRooms, selectRoom, updateRoomDesign } from '../../rooms/actions/rooms.action';
+import { changeRoute } from '../../routing/actions/routing.action';
 
 export default class Designing extends Component {
   currentRoom = "bathroom"

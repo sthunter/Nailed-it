@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import {modes} from '../constants';
-import Icon from '../Icon';
+import Icon from '../icon.component';
 import _ from 'lodash';
 
-import SizePanel from '../panels/SizePanel';
-import TextPanel from '../panels/TextPanel';
-import StylePanel from '../panels/StylePanel';
-import ArrangePanel from '../panels/ArrangePanel';
+import SizePanel from '../panels/sizePanel.component';
+import TextPanel from '../panels/textPanel.component';
+import StylePanel from '../panels/stylePanel.component';
+import ArrangePanel from '../panels/arrangePanel.component';
 
 
 

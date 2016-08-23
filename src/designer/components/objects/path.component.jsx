@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import {modes} from '../constants';
-import Icon from '../Icon';
+import Icon from '../icon.component';
 import _ from 'lodash';
 
-import Vector from './Vector';
-import BezierEditor from '../editors/BezierEditor';
+import Vector from './vector.component';
+import BezierEditor from '../editors/bezierEditor.component';
 
 export default class Path extends Vector {
   static meta = {

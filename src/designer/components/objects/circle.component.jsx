@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import {modes} from '../constants';
-import Icon from '../Icon';
+import Icon from '../icon.component';
 import _ from 'lodash';
 
-import Vector from './Vector';
+import Vector from './vector.component';
 
 export default class Circle extends Vector {
   static meta = {
